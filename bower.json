@@ -1,0 +1,30 @@
+{
+  "name": "instaGrade",
+  "authors": [
+    "Peter Krieg <pkrieg2@gmail.com>"
+  ],
+  "description": "Instagram grader",
+  "main": "app.js",
+  "moduleType": [],
+  "keywords": [
+    "instagram",
+    "javascript",
+    "angular"
+  ],
+  "license": "MIT",
+  "homepage": "http://peterkrieg.com/insta",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.7",
+    "bourbon": "~4.2.6",
+    "bootstrap-sass": "~3.3.5"
+  }
+}
