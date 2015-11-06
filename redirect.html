@@ -1,0 +1,34 @@
+<!--After user has authenticated on instagram, token is appended to URL.  
+	This file takes token, stores in local storage, and then redirects to page recognized by ui-router-->
+
+	<!doctype html>
+	<html>
+
+
+
+
+	<script>
+		var url = window.location.href.toString();
+		console.log(typeof url);
+		var token = url.split('#access_token=')[1];  // gets access token given by instagram
+		console.log('access token is '+token);
+		localStorage.token = token;
+
+		console.log(localStorage);
+
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+	</html>

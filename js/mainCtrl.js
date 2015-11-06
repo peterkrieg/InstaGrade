@@ -2,7 +2,7 @@ angular.module('myApp')
 	.controller('mainCtrl', ctrlFunc);
 
 	function ctrlFunc($scope, instaService){
-		var homeURL = 'http://peterkrieg.com/insta';
+		var homeURL = 'http://localhost:8080';
 
 		// function just gets token, based on when user grants insta permission to get info
 		$scope.getToken = function(){
@@ -10,7 +10,7 @@ angular.module('myApp')
 			var token = url.split('#access_token=')[1];  // gets access token given by instagram
 			console.log('access token is '+token);
 			// changes page URL back to home page, instead of messy token attached.  doesn't reload page 
-			// window.history.pushState({}, 'Title', homeURL);
+			window.history.pushState({}, 'Title', homeURL+'/#/');
 			// alert('changed URL?');
 			return token;
 		};
