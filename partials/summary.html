@@ -1,11 +1,21 @@
 <div>Here is summary of insta results</div>
 
 <div ng-repeat="media in userMedia">
+
 	<img ng-src="{{media.images.standard_resolution.url}}" alt="">
 	<p>{{media.likes.count}}</p>
 	<div class="comments">
 		<p ng-repeat="comment in media.comments.data"><img class="prof-pic"ng-src="{{comment.from.profile_picture}}">{{comment.text}}</p>
 	</div>
+
+	<div class="likePics">
+		<img class="liker-pic" ng-repeat="like in media.likesFull.data" ng-src="{{like.profile_picture}}" alt="">
+		
+
+	</div>
+
+
+
 </div>
 
 
