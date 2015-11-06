@@ -2,27 +2,6 @@ angular.module('myApp')
 .service('instaService', instaFunc);
 function instaFunc($http, $q){
 
-// default value of token, not set yet
-// var token = null;
-
-	
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	this.getInstaFeed= function(token){
 		var deferred = $q.defer();

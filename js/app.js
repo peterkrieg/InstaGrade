@@ -22,7 +22,7 @@ angular.module('myApp', ['ui.router'])
 	;
 
 
-	// $urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/');
 
 
 

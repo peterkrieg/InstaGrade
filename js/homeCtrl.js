@@ -2,32 +2,7 @@ angular.module('myApp')
 .controller('homeCtrl', ctrlFunc);
 
 function ctrlFunc($scope, instaService, $state){
-	var homeURL = 'http://localhost:8080';
-
-
-
-
-
-
-		// function just gets token, based on when user grants insta permission to get info
-		$scope.getToken = function(){
-			var url = window.location.href.toString();
-			console.log(url);
-
-			console.log(url.indexOf('access_token"'));
-
-			if(url.indexOf('access_token=') > -1){
-				alert('yep'); 
-				// if access token is appended to url,
-				var token = url.split('access_token=')[1];
-				console.log(token);
-
-				$state.go('summary');
-				
-			}
-		};
-
-		$scope.getToken();
+	// console.log('home controller fired');
 
 
 
@@ -46,13 +21,6 @@ function ctrlFunc($scope, instaService, $state){
 
 
 
-			// changes page URL back to home page, instead of messy token attached.  doesn't reload page 
-			// window.history.pushState({}, 'Title', homeURL+'/#/');
-			// alert('changed URL?');
-			// return token;
-		// var token = $scope.getToken();
-
-		// $scope.getToken();
 
 
 
@@ -61,19 +29,7 @@ function ctrlFunc($scope, instaService, $state){
 
 
 
-
-
-
-
-
-		//____________Now that token is received, get instagram media, big array of objects______________________
-
-		// instaService.getInstaFeed(token).then(function(userMedia){
-		// 	console.log('user media received from service is ... see below');
-		// 	console.log(userMedia);
-		// 	$scope.userMedia = userMedia;
-		// 	// $scope.userMedia =userMedia;
-		// });
+		
 
 
 }
