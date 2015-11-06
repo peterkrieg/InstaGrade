@@ -5,10 +5,24 @@ angular.module('myApp', ['ui.router'])
 	.state('home', {
 		url: '/',
 		templateUrl: 'partials/home.html',
-		// controller: 'homeCtrl'
-	});
+		controller: 'homeCtrl'
+	})
+	.state('summary', {
+		url: '/summary',
+		templateUrl: 'partials/summary.html',
+		controller: 'summaryCtrl'
+	})
+	.state('token', {
+		url: '/access_token=:token',
+		templateUrl: 'partials/token.html',
+		controller: 'tokenCtrl'
+	})
 
-	$urlRouterProvider.otherwise('/');
+
+	;
+
+
+	// $urlRouterProvider.otherwise('/');
 
 
 

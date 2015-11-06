@@ -5,21 +5,37 @@
 	<meta name=“viewport” content=“width=device-width, initial-scale=1.0”>
 	<link rel="stylesheet" href="css/main.css">
 </head>
-<body ng-controller="mainCtrl">
+<body >
 
 	<h1>This is trying out Instagram API</h1>
 
 
 	<!-- Top button is for development purposes, with different client ID -->
-	<div class="button"><a href="https://instagram.com/oauth/authorize/?client_id=c4fe6f461c5a45908a0ffbbe43abac84&redirect_uri=http://localhost:8080/redirect.html&response_type=token">Click this button to get data about you</a></div>
+	<div class="button"><a href="https://instagram.com/oauth/authorize/?client_id=c4fe6f461c5a45908a0ffbbe43abac84&redirect_uri=http://localhost:8080&response_type=token">Click this button to get data about you</a></div>
 
 	<div class="button"><a href="http://google.com">Click to go to google</a></div>
 
+
+	<div ui-view> </div>
+
 	<!--_________This button is for actual deployed site, on peterkrieg.com__________________________-->
 	<!-- <button><a href="https://instagram.com/oauth/authorize/?client_id=be00cab2884d420fa56d6d3bd584edb6&redirect_uri=http://peterkrieg.com/insta/s&response_type=token">Click this button to get data about you</a></button> -->
+
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/homeCtrl.js"></script>
+	<script src="js/summaryCtrl.js"></script>
+	<script src="js/tokenCtrl.js"></script>
+	<script src="js/instaService.js"></script>
+	<script src="js/tokenService.js"></script>
+</body>
 
 
 
 
 </body>
 </html>
+
