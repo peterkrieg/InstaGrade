@@ -13,7 +13,6 @@ function instaFunc($http, $q){
 		var page = 1;
 		// first function call
 		return eachRequest(URL);
-		
 
 		function eachRequest(URL){
 			console.log(URL);
@@ -32,40 +31,48 @@ function instaFunc($http, $q){
 				}
 
 
+				//___________________________________________________	
 				// last media request if no next_url property, means you're done
 				if(!pictures.pagination.next_url){
-					// alert('whats');
-
-					// now has to do separate api call for each photo to get likes
-
 					var counter = 0;
 					var likes = [];
 					// gets likes from all of user's photos, or 50 most recent, whichever case (to avoid hundreds of api calls, if users has lots of photos)
 
-					//for(var i=0; i<userMedia.length; i++){
 
-						var numPhotosMax = userMedia.length;
+					// max number of photos, to avoid >100 api calls just to get like data
+					var numPhotosMax;
+					if(userMedia.length<=100){
+						numPhotosMax = userMedia.length;
+					}
+					else{
+						numPhotosMax = 100;
+					}
 
-						// numPhotosMax = 5;
 
-						for(var j=0; j<numPhotosMax; j++) {
+					// numPhotosMax = 5;
+
+					for(var j=0; j<numPhotosMax; j++) {
 						var id = userMedia[j].id;
-						console.log(id);
+						// console.log(id);
 						$http({
 							method: 'JSONP',
 							url: 'https://api.instagram.com/v1/media/'+id+'/likes?access_token='+token+'&callback=JSON_CALLBACK'
 						}).then(function(response){
-							console.log(counter);
+							// console.log(counter);
 							var likeArr = response.data;
+							// console.log(likeArr);
 							likes.push(likeArr);
-							console.log(userMedia[counter]);
+							likes.sort(function(a,b){return a.data.length-b.data.length;});
+							// console.log('likes array sorted is...', likes);
+							// console.log(userMedia[counter]);
 							userMedia[counter].likesFull = likeArr;
 							counter++;
 							// I cap off the photos to 50 to start off, to avoid so many api calls
-							if(likes.length===userMedia.length || likes.length>=50){
-								console.log('finished likes is', likes);
+							if(likes.length===numPhotosMax){
+								console.log('sorted likes array is..', likes);
+								// console.log('finished likes is', likes);
 								userMedia.likes = likes;
-								console.log('user media is', userMedia);
+								// console.log('user media is', userMedia);
 								deferred.resolve(userMedia);
 							}
 							// counter++;  
@@ -92,10 +99,10 @@ function instaFunc($http, $q){
 
 					// });
 
-				}
-				else{
-					console.log('next:', nextURL);
-					console.log('#photos:', userMedia.length);
+}
+else{
+	console.log('next:', nextURL);
+	console.log('#photos:', userMedia.length);
 					// recursion each following time
 					eachRequest(nextURL+'&callback=JSON_CALLBACK');
 				}
@@ -106,9 +113,9 @@ function instaFunc($http, $q){
 				console.log('ERROR',error);
 			});
 
-			return deferred.promise;
-		}
-	};
+return deferred.promise;
+}
+};
 
 
 
