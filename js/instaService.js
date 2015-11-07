@@ -92,8 +92,18 @@ function instaFunc($http, $q){
 					userMedia.likes = likes;
 					// console.log('user media is', userMedia);
 
-					analyzeData(userMedia, likes, deferred);
+					// now get basic info about user
 
+					$http({
+						method: 'JSONP',
+						url: 'https://api.instagram.com/v1/users/self/?access_token='+token+'&callback=JSON_CALLBACK'
+					})
+						.then(function(response){
+						var userData = response.data.data;
+						console.log('user DATA IS...', userData);
+						analyzeData(userMedia, likes, deferred, userData);
+
+					});
 
 					
 				}
@@ -102,11 +112,16 @@ function instaFunc($http, $q){
 	}
 
 
-	function analyzeData(userMedia, likes, deferred){
+	function analyzeData(userMedia, likes, deferred, userData){
+
+		var userRatio = userData.counts.followed_by/userData.counts.follows;
+		console.log('userRatio is', userRatio);
+
 		var sumLikes = 0;
 		var selfLiked = 0;
 		var numPics = 0;
 		var numVids = 0;
+		var allTags = {};
 		for(var i=0; i<userMedia.length; i++){
 			var currentMedia = userMedia[i];
 			// if(i%10===0){
@@ -126,7 +141,32 @@ function instaFunc($http, $q){
 
 			sumLikes+=currentMedia.likes.count;
 
-		}
+			// analyzing hashtag usage
+			if(currentMedia.tags.length>0){
+				for(var k=0; k<currentMedia.tags.length; k++){
+					var tag = currentMedia.tags[k];
+					if(allTags.hasOwnProperty(tag)){
+						allTags[tag]++;
+					}
+					else{
+						allTags[tag] = 1;
+					}
+				}
+			}
+
+
+
+		}  // end of for loop
+
+		console.log('alltags object is', allTags);
+
+
+
+
+
+
+
+
 		console.log('total number of likes is', sumLikes);
 		console.log('number of media is', userMedia.length);
 		console.log('averange number of likes is', sumLikes/userMedia.length);
@@ -171,8 +211,7 @@ function instaFunc($http, $q){
 
 
 
-
-
+// end of entire service function, don't go below this
 }
 
 
