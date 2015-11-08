@@ -38,16 +38,16 @@ this.getInstaFeed= function(token){
 			}
 
 			else{
-				console.log('next:', nextURL);
-				console.log('#photos:', userMedia.length);
+				// console.log('next:', nextURL);
+				// console.log('#photos:', userMedia.length);
 				// recursion each following time
 				eachRequest(nextURL+'&callback=JSON_CALLBACK');
 			}
-			console.log(parsedData);
+			// console.log(parsedData);
 			// console.log('length is'+parsedData.data.length);
 		},
 		function (error) {
-			console.log('ERROR',error);
+			// console.log('ERROR',error);
 		});
 
 		return deferred.promise;
@@ -63,7 +63,7 @@ function getLikes(userMedia, deferred){
 	var likes = [];
 
 	// max number of photos, to avoid >100 api calls just to get like data
-	var setMaxPhotos = 10;
+	var setMaxPhotos = 1;
 	var numPhotosMax;
 	if(userMedia.length<=setMaxPhotos){
 		numPhotosMax = userMedia.length;
@@ -89,7 +89,7 @@ function getLikes(userMedia, deferred){
 			counter++;
 			// I cap off the photos to 50 to start off, to avoid so many api calls
 			if(likes.length===numPhotosMax){
-				console.log('sorted likes array is..', likes);
+				// console.log('sorted likes array is..', likes);
 				// console.log('finished likes is', likes);
 				userMedia.likes = likes;
 				// console.log('user media is', userMedia);
@@ -113,7 +113,7 @@ function getUserInfo(userMedia, likes, deferred){
 	.then(function(response){
 		var userData = response.data.data;
 		// var userId = userData.id;
-		console.log('user DATA IS...', userData);
+		// console.log('user DATA IS...', userData);
 
 		// get follows of user
 		getFollows(userMedia, likes, deferred, userData);
@@ -143,7 +143,7 @@ function getFollows(userMedia, likes, deferred, userData){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
 			else if(!nextUrl){
-				console.log('list of all follows is', follows);
+				// console.log('list of all follows is', follows);
 				// no more follows, all done with getFollows function
 				getFollowers(userMedia, likes, deferred, userData, follows);
 			}
@@ -173,7 +173,7 @@ function getFollowers(userMedia, likes, deferred, userData, follows){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
 			else if(!nextUrl){
-				console.log('list of all followers is', followers);
+				// console.log('list of all followers is', followers);
 				// no more follows, all done with getFollows function
 				analyzeData(userMedia, likes, deferred, userData, follows, followers);
 			}

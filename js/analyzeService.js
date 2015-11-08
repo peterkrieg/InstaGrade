@@ -10,14 +10,14 @@ this.analyzeData = function(userMedia, likes, deferred, userData, follows, follo
 
 
 	var userRatio = userData.counts.followed_by/userData.counts.follows;
-	console.log('userRatio is', userRatio);
+	// console.log('userRatio is', userRatio);
 
 	var sumLikes = 0;
 	var selfLiked = 0;
 	var numPics = 0;
 	var numVids = 0;
 	var allTags = {};
-	
+
 	for(var i=0; i<userMedia.length; i++){
 		var currentMedia = userMedia[i];
 	// if(i%10===0){
@@ -56,7 +56,7 @@ this.analyzeData = function(userMedia, likes, deferred, userData, follows, follo
 
 }  // end of for loop
 
-console.log('alltags object is', allTags);
+// console.log('alltags object is', allTags);
 
 
 // analyzing likes, lots of data
@@ -79,7 +79,7 @@ for(var x=0; x<likes.length; x++){
 
 }
 
-console.log('tons of likes is...', userLikers);
+// console.log('tons of likes is...', userLikers);
 
 
 
@@ -88,12 +88,127 @@ console.log('tons of likes is...', userLikers);
 
 
 
-console.log('total number of likes is', sumLikes);
-console.log('number of media is', userMedia.length);
-console.log('averange number of likes is', sumLikes/userMedia.length);
-console.log('number of times you have liked your own photo is', selfLiked);
-console.log('numbef of pictures is ', numPics);
-console.log('number of videos is ', numVids);
+// console.log('total number of likes is', sumLikes);
+// console.log('number of media is', userMedia.length);
+// console.log('averange number of likes is', sumLikes/userMedia.length);
+// console.log('number of times you have liked your own photo is', selfLiked);
+// console.log('numbef of pictures is ', numPics);
+// console.log('number of videos is ', numVids);
+
+
+
+uniqueFollow();
+
+
+
+//_________________________Analyzing follows/followers__________________________
+
+function uniqueFollow(){
+	console.log('follows is', follows);
+	console.log('followers are', followers);
+
+	var uniqueFollowers = [];
+	var uniqueFollows = [];
+
+	// follows.sort(function(a,b){return a.id - b.id;});
+	// console.log('sorted follows is ', follows);
+	// for(var i=0; i<follows.length; i++){
+	// 	// console.log(follows[i].id);
+	// }
+
+
+
+	// followers.sort(function(a,b){return a.id-b.id;});
+	// console.log('sorted followers is', followers);
+	// for(var j=0; j<followers.length; j++){
+	// 	// console.log(followers[j].id);
+	// }
+
+
+
+	// //  need way to find unique follows, and unique followers
+	// for(var x=0; x<follows.length; x++){
+	// 	var currentFollow = follows[x];
+	// 	for(y=0; j)
+
+
+	// }
+
+
+
+
+
+
+
+
+
+
+
+
+	for(var i=0; i<follows.length; i++){
+		var currentFollow = follows[i];
+		for(var j=0; j<followers.length; j++){
+			var currentFollower = followers[j];
+			if(currentFollow.id===currentFollower.id){
+				// a follow is a follower, not unique
+				break;
+			}
+			if(j===followers.length-1){
+				uniqueFollows.push(follows[i]);
+			}
+		}
+	}
+
+	console.log('unique follows is ', uniqueFollows);
+
+
+
+
+	for(var x=0; x<followers.length; x++){
+		var currentFollower2 = followers[x];
+		for(var y=0; y<follows.length; y++){
+			var currentFollow2 = follows[y];
+			if(currentFollower2.id===currentFollow2.id){
+				// a follow is a follower, not unique
+				break;
+			}
+			if(y===follows.length-1){
+				uniqueFollowers.push(followers[x]);
+			}
+		}
+	}
+
+	console.log('unique followers is', uniqueFollowers);
+
+
+
+
+
+
+} // end of whole service function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
