@@ -43,7 +43,7 @@ this.getInstaFeed= function(token){
 				// recursion each following time
 				eachRequest(nextURL+'&callback=JSON_CALLBACK');
 			}
-			// console.log(parsedData);
+			console.log(parsedData);
 			// console.log('length is'+parsedData.data.length);
 		},
 		function (error) {

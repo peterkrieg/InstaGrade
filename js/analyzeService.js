@@ -17,12 +17,13 @@ this.analyzeData = function(userMedia, likes, deferred, userData, follows, follo
 	var numPics = 0;
 	var numVids = 0;
 	var allTags = {};
+	
 	for(var i=0; i<userMedia.length; i++){
 		var currentMedia = userMedia[i];
 	// if(i%10===0){
 	// 	console.log(currentMedia);
 	// }
-	console.log(currentMedia);
+	// console.log(currentMedia);
 	if(currentMedia.user_has_liked===true){
 		selfLiked++;
 	}
