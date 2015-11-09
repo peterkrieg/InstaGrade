@@ -3,6 +3,7 @@ div.resultsHeader{
 	@include blueGradient();
 	height: 120px;
 	padding-top: 30px;
+	border-bottom: 2px solid black;
 	h1{
 		color: white;
 		font-size: 2em;
@@ -25,6 +26,32 @@ div.loading{
 	}
 }
 
+div.container.results{
+	border-radius: 50px;
+	font-size: 2rem;
+	margin-top: 100px;
+	@include animation-name(fadeInUp);
+	@include animation-duration(1s);
+	ul.nav-tabs{
+		li{
+			a{
+				color: $instaBlue;
+			}
+			&.active{
+				li{
+					background: none;
+				}
+				a{
+					color: $pink;
+				}
+			}
+		}
+	}
+
+
+
+}
+
 
 
 
@@ -43,4 +70,23 @@ div.loading{
     @include transform(rotate(360deg));
   }
 }
+
+@include keyframes(fadeInUp){
+	from{
+		opacity: 0;
+		padding-top: 100px;
+	}
+	to{
+		opacity: 1;
+		padding-top: 0px;
+	}
+}
+
+
+
+.fa{
+	font-size: 60px;
+	color: $instaBlue;
+}
+
 

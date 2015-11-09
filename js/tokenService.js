@@ -1,7 +1,6 @@
 angular.module('myApp')
 .service('tokenService', function(){
 
-	
 		return {
 			getToken: function() {
 				return token;
@@ -9,13 +8,7 @@ angular.module('myApp')
 			setToken: function(value){
 				token = value;
 			}
-
 		};
-
-
-
-
-
-
+		
 });
 

@@ -2,7 +2,6 @@ div.home-page{
 	text-align: center;
 }
 
-
 div.intro-container{
 	font-size: 2rem;
 	color: #ded1c1;
@@ -35,7 +34,7 @@ div.intro-content{
 		display: inline-block;
 		// padding: 12px 20px;
 		@include transition(.5s ease);
-		&:hover{
+		&.login:hover{
 			@include transform(scale(1.01));
 			background: darken($pink, 7%);
 			@include transition(1.5s ease);
@@ -144,10 +143,6 @@ footer{
 
 
 
-.fa{
-	font-size: 60px;
-	color: $instaBlue;
-}
 
 
 
