@@ -7,11 +7,26 @@ angular.module('myApp', ['ui.router'])
 		templateUrl: 'partials/home.html',
 		controller: 'homeCtrl'
 	})
-	.state('summary', {
+	.state('results', {
+		url: '/results',
+		templateUrl: 'partials/results.html',
+		controller: 'resultsCtrl'
+	})
+	.state('results.summary', {
 		url: '/summary',
-		templateUrl: 'partials/summary.html',
+		templateUrl: 'partials/results.summary.html',
 		controller: 'summaryCtrl'
 	})
+
+
+
+
+
+
+
+
+
+
 	.state('token', {
 		url: '/access_token=:token',
 		templateUrl: 'partials/token.html',

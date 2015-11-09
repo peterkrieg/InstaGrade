@@ -1,0 +1,46 @@
+div.resultsHeader{
+	font-size: 2rem;
+	@include blueGradient();
+	height: 120px;
+	padding-top: 30px;
+	h1{
+		color: white;
+		font-size: 2em;
+		letter-spacing: 5px;
+		text-align: center;
+	}
+}
+
+div.loading{
+	margin-top: 50px;
+	h1{
+		margin-bottom: 50px;
+	}
+	text-align: center;
+	img{
+		width: 200px;
+		@include animation-name(instaSpinLoad);
+		@include animation-iteration-count(infinite);
+		@include animation-duration(2s);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+@include keyframes(instaSpinLoad) {
+  from {
+    @include transform(rotate(0deg));
+  }
+  to {
+    @include transform(rotate(360deg));
+  }
+}
+
