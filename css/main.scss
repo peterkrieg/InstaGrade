@@ -2,6 +2,118 @@
 @import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
 @import "../bower_components/reset-css/reset";
 
+// google fonts
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,300,100,700|Playfair+Display:400,700);
+
+
+//_________________________Variables__________________________
+
+$header-font: 'Josefin Sans', sans-serif;
+$text-font: 'Playfair Display', serif;
+
+
+
+
+
+// general styles to whole page
+
+h1,h2,h3,h4,h5,h6{
+	font-family: $header-font;
+}
+
+p, div{
+	font-family: $text-font;
+}
+
+
+
+
+//_________________________Intro Home Page__________________________
+
+
+
+
+$backgroundUrl: url('../img/asfalt-dark.png');
+
+
+
+@mixin homeGradient(){
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2680ff+1,458eff+41,5b9dff+100 */
+background: #2680ff; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #2680ff 1%, #458eff 41%, #5b9dff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#2680ff), color-stop(41%,#458eff), color-stop(100%,#5b9dff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* IE10+ */
+background: linear-gradient(135deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2680ff', endColorstr='#5b9dff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+
+html, body, div[ui-view]{
+	width: 100%;
+	height: 100%;
+}
+
+html{
+	font-size: 12px;
+}
+
+
+
+div.intro-container{
+	color: #ded1c1;
+	color: white;
+	text-align: center;
+	height: 40%;
+	min-height: 400px;
+	// background: url('../img/asfalt-dark.png');
+	@include homeGradient();
+}
+
+div.intro-content{
+	$pink: #FC6079;
+	position: relative;
+	top: 100px;
+	h1{
+		font-size: 5rem;
+	}
+	h3{
+		margin: 20px 0;
+		font-size: 2rem;
+		font-style: italic; 
+	}
+	div.button{
+		border: 1px solid white;
+		border-radius: 10px;
+		background: $pink;
+		display: inline-block;
+		// padding: 12px 20px;
+		@include transition(.5s ease);
+		&:hover{
+			background: darken($pink, 10%);
+			@include transition(1.5s ease);
+		}
+		a{
+			padding: 12px 20px;
+			display: block;
+			color: white;
+			font-size: 2rem;
+			&:hover{
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
 
 
 img{
@@ -12,13 +124,6 @@ img{
 	}
 }
 
-div.button{
-	background: lightblue;
-	margin: 20px;
-	border: 5px solid black;
-	display: inline-block;
-	padding: 10px;
-}
 
 
 img.liker-pic{
