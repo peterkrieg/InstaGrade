@@ -33,16 +33,15 @@ div.container.results{
 	@include animation-name(fadeInUp);
 	@include animation-duration(1s);
 	ul.nav-tabs{
+		margin-bottom: 50px;
 		li{
 			a{
+				font-family: $header-font;
 				color: $instaBlue;
 			}
-			&.active{
-				li{
-					background: none;
-				}
+			&:hover{
 				a{
-					color: $pink;
+					background: white;
 				}
 			}
 		}

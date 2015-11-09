@@ -5,7 +5,8 @@ angular.module('myApp')
 		// var token = instaService.getToken();
 		// console.log(token);
 
-		var token = tokenService.getToken();
+		// delete the stuff after || when done with dev
+		var token = tokenService.getToken() || '1359984932.c4fe6f4.32721a77599f4b11b20c1f2ffcbedab2';
 		// console.log(token);
 
 

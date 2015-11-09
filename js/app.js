@@ -18,10 +18,10 @@ angular.module('myApp', ['ui.router'])
 		templateUrl: 'partials/results.html',
 		controller: 'resultsCtrl'
 	})
-	.state('results.summary', {
-		url: '/summary',
-		templateUrl: 'partials/results.summary.html',
-		controller: 'summaryCtrl'
+	.state('results.grade', {
+		url: '/grade',
+		templateUrl: 'partials/results.grade.html',
+		controller: 'gradeCtrl'
 	})
 
 

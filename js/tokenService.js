@@ -9,6 +9,6 @@ angular.module('myApp')
 				token = value;
 			}
 		};
-		
+
 });
 
