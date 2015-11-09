@@ -112,6 +112,7 @@ function getUserInfo(userMedia, likes, deferred){
 	})
 	.then(function(response){
 		var userData = response.data.data;
+		userMedia.userData = userData;
 		// var userId = userData.id;
 		// console.log('user DATA IS...', userData);
 

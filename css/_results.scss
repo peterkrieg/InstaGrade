@@ -1,9 +1,22 @@
+div.results{
+	text-align: center;
+	h2{
+		text-align: center;
+	}
+	img.userProfile{
+		width: 100px;
+		border-radius: 5px;
+		margin-bottom: 20px;
+
+	}
+}
 div.resultsHeader{
 	font-size: 2rem;
 	@include blueGradient();
 	height: 120px;
 	padding-top: 30px;
 	border-bottom: 2px solid black;
+	margin-bottom: 60px;
 	h1{
 		color: white;
 		font-size: 2em;
@@ -29,7 +42,7 @@ div.loading{
 div.container.results{
 	border-radius: 50px;
 	font-size: 2rem;
-	margin-top: 100px;
+	margin-top: 50px;
 	@include animation-name(fadeInUp);
 	@include animation-duration(1s);
 	ul.nav-tabs{

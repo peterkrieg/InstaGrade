@@ -17,6 +17,11 @@ angular.module('myApp')
 			// console.log(userMedia);
 			$scope.loading = false;
 			$scope.userMedia = userMedia;
+
+			$scope.name = userMedia.name;
+			$scope.userPic = userMedia.userPic;
+			console.log(userMedia);
+
 			// $scope.userMedia =userMedia;
 		});
 

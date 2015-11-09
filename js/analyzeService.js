@@ -7,9 +7,14 @@ function analyzeFunc(){
 
 this.analyzeData = function(userMedia, likes, deferred, userData, follows, followers){
 
+	var name = userData.full_name || userData.username;
+	var userPic = userData.profile_picture;
 
+	userMedia.name = name;
+	userMedia.userPic = userPic;
 
 	var userRatio = userData.counts.followed_by/userData.counts.follows;
+	userMedia.userRatio = userRatio;
 	// console.log('userRatio is', userRatio);
 
 	var sumLikes = 0;
@@ -104,8 +109,8 @@ uniqueFollow();
 //_________________________Analyzing follows/followers__________________________
 
 function uniqueFollow(){
-	console.log('follows is', follows);
-	console.log('followers are', followers);
+	// console.log('follows is', follows);
+	// console.log('followers are', followers);
 
 	var uniqueFollowers = [];
 	var uniqueFollows = [];
@@ -159,7 +164,7 @@ function uniqueFollow(){
 		}
 	}
 
-	console.log('unique follows is ', uniqueFollows);
+	// console.log('unique follows is ', uniqueFollows);
 
 
 
@@ -178,7 +183,10 @@ function uniqueFollow(){
 		}
 	}
 
-	console.log('unique followers is', uniqueFollowers);
+	// console.log('unique followers is', uniqueFollowers);
+
+	userMedia.uniqueFollowers = uniqueFollowers;
+	userMedia.uniqueFollows = uniqueFollows;
 
 
 

@@ -21,7 +21,7 @@ angular.module('myApp', ['ui.router'])
 	.state('results.grade', {
 		url: '/grade',
 		templateUrl: 'partials/results.grade.html',
-		controller: 'gradeCtrl'
+		controller: 'resultsCtrl'
 	})
 
 
