@@ -1,9 +1,11 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
 @import "../bower_components/reset-css/reset";
+@import "../bower_components/font-awesome/css/font-awesome.css";
 
 // google fonts
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,300,100,700|Playfair+Display:400,700);
+
 
 
 //_________________________Variables__________________________
@@ -11,33 +13,18 @@
 $header-font: 'Josefin Sans', sans-serif;
 $text-font: 'Playfair Display', serif;
 
+$instaBlue: #458eff;
+$instaDarkBlue: #125688;
+$pink: #FC6079;
 
 
 
 
-// general styles to whole page
-
-h1,h2,h3,h4,h5,h6{
-	font-family: $header-font;
-}
-
-p, div{
-	font-family: $text-font;
-}
 
 
+//_________________________Mixins__________________________
 
-
-//_________________________Intro Home Page__________________________
-
-
-
-
-$backgroundUrl: url('../img/asfalt-dark.png');
-
-
-
-@mixin homeGradient(){
+@mixin blueGradient(){
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2680ff+1,458eff+41,5b9dff+100 */
 background: #2680ff; /* Old browsers */
 background: -moz-linear-gradient(-45deg,  #2680ff 1%, #458eff 41%, #5b9dff 100%); /* FF3.6+ */
@@ -51,61 +38,50 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2680ff', end
 }
 
 
+//_________________________General Styles to whole page__________________________
+// using pixels on html, then rem on each module, than em on each component of module
+// https://css-tricks.com/rems-ems/
 html, body, div[ui-view]{
 	width: 100%;
 	height: 100%;
 }
 
 html{
-	font-size: 12px;
+	font-size: 16px;
+}
+
+body{
+	background: #f5f5f5;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: $header-font;
+}
+
+p, div, button, a{
+	font-family: $text-font;
 }
 
 
+//_________________________Partials of Different Pages__________________________
 
-div.intro-container{
-	color: #ded1c1;
-	color: white;
-	text-align: center;
-	height: 40%;
-	min-height: 400px;
-	// background: url('../img/asfalt-dark.png');
-	@include homeGradient();
-}
+// home page
+@import "home";
 
-div.intro-content{
-	$pink: #FC6079;
-	position: relative;
-	top: 100px;
-	h1{
-		font-size: 5rem;
-	}
-	h3{
-		margin: 20px 0;
-		font-size: 2rem;
-		font-style: italic; 
-	}
-	div.button{
-		border: 1px solid white;
-		border-radius: 10px;
-		background: $pink;
-		display: inline-block;
-		// padding: 12px 20px;
-		@include transition(.5s ease);
-		&:hover{
-			background: darken($pink, 10%);
-			@include transition(1.5s ease);
-		}
-		a{
-			padding: 12px 20px;
-			display: block;
-			color: white;
-			font-size: 2rem;
-			&:hover{
-				text-decoration: none;
-			}
-		}
-	}
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
