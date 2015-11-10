@@ -2,6 +2,7 @@ div.results{
 	text-align: center;
 	h2{
 		text-align: center;
+		font-family: $text-font;
 	}
 	img.userProfile{
 		width: 100px;
@@ -13,10 +14,10 @@ div.results{
 div.resultsHeader{
 	font-size: 2rem;
 	@include blueGradient();
-	height: 120px;
-	padding-top: 30px;
+	height: 80px;
+	padding-top: 10px;
 	border-bottom: 2px solid black;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 	h1{
 		color: white;
 		font-size: 2em;
@@ -40,59 +41,41 @@ div.loading{
 }
 
 div.container.results{
+	padding: 0;
 	border-radius: 50px;
 	font-size: 2rem;
 	margin-top: 50px;
-	@include animation-name(fadeInUp);
-	@include animation-duration(1s);
+	@include fadeInUp(1s);
 	ul.nav-tabs{
-		margin-bottom: 50px;
+		margin-bottom: 0px;
 		li{
 			a{
 				font-family: $header-font;
 				color: $instaBlue;
 			}
+			&.active{
+				a{
+					background: #fafafa;
+				}
+			}
 			&:hover{
 				a{
-					background: white;
+					background: #fafafa;
 				}
 			}
 		}
 	}
-
-
-
 }
 
-
-
-
-
-
-
-
-
-
-
-@include keyframes(instaSpinLoad) {
-  from {
-    @include transform(rotate(0deg));
-  }
-  to {
-    @include transform(rotate(360deg));
-  }
+div.results-content{
+	padding-top: 20px;
+	@include border-bottom-radius(50px);
+	background: #fafafa;
+	min-height: 500px;
+	border: 1px solid #ddd;
+	border-top: none;
 }
 
-@include keyframes(fadeInUp){
-	from{
-		opacity: 0;
-		padding-top: 100px;
-	}
-	to{
-		opacity: 1;
-		padding-top: 0px;
-	}
-}
 
 
 

@@ -37,11 +37,39 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2680ff', end
 
 }
 
+@mixin fadeInUp($duration){
+	@include animation(fadeInUp $duration ease);
+}
+
+@include keyframes(instaSpinLoad) {
+  from {
+    @include transform(rotate(0deg));
+  }
+  to {
+    @include transform(rotate(360deg));
+  }
+}
+
+@include keyframes(fadeInUp){
+	from{
+		opacity: 0;
+		padding-top: 100px;
+	}
+	to{
+		opacity: 1;
+		padding-top: 0px;
+	}
+}
+
+.fade-in-up{
+	@include fadeInUp(1s);
+}
+
 
 //_________________________General Styles to whole page__________________________
 // using pixels on html, then rem on each module, than em on each component of module
 // https://css-tricks.com/rems-ems/
-html, body, div[ui-view]{
+html, body{
 	width: 100%;
 	height: 100%;
 }
@@ -70,7 +98,7 @@ p, div, button, a, ul, li{
 
 // all rest are components of results
 @import "results";
-@import "grade";
+@import "results.contents";
 
 
 

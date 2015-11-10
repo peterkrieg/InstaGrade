@@ -8,6 +8,6 @@ angular.module('myApp')
 
 		tokenService.setToken(token);
 
-		$state.go('results.grade');
+		$state.go('results.photos');
 
 	});
