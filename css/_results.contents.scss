@@ -1,16 +1,71 @@
-div.grade, div.relationships, div.more-analytics, div.photos{
+div.grade, div.relationships, div.more-analytics, div.media{
 	min-height: 600px;
 	font-size: 2rem;
 	text-align: center;
 	h2{
+		text-decoration: underline;
+		font-family: $header-font;
 		text-align: center;
-		font-size: 2em;
+		font-size: 1.5em;
+		margin-bottom: 20px;
+	}
+	h4{
+		margin: 10px 0;
+		font-size: 1em;
+	}
+	p{
+		font-size: .6em;
 	}
 }
 
 
 
+//_________________________Media Section__________________________
+div.media{
+	div.img-container{
+		margin-bottom: 50px;
+	}
+	img{
+		max-width: 300px;
+	}
+	p.noMorePics{
+		color: red;
+	}
+	ul.stats{
+		padding: 0 70px;
+		width: 100%;
+		font-size: .6em;
+		li{
+			font-size: 1.2em;
+			&:first-of-type{
+				margin-bottom: 5px;
+			}
+			// background: red;
+			height: 25px;
+			position: relative;
+		}
+		b{
+			padding-top: 5px;
+			font-size: .75em;
+			position: absolute;
+			left: 50px;
+		}
+		i{
+			position: absolute;
+			right: 50px;
+			// font-size: 1.2em;
+		}
+	}
 
+
+
+
+
+
+
+
+
+}
 
 
 
@@ -25,6 +80,3 @@ div.more-analytics{
 	// background: yellow;
 }
 
-div.photos{
-	// background: orange;
-}

@@ -23,9 +23,9 @@ angular.module('myApp', ['ui.router'])
 		templateUrl: 'partials/results.grade.html',
 		// controller: 'resultsCtrl'
 	})
-	.state('results.photos', {
-		url: '/photos',
-		templateUrl: 'partials/results.photos.html',
+	.state('results.media', {
+		url: '/media',
+		templateUrl: 'partials/results.media.html',
 		// controller: 'resultsCtrl'
 	})
 	.state('results.relationships', {

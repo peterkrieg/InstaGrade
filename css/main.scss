@@ -90,6 +90,12 @@ p, div, button, a, ul, li{
 	font-family: $text-font;
 }
 
+//_______________Anything that causes ng-click, make cursor_______________________
+
+[ng-click]:hover{
+	cursor: pointer;
+}
+
 
 //_________________________Partials of Different Pages__________________________
 

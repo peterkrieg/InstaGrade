@@ -22,9 +22,12 @@ this.analyzeData = function(userMedia, likes, deferred, userData, follows, follo
 	var numPics = 0;
 	var numVids = 0;
 	var allTags = {};
+	var pics = [];
+	var vids = [];
 
 	for(var i=0; i<userMedia.length; i++){
 		var currentMedia = userMedia[i];
+		currentMedia.score = (currentMedia.likes.count*1)+(currentMedia.comments.count*2);
 	// if(i%10===0){
 	// 	console.log(currentMedia);
 	// }
@@ -34,10 +37,10 @@ this.analyzeData = function(userMedia, likes, deferred, userData, follows, follo
 	}
 
 	if(currentMedia.type==="image"){
-		numPics++;
+		pics.push(currentMedia);
 	}
 	else if(currentMedia.type==="video"){
-		numVids++;
+		vids.push(currentMedia);
 	}
 
 	sumLikes+=currentMedia.likes.count;
@@ -60,6 +63,32 @@ this.analyzeData = function(userMedia, likes, deferred, userData, follows, follo
 
 
 }  // end of for loop
+
+userMedia.numPics = pics.length;
+userMedia.numVids = vids.length;
+
+// sort to find most popular photos/videos
+
+var popularPics = pics.sort(function(a,b){return a.score - b.score;});
+var popularVids = vids.sort(function(a,b){return a.score - b.score;});
+
+userMedia.popularPics = popularPics;
+userMedia.popularVids = popularVids;
+
+console.log(popularPics);
+console.log(popularVids);
+
+
+
+
+
+
+
+
+
+
+
+
 
 // console.log('alltags object is', allTags);
 

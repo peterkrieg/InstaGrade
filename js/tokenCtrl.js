@@ -8,6 +8,6 @@ angular.module('myApp')
 
 		tokenService.setToken(token);
 
-		$state.go('results.photos');
+		$state.go('results.media');
 
 	});

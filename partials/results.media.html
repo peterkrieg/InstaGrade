@@ -1,0 +1,85 @@
+<div class="media fade-in-up">
+	<h2>Media</h2>
+
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Photos</h4>
+			<p ng-show="!pics">...You Don't have any photos!  Get at it and come back here when you have some stuff</p>
+			<p ng-show="pics">You have {{userMedia.numPics}} pictures.  Your most popular pics are shown below.</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="pic in popularPics">
+			<div class="img-container">
+				<img ng-src="{{pic.images.standard_resolution.url}}" alt="">
+				<ul class="stats">
+				<li><b>Likes:</b> <i>{{pic.likes.count}}</i></li>
+					<li><b>Comments:</b> <i>{{pic.comments.count}}</i></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<a ng-show="!noMorePics" class="getMorePics" ng-click="getPopularPics()">Click to See More Popular Pics..</a>
+		<p class="noMorePics" ng-show="noMorePics">No More Pictures to Display</p>
+
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<h4>Videos</h4>
+			<p ng-show="!vids">...You Don't have any videos!  Get at it and come back here when you have some stuff</p>
+			<p ng-show="vids">You have {{userMedia.numVids}} videos.</p>
+
+
+
+		</div>
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
