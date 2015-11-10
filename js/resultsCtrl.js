@@ -1,5 +1,5 @@
 angular.module('myApp')
-	.controller('resultsCtrl', function($scope, tokenService, instaService){
+	.controller('resultsCtrl', function($scope, tokenService, instaService, $sce){
 		$scope.loading = true;
 
 		// var token = instaService.getToken();
@@ -32,12 +32,14 @@ angular.module('myApp')
 			userMedia.numPics ? $scope.pics = true : $scope.pics = false;
 			userMedia.numVids ? $scope.vids = true : $scope.vids = false;
 
-			$scope.popularPics = [];
 
+			//_________________________Set up popular pics__________________________
+
+			$scope.popularPics = [];
 			$scope.noMorePics = false;
 
 			$scope.getPopularPics = function(){
-				for(var i=0; i<31; i++){
+				for(var i=0; i<6; i++){
 					var picToAdd = userMedia.popularPics.pop();
 					if(picToAdd){
 						$scope.popularPics.push(picToAdd);
@@ -50,7 +52,58 @@ angular.module('myApp')
 			};
 
 			$scope.getPopularPics();
-			console.log($scope.popularPics);
+			// console.log($scope.popularPics);
+			// console.log('pouplar vids is', userMedia.popularVids);
+
+
+
+			//_________________________Fix videos URL__________________________
+
+			$scope.fixUrls = function(){
+				for(var i=0; i<userMedia.popularVids.length; i++){
+					var currentVid = userMedia.popularVids[i];
+					console.log(currentVid);
+					currentVid.safeurl = $sce.trustAsResourceUrl(currentVid.videos.standard_resolution.url);
+				}
+
+
+
+			};
+
+			$scope.fixUrls();
+
+
+
+
+
+
+
+
+			//_________________________Set up popular vids__________________________
+
+			$scope.popularVids = [];
+			$scope.noMoreVids = false;
+
+			$scope.getPopularVids = function(){
+				for(var i=0; i<6; i++){
+					var vidToAdd = userMedia.popularVids.pop();
+					if(vidToAdd){
+						$scope.popularVids.push(vidToAdd);
+					}
+					else{
+						$scope.noMoreVids = true;
+						return;
+					}
+				}
+			};
+
+			$scope.getPopularVids();
+
+			console.log($scope.popularVids);
+			console.log($scope.popularVids[1].videos.standard_resolution.url);
+
+
+
 
 
 

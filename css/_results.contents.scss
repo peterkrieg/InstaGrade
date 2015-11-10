@@ -22,14 +22,18 @@ div.grade, div.relationships, div.more-analytics, div.media{
 
 //_________________________Media Section__________________________
 div.media{
+	padding-bottom: 150px;
 	div.img-container{
 		margin-bottom: 50px;
 	}
 	img{
 		max-width: 300px;
 	}
-	p.noMorePics{
+	p.noMorePics, p.noMoreVids{
 		color: red;
+	}
+	p.intro-sentence{
+		margin-bottom: 15px;
 	}
 
 	ul.stats{
@@ -72,7 +76,7 @@ div.media{
 	}
 
 	ul.comments{
-		z-index: 100;
+		z-index: 100000;
 		position: absolute;
 		background: white;
 		left: 40px;
@@ -121,17 +125,14 @@ div.media{
 				transform: translateY(-30%);
 			}
 		}
-		
 	}
+}
 
+//_________________________Rules specific to video section__________________________
 
-
-
-
-
-
-
-
+video{
+	width: 300px;
+	border-radius: 20px;
 }
 
 

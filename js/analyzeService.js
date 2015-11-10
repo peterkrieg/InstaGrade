@@ -75,8 +75,8 @@ var popularVids = vids.sort(function(a,b){return a.score - b.score;});
 userMedia.popularPics = popularPics;
 userMedia.popularVids = popularVids;
 
-console.log(popularPics);
-console.log(popularVids);
+// console.log(popularPics);
+// console.log(popularVids);
 
 
 
