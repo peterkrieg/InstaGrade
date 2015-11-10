@@ -5,7 +5,7 @@
 		<div class="col-md-12">
 			<h4>Photos</h4>
 			<p ng-show="!pics">...You Don't have any photos!  Get at it and come back here when you have some stuff</p>
-			<p ng-show="pics">You have {{userMedia.numPics}} pictures.  Your most popular pics are shown below.</p>
+			<p class="intro-sentence" ng-show="pics">You have {{userMedia.numPics}} pictures.  Your most popular pics are shown below.</p>
 		</div>
 	</div>
 
@@ -13,10 +13,26 @@
 		<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="pic in popularPics">
 			<div class="img-container">
 				<img ng-src="{{pic.images.standard_resolution.url}}" alt="">
+
 				<ul class="stats">
-				<li><b>Likes:</b> <i>{{pic.likes.count}}</i></li>
-					<li><b>Comments:</b> <i>{{pic.comments.count}}</i></li>
+					<li><b>Likes:</b> <i>{{pic.likes.count}}</i></li>
+					<li><span comment-expand class="comments-plus" ng-show="pic.comments.count" >+</span><b>Comments:</b> <i>{{pic.comments.count}}</i></li>
 				</ul>
+
+				<ul class="comments hidden">
+
+					<div class="comment" ng-repeat="comment in pic.comments.data">
+
+						<div class="comment-bio ">
+							<img class="comment-pic" ng-src="{{comment.from.profile_picture}}">
+							<span class="comment-name">{{comment.from.full_name || comment.from.username}}</span>
+						</div
+						><div class="comment-text">
+							<li>"{{comment.text}}"</li>
+						</div>
+					</div>
+				</ul>
+
 			</div>
 		</div>
 

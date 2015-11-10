@@ -90,9 +90,27 @@ p, div, button, a, ul, li{
 	font-family: $text-font;
 }
 
-//_______________Anything that causes ng-click, make cursor_______________________
+// clearfix class, to fix collapsing parent element on floats
 
-[ng-click]:hover{
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1; /* ie 6/7 */
+}
+
+
+
+// Anything that involves ng-click, or ui-sref, make cursor
+
+[ng-click]:hover, [ui-sref]{
 	cursor: pointer;
 }
 

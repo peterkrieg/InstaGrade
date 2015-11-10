@@ -31,6 +31,7 @@ div.media{
 	p.noMorePics{
 		color: red;
 	}
+
 	ul.stats{
 		padding: 0 70px;
 		width: 100%;
@@ -55,6 +56,72 @@ div.media{
 			right: 50px;
 			// font-size: 1.2em;
 		}
+		span.comments-plus{
+			position: absolute;
+			left: -30px;
+			top: -12px;
+			font-size: 2em;
+			color: $instaBlue;
+			&.active{
+				@include transform(rotate(45deg));
+			}
+			&:hover{
+				cursor: pointer;
+			}
+		}
+	}
+
+	ul.comments{
+		z-index: 100;
+		position: absolute;
+		background: white;
+		left: 40px;
+		margin: auto;
+		margin-top: 20px;
+		width: 320px;
+		text-align: left;
+		// background: steelblue;
+		font-size: .5em;
+		&.hidden{
+			display: none;
+		}
+		div.comment{
+			// background: purple;
+			border-bottom: 1px solid black;
+			padding-bottom: 5px;
+		}
+		div.comment-bio{
+			display: table-cell;
+			height: 100%;
+			width: 35%;
+			// background: orange;
+			span.comment-name{
+				display: inline-block;
+			}
+			img.comment-pic{
+				display: inline-block;
+				width: 50px;
+				border-radius: 0px;
+			}
+		}
+		div.comment-text{
+			// need to display table-cell to set height to 100%
+			height: 100%;
+			margin-top: 10px;
+			display: table-cell;
+			width: 65%;
+			// background: yellow;
+			position: relative;
+			li{
+				// centers comment text vertically
+				display: block;
+				vertical-align: middle;
+				position: absolute;
+				top: 30%;
+				transform: translateY(-30%);
+			}
+		}
+		
 	}
 
 
