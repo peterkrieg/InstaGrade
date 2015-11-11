@@ -3,15 +3,16 @@ angular.module('myApp')
 function analyzeFunc(){
 // like instaservice, everything is inside this function
 
-this.analyzeData = function(userMedia, likes, deferred, userData, follows, followers){
+this.analyzeData = function(userMedia, deferred){
 
-	var name = userData.full_name || userData.username;
-	var userPic = userData.profile_picture;
+
+	var name = userMedia.userData.full_name || userMedia.userData.username;
+	var userPic = userMedia.userData.profile_picture;
 
 	userMedia.name = name;
 	userMedia.userPic = userPic;
 
-	var userRatio = userData.counts.followed_by/userData.counts.follows;
+	var userRatio = userMedia.userData.counts.followed_by/userMedia.userData.counts.follows;
 	userMedia.userRatio = userRatio;
 	// console.log('userRatio is', userRatio);
 
@@ -75,26 +76,12 @@ var popularVids = vids.sort(function(a,b){return a.score - b.score;});
 userMedia.popularPics = popularPics;
 userMedia.popularVids = popularVids;
 
-// console.log(popularPics);
-// console.log(popularVids);
-
-
-
-
-
-
-
-
-
-
-
-
-
-// console.log('alltags object is', allTags);
-
 
 // analyzing likes, lots of data
+
+
 var userLikers = {};
+var likes = userMedia.likes;
 for(var x=0; x<likes.length; x++){
 	var likers = likes[x].data;
 	for(var y=0; y<likers.length; y++){
@@ -110,12 +97,9 @@ for(var x=0; x<likes.length; x++){
 			userLikers[id].name = name;
 			userLikers[id].pic = pic;
 		}
-
 	}
-
 }
 
-// console.log(likes);
 
 
 // sort user likers
@@ -150,10 +134,6 @@ function sortLikers(){
 
 var userLikersArr = sortLikers();
 userMedia.userLikersArr = userLikersArr;
-
-
-
-
 
 
 
@@ -230,7 +210,8 @@ function uniqueFollow(){
 
 
 
-
+	var follows = userMedia.follows;
+	var followers = userMedia.followers;
 
 	for(var i=0; i<follows.length; i++){
 		var currentFollow = follows[i];
@@ -247,7 +228,6 @@ function uniqueFollow(){
 	}
 
 	// console.log('unique follows is ', uniqueFollows);
-
 
 
 
@@ -321,16 +301,6 @@ deferred.resolve(userMedia);
 
 
 };
-
-
-
-
-
-
-
-
-
-
 
 
 
