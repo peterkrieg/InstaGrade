@@ -144,6 +144,10 @@ function getYourLikes(userMedia, deferred){
 	}
 }
 
+
+
+
+
 function getFollows(userMedia, deferred){
 	// instagram returns 50 follows at a time, so need recursion again..
 	var url = 'https://api.instagram.com/v1/users/'+userMedia.userData.id+'/follows?access_token='+token+'&callback=JSON_CALLBACK';

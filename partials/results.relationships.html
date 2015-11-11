@@ -65,7 +65,33 @@
 		</div>
 
 		<a ng-show="!noMoreLikers" ng-click="getLikers()">Click to Get More likers</a>
-	<p class="warning" ng-show="noMoreLikers">No More likers</p>
+		<p class="warning" ng-show="noMoreLikers">No More likers</p>
+
+
+		<hr>
+
+		<!--_________________________Top users You've liked__________________________-->
+
+		<h4>Top Users You've liked!!</h4>
+		<h5>These are the people that are most important in your life</h5>
+
+		<div class="likers-container">
+		<div class="row">
+			<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in yourLikesUsersArr">
+				<p>Name: {{liker.name}}</p>
+				<p>Num likes: {{liker.count}}</p>
+				<img class="liker" ng-src="{{liker.pic}}" alt="">
+
+
+
+
+
+			</div>
+		</div>
+
+		<a ng-show="!noMoreLikesUsers" ng-click="getYourLikesUsers()">Click to Get More likers</a>
+		<p class="warning" ng-show="noMoreLikesUsers">No More liked users to show</p>
+
 
 
 

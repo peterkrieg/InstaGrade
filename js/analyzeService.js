@@ -133,6 +133,78 @@ function analyzeLikers(){
 userMedia = analyzeLikers();
 
 
+
+//___________Analyzing YOUR Likes (the stuff you've liked)__________________
+
+function analyzeYourLikes(){
+	var yourLikes = userMedia.yourLikes;
+
+	var yourLikesUsers = {};
+
+	// loop through huge array of stuff you've liked
+
+	for(var i=0; i<yourLikes.length; i++){
+		var currYourLike = yourLikes[i];
+		var user = currYourLike.user;
+		var id = user.id;
+
+		if(yourLikesUsers.hasOwnProperty(id)){
+			yourLikesUsers[id].count++;
+		}
+		else{
+			var name = user.full_name || user.username;
+			var pic = user.profile_picture; 
+			yourLikesUsers[id] = {
+				count: 1,
+				name: name,
+				pic: pic
+			};
+		}
+	}
+
+	// console.log(yourLikesUsers);
+
+	// now turn big object into array, to be sorted
+	function sortyourLikesUsers(){
+		var yourLikesUsersArr = [];
+		for(var prop in yourLikesUsers){
+			var id = prop;
+			var currObj = yourLikesUsers[prop];
+			currObj.id = id;
+
+			yourLikesUsersArr.push(currObj);
+		}
+		// sort into top likes
+		yourLikesUsersArr.sort(function(a,b){return a.count - b.count;});
+
+		// console.log(yourLikesUsersArr);
+		return yourLikesUsersArr;
+	}
+
+	userMedia.yourLikesUsers = yourLikesUsers;
+	userMedia.yourLikesUsersArr = sortyourLikesUsers();
+	return userMedia;
+}
+
+userMedia = analyzeYourLikes();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //_________________________Analyzing follows/followers__________________________
 
 function uniqueFollow(){
@@ -169,8 +241,8 @@ function uniqueFollow(){
 			}
 		}
 	}
-	console.log('unique followers is ', uniqueFollowers);
-	console.log('unique follows is', uniqueFollows);
+	// console.log('unique followers is ', uniqueFollowers);
+	// console.log('unique follows is', uniqueFollows);
 
 	userMedia.uniqueFollowers = uniqueFollowers;
 	userMedia.uniqueFollows = uniqueFollows;
@@ -200,7 +272,7 @@ userMedia = uniqueFollow();
 
 
 // once all data is analyzed, resolve promise, sending back to resultsCtrl
-console.log(userMedia);
+// console.log(userMedia);
 deferred.resolve(userMedia);
 };
 }

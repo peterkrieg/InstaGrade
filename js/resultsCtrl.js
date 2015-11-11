@@ -101,13 +101,13 @@ angular.module('myApp')
 
 			$scope.getUniqueFollows();
 
-			console.log($scope.uniqueFollows);
+			// console.log($scope.uniqueFollows);
 
 			//_________________________Unique Followers__________________________
 
 			$scope.uniqueFollowers = [];
 			$scope.noMoreFollowers = false;
-			
+
 			$scope.getUniqueFollowers = function(){
 				for(var i=0; i<12; i++){
 					var followerToAdd = userMedia.uniqueFollowers.pop();
@@ -146,7 +146,36 @@ angular.module('myApp')
 
 			$scope.getLikers();
 
-			console.log(userMedia.userLikersArr);
+			// console.log(userMedia.userLikersArr);
+
+
+
+			
+
+
+			//_____________________Get top users you've liked______________________
+
+			console.log(userMedia.yourLikesUsers);
+			console.log(userMedia.yourLikesUsersArr);
+
+			$scope.yourLikesUsersArr = [];
+			$scope.noMoreLikesUsers = false;
+
+			$scope.getYourLikesUsers = function(){
+				for(var i=0; i<12; i++){
+					var yourLikeUserToAdd = userMedia.yourLikesUsersArr.pop();
+					if(yourLikeUserToAdd){
+						$scope.yourLikesUsersArr.push(yourLikeUserToAdd);
+					}
+					else{
+						$scope.noMoreLikesUsers = true;
+						return;
+					}
+				}
+			};
+
+			$scope.getYourLikesUsers();
+
 
 
 
