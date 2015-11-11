@@ -117,9 +117,71 @@ function getUserInfo(userMedia, likes, deferred){
 		// console.log('user DATA IS...', userData);
 
 		// get follows of user
-		getFollows(userMedia, likes, deferred, userData);
+		getYourLikes(userMedia, likes, deferred, userData);
 	});
 }
+
+
+
+
+function getYourLikes(userMedia, likes, deferred, userData){
+	var url = 'https://api.instagram.com/v1/users/self/media/liked?access_token='+token+'&callback=JSON_CALLBACK';
+	var yourLikes = [];
+
+	eachRequest(url);
+
+	function eachRequest(url){
+		$http({
+			method: 'JSONP',
+			url: url
+		})
+		.then(function(response){
+			var responseObj = response.data;
+			var likesArr = response.data.data;
+			for(var i=0; i<likesArr.length; i++){
+				yourLikes.push(likesArr[i]);
+			}
+			var nextUrl = responseObj.pagination.next_url;
+			// console.log(nextUrl);
+			if(nextUrl){
+				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
+			}
+			else{
+				console.log(yourLikes);
+				getFollows(userMedia, likes, deferred, userData, yourLikes);
+			}
+
+
+
+		// var  = response.data.data;
+		// console.log(response.data);
+	});
+
+
+
+
+
+
+	}
+
+
+	
+
+
+
+
+
+	getFollows(userMedia, likes, deferred, userData);
+}
+
+
+
+
+
+
+
+
+
 
 function getFollows(userMedia, likes, deferred, userData){
 	// instagram returns 50 follows at times, so need recursion again..
