@@ -12,15 +12,11 @@
 					<li>{{follow.full_name || follow.username}}</li>
 				</div>
 			</div>
-
-			
-
-
 		</div>
 	</div>
 
 	<a ng-show="!noMoreFollows" ng-click="getUniqueFollows()">Click to get More Follows</a>
-	<p class="warning" ng-show="noMoreFollows">No More Unique Follows</p>
+	<p class="warning fade-in-up" ng-show="noMoreFollows">No More Unique Follows</p>
 
 	<hr>
 
@@ -41,7 +37,7 @@
 	</div>
 
 	<a ng-show="!noMoreFollowers" ng-click="getUniqueFollowers()">Click to Get More followers</a>
-	<p class="warning" ng-show="noMoreFollowers">No More Unique Followers</p>
+	<p class="warning fade-in-up" ng-show="noMoreFollowers">No More Unique Followers</p>
 
 
 	<hr>
@@ -53,8 +49,8 @@
 	<div class="likers-container">
 		<div class="row">
 			<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in userLikers">
-				<p>Name: {{liker.name}}</p>
-				<p>Num likes: {{liker.count}}</p>
+				<li>Name: {{liker.name}}</li>
+				<li>Num likes: {{liker.count}}</li>
 				<img class="liker" ng-src="{{liker.pic}}" alt="">
 
 
@@ -65,7 +61,7 @@
 		</div>
 
 		<a ng-show="!noMoreLikers" ng-click="getLikers()">Click to Get More likers</a>
-		<p class="warning" ng-show="noMoreLikers">No More likers</p>
+		<p class="warning fade-in-up" ng-show="noMoreLikers">No More likers</p>
 
 
 		<hr>
@@ -76,21 +72,25 @@
 		<h5>These are the people that are most important in your life</h5>
 
 		<div class="likers-container">
-		<div class="row">
-			<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in yourLikesUsersArr">
-				<p>Name: {{liker.name}}</p>
-				<p>Num likes: {{liker.count}}</p>
-				<img class="liker" ng-src="{{liker.pic}}" alt="">
-
-
-
-
-
+			<div class="row">
+				<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in yourLikesUsersArr">
+					<li>Name: {{liker.name}}</li>
+					<li>Num likes: {{liker.count}}</li>
+					<img class="liker" ng-src="{{liker.pic}}" alt="">
+				</div>
 			</div>
+
+			<a ng-show="!noMoreLikesUsers" ng-click="getYourLikesUsers()">Click to Get More likers</a>
+			<p class="warning fade-in-up" ng-show="noMoreLikesUsers">No More liked users to show</p>
 		</div>
 
-		<a ng-show="!noMoreLikesUsers" ng-click="getYourLikesUsers()">Click to Get More likers</a>
-		<p class="warning" ng-show="noMoreLikesUsers">No More liked users to show</p>
+
+
+
+
+
+
+
 
 
 
@@ -102,22 +102,3 @@
 
 
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
