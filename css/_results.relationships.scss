@@ -1,4 +1,5 @@
 div.relationships{
+	padding-bottom: 100px;
 	img{
 		width: 80px;
 		border-radius: 5px;
@@ -8,6 +9,10 @@ div.relationships{
 		list-style-type: none;
 	}
 	div.img-container{
+		margin-bottom: 30px;
+	}
+
+	h5{
 		margin-bottom: 30px;
 	}
 
@@ -26,4 +31,14 @@ div.relationships{
 
 
 
+}
+
+
+//_________________________Likers Section__________________________
+
+div.likers-container{
+	img{
+		width: 80px;
+		border-radius: 5px;
+	}
 }

@@ -63,7 +63,7 @@ function getLikes(userMedia, deferred){
 	var likes = [];
 
 	// max number of photos, to avoid >100 api calls just to get like data
-	var setMaxPhotos = 1;
+	var setMaxPhotos = 100;
 	var numPhotosMax;
 	if(userMedia.length<=setMaxPhotos){
 		numPhotosMax = userMedia.length;

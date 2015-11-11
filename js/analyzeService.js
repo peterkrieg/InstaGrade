@@ -100,18 +100,71 @@ for(var x=0; x<likes.length; x++){
 	for(var y=0; y<likers.length; y++){
 		var currLike = likers[y];
 		var name = currLike.full_name || currLike.username;
+		var pic = currLike.profile_picture;
 		var id = currLike.id;
 		if(userLikers.hasOwnProperty(id)){
-			userLikers[id][name]++;
+			userLikers[id].count++;
 		}
 		else{
-			userLikers[id]= {};
-			userLikers[id][name]=1;
+			userLikers[id]= {count: 1};
+			userLikers[id].name = name;
+			userLikers[id].pic = pic;
 		}
 
 	}
 
 }
+
+// console.log(likes);
+
+
+// sort user likers
+
+//first need to put into array, to sort
+
+function sortLikers(){
+	var userLikersArr = [];
+	for(var prop in userLikers){
+		var id = prop;
+		var currObj = userLikers[id];
+		var count = currObj.count;
+		var name = currObj.name;
+		var pic = currObj.pic;
+
+
+		var user = {
+				id: id,
+				name: name,
+				count: count,
+				pic: pic
+		};
+
+		userLikersArr.push(user);
+	}
+
+	// now sort array
+	userLikersArr.sort(function(a,b){return a.count - b.count;});
+	return userLikersArr;
+
+}
+
+var userLikersArr = sortLikers();
+userMedia.userLikersArr = userLikersArr;
+
+
+
+
+
+
+
+
+
+// 
+// userLikers = userLikers.sort(function(a,b){return b.count-a.count;});
+userMedia.userLikers = userLikers;
+// console.log(userMedia.likes);
+
+// console.log(userMedia.userLikers);
 
 // console.log('tons of likes is...', userLikers);
 

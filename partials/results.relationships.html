@@ -44,6 +44,44 @@
 	<p class="warning" ng-show="noMoreFollowers">No More Unique Followers</p>
 
 
+	<hr>
+
+	<!--_________________________Top Users By Likes__________________________-->
+
+	<h4>These are your top Likers!</h4>
+
+	<div class="likers-container">
+		<div class="row">
+			<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in userLikers">
+				<p>Name: {{liker.name}}</p>
+				<p>Num likes: {{liker.count}}</p>
+				<img class="liker" ng-src="{{liker.pic}}" alt="">
+
+
+
+
+
+			</div>
+		</div>
+
+		<a ng-show="!noMoreLikers" ng-click="getLikers()">Click to Get More likers</a>
+	<p class="warning" ng-show="noMoreLikers">No More likers</p>
+
+
+
+
+
+
+
+
+
+	</div>
+
+
+
+
+
+
 
 
 
