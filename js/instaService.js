@@ -52,13 +52,13 @@ function getLikes(userMedia, deferred){
 	var likes = [];
 
 	// max number of photos, to avoid >100 api calls just to get like data
-	var setMaxPhotos = 10;
+	var maxApiCall = 100;
 	var numPhotosMax;
-	if(userMedia.length<=setMaxPhotos){
+	if(userMedia.length<=maxApiCall){
 		numPhotosMax = userMedia.length;
 	}
 	else{
-		numPhotosMax = setMaxPhotos;
+		numPhotosMax = maxApiCall;
 	}
 
 	for(var j=0; j<numPhotosMax; j++) {
@@ -114,7 +114,7 @@ function getYourLikes(userMedia, deferred){
 	var url = 'https://api.instagram.com/v1/users/self/media/liked?access_token='+token+'&callback=JSON_CALLBACK';
 	var yourLikes = [];
 
-	var maxApiCall = 5;
+	var maxApiCall = 100;
 	var counter = 0;
 
 	eachRequest(url);
