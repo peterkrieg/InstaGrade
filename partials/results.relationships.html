@@ -1,6 +1,56 @@
 <div class="relationships fade-in-up">
-<h2>Relationships</h2>
-	
+	<h2>Relationships</h2>
+
+	<h4>People you follow, but don't follow you back!</h4>
+	<h5>...How Dare They!!</h5>
+
+	<div class="unique-follows-container">
+		<div class="row">
+			<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follow in uniqueFollows">
+				<div class="img-container">
+					<img ng-src="{{follow.profile_picture}}" alt="">
+					<li>{{follow.full_name || follow.username}}</li>
+				</div>
+			</div>
+
+			
+
+
+		</div>
+	</div>
+
+	<a ng-show="!noMoreFollows" ng-click="getUniqueFollows()">Click to get More Follows</a>
+	<p class="warning" ng-show="noMoreFollows">No More Unique Follows</p>
+
+	<hr>
+
+	<h4>People that follow you, but you don't follow them back</h4>
+	<h5>...Whatever, they probably aren't worth it?</h5>
+
+	<div class="unique-follows-container">
+		<div class="row">
+			<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follower in uniqueFollowers">
+				<div class="img-container">
+					<img ng-src="{{follower.profile_picture}}" alt="">
+					<li>{{follower.full_name || follower.username}}</li>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<a ng-show="!noMoreFollowers" ng-click="getUniqueFollowers()">Click to Get More followers</a>
+	<p class="warning" ng-show="noMoreFollowers">No More Unique Followers</p>
+
+
+
+
+
+
+
+
+
 
 
 

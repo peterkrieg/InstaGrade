@@ -20,7 +20,7 @@ angular.module('myApp')
 			return {
 				link: function(scope, elem, attrs){
 					elem.on('click', function(){
-						console.log('clicked! ');
+						// console.log('clicked! ');
 						var $comments = elem.parents('ul.stats').siblings('ul.comments');
 						$comments.toggleClass('hidden');
 						elem.toggleClass('active');

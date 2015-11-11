@@ -1,9 +1,7 @@
 angular.module('myApp')
 .service('analyzeService', analyzeFunc);
-
 function analyzeFunc(){
 // like instaservice, everything is inside this function
-
 
 this.analyzeData = function(userMedia, likes, deferred, userData, follows, followers){
 
@@ -63,6 +61,8 @@ this.analyzeData = function(userMedia, likes, deferred, userData, follows, follo
 
 
 }  // end of for loop
+
+userMedia.sumLikes = sumLikes;
 
 userMedia.numPics = pics.length;
 userMedia.numVids = vids.length;
@@ -216,6 +216,8 @@ function uniqueFollow(){
 
 	userMedia.uniqueFollowers = uniqueFollowers;
 	userMedia.uniqueFollows = uniqueFollows;
+
+	// console.log(userMedia.uniqueFollows);
 
 
 

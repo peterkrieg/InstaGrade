@@ -20,13 +20,13 @@ angular.module('myApp')
 
 			$scope.name = userMedia.name;
 			$scope.userPic = userMedia.userPic;
-			console.log(userMedia);
+			// console.log(userMedia);
 
 
 			//_________________________prepares userMedia for View__________________________
 
-			console.log(typeof userMedia.numPics);
-			console.log(userMedia.numPics);
+			// console.log(typeof userMedia.numPics);
+			// console.log(userMedia.numPics);
 
 
 			userMedia.numPics ? $scope.pics = true : $scope.pics = false;
@@ -34,7 +34,6 @@ angular.module('myApp')
 
 
 			//_________________________Set up popular pics__________________________
-
 			$scope.popularPics = [];
 			$scope.noMorePics = false;
 
@@ -50,40 +49,23 @@ angular.module('myApp')
 					}
 				}
 			};
-
 			$scope.getPopularPics();
-			// console.log($scope.popularPics);
-			// console.log('pouplar vids is', userMedia.popularVids);
-
-
 
 			//_________________________Fix videos URL__________________________
 
 			$scope.fixUrls = function(){
 				for(var i=0; i<userMedia.popularVids.length; i++){
 					var currentVid = userMedia.popularVids[i];
-					console.log(currentVid);
+					// console.log(currentVid);
 					currentVid.safeurl = $sce.trustAsResourceUrl(currentVid.videos.standard_resolution.url);
 				}
-
-
-
 			};
-
 			$scope.fixUrls();
-
-
-
-
-
-
-
 
 			//_________________________Set up popular vids__________________________
 
 			$scope.popularVids = [];
 			$scope.noMoreVids = false;
-
 			$scope.getPopularVids = function(){
 				for(var i=0; i<6; i++){
 					var vidToAdd = userMedia.popularVids.pop();
@@ -99,8 +81,47 @@ angular.module('myApp')
 
 			$scope.getPopularVids();
 
-			console.log($scope.popularVids);
-			console.log($scope.popularVids[1].videos.standard_resolution.url);
+
+			//_________________________Relationships Section__________________________
+
+			$scope.uniqueFollows = [];
+			$scope.noMoreFollows = false;
+			$scope.getUniqueFollows = function(){
+				for(var i=0; i<12; i++){
+					var followToAdd = userMedia.uniqueFollows.pop();
+					if(followToAdd){
+						$scope.uniqueFollows.push(followToAdd);
+					}
+					else{
+						$scope.noMoreFollows = true;
+						return;
+					}
+				}
+			};
+
+			$scope.getUniqueFollows();
+
+			console.log($scope.uniqueFollows);
+
+			//_________________________Unique Followers__________________________
+
+			$scope.uniqueFollowers = [];
+			$scope.noMoreFollowers = false;
+			$scope.getUniqueFollowers = function(){
+				for(var i=0; i<12; i++){
+					var followerToAdd = userMedia.uniqueFollowers.pop();
+					if(followerToAdd){
+						$scope.uniqueFollowers.push(followerToAdd);
+					}
+					else{
+						$scope.noMoreFollowers = true;
+						return;
+					}
+				}
+			};
+
+			$scope.getUniqueFollowers();
+
 
 
 
