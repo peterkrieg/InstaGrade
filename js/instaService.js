@@ -114,7 +114,7 @@ function getYourLikes(userMedia, deferred){
 	var url = 'https://api.instagram.com/v1/users/self/media/liked?access_token='+token+'&callback=JSON_CALLBACK';
 	var yourLikes = [];
 
-	var maxApiCall = 100;
+	var maxApiCall = 5;
 	var counter = 0;
 
 	eachRequest(url);

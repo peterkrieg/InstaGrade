@@ -1,5 +1,7 @@
 div.home-page{
 	text-align: center;
+	background: url('../img/az-subtle.png');
+	background-attachment: fixed;
 }
 
 div.intro-container{
@@ -98,7 +100,13 @@ div.instructions{
 	}
 	min-height: 600px;
 	p{
+		text-indent: 30px;
 		text-align: left;
+		font-size: 1.2em;
+		line-height: 1.6em;
+		width: 80%;
+		margin: auto;
+		margin-top: 20px;
 	}
 	.fa{
 		font-size: 60px;
@@ -115,8 +123,15 @@ div.instructions{
 
 
 footer{
-	background: #2881FF;
+	@include blueGradient();
+	padding: 10px 0;
 	height: 80px;
+	font-size: 1.2em;
+	color: white;
+	text-align: center;
+	p.copyright{
+		margin-bottom: 15px;
+	}
 }
 
 
