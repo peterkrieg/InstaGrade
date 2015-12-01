@@ -9,7 +9,7 @@ angular.module('myApp', ['ui.router'])
 	})
 	.state('token', {
 		url: '/access_token=:token',
-		templateUrl: 'partials/token.html',
+		// templateUrl: 'partials/token.html',
 		controller: 'tokenCtrl'
 	})
 	.state('results', {

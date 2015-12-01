@@ -51,8 +51,8 @@ function getLikes(userMedia, deferred){
 	var counter = 0;
 	var likes = [];
 
-	// max number of photos, to avoid >100 api calls just to get like data
-	var maxApiCall = 100;
+	// max number of photos, to avoid tons of api calls just to get like data
+	var maxApiCall = 200;
 	var numPhotosMax;
 	if(userMedia.length<=maxApiCall){
 		numPhotosMax = userMedia.length;
@@ -114,7 +114,7 @@ function getYourLikes(userMedia, deferred){
 	var url = 'https://api.instagram.com/v1/users/self/media/liked?access_token='+token+'&callback=JSON_CALLBACK';
 	var yourLikes = [];
 
-	var maxApiCall = 5;
+	var maxApiCall = 100;
 	var counter = 0;
 
 	eachRequest(url);
