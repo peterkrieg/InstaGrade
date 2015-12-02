@@ -1,4 +1,3 @@
-#  //_________________________Front End Stuff__________________________
 *.css
 *.css.map
 .sass-cache/
@@ -6,7 +5,10 @@ bower_components
 *.rtf
 *.pptx
 
-# //_________________________Server Stuff__________________________
 
+
+#____server stuff____
 node_modules/
 scripts/
+
+Secret.js

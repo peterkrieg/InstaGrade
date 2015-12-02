@@ -7,16 +7,31 @@ angular.module('myApp', ['ui.router'])
 		templateUrl: 'partials/home.html',
 		controller: 'homeCtrl'
 	})
-	.state('token', {
-		url: '/access_token=:token',
-		// templateUrl: 'partials/token.html',
-		controller: 'tokenCtrl'
+
+	.state('login', {
+		url: '/login/instagram',
+		// templateUrl: 'partials/login.html',
+		controller: 'loginCtrl'
 	})
+
+
+
+
+
+	// .state('token', {
+	// 	url: '/access_token=:token',
+	// 	// templateUrl: 'partials/token.html',
+	// 	controller: 'tokenCtrl'
+	// })
 	.state('results', {
 		url: '/results',
 		templateUrl: 'partials/results.html',
 		controller: 'resultsCtrl'
 	})
+
+
+
+
 	//____________All other states descendant of results page__________________
 	.state('results.grade', {
 		url: '/grade',
