@@ -6,6 +6,8 @@ function instaFunc($http, $q, analyzeService){
 
 
 this.getInstaFeed= function(token){
+	var token = token;
+	console.log(token);
 	var deferred = $q.defer();
 	var URL = 'https://api.instagram.com/v1/users/self/media/recent?access_token='+token+'&callback=JSON_CALLBACK';
 	// empty array that will hold objects of 45 picture objects, or however many
@@ -29,8 +31,9 @@ this.getInstaFeed= function(token){
 
 			// last media request if no next_url property, means you're done
 			if(!pictures.pagination.next_url){
+				// console.log('last of media, now token is ', token);
 				// get all likes, moves program flow on long path..
-				getLikes(userMedia, deferred);
+				getLikes(token, userMedia, deferred);
 			}
 			else{
 				// recursion each following time
@@ -47,12 +50,13 @@ this.getInstaFeed= function(token){
 
 
 //_________________________Getting Likes__________________________
-function getLikes(userMedia, deferred){
+function getLikes(token, userMedia, deferred){
+	console.log('get likes token is ', token);
 	var counter = 0;
 	var likes = [];
 
 	// max number of photos, to avoid tons of api calls just to get like data
-	var maxApiCall = 200;
+	var maxApiCall = 5;
 	var numPhotosMax;
 	if(userMedia.length<=maxApiCall){
 		numPhotosMax = userMedia.length;
@@ -82,7 +86,7 @@ function getLikes(userMedia, deferred){
 				// console.log('user media is', userMedia);
 
 				// now get user info 
-				getUserInfo(userMedia, deferred);
+				getUserInfo(token, userMedia, deferred);
 			}
 		});
 	}
@@ -90,7 +94,7 @@ function getLikes(userMedia, deferred){
 
 
 
-function getUserInfo(userMedia, deferred){
+function getUserInfo(token, userMedia, deferred){
 	// now get basic info about user
 
 	$http({
@@ -102,19 +106,19 @@ function getUserInfo(userMedia, deferred){
 		userMedia.userData = userData;
 
 		// get follows of user
-		getYourLikes(userMedia, deferred);
+		getYourLikes(token, userMedia, deferred);
 	});
 }
 
 
 
 
-function getYourLikes(userMedia, deferred){
+function getYourLikes(token, userMedia, deferred){
 	// instagram returns 20 of your likes at a time, so need recursion..
 	var url = 'https://api.instagram.com/v1/users/self/media/liked?access_token='+token+'&callback=JSON_CALLBACK';
 	var yourLikes = [];
 
-	var maxApiCall = 100;
+	var maxApiCall = 5;
 	var counter = 0;
 
 	eachRequest(url);
@@ -135,7 +139,7 @@ function getYourLikes(userMedia, deferred){
 			if(counter===maxApiCall || !nextUrl){
 				userMedia.yourLikes = yourLikes;
 				console.log('your likes is...', yourLikes);
-				getFollows(userMedia, deferred);
+				getFollows(token, userMedia, deferred);
 			}
 			else{
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
@@ -148,7 +152,7 @@ function getYourLikes(userMedia, deferred){
 
 
 
-function getFollows(userMedia, deferred){
+function getFollows(token, userMedia, deferred){
 	// instagram returns 50 follows at a time, so need recursion again..
 	var url = 'https://api.instagram.com/v1/users/'+userMedia.userData.id+'/follows?access_token='+token+'&callback=JSON_CALLBACK';
 	var follows = [];
@@ -171,13 +175,13 @@ function getFollows(userMedia, deferred){
 			}
 			else if(!nextUrl){
 				userMedia.follows = follows;
-				getFollowers(userMedia, deferred);
+				getFollowers(token, userMedia, deferred);
 			}
 		});
 	}
 }
 
-function getFollowers(userMedia, deferred){
+function getFollowers(token, userMedia, deferred){
 
 	var url = 'https://api.instagram.com/v1/users/'+userMedia.userData.id+'/followed-by?access_token='+token+'&callback=JSON_CALLBACK';
 	eachRequest(url);
@@ -200,7 +204,7 @@ function getFollowers(userMedia, deferred){
 			}
 			else if(!nextUrl){
 				userMedia.followers = followers;
-				analyzeData(userMedia, deferred);
+				analyzeData(token, userMedia, deferred);
 			}
 		});
 	}
@@ -209,7 +213,7 @@ function getFollowers(userMedia, deferred){
 
 
 
-function analyzeData(userMedia, deferred){
+function analyzeData(token, userMedia, deferred){
 
 	// this function just passes onto different service
 
