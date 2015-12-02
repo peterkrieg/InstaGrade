@@ -12,8 +12,33 @@ angular.module('myApp')
 
 tokenService.getToken()
 .then(function(response){
-	console.log(response.data);
-	var token = response.data;
+	var user = response.data.profile._json.data;
+	$scope.name = user.full_name || user.username;
+	
+	var numMedia = user.counts.media;
+
+	var mediaMessages = {
+	fast: 'You have '+numMedia+' pieces of media.  This should only take a few moments',
+	medium: 'You have '+numMedia+' pieces of media.  This shouldn\'t take too long',
+	slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
+	}
+
+	if(numMedia<100){
+		$scope.loadingMediaMessage = mediaMessages.fast;
+	}
+	else if(numMedia>100 && numMedia<300){
+		$scope.loadingMediaMessage = mediaMessages.medium;
+	}
+	else if(numMedia>300){
+		$scope.loadingMediaMessage = mediaMessages.slow;
+	}
+
+
+
+
+
+	// console.log($scope.user);
+	var token = response.data.token;
 	getMedia(token);
 })
 

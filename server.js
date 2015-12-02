@@ -132,7 +132,7 @@ app.get('/api/auth/instagram/callback',
   });
 
 app.get('/api/token', function(req, res, next){
-	res.send(req.session.passport.user.token);
+	res.send(req.session.passport.user);
 })
 
 
@@ -151,7 +151,7 @@ db.on('error', function(){
 });
 
 db.once('open', function(){
-	console.log('running');
+	console.log('MongoDB is running!');
 });
 
 
