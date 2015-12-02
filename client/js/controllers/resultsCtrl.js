@@ -20,7 +20,7 @@ angular.module('myApp')
 
 			$scope.name = userMedia.name;
 			$scope.userPic = userMedia.userPic;
-			// console.log(userMedia);
+			console.log(userMedia);
 
 
 			//_________________________prepares userMedia for View__________________________
