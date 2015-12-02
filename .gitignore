@@ -1,6 +1,11 @@
+#  //_________________________Front End Stuff__________________________
 *.css
 *.css.map
 .sass-cache/
 bower_components
 *.rtf
 *.pptx
+
+# //_________________________Server Stuff__________________________
+
+node_modules/

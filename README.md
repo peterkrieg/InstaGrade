@@ -1,3 +1,3 @@
-# InstaGrade
+# Media Score
 
-###### No server project for DevMountain.
+###### Started as no-server project for DevMountain.  Continued and improved as main personal project.  
