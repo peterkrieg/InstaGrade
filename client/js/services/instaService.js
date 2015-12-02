@@ -5,6 +5,64 @@ function instaFunc($http, $q, analyzeService){
 // everything is inside instaFunc, so going to ignore indentation of wrapper function
 
 
+this.getMedia = function(token){
+	var deferred = $q.defer();
+	var URL = 'https://api.instagram.com/v1/users/self/media/recent?access_token='+token+'&callback=JSON_CALLBACK';
+	// empty array that will hold objects of 45 picture objects, or however many
+	var userMedia = [];
+
+	// first function call
+	return eachRequest(URL);
+
+
+	function eachRequest(URL){
+		$http({
+			method: 'JSONP',
+			url: URL
+		}).then(function(response){
+			var pictures = response.data;
+			var parsedData = pictures.data;
+			var nextURL = pictures.pagination.next_url;
+			for(var i=0; i<parsedData.length; i++){
+				userMedia.push(parsedData[i]);
+			}
+
+			// last media request if no next_url property, means you're done
+			if(!pictures.pagination.next_url){
+				// console.log('last of media, now token is ', token);
+				// get all likes, moves program flow on long path..
+				deferred.resolve(userMedia);
+			}
+			else{
+				// recursion each following time
+				eachRequest(nextURL+'&callback=JSON_CALLBACK');
+			}
+		},
+		function (error) {
+			console.log('ERROR',error);
+		});
+
+		return deferred.promise;
+	}
+
+
+
+
+
+}; // end of get media function
+
+
+
+
+
+
+
+
+
+
+
+//________Everythign since changes below this__________________________
+
 this.getInstaFeed= function(token){
 	var token = token;
 	console.log(token);
