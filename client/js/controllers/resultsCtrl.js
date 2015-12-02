@@ -1,8 +1,9 @@
 angular.module('myApp')
 .controller('resultsCtrl', function($scope, tokenService, instaService, $sce){
 
-	$scope.loading = true;
-
+	$scope.loadingMedia = true;
+	$scope.loadingEverythingElse = true;
+	
 // var token = instaService.getToken();
 // console.log(token);
 
@@ -29,7 +30,7 @@ function preparePage(token){
 	var token = token;
 
 
-instaService.getInstaFeed(token).then(function(userMedia){
+	instaService.getInstaFeed(token).then(function(userMedia){
 	// console.log('user media received from service is ... see below');
 	// console.log(userMedia);
 	$scope.loading = false;
