@@ -39,6 +39,44 @@ div.media{
 		margin-bottom: 15px;
 	}
 
+	div.controls{
+		margin: 10px 0;
+		li{
+			position: relative;
+			list-style-type: none;
+			font-size: .5em;
+			display: inline-block;
+			padding: 2px 20px;
+			background: lightblue;
+			&:hover{
+				cursor: pointer;
+			}
+		}
+		i.fa-caret-up{
+			color: $instaBlue;
+			@include transition(.2s ease);
+			font-size: 1.5em;
+			padding-left: 5px;
+			// background: red;
+			position: absolute;
+			right: 0;
+			bottom: 1px;
+			
+		}
+	}
+
+	.descending i.fa-caret-up{
+		// background: green;
+		bottom: -3px  !important;
+		right: -4px !important;
+		@include transform(rotate(180deg));
+		@include transition(.5s ease);
+	}
+
+
+
+
+
 	ul.stats{
 		padding: 0 70px;
 		width: 100%;
@@ -130,6 +168,12 @@ div.media{
 		}
 	}
 }
+
+
+
+
+
+
 
 //_________________________Rules specific to video section__________________________
 

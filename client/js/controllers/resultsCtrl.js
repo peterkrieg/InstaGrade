@@ -52,8 +52,9 @@ function getMedia(token){
 
 		fixUrls(report.media);
 
-
-		$scope.allMedia = report.media;
+		// sorts media by popularity, when first loaded, then directive for controls takes over
+		$scope.media = report.media
+			.sort(function(a,b){return ((b.comments.count*2+b.likes.count)-(a.comments.count*2+a.likes.count));});
 		$scope.loadingMedia = false;
 
 		getOtherData(token, report)

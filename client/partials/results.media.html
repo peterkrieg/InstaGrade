@@ -18,10 +18,17 @@
 				<p ng-show="!media">...You Don't have any media!  Get at it and come back here when you have some stuff</p>
 				<p class="intro-sentence" ng-show="media">You have {{media.length}} pieces of media.  Your most popular ones are shown below.  Please select a criteria to filter by.</p>
 			</div>
+			<div class="col-md-12 controls" order-by-controls>
+				<p>Order By</p>
+				<li data-type="popularity"class="active">Popularity</li>
+				<li data-type="date">Date</li>
+				<li data-type="type">Type (Photo/Video)</li>
+				
+			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="media in media | orderBy: media.type">
+			<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="media in media">
 
 
 				<div class="img-container">
