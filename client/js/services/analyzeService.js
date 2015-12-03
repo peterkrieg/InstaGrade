@@ -3,14 +3,12 @@ angular.module('myApp')
 function analyzeFunc(){
 // like instaservice, everything is inside this function
 
-this.analyzeData = function(userMedia, deferred){
+this.analyzeData = function(report, deferred){
 // everything also inside this function
 
 //_________________________Basic stats/values about user__________________________
 function getBasicStats(){
-	var userData = userMedia.userData;
 	// name used everywhere else in app, either full name, or username
-	userMedia.name = userData.full_name || userData.username;
 	userMedia.userPic = userData.profile_picture;
 	// ratio of followers to follows, higher number is better for grade
 	var userRatio = userData.counts.followed_by/userData.counts.follows;

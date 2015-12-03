@@ -13,7 +13,12 @@ angular.module('myApp')
 tokenService.getToken()
 .then(function(response){
 	var user = response.data.profile._json.data;
+	console.log(user);
 	$scope.name = user.full_name || user.username;
+	$scope.userBio = user.bio || 'no bio provided :('
+	$scope.userpic = user.profile_picture;
+	$scope.numFollowers = user.counts.followed_by;
+	$scope.numFollows = user.counts.follows;
 	
 	var numMedia = user.counts.media;
 
@@ -48,7 +53,7 @@ function getMedia(token){
 		fixUrls(report.media);
 
 
-		$scope.media = report.media;
+		$scope.allMedia = report.media;
 		$scope.loadingMedia = false;
 
 		getOtherData(token, report)

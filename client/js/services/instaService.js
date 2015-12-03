@@ -12,7 +12,11 @@ this.getMedia = function(token){
 	// completed, and eventuallly changed slightly, then
 	// submitted to database.
 	var report = {
-		media: []
+		media: [],
+		relationships: {},
+		grade: {},
+		analytics: {},
+		map: {}
 	};
 
 	// first function call
@@ -115,7 +119,7 @@ function getLikesReceived(token, report, deferred){
 			counter++;
 
 			if(likesReceived.length===numPhotosMax){
-				report.likesReceived = likesReceived;
+				report.relationships.likesReceived = likesReceived;
 
 				// now get user info 
 				// deferred.resolve(report);
@@ -124,31 +128,6 @@ function getLikesReceived(token, report, deferred){
 		});
 	}
 }
-
-
-
-
-
-// don't need this anymore, now that I get this
-// from very first time of auth
-
-// function getUserInfo(token, report, deferred){
-// 	// now get basic info about user
-
-// 	$http({
-// 		method: 'JSONP',
-// 		url: 'https://api.instagram.com/v1/users/self/?access_token='+token+'&callback=JSON_CALLBACK'
-// 	})
-// 	.then(function(response){
-// 		var userData = response.data.data;
-// 		userMedia.userData = userData;
-
-// 		// get follows of user
-// 		getYourLikes(token, userMedia, deferred);
-// 	});
-// }
-
-
 
 
 function getLikesGiven(token, report, deferred){
@@ -174,9 +153,9 @@ function getLikesGiven(token, report, deferred){
 			}
 			var nextUrl = responseObj.pagination.next_url;
 			if(counter===maxApiCall || !nextUrl){
-				report.likesGiven = likesGiven;
-				console.log('your likes is...', likesGiven);
-				// getFollows(token, report, deferred);
+				report.relationships.likesGiven = likesGiven;
+				console.log('your likes given is...', likesGiven);
+				getFollows(token, report, deferred);
 			}
 			else{
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
@@ -189,9 +168,9 @@ function getLikesGiven(token, report, deferred){
 
 
 
-function getFollows(token, userMedia, deferred){
+function getFollows(token, report, deferred){
 	// instagram returns 50 follows at a time, so need recursion again..
-	var url = 'https://api.instagram.com/v1/users/'+userMedia.userData.id+'/follows?access_token='+token+'&callback=JSON_CALLBACK';
+	var url = 'https://api.instagram.com/v1/users/self/follows?access_token='+token+'&callback=JSON_CALLBACK';
 	var follows = [];
 
 	eachRequest(url);
@@ -211,16 +190,17 @@ function getFollows(token, userMedia, deferred){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
 			else if(!nextUrl){
-				userMedia.follows = follows;
-				getFollowers(token, userMedia, deferred);
+				console.log('follows is... ', follows);
+				report.relationships.follows = follows;
+				getFollowers(token, report, deferred);
 			}
 		});
 	}
 }
 
-function getFollowers(token, userMedia, deferred){
+function getFollowers(token, report, deferred){
 
-	var url = 'https://api.instagram.com/v1/users/'+userMedia.userData.id+'/followed-by?access_token='+token+'&callback=JSON_CALLBACK';
+	var url = 'https://api.instagram.com/v1/users/self/followed-by?access_token='+token+'&callback=JSON_CALLBACK';
 	eachRequest(url);
 
 	var followers = [];
@@ -240,34 +220,28 @@ function getFollowers(token, userMedia, deferred){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
 			else if(!nextUrl){
-				userMedia.followers = followers;
-				analyzeData(token, userMedia, deferred);
+				console.log('followers is, ', followers)
+				report.relationships.followers = followers;
+				// don't need the token, anymore, since no more
+				// instagram HTTP requests
+				// analyzeData(report, deferred);
 			}
 		});
 	}
 }
 
 
+function analyzeData(report, deferred){
 
+	// this function just passes onto different service,
+	// analyzeservice is pure vanilla JS, no http calls
+	// processes data, to form the grade, and other parts of report
 
-function analyzeData(token, userMedia, deferred){
-
-	// this function just passes onto different service
-
-	analyzeService.analyzeData(userMedia, deferred);
+	analyzeService.analyzeData(report, deferred);
 
 } // end of analyze data function
 
 
-
-
-
-// end of entire service function, don't go below this
-}
-
-
-
-
-
+}// end of entire service function, don't go below this
 
 

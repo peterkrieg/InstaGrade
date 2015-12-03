@@ -21,7 +21,9 @@
 		</div>
 
 		<div class="row">
-			<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="media in media">
+			<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="media in media | orderBy: media.type">
+
+
 				<div class="img-container">
 
 
