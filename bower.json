@@ -26,6 +26,7 @@
     "angular": "~1.4.7",
     "bourbon": "~4.2.6",
     "bootstrap-sass": "~3.3.5",
-    "font-awesome": "fontawesome#~4.4.0"
+    "font-awesome": "fontawesome#~4.4.0",
+    "lodash": "~3.10.1"
   }
 }

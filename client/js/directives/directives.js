@@ -43,10 +43,11 @@ angular.module('myApp')
 
 			var sortFunctions = {
 				popularity: function(a,b){return ((b.comments.count*2+b.likes.count)-(a.comments.count*2+a.likes.count));},
-				date: function(a,b){return (a.created_time - b.created_time); },
+				date: function(a,b){return (b.created_time - a.created_time); },
 				type: function(a,b){
-					if(a.type < b.type) return -1;
-					if(a.type > b.type) return 1;
+					// shows videos first, by default ("ascending order")
+					if(a.type > b.type) return -1;
+					if(a.type < b.type) return 1;
 					return 0;
 				}
 			}
@@ -69,13 +70,30 @@ angular.module('myApp')
 					console.log('clicked');
 					console.log(scope);
 
-					if($liClicked.hasClass('active')){
+					// have to add && to make sure that when keep clicking
+					// random, it doesn't just reverse back and forth
+					if($liClicked.hasClass('active') && $liClicked.attr('data-type')!=='random'){
 						$liClicked.toggleClass('descending');
 						// scope.$parent.media = [];
 						scope.$parent.media.reverse();
 						// had to use $apply(), to update scope
 						scope.$apply();
 						console.log(scope.$parent.media);
+					}
+
+					else if($liClicked.attr('data-type')==='random'){
+						elem.find('li.active').removeClass('active descending')
+						// then delete the up arrow font awesome icon
+						.find('i').remove();
+
+						$liClicked.addClass('active');
+
+						scope.$parent.media = _.shuffle(scope.$parent.media);
+						scope.$apply();
+
+
+
+
 					}
 
 					else{
@@ -100,6 +118,6 @@ angular.module('myApp')
 
 
 
-			}
-		}
-	})
+}
+}
+})

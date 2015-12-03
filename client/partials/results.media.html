@@ -16,19 +16,26 @@
 		<div class="row">
 			<div class="col-md-12">
 				<p ng-show="!media">...You Don't have any media!  Get at it and come back here when you have some stuff</p>
-				<p class="intro-sentence" ng-show="media">You have {{media.length}} pieces of media.  Your most popular ones are shown below.  Please select a criteria to filter by.</p>
+				<p class="intro-sentence" ng-show="media">You have {{media.length}} pieces of media.  Please select criteria to filter or order by.</p>
 			</div>
-			<div class="col-md-12 controls" order-by-controls>
-				<p>Order By</p>
+		</div>
+		<div class="row">
+			<div class="col-md-6 controls" order-by-controls>
+			<h6>Order By</h6>
 				<li data-type="popularity"class="active">Popularity</li>
 				<li data-type="date">Date</li>
 				<li data-type="type">Type (Photo/Video)</li>
-				
+				<li data-type="random">Random!</li>
+
+			</div>
+			<div class="col-md-6 search">
+				<h6>Filter By Anything</h6>
+				<input type="text" placeholder="hastag, location, people, etc" ng-model="myFilter">
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="media in media">
+			<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="media in media | filter: myFilter">
 
 
 				<div class="img-container">
@@ -65,70 +72,12 @@
 			</div>
 
 
-<!-- 			<a ng-show="!noMorePics" class="getMorePics" ng-click="getPopularPics()">Click to See More Popular Pics..</a>
-			<p class="noMorePics" ng-show="noMorePics">No More Pictures to Display</p>
- -->
 		</div>
 	</div><!--media container-->
 
 
 	<hr>
 
-	<!-- Videos Section -->
-	<!-- <div class="row">
-		<div class="col-md-12">
-			<h4>Videos</h4>
-			<p ng-show="!vids">...You Don't have any videos!  Get at it and come back here when you have some stuff</p>
-			<p class="intro-sentence" ng-show="vids">You have {{userMedia.numVids}} videos.</p>
-
-
-
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-sm-6 col-md-4 fade-in-up" ng-repeat="vid in popularVids">
-			<div class="img-container">
-
-				<video controls poster="{{vid.images.standard_resolution.url}}">
-					<source ng-src="{{vid.safeurl}}"></source>
-				</video>
-
-				<ul class="stats">
-					<li><b>Likes:</b> <i>{{vid.likes.count}}</i></li>
-					<li><span comment-expand class="comments-plus" ng-show="vid.comments.count" >+</span><b>Comments:</b> <i>{{vid.comments.count}}</i></li>
-				</ul>
-
-				<ul class="comments hidden">
-
-					<div class="comment" ng-repeat="comment in vid.comments.data">
-
-						<div class="comment-bio ">
-							<img class="comment-pic" ng-src="{{comment.from.profile_picture}}">
-							<span class="comment-name">{{comment.from.full_name || comment.from.username}}</span>
-							</div
-							><div class="comment-text">
-							<li>"{{comment.text}}"</li>
-						</div>
-					</div>
-				</ul>
-
-			</div>
-		</div>
-
-		<a ng-show="!noMoreVids" class="getMoreVids" ng-click="getPopularVids()">Click to See More Popular Vids..</a>
-		<p class="noMoreVids" ng-show="noMoreVids">No More Videos to Display</p>
-
-
-
-
-
-
-
-
-	</div>
-
--->
 
 
 

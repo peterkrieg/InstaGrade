@@ -18,7 +18,8 @@ watcher.on('change', function(event){
 gulp.task('javascript', function() {
 	gulp.src([
 		'./client/bower_components/jquery/dist/jquery.js',
-		'./client/bower_components/typed.js/js/typed.js',
+		'./client/bower_components/lodash/lodash.js',
+
 
 
 

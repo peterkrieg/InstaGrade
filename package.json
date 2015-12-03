@@ -25,6 +25,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-ng-annotate": "^1.1.0",
     "gulp-uglify": "^1.5.1",
+    "lodash": "^3.10.1",
     "mongoose": "^4.2.8",
     "passport": "^0.3.2",
     "passport-instagram": "^1.0.0"
