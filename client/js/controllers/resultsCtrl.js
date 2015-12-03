@@ -32,42 +32,53 @@ tokenService.getToken()
 	else if(numMedia>300){
 		$scope.loadingMediaMessage = mediaMessages.slow;
 	}
-
-
-
-
-
 	// console.log($scope.user);
 	var token = response.data.token;
+	$scope.token = token;
 	getMedia(token);
 })
+
 
 //_______Gets media, for first tab of results ______________
 function getMedia(token){
 	instaService.getMedia(token)
-	.then(function(userMedia){
-		console.log(userMedia);
+	.then(function(report){
+		console.log(report);
 
-		fixUrls(userMedia);
+		fixUrls(report.media);
 
 
-		$scope.userMedia = userMedia;
+		$scope.media = report.media;
 		$scope.loadingMedia = false;
+
+		getOtherData(token, report)
 
 
 	})
 };
 
-
 // fixing video URLs, weird angular thing..
-function fixUrls(userMedia){
-	for(var i=0; i<userMedia.length; i++){
-		var currentVid = userMedia[i];
+function fixUrls(media){
+	for(var i=0; i<media.length; i++){
+		var currentVid = media[i];
 		if(currentVid.type==="video"){
 			currentVid.safeurl = $sce.trustAsResourceUrl(currentVid.videos.standard_resolution.url);
 		}
 	}
 };
+
+function getOtherData(token, report){
+	instaService.getOtherData(token, report)
+		.then(function(response){
+			console.log(response.data);
+
+		})
+
+
+
+}
+
+
 
 
 
