@@ -24,46 +24,8 @@ $pink: #FC6079;
 
 //_________________________Mixins__________________________
 
-@mixin blueGradient(){
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2680ff+1,458eff+41,5b9dff+100 */
-background: #2680ff; /* Old browsers */
-background: -moz-linear-gradient(-45deg,  #2680ff 1%, #458eff 41%, #5b9dff 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right bottom, color-stop(1%,#2680ff), color-stop(41%,#458eff), color-stop(100%,#5b9dff)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(-45deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(-45deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(-45deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* IE10+ */
-background: linear-gradient(135deg,  #2680ff 1%,#458eff 41%,#5b9dff 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2680ff', endColorstr='#5b9dff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-}
-
-@mixin fadeInUp($duration){
-	@include animation(fadeInUp $duration ease);
-}
-
-@include keyframes(instaSpinLoad) {
-  from {
-    @include transform(rotate(0deg));
-  }
-  to {
-    @include transform(rotate(360deg));
-  }
-}
-
-@include keyframes(fadeInUp){
-	from{
-		opacity: 0;
-		padding-top: 100px;
-	}
-	to{
-		opacity: 1;
-		padding-top: 0px;
-	}
-}
-
-.fade-in-up{
-	@include fadeInUp(1s);
-}
+@import "mixins/widgetMixins";
+@import "mixins/mediaQuery";
 
 
 //_________________________General Styles to whole page__________________________

@@ -19,8 +19,8 @@
 				<p class="intro-sentence" ng-show="media">You have {{media.length}} pieces of media.  Please select criteria to filter or order by.</p>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6 controls" order-by-controls>
+		<div class="row controls-container">
+			<div class="col-md-8 controls" order-by-controls>
 			<h6>Order By</h6>
 				<li data-type="popularity"class="active">Popularity</li>
 				<li data-type="date">Date</li>
@@ -28,7 +28,7 @@
 				<li data-type="random">Random!</li>
 
 			</div>
-			<div class="col-md-6 search">
+			<div class="col-md-4 search">
 				<h6>Filter By Anything</h6>
 				<input type="text" placeholder="hastag, location, people, etc" ng-model="myFilter">
 			</div>
