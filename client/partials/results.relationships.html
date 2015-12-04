@@ -9,17 +9,19 @@
 
 
 	<div class="relationships-container" ng-show="!loadingEverythingElse">
+
+
+		<!--_____________Unique Follows_______________-->
 		<h4>People you follow, but don't follow you back!</h4>
 		<h5>...How Dare They!!</h5>
-
-
-
+		<p>Get revenge against them Now! click on a person to unfollow</p>
 		<div class="unique-follows-container">
 			<div class="row">
 				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follow in uniqueFollows">
 					<div class="img-container">
-						<img ng-src="{{follow.profile_picture}}" alt="">
+						<div class="actual-image"><img ng-src="{{follow.profile_picture}}" alt=""><i class="fa fa-user-times unfollow"></i></div>
 						<li>{{follow.full_name || follow.username}}</li>
+						
 					</div>
 				</div>
 			</div>
@@ -29,15 +31,17 @@
 		<p class="warning fade-in-up" ng-show="noMore.uniqueFollows">No More Unique Follows</p>
 
 		<hr>
+		<!--_____________Unique Followers____________-->
 
 		<h4>People that follow you, but you don't follow them back</h4>
 		<h5>...Whatever, they probably aren't worth it?</h5>
+		<p>But if you change your mind, click on a person to follow them :)</p>
 
 		<div class="unique-follows-container">
 			<div class="row">
 				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follower in uniqueFollowers">
 					<div class="img-container">
-						<img ng-src="{{follower.profile_picture}}" alt="">
+						<div class="actual-image"><img ng-src="{{follower.profile_picture}}" alt=""><i class="fa fa-user-plus follow"></i></div>
 						<li>{{follower.full_name || follower.username}}</li>
 					</div>
 				</div>

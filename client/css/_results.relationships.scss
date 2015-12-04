@@ -10,6 +10,7 @@ div.relationships{
 	}
 	div.img-container{
 		margin-bottom: 30px;
+		// background: green;
 	}
 
 	h5{
@@ -25,14 +26,45 @@ div.relationships{
 		color: #D91E18;
 	}
 
-	// *{
-	// 	outline: 1px solid red;
-	// }
-	
 
 	// fixed height, so float doesn't break
+	// big problem that miles figured out
 	div.uniqueFollow, div.liker{
 		height: 170px;
+	}
+
+
+
+	// effect for unfollowing/following someone, on hover
+
+	div.actual-image{
+		display: inline-block;
+		position: relative;
+		i.fa{
+			opacity: 0;
+			@include transition(.2s ease);
+			font-size: 60px;
+			position: absolute;
+			bottom: 50px;
+			left: 6px;
+			&.unfollow{
+				color: darkred;
+			}
+			&.follow{
+				color: green;
+			}
+		}// end of icon
+
+		// when hovering on picture, have icon slide in
+		&:hover{
+			cursor: pointer;
+			i.fa{
+				bottom: 12px;
+				@include transition(.5s ease);
+				opacity: 1;
+
+			}
+		}
 	}
 
 
@@ -40,7 +72,8 @@ div.relationships{
 
 
 
-}
+
+
 
 
 //_________________________Likers Section__________________________
@@ -52,3 +85,8 @@ div.likers-container{
 	}
 }
 
+
+
+
+
+} // end of relationships 
