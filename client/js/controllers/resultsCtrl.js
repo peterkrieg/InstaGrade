@@ -17,18 +17,25 @@ prepareReport.getToken()
 	// console.log('edited user is', userEdited);
 
 	var numMedia = userEdited.numMedia;
+	var numFollows = userEdited.numFollows;
+	var numFollowers = userEdited.numFollowers;
 
 	// binding to scope, the entire edited user
 	$scope.user = userEdited;
 
 
 	
-
+	//______________Media Messages for loading_______________
 	var mediaMessages = {
 		fast: 'You have '+numMedia+' pieces of media.  This should only take a few moments',
 		medium: 'You have '+numMedia+' pieces of media.  This shouldn\'t take too long',
 		slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
-	}
+	};
+	var otherLoadingMessages = {
+		fast: 'You have '+numFollowers+' followers and follow '+numFollows+'users.  This should only take a few moments',
+		medium: 'You have '+numFollowers+' followers and follow '+numFollows+'users.  This shouldn\'t take too long',
+		slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+'users.  We\'re taking care of this as fast as we can, but this might take a minute or two'
+	};
 
 	if(numMedia<100){
 		$scope.loadingMediaMessage = mediaMessages.fast;
@@ -39,10 +46,23 @@ prepareReport.getToken()
 	else if(numMedia>300){
 		$scope.loadingMediaMessage = mediaMessages.slow;
 	}
-	// console.log($scope.user);
-	$scope.token = token;
+	if(numFollowers <=200 && numFollows<=200){
+		$scope.otherLoadingMessage = otherLoadingMessages.fast;
+	}
+	else if(numFollowers>=1000 || numFollows>= 1000){
+		$scope.otherLoadingMessage = otherLoadingMessages.slow;
+	}
+	else if(numFollowers<1000 || numFollows<1000){
+		$scope.otherLoadingMessage = otherLoadingMessages.medium;
+	}
+	//______________End of loading messages______________
+
+
 	getMedia(token, userEdited);
+
 })
+
+
 
 
 
@@ -133,7 +153,7 @@ $scope.loadMore = function(category){
 
 
 function finishReportView(report){
-	console.log(report);
+	// console.log(report);
 	$scope.report = report;
 
 	// loads initial for 4 categories
@@ -141,6 +161,8 @@ function finishReportView(report){
 	$scope.loadMore("uniqueFollowers");
 	$scope.loadMore("userLikersArr");
 	$scope.loadMore("yourLikesUsersArr");
+
+	$scope.loadingEverythingElse = false;
 
 
 } // end of finishReportView Function

@@ -1,104 +1,94 @@
 <div class="relationships fade-in-up">
 	<h2>Relationships</h2>
 
-	<h4>People you follow, but don't follow you back!</h4>
-	<h5>...How Dare They!!</h5>
+	<div class="loading" ng-show="loadingEverythingElse">
+		<h1>Loading...</h1>
+		<h4>{{otherLoadingMessage}}</h4>
+		<img src="img/insta-logo.png" alt="">
+	</div>
 
-	<div class="unique-follows-container">
-		<div class="row">
-			<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follow in uniqueFollows">
-				<div class="img-container">
-					<img ng-src="{{follow.profile_picture}}" alt="">
-					<li>{{follow.full_name || follow.username}}</li>
+
+	<div class="relationships-container" ng-show="!loadingEverythingElse">
+		<h4>People you follow, but don't follow you back!</h4>
+		<h5>...How Dare They!!</h5>
+
+
+
+		<div class="unique-follows-container">
+			<div class="row">
+				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follow in uniqueFollows">
+					<div class="img-container">
+						<img ng-src="{{follow.profile_picture}}" alt="">
+						<li>{{follow.full_name || follow.username}}</li>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<a ng-show="!noMore.uniqueFollows" ng-click="loadMore('uniqueFollows')">Click to get More Follows</a>
-	<p class="warning fade-in-up" ng-show="noMore.uniqueFollows">No More Unique Follows</p>
+		<a ng-show="!noMore.uniqueFollows" ng-click="loadMore('uniqueFollows')">Click to get More Follows</a>
+		<p class="warning fade-in-up" ng-show="noMore.uniqueFollows">No More Unique Follows</p>
 
-	<hr>
+		<hr>
 
-	<h4>People that follow you, but you don't follow them back</h4>
-	<h5>...Whatever, they probably aren't worth it?</h5>
+		<h4>People that follow you, but you don't follow them back</h4>
+		<h5>...Whatever, they probably aren't worth it?</h5>
 
-	<div class="unique-follows-container">
-		<div class="row">
-			<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follower in uniqueFollowers">
-				<div class="img-container">
-					<img ng-src="{{follower.profile_picture}}" alt="">
-					<li>{{follower.full_name || follower.username}}</li>
+		<div class="unique-follows-container">
+			<div class="row">
+				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follower in uniqueFollowers">
+					<div class="img-container">
+						<img ng-src="{{follower.profile_picture}}" alt="">
+						<li>{{follower.full_name || follower.username}}</li>
+					</div>
 				</div>
 			</div>
-
-
-		</div>
-	</div>
-
-	<a ng-show="!noMore.uniqueFollowers" ng-click="loadMore('uniqueFollowers')">Click to Get More followers</a>
-	<p class="warning fade-in-up" ng-show="noMore.uniqueFollowers">No More Unique Followers</p>
-
-
-	<hr>
-
-	<!--_________________________Top Users By Likes__________________________-->
-
-	<h4>These are your top Likers!</h4>
-
-	<div class="likers-container">
-		<div class="row">
-			<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in userLikersArr">
-				<li>Name: {{liker.name}}</li>
-				<li>Num likes: {{liker.count}}</li>
-				<img class="liker" ng-src="{{liker.pic}}" alt="">
-
-
-
-
-
-			</div>
 		</div>
 
-		<a ng-show="!noMore.userLikersArr" ng-click="loadMore('userLikersArr')">Click to Get More likers</a>
-		<p class="warning fade-in-up" ng-show="noMore.userLikersArr">No More likers</p>
+		<a ng-show="!noMore.uniqueFollowers" ng-click="loadMore('uniqueFollowers')">Click to Get More followers</a>
+		<p class="warning fade-in-up" ng-show="noMore.uniqueFollowers">No More Unique Followers</p>
 
 
 		<hr>
 
-		<!--_________________________Top users You've liked__________________________-->
+		<!--___________Top Users By Likes___________-->
 
-		<h4>Top Users You've liked!!</h4>
-		<h5>These are the people that are most important in your life</h5>
+		<h4>These are your top Likers!</h4>
 
 		<div class="likers-container">
 			<div class="row">
-				<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in yourLikesUsersArr">
+				<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in userLikersArr">
 					<li>Name: {{liker.name}}</li>
 					<li>Num likes: {{liker.count}}</li>
 					<img class="liker" ng-src="{{liker.pic}}" alt="">
 				</div>
 			</div>
 
-			<a ng-show="!noMore.yourLikesUsersArr" ng-click="loadMore('yourLikesUsersArr')">Click to Get More likers</a>
-			<p class="warning fade-in-up" ng-show="noMore.yourLikesUsersArr">No More liked users to show</p>
-		</div>
+			<a ng-show="!noMore.userLikersArr" ng-click="loadMore('userLikersArr')">Click to Get More likers</a>
+			<p class="warning fade-in-up" ng-show="noMore.userLikersArr">No More likers</p>
+
+
+			<hr>
+
+			<!--______Top users You've liked________-->
+
+			<h4>Top Users You've liked!!</h4>
+			<h5>These are the people that are most important in your life</h5>
+
+			<div class="likers-container">
+				<div class="row">
+					<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in yourLikesUsersArr">
+						<li>Name: {{liker.name}}</li>
+						<li>Num likes: {{liker.count}}</li>
+						<img class="liker" ng-src="{{liker.pic}}" alt="">
+					</div>
+				</div>
+
+				<a ng-show="!noMore.yourLikesUsersArr" ng-click="loadMore('yourLikesUsersArr')">Click to Get More likers</a>
+				<p class="warning fade-in-up" ng-show="noMore.yourLikesUsersArr">No More liked users to show</p>
+			</div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	</div>
+		</div><!--relationships container-->
+	</div> <!-- end of relationships section-->

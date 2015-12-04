@@ -7,19 +7,8 @@ this.analyzeData = function(report, deferred){
 var user = report.user;
 // everything also inside this function
 
-//_________________________Basic stats/values about user__________________________
-function getGrade(){
-	// ratio of followers to follows,
-	//  higher number is better for grade
-	var userRatio = user.followers/user.follows;
-	report.grade.userRatio = userRatio;
-	return report;
-}
-// update value of userMedia, after each function
-report = getGrade();
 
-
-//__________Add up values, looping through all userMedia_________________
+//____Add up values, looping through all of media_________
 function sumUpMedia(){
 	var media = report.media;
 
@@ -47,6 +36,12 @@ function sumUpMedia(){
 		// Adding up total likes received
 		sumLikes+=currentMedia.likes.count;
 
+		// add up number of times person has liked their own media
+		if(currentMedia.user_has_liked==="true"){
+			selfLiked++;
+		}
+
+
 		// analyzing hashtag usage
 		if(currentMedia.tags.length>0){
 			for(var k=0; k<currentMedia.tags.length; k++){
@@ -66,6 +61,13 @@ function sumUpMedia(){
 	report.analytics.sumLikes = sumLikes;
 	report.analytics.numPics = numPics;
 	report.analytics.numVids = numVids;
+
+	// find average number of likes per piece of media
+	report.analytics.averageLikes = sumLikes/report.user.numMedia;
+
+	// times you'ved liked own media
+	report.analytics.selfLiked = selfLiked;
+
 	return report;
 }
 
@@ -243,13 +245,51 @@ function uniqueFollow(){
 
 	report.relationships.uniqueFollowers = uniqueFollowers;
 	report.relationships.uniqueFollows = uniqueFollows;
-	console.log(report);
+	// console.log(report);
 	return report;
 } 
 
 report = uniqueFollow();
 
 //_________________________End of unique follows/followers__________________________
+
+
+//_______Once all data analyzed, get grade_____________
+function getGrade(){
+	var numFollowers = user.numFollowers;
+	var numFollows = user.numFollows;
+
+	// ratio of followers to follows,
+	//  higher number is better for grade
+	var userRatio = numFollowers/numFollows;
+	report.grade.userRatio = userRatio;
+
+
+
+
+
+
+
+
+	return report;
+}
+// update value of userMedia, after each function
+report = getGrade();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

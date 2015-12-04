@@ -1,10 +1,20 @@
 <div class="more-analytics fade-in-up">
-<h2>More Analytics</h2>
+	<h2>More Analytics</h2>
 
-<p>You have a total of {{userMedia.sumLikes | number}} Likes!</p>
-<p>An Average of {{userMedia.sumLikes/userMedia.length | number: 2 }} per photo</p>
-	
+	<div class="loading" ng-show="loadingEverythingElse">
+		<h1>Loading...</h1>
+		<h4>{{otherLoadingMessage}}</h4>
+		<img src="img/insta-logo.png" alt="">
+	</div>
+
+
+	<div class="analytics-container" ng-show="!loadingEverythingElse">
+		<p>You have a total of {{report.analytics.sumLikes | number}} Likes!</p>
+		<p>An Average of {{report.analytics.averageLikes | number: 2 }} per photo</p>
 
 
 
-</div>
+	</div><!-- analytics-container-->
+
+
+</div> <!-- end of analytics div, nothing below this-->

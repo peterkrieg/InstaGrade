@@ -55,6 +55,11 @@ angular.module('myApp')
 
 				// when page first loads, will be sorted by popularity
 				elem.find('li.active').append(arrowIcon);
+				// when switching back to media tab from other tab,
+				// bug where active class added 
+				if(scope.$parent.media){
+					scope.$parent.media.sort(sortFunctions.popularity);
+				}
 
 				// console.log('PARENT SCOPE IS', scope.$parent);
 				// console.log('something is', scope.$parent.$id);

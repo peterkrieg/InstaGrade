@@ -61,7 +61,7 @@ this.getMedia = function(token, user){
 //______________Next step, once media loaded_________________
 
 // max api call for getting likers of your media, and stuff you have liked
-var maxApiCall = 5;
+var maxApiCall = 50;
 
 
 this.getOtherData = function(token, report){
