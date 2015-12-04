@@ -51,15 +51,6 @@ prepareReport.getToken()
 
 
 
-
-
-
-
-
-
-
-
-
 //_______Gets media, for first tab of results ______________
 function getMedia(token, user){
 	instaService.getMedia(token, user)
@@ -74,8 +65,6 @@ function getMedia(token, user){
 		$scope.loadingMedia = false;
 
 		getOtherData(token, report);
-
-
 	})
 };
 
@@ -94,8 +83,64 @@ function getOtherData(token, report){
 	.then(function(report){
 		console.log('FINAL REPORT RECEIVED IS \n\n', report);
 
+		// report now received, can set up view now
+		finishReportView(report);
 	})
+}
 
+
+//___________________________________________________
+
+
+
+// variable definitions for functions
+$scope.getUniqueFollows = getUniqueFollows;
+
+
+
+
+
+function finishReportView(report){
+
+	// get unique follows
+	$scope.uniqueFollows = $scope.getUniqueFollows(report);
+	console.log($scope.uniqueFollows);
+
+
+
+
+
+
+
+
+
+} // end of finishReportView Function
+
+
+function getUniqueFollows(report) {
+	var report = report;
+	$scope.uniqueFollows = [];
+	$scope.noMoreFollows = false;
+	var calledTimes = 0;
+	var factor = 12;
+
+	loadMore(report);
+
+	function loadMore(report){
+		console.log(report);
+		calledTimes++;
+		for(var i=0; i<factor*calledTimes; i++){
+			var followToAdd = report.relationships.uniqueFollows.pop();
+			if(followToAdd){
+				$scope.uniqueFollows.push(followToAdd)
+			}
+			else{
+				$scope.noMoreFollows = true;
+				return $scope.uniqueFollows;
+			}
+			return $scope.uniqueFollows;
+		}
+	}
 
 
 }
@@ -112,9 +157,7 @@ function getOtherData(token, report){
 
 
 
-
-}); // end of controller main function, nothing below this
-
+});  // controller, nothing should go below this
 
 
 
@@ -123,152 +166,71 @@ function getOtherData(token, report){
 
 
 
-// // console.log(token);
+	// //_________________________Relationships Section__________________________
+
+	// $scope.uniqueFollows = [];
+	// $scope.noMoreFollows = false;
+	// $scope.getUniqueFollows = function(){
+	// 	for(var i=0; i<12; i++){
+	// 		var followToAdd = userMedia.uniqueFollows.pop();
+	// 		if(followToAdd){
+	// 			$scope.uniqueFollows.push(followToAdd);
+	// 		}
+	// 		else{
+	// 			$scope.noMoreFollows = true;
+	// 			return;
+	// 		}
+	// 	}
+	// };
+
+	// $scope.getUniqueFollows();
+
+	// // console.log($scope.uniqueFollows);
+
+	// //_________________________Unique Followers__________________________
+
+	// $scope.uniqueFollowers = [];
+	// $scope.noMoreFollowers = false;
+
+	// $scope.getUniqueFollowers = function(){
+	// 	for(var i=0; i<12; i++){
+	// 		var followerToAdd = userMedia.uniqueFollowers.pop();
+	// 		if(followerToAdd){
+	// 			$scope.uniqueFollowers.push(followerToAdd);
+	// 		}
+	// 		else{
+	// 			$scope.noMoreFollowers = true;
+	// 			return;
+	// 		}
+	// 	}
+	// };
+
+	// $scope.getUniqueFollowers();
 
 
-// //____________Now that token is received, get instagram media, big array of objects______________________
+	// //_________________________User Likers__________________________
 
+	// // $scope.userLikersArr = userMedia.userLikersArr;
 
-// function preparePage(token){
-// 	console.log(token);
-// 	var token = token;
+	// $scope.userLikers = [];
+	// $scope.noMoreLikers = false;
 
+	// $scope.getLikers = function(){
+	// 	for(var i=0; i<12; i++){
+	// 		var likerToAdd = userMedia.userLikersArr.pop();
+	// 		if(likerToAdd){
+	// 			$scope.userLikers.push(likerToAdd);
+	// 		}
+	// 		else{
+	// 			$scope.noMoreLikers = true;
+	// 			return;
+	// 		}
+	// 	}
+	// };
 
-// 	instaService.getInstaFeed(token).then(function(userMedia){
-// 	// console.log('user media received from service is ... see below');
-// 	// console.log(userMedia);
-// 	$scope.loading = false;
-// 	$scope.userMedia = userMedia;
+	// $scope.getLikers();
 
-// 	$scope.name = userMedia.name;
-// 	$scope.userPic = userMedia.userPic;
-// 	console.log(userMedia);
-
-
-// 	//_________________________prepares userMedia for View__________________________
-
-// 	// console.log(typeof userMedia.numPics);
-// 	// console.log(userMedia.numPics);
-
-
-// 	userMedia.numPics ? $scope.pics = true : $scope.pics = false;
-// 	userMedia.numVids ? $scope.vids = true : $scope.vids = false;
-
-
-// 	//_________________________Set up popular pics__________________________
-// 	$scope.popularPics = [];
-// 	$scope.noMorePics = false;
-
-// 	$scope.getPopularPics = function(){
-// 		for(var i=0; i<6; i++){
-// 			var picToAdd = userMedia.popularPics.pop();
-// 			if(picToAdd){
-// 				$scope.popularPics.push(picToAdd);
-// 			}
-// 			else{
-// 				$scope.noMorePics = true;
-// 				return;
-// 			}
-// 		}
-// 	};
-// 	$scope.getPopularPics();
-
-// 	//_________________________Fix videos URL__________________________
-
-// 	$scope.fixUrls = function(){
-// 		for(var i=0; i<userMedia.popularVids.length; i++){
-// 			var currentVid = userMedia.popularVids[i];
-// 					// console.log(currentVid);
-// 					currentVid.safeurl = $sce.trustAsResourceUrl(currentVid.videos.standard_resolution.url);
-// 				}
-// 			};
-// 			$scope.fixUrls();
-
-// 	//_________________________Set up popular vids__________________________
-
-// 	$scope.popularVids = [];
-// 	$scope.noMoreVids = false;
-// 	$scope.getPopularVids = function(){
-// 		for(var i=0; i<6; i++){
-// 			var vidToAdd = userMedia.popularVids.pop();
-// 			if(vidToAdd){
-// 				$scope.popularVids.push(vidToAdd);
-// 			}
-// 			else{
-// 				$scope.noMoreVids = true;
-// 				return;
-// 			}
-// 		}
-// 	};
-
-// 	$scope.getPopularVids();
-
-
-// 	//_________________________Relationships Section__________________________
-
-// 	$scope.uniqueFollows = [];
-// 	$scope.noMoreFollows = false;
-// 	$scope.getUniqueFollows = function(){
-// 		for(var i=0; i<12; i++){
-// 			var followToAdd = userMedia.uniqueFollows.pop();
-// 			if(followToAdd){
-// 				$scope.uniqueFollows.push(followToAdd);
-// 			}
-// 			else{
-// 				$scope.noMoreFollows = true;
-// 				return;
-// 			}
-// 		}
-// 	};
-
-// 	$scope.getUniqueFollows();
-
-// 	// console.log($scope.uniqueFollows);
-
-// 	//_________________________Unique Followers__________________________
-
-// 	$scope.uniqueFollowers = [];
-// 	$scope.noMoreFollowers = false;
-
-// 	$scope.getUniqueFollowers = function(){
-// 		for(var i=0; i<12; i++){
-// 			var followerToAdd = userMedia.uniqueFollowers.pop();
-// 			if(followerToAdd){
-// 				$scope.uniqueFollowers.push(followerToAdd);
-// 			}
-// 			else{
-// 				$scope.noMoreFollowers = true;
-// 				return;
-// 			}
-// 		}
-// 	};
-
-// 	$scope.getUniqueFollowers();
-
-
-// 	//_________________________User Likers__________________________
-
-// 	// $scope.userLikersArr = userMedia.userLikersArr;
-
-// 	$scope.userLikers = [];
-// 	$scope.noMoreLikers = false;
-
-// 	$scope.getLikers = function(){
-// 		for(var i=0; i<12; i++){
-// 			var likerToAdd = userMedia.userLikersArr.pop();
-// 			if(likerToAdd){
-// 				$scope.userLikers.push(likerToAdd);
-// 			}
-// 			else{
-// 				$scope.noMoreLikers = true;
-// 				return;
-// 			}
-// 		}
-// 	};
-
-// 	$scope.getLikers();
-
-// 	// console.log(userMedia.userLikersArr);
+	// console.log(userMedia.userLikersArr);
 
 
 
