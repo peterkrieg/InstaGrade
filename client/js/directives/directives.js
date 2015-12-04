@@ -40,6 +40,7 @@ angular.module('myApp')
 	return {
 		link: function(scope, elem, attrs){
 			var arrowIcon = '<i class="fa fa-caret-up"></i>';
+			var refreshIcon = '<i class="fa fa-refresh"></i>';
 
 			var sortFunctions = {
 				popularity: function(a,b){return ((b.comments.count*2+b.likes.count)-(a.comments.count*2+a.likes.count));},
@@ -64,11 +65,7 @@ angular.module('myApp')
 					e.preventDefault();
 					var $liClicked = $(this);
 					var dataType = $liClicked.attr('data-type');
-					console.log(dataType);
 					var sortFunction = sortFunctions[dataType];
-					console.log(sortFunction);
-					console.log('clicked');
-					console.log(scope);
 
 					// have to add && to make sure that when keep clicking
 					// random, it doesn't just reverse back and forth
@@ -78,20 +75,26 @@ angular.module('myApp')
 						scope.$parent.media.reverse();
 						// had to use $apply(), to update scope
 						scope.$apply();
-						console.log(scope.$parent.media);
+						// console.log(scope.$parent.media);
 					}
 
 					else if($liClicked.attr('data-type')==='random'){
-						elem.find('li.active').removeClass('active descending')
-						// then delete the up arrow font awesome icon
-						.find('i').remove();
+						if($liClicked.hasClass('active')){
+							// alert('active');
+							$liClicked.toggleClass('descending');
+							scope.$parent.media = _.shuffle(scope.$parent.media);
+							scope.$apply();
+						}
+						else{
+							elem.find('li.active').removeClass('active descending')
+							.find('i').remove();
 
-						$liClicked.addClass('active');
+							$liClicked.addClass('active');
+							$liClicked.append(refreshIcon);
 
-						scope.$parent.media = _.shuffle(scope.$parent.media);
-						scope.$apply();
-
-
+							scope.$parent.media = _.shuffle(scope.$parent.media);
+							scope.$apply();
+						}
 
 
 					}
@@ -118,6 +121,6 @@ angular.module('myApp')
 
 
 
-}
+			}
 }
 })

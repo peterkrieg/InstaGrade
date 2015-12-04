@@ -5,13 +5,14 @@ function instaFunc($http, $q, analyzeService){
 // everything is inside instaFunc, so going to ignore indentation of wrapper function
 
 
-this.getMedia = function(token){
+this.getMedia = function(token, user){
 	var deferred = $q.defer();
 	var URL = 'https://api.instagram.com/v1/users/self/media/recent?access_token='+token+'&callback=JSON_CALLBACK';
 	// empty big report object.  Will be passed around until
 	// completed, and eventuallly changed slightly, then
 	// submitted to database.
 	var report = {
+		user: user,
 		media: [],
 		relationships: {},
 		grade: {},
@@ -60,7 +61,7 @@ this.getMedia = function(token){
 //______________Next step, once media loaded_________________
 
 // max api call for getting likers of your media, and stuff you have liked
-var maxApiCall = 1;
+var maxApiCall = 5;
 
 
 this.getOtherData = function(token, report){
@@ -77,7 +78,7 @@ this.getOtherData = function(token, report){
 // check later, seems like too much work
 function getLikesReceived(token, report, deferred){
 	var media = report.media;
-	console.log('get likes token is ', token);
+	// console.log('get likes token is ', token);
 	var counter = 0;
 	var likesReceived = [];
 
@@ -101,7 +102,7 @@ function getLikesReceived(token, report, deferred){
 
 			//____likeArr is array of likes for each media____
 			var likeArr = response.data.data;
-			console.log(likeArr);
+			// console.log(likeArr);
 			// attached full likes arr to each media, 
 			media[counter].likesFull = likeArr;
 
@@ -154,7 +155,7 @@ function getLikesGiven(token, report, deferred){
 			var nextUrl = responseObj.pagination.next_url;
 			if(counter===maxApiCall || !nextUrl){
 				report.relationships.likesGiven = likesGiven;
-				console.log('your likes given is...', likesGiven);
+				// console.log('your likes given is...', likesGiven);
 				getFollows(token, report, deferred);
 			}
 			else{
@@ -190,7 +191,7 @@ function getFollows(token, report, deferred){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
 			else if(!nextUrl){
-				console.log('follows is... ', follows);
+				// console.log('follows is... ', follows);
 				report.relationships.follows = follows;
 				getFollowers(token, report, deferred);
 			}
@@ -220,11 +221,11 @@ function getFollowers(token, report, deferred){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
 			else if(!nextUrl){
-				console.log('followers is, ', followers)
+				// console.log('followers is, ', followers)
 				report.relationships.followers = followers;
 				// don't need the token, anymore, since no more
 				// instagram HTTP requests
-				// analyzeData(report, deferred);
+				analyzeData(report, deferred);
 			}
 		});
 	}

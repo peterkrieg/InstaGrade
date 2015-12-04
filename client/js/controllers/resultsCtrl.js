@@ -1,5 +1,5 @@
 angular.module('myApp')
-.controller('resultsCtrl', function($scope, tokenService, instaService, $sce){
+.controller('resultsCtrl', function($scope, prepareReport, instaService, $sce){
 
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
@@ -10,22 +10,27 @@ angular.module('myApp')
 // delete the stuff after || when done with dev
 // var token = tokenService.getToken() || '1359984932.c4fe6f4.32721a77599f4b11b20c1f2ffcbedab2';
 
-tokenService.getToken()
+prepareReport.getToken()
 .then(function(response){
+	var token = response.data.token;
 	var user = response.data.profile._json.data;
-	console.log(user);
-	$scope.name = user.full_name || user.username;
-	$scope.userBio = user.bio || 'no bio provided :('
-	$scope.userpic = user.profile_picture;
-	$scope.numFollowers = user.counts.followed_by;
-	$scope.numFollows = user.counts.follows;
+	// console.log(user);
+
+	var userEdited = prepareReport.startReport(user);
+	console.log('edited user is', userEdited);
+
+	var numMedia = userEdited.numMedia;
+
+	// binding to scope, the entire edited user
+	$scope.user = userEdited;
+
+
 	
-	var numMedia = user.counts.media;
 
 	var mediaMessages = {
-	fast: 'You have '+numMedia+' pieces of media.  This should only take a few moments',
-	medium: 'You have '+numMedia+' pieces of media.  This shouldn\'t take too long',
-	slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
+		fast: 'You have '+numMedia+' pieces of media.  This should only take a few moments',
+		medium: 'You have '+numMedia+' pieces of media.  This shouldn\'t take too long',
+		slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
 	}
 
 	if(numMedia<100){
@@ -38,26 +43,37 @@ tokenService.getToken()
 		$scope.loadingMediaMessage = mediaMessages.slow;
 	}
 	// console.log($scope.user);
-	var token = response.data.token;
 	$scope.token = token;
-	getMedia(token);
+	getMedia(token, userEdited);
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 //_______Gets media, for first tab of results ______________
-function getMedia(token){
-	instaService.getMedia(token)
+function getMedia(token, user){
+	instaService.getMedia(token, user)
 	.then(function(report){
-		console.log(report);
+		console.log('REPORT RECEIVED OF JUST MEDIA IS \n\n', report);
 
 		fixUrls(report.media);
 
 		// sorts media by popularity, when first loaded, then directive for controls takes over
 		$scope.media = report.media
-			.sort(function(a,b){return ((b.comments.count*2+b.likes.count)-(a.comments.count*2+a.likes.count));});
+		.sort(function(a,b){return ((b.comments.count*2+b.likes.count)-(a.comments.count*2+a.likes.count));});
 		$scope.loadingMedia = false;
 
-		getOtherData(token, report)
+		getOtherData(token, report);
 
 
 	})
@@ -75,10 +91,10 @@ function fixUrls(media){
 
 function getOtherData(token, report){
 	instaService.getOtherData(token, report)
-		.then(function(response){
-			console.log(response.data);
+	.then(function(report){
+		console.log('FINAL REPORT RECEIVED IS \n\n', report);
 
-		})
+	})
 
 
 

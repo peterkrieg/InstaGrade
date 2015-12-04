@@ -41,7 +41,7 @@ div.media{
 				color: $instaBlue;
 			}
 		}
-		i.fa-caret-up{
+		i.fa{
 			color: $instaBlue;
 			@include transition(.2s ease);
 			font-size: 1.5em;
@@ -50,7 +50,9 @@ div.media{
 			position: absolute;
 			right: 0;
 			bottom: 1px;
-			
+		}
+		i.fa.fa-refresh{
+			font-size: .8em;
 		}
 	}
 
@@ -77,12 +79,15 @@ div.media{
 
 
 
-	.descending i.fa-caret-up{
+	.descending i.fa{
 		// background: green;
 		bottom: -3px  !important;
 		right: -4px !important;
 		@include transform(rotate(180deg));
 		@include transition(.5s ease);
+		&.fa-refresh{
+			bottom: 1px !important;
+		}
 	}
 
 

@@ -4,45 +4,47 @@ function analyzeFunc(){
 // like instaservice, everything is inside this function
 
 this.analyzeData = function(report, deferred){
+var user = report.user;
 // everything also inside this function
 
 //_________________________Basic stats/values about user__________________________
-function getBasicStats(){
-	// name used everywhere else in app, either full name, or username
-	userMedia.userPic = userData.profile_picture;
-	// ratio of followers to follows, higher number is better for grade
-	var userRatio = userData.counts.followed_by/userData.counts.follows;
-	userMedia.userRatio = userRatio;
-	return userMedia;
+function getGrade(){
+	// ratio of followers to follows,
+	//  higher number is better for grade
+	var userRatio = user.followers/user.follows;
+	report.grade.userRatio = userRatio;
+	return report;
 }
 // update value of userMedia, after each function
-userMedia = getBasicStats();
+report = getGrade();
 
 
 //__________Add up values, looping through all userMedia_________________
 function sumUpMedia(){
+	var media = report.media;
+
 	var sumLikes = 0;
 	var selfLiked = 0;
 	var numPics = 0;
 	var numVids = 0;
 	var allTags = {};
-	var pics = [];
-	var vids = [];
+	// var pics = [];
+	// var vids = [];
+
 
 	// big for loop that goes through everything
-	for(var i=0; i<userMedia.length; i++){
-		var currentMedia = userMedia[i];
-		currentMedia.score = (currentMedia.likes.count*1)+(currentMedia.comments.count*2);
-		if(currentMedia.user_has_liked===true){
-			selfLiked++;
-		}
+	for(var i=0; i<media.length; i++){
+		var currentMedia = media[i];
 
+		// Adding up videos/pictures
 		if(currentMedia.type==="image"){
-			pics.push(currentMedia);
+			numPics++;
 		}
 		else if(currentMedia.type==="video"){
-			vids.push(currentMedia);
+			numVids++;
 		}
+
+		// Adding up total likes received
 		sumLikes+=currentMedia.likes.count;
 
 		// analyzing hashtag usage
@@ -57,29 +59,26 @@ function sumUpMedia(){
 				}
 			}
 		}
-	}
+	}// end of for loop for all media
 
-	var popularPics = pics.sort(function(a,b){return a.score - b.score;});
-	var popularVids = vids.sort(function(a,b){return a.score - b.score;});
 
-	userMedia.popularPics = popularPics;
-	userMedia.popularVids = popularVids;
 
-	userMedia.sumLikes = sumLikes;
-	userMedia.numPics = pics.length;
-	userMedia.numVids = vids.length;
-	return userMedia;
+	report.analytics.sumLikes = sumLikes;
+	report.analytics.numPics = numPics;
+	report.analytics.numVids = numVids;
+	return report;
 }
 
-userMedia = sumUpMedia();
+report = sumUpMedia();
+// console.log(report);
 
 
-//_________________________Analyzing Likes__________________________
+//_____________Analyzing Likes Received__________________________
 function analyzeLikers(){
 	var userLikers = {};
-	var likes = userMedia.likes;
+	var likes = report.relationships.likesReceived;
 	for(var x=0; x<likes.length; x++){
-		var likers = likes[x].data;
+		var likers = likes[x];
 		for(var y=0; y<likers.length; y++){
 			var currLike = likers[y];
 			var name = currLike.full_name || currLike.username;
@@ -121,21 +120,21 @@ function analyzeLikers(){
 		return userLikersArr;
 	}
 
-	userMedia.userLikersArr = sortLikers();
-	userMedia.userLikers = userLikers;
+	report.relationships.userLikersArr = sortLikers();
+	report.relationships.userLikers = userLikers;
 
-	return userMedia;
+	return report;
 }
 
 // update userMedia again to include likers
-userMedia = analyzeLikers();
+report = analyzeLikers();
 
 
 
 //___________Analyzing YOUR Likes (the stuff you've liked)__________________
 
 function analyzeYourLikes(){
-	var yourLikes = userMedia.yourLikes;
+	var yourLikes = report.relationships.likesGiven;
 
 	var yourLikesUsers = {};
 
@@ -179,12 +178,12 @@ function analyzeYourLikes(){
 		return yourLikesUsersArr;
 	}
 
-	userMedia.yourLikesUsers = yourLikesUsers;
-	userMedia.yourLikesUsersArr = sortyourLikesUsers();
-	return userMedia;
+	report.relationships.yourLikesUsers = yourLikesUsers;
+	report.relationships.yourLikesUsersArr = sortyourLikesUsers();
+	return report;
 }
 
-userMedia = analyzeYourLikes();
+report = analyzeYourLikes();
 
 
 
@@ -209,8 +208,8 @@ function uniqueFollow(){
 	var uniqueFollowers = [];
 	var uniqueFollows = [];
 
-	var follows = userMedia.follows;
-	var followers = userMedia.followers;
+	var follows = report.relationships.follows;
+	var followers = report.relationships.followers;
 
 	for(var i=0; i<follows.length; i++){
 		var currentFollow = follows[i];
@@ -242,12 +241,13 @@ function uniqueFollow(){
 	// console.log('unique followers is ', uniqueFollowers);
 	// console.log('unique follows is', uniqueFollows);
 
-	userMedia.uniqueFollowers = uniqueFollowers;
-	userMedia.uniqueFollows = uniqueFollows;
-	return userMedia;
+	report.relationships.uniqueFollowers = uniqueFollowers;
+	report.relationships.uniqueFollows = uniqueFollows;
+	console.log(report);
+	return report;
 } 
 
-userMedia = uniqueFollow();
+report = uniqueFollow();
 
 //_________________________End of unique follows/followers__________________________
 
@@ -255,23 +255,9 @@ userMedia = uniqueFollow();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // once all data is analyzed, resolve promise, sending back to resultsCtrl
 // console.log(userMedia);
-deferred.resolve(userMedia);
+deferred.resolve(report);
 };
 }
 
