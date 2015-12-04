@@ -56,8 +56,8 @@ angular.module('myApp')
 				// when page first loads, will be sorted by popularity
 				elem.find('li.active').append(arrowIcon);
 
-				console.log('PARENT SCOPE IS', scope.$parent);
-				console.log('something is', scope.$parent.$id);
+				// console.log('PARENT SCOPE IS', scope.$parent);
+				// console.log('something is', scope.$parent.$id);
 				// scope.$parent.media = scope.$parent.media.sort(sortFunctions.popularity);
 
 

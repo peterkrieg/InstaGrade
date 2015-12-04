@@ -4,9 +4,6 @@ angular.module('myApp')
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
 	
-// var token = instaService.getToken();
-// console.log(token);
-
 // delete the stuff after || when done with dev
 // var token = tokenService.getToken() || '1359984932.c4fe6f4.32721a77599f4b11b20c1f2ffcbedab2';
 
@@ -17,7 +14,7 @@ prepareReport.getToken()
 	// console.log(user);
 
 	var userEdited = prepareReport.startReport(user);
-	console.log('edited user is', userEdited);
+	// console.log('edited user is', userEdited);
 
 	var numMedia = userEdited.numMedia;
 
@@ -46,8 +43,6 @@ prepareReport.getToken()
 	$scope.token = token;
 	getMedia(token, userEdited);
 })
-
-
 
 
 
@@ -94,57 +89,61 @@ function getOtherData(token, report){
 
 
 // variable definitions for functions
-$scope.getUniqueFollows = getUniqueFollows;
+var calledTimes = {
+	uniqueFollows: 0,
+	uniqueFollowers: 0,
+	userLikersArr: 0,
+	yourLikesUsersArr: 0
+};
+
+$scope.noMore = {
+	uniqueFollows: false,
+	uniqueFollowers: false,
+	userLikersArr: false,
+	yourLikesUsersArr: false
+};
+
+$scope.uniqueFollows = [];
+$scope.uniqueFollowers = [];
+$scope.userLikersArr = [];
+$scope.yourLikesUsersArr = [];
 
 
+$scope.loadMore = function(category){
+	// console.log('scope inside of load more is \n\n', $scope);
+	// console.log('category is \t\t', category);
+	// console.log($scope[category]);
+	// console.log($scope.report.relationships[category]);
+
+	// var count = calledTimes[category];
+	calledTimes[category]++
+	var count = calledTimes[category];
+	for(var i=0; i<12*count; i++){
+		var itemToAdd = $scope.report.relationships[category].pop();
+		if(itemToAdd){
+			$scope[category].push(itemToAdd);
+		}
+		else{
+			$scope.noMore[category] = true;
+			return;
+		}
+	}
+}  // end of load more function
 
 
 
 function finishReportView(report){
+	console.log(report);
+	$scope.report = report;
 
-	// get unique follows
-	$scope.uniqueFollows = $scope.getUniqueFollows(report);
-	console.log($scope.uniqueFollows);
-
-
-
-
-
-
-
+	// loads initial for 4 categories
+	$scope.loadMore("uniqueFollows");
+	$scope.loadMore("uniqueFollowers");
+	$scope.loadMore("userLikersArr");
+	$scope.loadMore("yourLikesUsersArr");
 
 
 } // end of finishReportView Function
-
-
-function getUniqueFollows(report) {
-	var report = report;
-	$scope.uniqueFollows = [];
-	$scope.noMoreFollows = false;
-	var calledTimes = 0;
-	var factor = 12;
-
-	loadMore(report);
-
-	function loadMore(report){
-		console.log(report);
-		calledTimes++;
-		for(var i=0; i<factor*calledTimes; i++){
-			var followToAdd = report.relationships.uniqueFollows.pop();
-			if(followToAdd){
-				$scope.uniqueFollows.push(followToAdd)
-			}
-			else{
-				$scope.noMoreFollows = true;
-				return $scope.uniqueFollows;
-			}
-			return $scope.uniqueFollows;
-		}
-	}
-
-
-}
-
 
 
 
@@ -159,160 +158,3 @@ function getUniqueFollows(report) {
 
 });  // controller, nothing should go below this
 
-
-
-
-
-
-
-
-	// //_________________________Relationships Section__________________________
-
-	// $scope.uniqueFollows = [];
-	// $scope.noMoreFollows = false;
-	// $scope.getUniqueFollows = function(){
-	// 	for(var i=0; i<12; i++){
-	// 		var followToAdd = userMedia.uniqueFollows.pop();
-	// 		if(followToAdd){
-	// 			$scope.uniqueFollows.push(followToAdd);
-	// 		}
-	// 		else{
-	// 			$scope.noMoreFollows = true;
-	// 			return;
-	// 		}
-	// 	}
-	// };
-
-	// $scope.getUniqueFollows();
-
-	// // console.log($scope.uniqueFollows);
-
-	// //_________________________Unique Followers__________________________
-
-	// $scope.uniqueFollowers = [];
-	// $scope.noMoreFollowers = false;
-
-	// $scope.getUniqueFollowers = function(){
-	// 	for(var i=0; i<12; i++){
-	// 		var followerToAdd = userMedia.uniqueFollowers.pop();
-	// 		if(followerToAdd){
-	// 			$scope.uniqueFollowers.push(followerToAdd);
-	// 		}
-	// 		else{
-	// 			$scope.noMoreFollowers = true;
-	// 			return;
-	// 		}
-	// 	}
-	// };
-
-	// $scope.getUniqueFollowers();
-
-
-	// //_________________________User Likers__________________________
-
-	// // $scope.userLikersArr = userMedia.userLikersArr;
-
-	// $scope.userLikers = [];
-	// $scope.noMoreLikers = false;
-
-	// $scope.getLikers = function(){
-	// 	for(var i=0; i<12; i++){
-	// 		var likerToAdd = userMedia.userLikersArr.pop();
-	// 		if(likerToAdd){
-	// 			$scope.userLikers.push(likerToAdd);
-	// 		}
-	// 		else{
-	// 			$scope.noMoreLikers = true;
-	// 			return;
-	// 		}
-	// 	}
-	// };
-
-	// $scope.getLikers();
-
-	// console.log(userMedia.userLikersArr);
-
-
-
-
-
-
-// 	//_____________________Get top users you've liked______________________
-
-// 	console.log(userMedia.yourLikesUsers);
-// 	console.log(userMedia.yourLikesUsersArr);
-
-// 	$scope.yourLikesUsersArr = [];
-// 	$scope.noMoreLikesUsers = false;
-
-// 	$scope.getYourLikesUsers = function(){
-// 		for(var i=0; i<12; i++){
-// 			var yourLikeUserToAdd = userMedia.yourLikesUsersArr.pop();
-// 			if(yourLikeUserToAdd){
-// 				$scope.yourLikesUsersArr.push(yourLikeUserToAdd);
-// 			}
-// 			else{
-// 				$scope.noMoreLikesUsers = true;
-// 				return;
-// 			}
-// 		}
-// 	};
-
-// 	$scope.getYourLikesUsers();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// }); // end of instaservice
-
-// } // end of prepare page
-
-
-
-
-
-
-
-
-// });

@@ -15,8 +15,8 @@
 		</div>
 	</div>
 
-	<a ng-show="!noMoreFollows" ng-click="getUniqueFollows()">Click to get More Follows</a>
-	<p class="warning fade-in-up" ng-show="noMoreFollows">No More Unique Follows</p>
+	<a ng-show="!noMore.uniqueFollows" ng-click="loadMore('uniqueFollows')">Click to get More Follows</a>
+	<p class="warning fade-in-up" ng-show="noMore.uniqueFollows">No More Unique Follows</p>
 
 	<hr>
 
@@ -36,8 +36,8 @@
 		</div>
 	</div>
 
-	<a ng-show="!noMoreFollowers" ng-click="getUniqueFollowers()">Click to Get More followers</a>
-	<p class="warning fade-in-up" ng-show="noMoreFollowers">No More Unique Followers</p>
+	<a ng-show="!noMore.uniqueFollowers" ng-click="loadMore('uniqueFollowers')">Click to Get More followers</a>
+	<p class="warning fade-in-up" ng-show="noMore.uniqueFollowers">No More Unique Followers</p>
 
 
 	<hr>
@@ -48,7 +48,7 @@
 
 	<div class="likers-container">
 		<div class="row">
-			<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in userLikers">
+			<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in userLikersArr">
 				<li>Name: {{liker.name}}</li>
 				<li>Num likes: {{liker.count}}</li>
 				<img class="liker" ng-src="{{liker.pic}}" alt="">
@@ -60,8 +60,8 @@
 			</div>
 		</div>
 
-		<a ng-show="!noMoreLikers" ng-click="getLikers()">Click to Get More likers</a>
-		<p class="warning fade-in-up" ng-show="noMoreLikers">No More likers</p>
+		<a ng-show="!noMore.userLikersArr" ng-click="loadMore('userLikersArr')">Click to Get More likers</a>
+		<p class="warning fade-in-up" ng-show="noMore.userLikersArr">No More likers</p>
 
 
 		<hr>
@@ -80,8 +80,8 @@
 				</div>
 			</div>
 
-			<a ng-show="!noMoreLikesUsers" ng-click="getYourLikesUsers()">Click to Get More likers</a>
-			<p class="warning fade-in-up" ng-show="noMoreLikesUsers">No More liked users to show</p>
+			<a ng-show="!noMore.yourLikesUsersArr" ng-click="loadMore('yourLikesUsersArr')">Click to Get More likers</a>
+			<p class="warning fade-in-up" ng-show="noMore.yourLikesUsersArr">No More liked users to show</p>
 		</div>
 
 
