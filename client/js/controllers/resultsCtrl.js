@@ -1,5 +1,5 @@
 angular.module('myApp')
-.controller('resultsCtrl', function($scope, prepareReport, instaService, $sce){
+.controller('resultsCtrl', function($scope, prepareReport, instaService, followService, $sce){
 
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
@@ -10,6 +10,7 @@ angular.module('myApp')
 prepareReport.getToken()
 .then(function(response){
 	var token = response.data.token;
+	$scope.token = token;
 	var user = response.data.profile._json.data;
 	// console.log(user);
 
@@ -166,6 +167,47 @@ function finishReportView(report){
 
 
 } // end of finishReportView Function
+
+
+// Now views have finished loading, everything else
+// is event-driven
+
+$scope.unfollowUser = function(id){
+	// console.log('follow user fired!, id is ', id);
+	followService.unfollowUser(id, $scope.token)
+		// .then(function(response){
+		// 	console.log(response.data);
+		// });
+
+
+
+
+
+}
+
+$scope.followUser = function(id){
+	// console.log('follow user fired, id is', id);
+	followService.followUser(id)
+		// .then(function(response){
+		// 	console.log(response.data);
+		// });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

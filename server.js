@@ -7,12 +7,17 @@ var InstagramStrategy = require('passport-instagram').Strategy;
 
 var cors = require('cors');
 
-var Secret = require('./server/config/Secret');
+var request = require('request');
+
 
 //____________________My dependencies__________________________
 // var productsCtrl = require('./server/controllers/productsCtrl');
 // var usersCtrl = require('./server/controllers/usersCtrl');
 // var cartCtrl = require('./server/controllers/cartCtrl');
+
+var Secret = require('./server/config/Secret');
+
+
 
 var mongoUri = 'mongodb://127.0.0.1/mediaScore';
 
@@ -134,6 +139,36 @@ app.get('/api/auth/instagram/callback',
 app.get('/api/token', function(req, res, next){
 	res.send(req.session.passport.user);
 })
+
+
+app.post('/api/insta/relationships', function(req, res, next){
+	console.log(req.query);
+	var action = req.query.action;
+	var token = req.query.token;
+	var id = req.query.id;
+	var url = 'https://api.instagram.com/v1/users/'+id+'/relationship?action=unfollow&access_token='+token;
+
+	request.post(url, function(error, response, body){
+		// console.log(response);
+		res.send(response);
+	})
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
