@@ -17,6 +17,7 @@ function sumUpMedia(){
 	var numPics = 0;
 	var numVids = 0;
 	var allTags = {};
+	var allLocations = [];
 	// var pics = [];
 	// var vids = [];
 
@@ -39,6 +40,19 @@ function sumUpMedia(){
 		// add up number of times person has liked their own media
 		if(currentMedia.user_has_liked==="true"){
 			selfLiked++;
+		}
+
+		// Adding up locations, for map section (google maps)
+		if(currentMedia.location){
+			var location = currentMedia.location;
+			var locationObj = {
+				name: location.name,
+				latitude: location.latitude,
+				longitude: location.longitude,
+				time: currentMedia.created_time,
+				instagramId: location.id
+			};
+			allLocations.push(locationObj);
 		}
 
 
@@ -67,6 +81,14 @@ function sumUpMedia(){
 
 	// times you'ved liked own media
 	report.analytics.selfLiked = selfLiked;
+
+	// puts tags on analyze part of report
+	report.analytics.allTags = allTags;
+
+	// puts locations on analytics part of report
+	// locations are sorted chronologically, earliest is first
+	allLocations.sort(function(a,b){return a.time - b.time;});
+	report.analytics.allLocations = allLocations;
 
 	return report;
 }

@@ -33,25 +33,26 @@ angular.module('myApp', ['ui.router'])
 
 
 	//____________All other states descendant of results page__________________
-	.state('results.grade', {
-		url: '/grade',
-		templateUrl: 'partials/results.grade.html',
-		// controller: 'resultsCtrl'
-	})
 	.state('results.media', {
 		url: '/media',
 		templateUrl: 'partials/results.media.html',
-		// controller: 'resultsCtrl'
 	})
 	.state('results.relationships', {
 		url: '/relationships',
-		templateUrl: 'partials/results.relationships.html',
-		// controller: 'resultsCtrl'
+		templateUrl: 'partials/results.relationships.html'
+	})
+	.state('results.grade', {
+		url: '/grade',
+		templateUrl: 'partials/results.grade.html'
 	})
 	.state('results.moreAnalytics', {
 		url: '/moreAnalytics',
-		templateUrl: 'partials/results.moreAnalytics.html',
+		templateUrl: 'partials/results.moreAnalytics.html'
 		// controller: 'resultsCtrl'
+	})
+	.state('results.map', {
+		url: '/map',
+		templateUrl: 'partials/results.map.html'
 	})
 
 
