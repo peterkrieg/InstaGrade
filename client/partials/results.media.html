@@ -41,9 +41,9 @@
 				<div class="img-container">
 
 
-					<img ng-if="media.type==='image'"ng-src="{{media.images.standard_resolution.url}}" alt="">
+					<img class="media" ng-if="media.type==='image'"ng-src="{{media.images.standard_resolution.url}}" alt="">
 
-					<video ng-if="media.type==='video'"controls poster="{{media.images.standard_resolution.url}}">
+					<video class="media" ng-if="media.type==='video'"controls poster="{{media.images.standard_resolution.url}}">
 						<source ng-src="{{media.safeurl}}"></source>
 					</video>
 

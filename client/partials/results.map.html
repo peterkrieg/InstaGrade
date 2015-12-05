@@ -7,7 +7,7 @@
 		<img src="img/insta-logo.png" alt="">
 	</div>
 
-	<div class="map-container"  ng-show="!loadingEverythingElse">
+	<div class="map-container"  google-map ng-show="!loadingEverythingElse">
 		<h5>This is where map should go..</h2>
 
 			<div id="map"  style="height: 400px; width: 1000px;">
@@ -39,16 +39,3 @@
 
 
 
-	<!--google map script -->
-	<script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9odQywTVtdKtoHNJceQD1nVTzhTB5E0U&callback=initMap">
-    </script>
-   <script>
-   	var map;
-			function initMap() {
-				map = new google.maps.Map(document.getElementById('map'), {
-					center: {lat: -34.397, lng: 150.644},
-					zoom: 1
-				});
-			}
-			</script>
