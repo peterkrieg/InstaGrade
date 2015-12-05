@@ -20,6 +20,10 @@ gulp.task('javascript', function() {
 		'./client/bower_components/jquery/dist/jquery.js',
 		'./client/bower_components/lodash/lodash.js',
 
+		// google maps
+
+		// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9odQywTVtdKtoHNJceQD1nVTzhTB5E0U&callback=initMap',
+
 
 
 

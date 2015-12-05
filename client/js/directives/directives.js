@@ -116,16 +116,7 @@ angular.module('myApp')
 						scope.$apply();
 
 					}
-
-
-
-
-
 				})
-
-
-
-
 			}
 }
 })
