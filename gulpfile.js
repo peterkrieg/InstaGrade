@@ -21,6 +21,7 @@ gulp.task('javascript', function() {
 		'./client/bower_components/lodash/lodash.js',
 
 
+
 		// google maps
 
 		// './client/bower_components/googleMaps.js',

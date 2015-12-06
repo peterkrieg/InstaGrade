@@ -7,8 +7,9 @@
 		<img src="img/insta-logo.png" alt="">
 	</div>
 
-	<div class="map-container"  google-map ng-show="!loadingEverythingElse">
-		<h5>This is where map should go..</h2>
+	<div class="map-container"  google-map ng-if="!loadingEverythingElse">
+		<h3>A map of your pictures that have locations.</h3>
+		<h5>Please click on a marker below to see more info</h2>
 
 			<div id="map" >
 
@@ -40,7 +41,7 @@
 
 
 
-<script async defer
+<script async defer ng-if="!loadingEverythingElse"
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9odQywTVtdKtoHNJceQD1nVTzhTB5E0U&callback=initMap">
 </script>
 
