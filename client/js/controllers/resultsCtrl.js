@@ -157,6 +157,17 @@ function finishReportView(report){
 	// console.log(report);
 	$scope.report = report;
 
+
+
+
+
+
+
+
+
+
+
+
 	// loads initial for 4 categories
 	$scope.loadMore("uniqueFollows");
 	$scope.loadMore("uniqueFollowers");
