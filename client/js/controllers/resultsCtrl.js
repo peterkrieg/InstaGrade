@@ -1,5 +1,5 @@
 angular.module('myApp')
-.controller('resultsCtrl', function($scope, prepareReport, instaService, followService, $sce){
+.controller('resultsCtrl', function($scope, prepareReport, instaService, followService, $sce, $filter){
 
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
@@ -33,9 +33,9 @@ prepareReport.getToken()
 		slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
 	};
 	var otherLoadingMessages = {
-		fast: 'You have '+numFollowers+' followers and follow '+numFollows+'users.  This should only take a few moments',
-		medium: 'You have '+numFollowers+' followers and follow '+numFollows+'users.  This shouldn\'t take too long',
-		slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+'users.  We\'re taking care of this as fast as we can, but this might take a minute or two'
+		fast: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This should only take a few moments',
+		medium: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This shouldn\'t take too long',
+		slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+' users.  We\'re taking care of this as fast as we can, but this might take a minute or two'
 	};
 
 	if(numMedia<100){
@@ -157,6 +157,26 @@ function finishReportView(report){
 	// console.log(report);
 	$scope.report = report;
 
+
+// analytics part
+
+
+
+
+
+
+
+
+
+//___ Grade Part ___
+var selfLikesPercentage = $filter('number')(report.grade.selfLikesRatio*100, 1);
+
+
+var selfLikesRatio = report.grade.selfLikesRatio;
+if(selfLikesRatio<.2){
+	$scope.likesRatioMessage = "Congrats, you must not be very self-centered!  You have only liked "
+	+report.grade.numSelfLikes+" ("+selfLikesPercentage+"%) of your media.  ";
+}
 
 
 

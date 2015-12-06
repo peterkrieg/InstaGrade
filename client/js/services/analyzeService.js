@@ -4,7 +4,7 @@ function analyzeFunc(){
 // like instaservice, everything is inside this function
 
 this.analyzeData = function(report, deferred){
-var user = report.user;
+	var user = report.user;
 // everything also inside this function
 
 
@@ -12,8 +12,8 @@ var user = report.user;
 function sumUpMedia(){
 	var media = report.media;
 
-	var sumLikes = 0;
-	var selfLiked = 0;
+	var numLikesReceived = 0;
+	var numSelfLikes = 0;
 	var numPics = 0;
 	var numVids = 0;
 	var allTags = {};
@@ -35,11 +35,11 @@ function sumUpMedia(){
 		}
 
 		// Adding up total likes received
-		sumLikes+=currentMedia.likes.count;
+		numLikesReceived+=currentMedia.likes.count;
 
 		// add up number of times person has liked their own media
-		if(currentMedia.user_has_liked==="true"){
-			selfLiked++;
+		if(currentMedia.user_has_liked===true){
+			numSelfLikes++;
 		}
 
 		// Adding up locations, for map section (google maps)
@@ -73,15 +73,15 @@ function sumUpMedia(){
 
 
 
-	report.analytics.sumLikes = sumLikes;
+	report.analytics.numLikesReceived = numLikesReceived;
 	report.analytics.numPics = numPics;
 	report.analytics.numVids = numVids;
 
 	// find average number of likes per piece of media
-	report.analytics.averageLikes = sumLikes/report.user.numMedia;
+	report.analytics.averageNumLikes = numLikesReceived/report.user.numMedia;
 
 	// times you'ved liked own media
-	report.analytics.selfLiked = selfLiked;
+	report.analytics.numSelfLikes = numSelfLikes;
 
 	// puts tags on analyze part of report
 	report.analytics.allTags = allTags;
@@ -281,11 +281,40 @@ report = uniqueFollow();
 function getGrade(){
 	var numFollowers = user.numFollowers;
 	var numFollows = user.numFollows;
+	var averageNumLikes = report.analytics.averageNumLikes;
+
+	report.grade.averageNumLikes = averageNumLikes;
 
 	// ratio of followers to follows,
 	//  higher number is better for grade
 	var userRatio = numFollowers/numFollows;
 	report.grade.userRatio = userRatio;
+
+	var numLikesGiven = report.relationships.likesGiven.length;
+	var numLikesReceived = report.analytics.numLikesReceived;
+
+	report.analytics.numLikesGiven = numLikesGiven;
+	report.grade.numLikesGiven = numLikesGiven;
+
+	report.analytics.numLikesReceived = numLikesReceived;
+	report.grade.numLikesReceived = numLikesReceived;
+
+
+	var likesRatio = numLikesReceived/numLikesGiven;
+	report.grade.likesRatio = likesRatio;
+
+	var selfLikesRatio = report.analytics.numSelfLikes/report.user.numMedia;
+
+	report.grade.selfLikesRatio = selfLikesRatio;
+	report.grade.numSelfLikes = report.analytics.numSelfLikes;
+
+
+	// calculating average likes per 100 followers, big part of grade
+	var followerRatio = numFollowers/100;
+	var adjustedAverageNumLikes = averageNumLikes/followerRatio;
+	report.grade.adjustedAverageNumLikes = adjustedAverageNumLikes;
+
+
 
 
 

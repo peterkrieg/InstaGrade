@@ -1,49 +1,66 @@
 <div class="grade fade-in-up">
-<h2>Grade</h2>
+	<h2>Grade</h2>
 
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div ng-repeat="media in userMedia">
-
-	<img ng-src="{{media.images.standard_resolution.url}}" alt="">
-	<p>{{media.likes.count}}</p>
-	<div class="comments">
-		<p ng-repeat="comment in media.comments.data"><img class="prof-pic"ng-src="{{comment.from.profile_picture}}">{{comment.text}}</p>
+	<div class="loading" ng-show="loadingEverythingElse">
+		<h1>Loading...</h1>
+		<h4>{{otherLoadingMessage}}</h4>
+		<img src="img/insta-logo.png" alt="">
 	</div>
 
-	<div class="likePics">
-		<img class="liker-pic" ng-repeat="like in media.likesFull.data" ng-src="{{like.profile_picture}}" alt="">
+	<div class="grade-container" ng-show="!loadingEverythingElse">
+
+		<p>You have a total of {{report.grade.numLikesReceived | number}} likes received!</p>
+		<p>You have a total of {{report.grade.numLikesGiven | number}} likes given!</p>
+		<p>Your ratio of likes received to likes given is {{report.grade.likesRatio | number:2}}!</p>
+
+		<p>Your Average number of likes per media is: {{report.grade.averageNumLikes | number: 2 }}</p>
+
+		<p>However, your <em>adjusted likes average</em> is {{report.grade.adjustedAverageNumLikes | number: 2}}</p>
+
+
+
+
+		<br>
+
+
+		<p>{{likesRatioMessage}}</p>
 		
 
-	</div>
 
 
 
-</div> -->
+
+
+
+
+
+
+
+	</div><!-- grade container-->
+
+
+
+
+
+
+
+</div><!-- grade div, nothing below this-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
