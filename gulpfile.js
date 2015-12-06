@@ -23,7 +23,7 @@ gulp.task('javascript', function() {
 
 		// google maps
 
-		'./client/bower_components/googleMaps.js',
+		// './client/bower_components/googleMaps.js',
 
 		// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9odQywTVtdKtoHNJceQD1nVTzhTB5E0U&callback=initMap',
 
