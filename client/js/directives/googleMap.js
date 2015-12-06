@@ -1,32 +1,73 @@
 angular.module('myApp')
-.directive('googleMap', function(){
+.directive('googleMap', function($filter){
 	return {
 		link: function(scope, elem, attrs){
-			console.log('hello');
+
+			var locations = scope.report.map.allLocations;
+			var lastLocation = locations[locations.length-1];
+			var centerMap = {
+				lat: lastLocation.latitude,
+				lng: lastLocation.longitude
+			};
 
 			var map;
 			window.initMap = function() {
 				map = new google.maps.Map(document.getElementById('map'), {
-					center: {lat: -34.397, lng: 150.644},
+					center: centerMap,
 					zoom: 8
 
 				});
 
-				// adding markers to map
 
-				var locations = scope.report.map.allLocations;
-				console.log('locations inside directive is', locations);
 
+				// setting dummy infoWindow, to be changed for each marker
+				var infoWindow = new google.maps.InfoWindow({
+					content: "holding..."
+				});
+
+				
+
+
+
+
+
+
+				// looping through all locations
 				for(var i=0; i<locations.length; i++){
 					var location = locations[i];
+					var locationDate = $filter('date')(location.date*1000, 'EEEE, MMMM d, yyyy');
+
+					var content = 
+
+					'<div class="info-window">'+
+					'<img class="location-pic" src="'+location.pic.url+'">'+
+					'<p class="date">'+locationDate+'</p>'+
+					'<p class="name">'+location.name+'</p>'+
+
+					'</div>';
+
+
+
 					var marker = new google.maps.Marker({
 						position: {lat: location.latitude, lng: location.longitude},
-						title: location.name
+						title: location.name,
+						html: content
 					});
+
+
+					// getting info window ready
+					// var contentString = '<img src="'+location.pic.url+'">';
+
+
+					marker.addListener('click', function(){
+						infoWindow.setContent(this.html);
+						infoWindow.open(map, this);
+					});
+
+
+
 					marker.setMap(map);
-
-
-				}
+				}// end of for loop for all location markers
 
 			}
 

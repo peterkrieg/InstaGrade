@@ -49,7 +49,7 @@ function sumUpMedia(){
 				name: location.name,
 				latitude: location.latitude,
 				longitude: location.longitude,
-				time: currentMedia.created_time,
+				date: currentMedia.created_time,
 				pic: currentMedia.images.low_resolution,
 				instagramId: location.id
 			};
@@ -88,7 +88,7 @@ function sumUpMedia(){
 
 	// puts locations on analytics part of report
 	// locations are sorted chronologically, earliest is first
-	allLocations.sort(function(a,b){return a.time - b.time;});
+	allLocations.sort(function(a,b){return a.date - b.date;});
 	report.map.allLocations = allLocations;
 
 	return report;
