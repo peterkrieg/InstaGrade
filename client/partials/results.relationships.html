@@ -15,19 +15,20 @@
 		<h4>People you follow, but don't follow you back!</h4>
 		<h5>...How Dare They!!</h5>
 		<p>Get revenge against them Now! click on a person to unfollow</p>
-		<div class="unique-follows-container">
+		<div class="unique-follows-container content-container">
 			<div class="row">
 				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follow in uniqueFollows">
 					<div class="img-container">
+						<li class="name">{{follow.full_name || follow.username}}</li>
+						
 						<div class="actual-image" ng-click="unfollowUser(follow.id)"><img ng-src="{{follow.profile_picture}}" alt=""><i class="fa fa-user-times unfollow"></i></div>
-						<li>{{follow.full_name || follow.username}}</li>
 						
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<a ng-show="!noMore.uniqueFollows" ng-click="loadMore('uniqueFollows')">Click to get More Follows</a>
+		<a class="show-more" ng-show="!noMore.uniqueFollows" ng-click="loadMore('uniqueFollows')"><i class="fa fa-chevron-down"></i> Click to get More Follows <i class="fa fa-chevron-down"></i></a>
 		<p class="warning fade-in-up" ng-show="noMore.uniqueFollows">No More Unique Follows</p>
 
 		<hr>
@@ -37,95 +38,96 @@
 		<h5>...Whatever, they probably aren't worth it?</h5>
 		<p>But if you change your mind, click on a person to follow them :)</p>
 
-		<div class="unique-follows-container">
+		<div class="unique-follows-container content-container">
 			<div class="row">
 				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follower in uniqueFollowers">
 					<div class="img-container">
+						<li class="name">{{follower.full_name || follower.username}}</li>
 						<div class="actual-image" ng-click="followUser(follower.id)"><img ng-src="{{follower.profile_picture}}" alt=""><i class="fa fa-user-plus follow"></i></div>
-						<li>{{follower.full_name || follower.username}}</li>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<a ng-show="!noMore.uniqueFollowers" ng-click="loadMore('uniqueFollowers')">Click to Get More followers</a>
+		<a class="show-more" ng-show="!noMore.uniqueFollowers" ng-click="loadMore('uniqueFollowers')"><i class="fa fa-chevron-down"></i> Click to Get More followers <i class="fa fa-chevron-down"></i></a>
 		<p class="warning fade-in-up" ng-show="noMore.uniqueFollowers">No More Unique Followers</p>
 
 
 		<hr>
 
-		<!--___________Top Users By Likes___________-->
-<!-- 
-		<h4>These are your top Likers!</h4>
 
-		<div class="likers-container">
+		<!--___Likes Comparison____-->
+
+		<h4>Comparison of Likes</h4>
+		<p>Shows likes given vs. likes received, for users you've interacted with.</p>
+
+		<!-- example section-->
+		<div class="example" >
 			<div class="row">
-				<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in userLikersArr">
-					<li>Name: {{liker.name}}</li>
-					<li>Num likes: {{liker.count}}</li>
-					<img class="liker" ng-src="{{liker.pic}}" alt="">
-				</div>
-			</div>
+				<h4>Instructions</h4>
+				<div class="example-content">
+					<div class="col-md-4 user fade-in-up">
+						<li class="name">Judith Steward</li>
+						<img class="user" src="https://randomuser.me/api/portraits/med/women/91.jpg" alt="">
 
-			<a ng-show="!noMore.userLikersArr" ng-click="loadMore('userLikersArr')">Click to Get More likers</a>
-			<p class="warning fade-in-up" ng-show="noMore.userLikersArr">No More likers</p> -->
-
-
-			<!-- <hr> -->
-
-			<!--______Top users You've liked________-->
-
-			<!-- <h4>Top Users You've liked!!</h4>
-			<h5>These are the people that are most important in your life</h5>
-
-			<div class="likers-container">
-				<div class="row">
-					<div class="liker fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="liker in yourLikesUsersArr">
-						<li>Name: {{liker.name}}</li>
-						<li>Num likes: {{liker.count}}</li>
-						<img class="liker" ng-src="{{liker.pic}}" alt="">
+						<div class="bar-chart-container">
+							<div class="bar-chart" bar-chart-example
+							data-html="true" data-toggle="popover" data-placement="bottom" data-title="Judith Steward" data-content="Likes Received: 25<br>
+							Likes Given: 16"
+							>
+							<div style="width: 100%" class=" bar likes-received" ></div>
+							<div style="width: 64%" class=" bar likes-given" ></div>
+						</div>
 					</div>
+
+				</div>
+				<div class="col-md-8">
+					<p class="example">Here is a fake sample user as an example.  Each user has a mini bar-chart to represent the comparison of likes given vs. likes received.  The blue bar shows the number of likes received, and the yellow bar shows the number of likes given. <em>Please hover or click on any bar chart to see the specific numbers.</em>    </p>
+
+					<p class="conclusion">In this example, Judith has liked your media 25 times, and you have liked her media 16 times</p>
+
+
 				</div>
 
-				<a ng-show="!noMore.yourLikesUsersArr" ng-click="loadMore('yourLikesUsersArr')">Click to Get More likers</a>
-				<p class="warning fade-in-up" ng-show="noMore.yourLikesUsersArr">No More liked users to show</p>
-			</div> -->
+			</div>
+			<i class="close fa fa-times" ng-click="closeExample()"></i>
+		</div>
+
+	</div> <!-- end of example div-->
 
 
-			<!--___Likes Comparison____-->
 
-			<h4>Comparison of Likes</h4>
-			<h5>Shows likes given vs. likes received, for users you've interacted with.</h5>
-
-			<div class="likers-container">
-				<div class="row">
-					<div class="user fade-in-up col-md-3 col-sm-4 col-xs-6" ng-repeat="user in likesComparisonArr">
-						<li class="name">{{user.name}}</li>
+	<div class="likers-container content-container">
+		<div class="row">
+			<div class="user fade-in-up col-md-3 col-sm-4 col-xs-6" ng-repeat="user in likesComparisonArr">
+				<li class="name">{{user.name}}</li>
 <!-- 						<li>Num likes Received: {{user.likesReceived}}</li>
 						<li>Num likes Given: {{user.likesGiven}}</li>
- -->						<img class="user" ng-src="{{user.pic}}" alt="">
+					-->						<img class="user" ng-src="{{user.pic}}" alt="">
 
+					<div class="bar-chart-container">
 						<div class="bar-chart" bar-chart
 						data-html="true" data-toggle="popover" data-placement="bottom" data-title="{{user.name}}" data-content="Likes Received: {{user.likesReceived}}<br>
 						Likes Given: {{user.likesGiven}}"
 
 						>
-							<div class="bar likes-received" ></div>
-							<div class="bar likes-given" ></div>
-						</div>
-
-
+						<div class="bar likes-received" ></div>
+						<div class="bar likes-given" ></div>
 					</div>
 				</div>
 
-				<a ng-show="!noMore.likesComparisonArr" ng-click="loadMore('likesComparisonArr')">Click to Get More likers</a>
-				<p class="warning fade-in-up" ng-show="noMore.likesComparisonArr">No More liked users to show</p>
+
 			</div>
+		</div>
+
+		<a class="show-more" ng-show="!noMore.likesComparisonArr" ng-click="loadMore('likesComparisonArr')"><i class="fa fa-chevron-down"></i> Click to See More <i class="fa fa-chevron-down"></i></a>
+		<p class="warning fade-in-up" ng-show="noMore.likesComparisonArr">No More liked users to show</p>
+	</div>
 
 
 
 
 
 
-		</div><!--relationships container-->
+</div><!--relationships container-->
 	</div> <!-- end of relationships section-->

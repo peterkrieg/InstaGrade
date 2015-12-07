@@ -160,6 +160,10 @@ function finishReportView(report){
 	// console.log(report);
 	$scope.report = report;
 
+	// relationships part__
+
+	// $scope.showExample = true;
+
 
 // analytics part
 
@@ -233,6 +237,13 @@ $scope.followUser = function(id){
 		// .then(function(response){
 		// 	console.log(response.data);
 		// });
+}
+
+
+$scope.closeExample = function(){
+	$('div.example').slideToggle(400);
+
+
 }
 
 

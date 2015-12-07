@@ -4,16 +4,14 @@ div.relationships{
 		width: 80px;
 		border-radius: 5px;
 	}
-	li{
-		font-size: .5em;
-		list-style-type: none;
-	}
-	li.name{
-		height: 35px;
-	}
+	
 	div.img-container{
 		margin-bottom: 30px;
 		// background: green;
+	}
+
+	div.content-container{
+		margin-top: 50px;
 	}
 
 	h5{
@@ -70,19 +68,16 @@ div.relationships{
 	}// end of unfollow/follow effect
 
 
-	// bar chart section, displaying likes comparison
+	///////////////////////////////////////////////////
+	//  Likes Comparison Section
+	///////////////////////////////////////////////////
+
 
 	div.user{
 		height: 200px;
 	}
 
-
-
-
-
-
-
-	div.bar-chart{
+	div.bar-chart-container{
 		margin: auto;
 		max-width: 200px;
 		&:hover{
@@ -103,27 +98,64 @@ div.relationships{
 			&.likes-given{
 				background: #ffc838;
 			}
+
+			
+
+
+
 		}
 
+		div.bar-chart{
+			// animation effect of sliding bars
+			// max-width: 30%;
+			@include animation(barGrowth 2s ease);
+
+		}
+
+
+
+
+
+
+
 	}
 
+	///////////////////////////////////////////////////
+	//  Instructions example div, with sample bar chart
+	///////////////////////////////////////////////////
 
+	div.example{
+		position: relative;
+		background: #eaeaea;
+		border-radius: 12px;
+		margin: 30px 0;
+		h4{
+			margin-bottom: 30px;
+		}
+		p{
+			text-align: left;
+			font-size: .55em;
+			line-height: 1.2em;
+			padding: 0 50px;
+			margin-bottom: 30px;
+		}
+		p.example{
+			font-size: .55em;
+			line-height: 1.2em;
+			padding: 0 50px;
+			margin-bottom: 30px;
+		}
+		em{
+			font-weight: bold;
+		}
+		i.close{
+			// position close icon always in top right corner
+			position: absolute;
+			right: 10px;
+			top: 10px;
 
-
-
-
-
-
-
-//_________________________Likers Section__________________________
-
-div.likers-container{
-	img{
-		width: 80px;
-		border-radius: 5px;
+		}
 	}
-}
-
 
 
 

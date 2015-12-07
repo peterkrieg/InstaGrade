@@ -16,12 +16,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2680ff', end
 }
 
 @include keyframes(instaSpinLoad) {
-  from {
-    @include transform(rotate(0deg));
-  }
-  to {
-    @include transform(rotate(360deg));
-  }
+	from {
+		@include transform(rotate(0deg));
+	}
+	to {
+		@include transform(rotate(360deg));
+	}
 }
 
 @include keyframes(fadeInUp){
@@ -34,6 +34,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2680ff', end
 		padding-top: 0px;
 	}
 }
+
+// for animating bar chart in likes comparison part
+@include keyframes(barGrowth){
+	from{
+		max-width: 0%;
+	}
+	to{
+		max-width: 100%;
+	}
+}
+
+
+
 
 .fade-in-up{
 	@include fadeInUp(1s);

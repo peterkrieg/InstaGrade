@@ -1,8 +1,9 @@
 angular.module('myApp')
-.directive('barChart', function($interpolate){
+.directive('barChart', function(){
 	return{
 		link: function(scope, elem, attrs){
 			$(function(){
+				// setting up case for everything but example
 				var $barCharts = elem.find('div.bar');
 
 				// console.log(scope);
@@ -46,6 +47,27 @@ angular.module('myApp')
 			});  // end of jQuery ready function
 
 
-}
-}
+		}
+	}
 })
+
+// directive just for example bar chart
+angular.module('myApp')
+.directive('barChartExample', function(){
+	return function(scope, elem, attrs){
+		$(elem).hover(function(){
+			$(this).popover('show');
+		}, function(){
+			$(this).popover('hide');
+		});
+	}
+});
+
+
+
+
+
+
+
+
+

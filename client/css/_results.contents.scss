@@ -22,7 +22,34 @@ div.grade, div.relationships, div.more-analytics, div.media, div.map{
 	p{
 		font-size: .6em;
 	}
-}
+
+	li.name{
+		height: 35px;
+		font-size: .5em;
+		list-style-type: none;
+	}
+	
+
+
+
+
+	a.show-more{
+		font-size: .7em;
+		color: $instaBlue;
+		@include transition(.4s ease);
+		&:hover{
+			color: darken($instaBlue, 10%);
+			text-decoration: none;
+		}
+	}
+
+
+
+
+
+
+
+}  // end of all divs
 
 
 
