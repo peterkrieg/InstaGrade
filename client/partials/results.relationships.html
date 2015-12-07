@@ -55,7 +55,7 @@
 		<hr>
 
 		<!--___________Top Users By Likes___________-->
-
+<!-- 
 		<h4>These are your top Likers!</h4>
 
 		<div class="likers-container">
@@ -68,14 +68,14 @@
 			</div>
 
 			<a ng-show="!noMore.userLikersArr" ng-click="loadMore('userLikersArr')">Click to Get More likers</a>
-			<p class="warning fade-in-up" ng-show="noMore.userLikersArr">No More likers</p>
+			<p class="warning fade-in-up" ng-show="noMore.userLikersArr">No More likers</p> -->
 
 
-			<hr>
+			<!-- <hr> -->
 
 			<!--______Top users You've liked________-->
 
-			<h4>Top Users You've liked!!</h4>
+			<!-- <h4>Top Users You've liked!!</h4>
 			<h5>These are the people that are most important in your life</h5>
 
 			<div class="likers-container">
@@ -89,7 +89,7 @@
 
 				<a ng-show="!noMore.yourLikesUsersArr" ng-click="loadMore('yourLikesUsersArr')">Click to Get More likers</a>
 				<p class="warning fade-in-up" ng-show="noMore.yourLikesUsersArr">No More liked users to show</p>
-			</div>
+			</div> -->
 
 
 			<!--___Likes Comparison____-->
@@ -105,7 +105,11 @@
 						<li>Num likes Given: {{user.likesGiven}}</li>
  -->						<img class="user" ng-src="{{user.pic}}" alt="">
 
-						<div class="bar-chart" bar-chart>
+						<div class="bar-chart" bar-chart
+						data-html="true" data-toggle="popover" data-placement="bottom" data-title="{{user.name}}" data-content="Likes Received: {{user.likesReceived}}<br>
+						Likes Given: {{user.likesGiven}}"
+
+						>
 							<div class="bar likes-received" ></div>
 							<div class="bar likes-given" ></div>
 						</div>

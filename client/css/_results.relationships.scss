@@ -83,10 +83,15 @@ div.relationships{
 
 
 	div.bar-chart{
+		margin: auto;
+		max-width: 200px;
+		&:hover{
+			cursor: pointer;
+		}
 		// border-left: 2px solid black;
 		div.bar{
 			height: 10px;
-			background: lightblue;
+			background: $instaBlue;
 			@include border-right-radius(3px);
 			min-width: 2px;
 			&:first-of-type{
@@ -96,7 +101,7 @@ div.relationships{
 				margin-top: 2px;
 			}
 			&.likes-given{
-				background: green;
+				background: #ffc838;
 			}
 		}
 

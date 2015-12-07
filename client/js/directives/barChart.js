@@ -23,6 +23,13 @@ angular.module('myApp')
 					elem.find('.bar').css('width', '100%');
 				}
 
+				// setting up tooltip, to show numbers of hover
+				$(elem).hover(function(){
+					$(this).popover('show');
+				},  function(){
+					// on mouseleave
+					$(this).popover('hide');
+				});
 
 
 
@@ -31,46 +38,12 @@ angular.module('myApp')
 
 
 
-
-
-
-				// for(var i=0; i<$barCharts.length; i++){
-				// 	var $currBar = $barCharts[i];
-
-
-
-
-
-
-
-
-
-
-
-
-					// console.log($currBar);
-					// console.log($currBar.getAttribute('data-bar-width'));
-					// var value =$interpolate($currBar.getAttribute('data-bar-width'));
-					// console.log(value);
-
-
-					// console.log('width is  ', $currBar.attr('data-bar-width'));
-					// $currBar.css('width', $currBarr.attr('data-bar-width'));
-				// }
-
-
-
-				// console.log($barCharts);
-
-
-
-				// console.log('is directive working??');
 
 
 
 
 				
-			});
+			});  // end of jQuery ready function
 
 
 }
