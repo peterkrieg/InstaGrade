@@ -114,20 +114,23 @@ var calledTimes = {
 	uniqueFollows: 0,
 	uniqueFollowers: 0,
 	userLikersArr: 0,
-	yourLikesUsersArr: 0
+	yourLikesUsersArr: 0,
+	likesComparisonArr: 0
 };
 
 $scope.noMore = {
 	uniqueFollows: false,
 	uniqueFollowers: false,
 	userLikersArr: false,
-	yourLikesUsersArr: false
+	yourLikesUsersArr: false,
+	likesComparisonArr: false
 };
 
 $scope.uniqueFollows = [];
 $scope.uniqueFollowers = [];
 $scope.userLikersArr = [];
 $scope.yourLikesUsersArr = [];
+$scope.likesComparisonArr = [];
 
 
 $scope.loadMore = function(category){
@@ -173,9 +176,16 @@ var selfLikesPercentage = $filter('number')(report.grade.selfLikesRatio*100, 1);
 
 
 var selfLikesRatio = report.grade.selfLikesRatio;
+if(selfLikesRatio===0){
+	$scope.likesRatioMessage = "Wow, you haven't liked a single one of your photos!  Thank you for "
+}
 if(selfLikesRatio<.2){
 	$scope.likesRatioMessage = "Congrats, you must not be very self-centered!  You have only liked "
 	+report.grade.numSelfLikes+" ("+selfLikesPercentage+"%) of your media.  ";
+}
+else if(selfLikesRatio<.5){
+	$scope.likesRatioMessage = "Okay, you've liked "
+	+report.grade.numSelfLikes+" ("+selfLikesPercentage+"%) of your media.  Not too high, but try to be a little ";
 }
 
 
@@ -193,6 +203,7 @@ if(selfLikesRatio<.2){
 	$scope.loadMore("uniqueFollowers");
 	$scope.loadMore("userLikersArr");
 	$scope.loadMore("yourLikesUsersArr");
+	$scope.loadMore("likesComparisonArr");
 
 	$scope.loadingEverythingElse = false;
 

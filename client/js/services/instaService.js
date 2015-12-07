@@ -43,7 +43,7 @@ this.getMedia = function(token, user){
 				deferred.resolve(report);
 			}
 			else{
-				// recursion each following time
+				// recrsion each following time
 				eachRequest(nextURL+'&callback=JSON_CALLBACK');
 			}
 		},
@@ -61,7 +61,7 @@ this.getMedia = function(token, user){
 //______________Next step, once media loaded_________________
 
 // max api call for getting likers of your media, and stuff you have liked
-var maxApiCall = 5;
+var maxApiCall = 10;
 
 
 this.getOtherData = function(token, report){

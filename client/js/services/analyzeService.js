@@ -211,6 +211,64 @@ function analyzeYourLikes(){
 report = analyzeYourLikes();
 
 
+//___________Analyzing Likes Comparison____________
+// just means creating new object and array, comparing likes
+
+function compareLikes(){
+	var likesComparison = report.relationships.userLikers;
+	for(var prop in likesComparison){
+		likesComparison[prop].likesReceived = likesComparison[prop].count;
+		delete likesComparison[prop].count;
+	}
+	var likesGivenUsers = report.relationships.yourLikesUsers;
+	// now loop through lives given
+	for(var prop in likesGivenUsers){
+		if(likesComparison[prop]){
+			likesComparison[prop].likesGiven = likesGivenUsers[prop].count;
+		}
+		else{
+			likesComparison[prop] = {};
+			likesComparison[prop].pic = likesGivenUsers[prop].pic;
+			likesComparison[prop].name = likesGivenUsers[prop].name;
+			likesComparison[prop].likesGiven = likesGivenUsers[prop].count;
+		}
+	}
+
+	// now loop through finished likesComparison, and make sure
+	// values are at least 0, if undefined
+	//(ie, possible you've never received a like from user, or vice versa)
+
+	for(var prop in likesComparison){
+		var currObj = likesComparison[prop];
+		if(!currObj.hasOwnProperty('likesReceived')){
+			currObj.likesReceived = 0;
+		}
+		if(!currObj.hasOwnProperty('likesGiven')){
+			currObj.likesGiven=0;
+		}
+		likesComparison[prop] = currObj;
+	}
+
+	//______Now put entire likesComparison object as array, to sort__________
+
+	var likesComparisonArr = [];
+	for(var prop in likesComparison){
+		likesComparison[prop].instagramId = prop;
+		likesComparisonArr.push(likesComparison[prop]);
+	}
+	likesComparisonArr.sort(function(a,b){return (a.likesGiven+a.likesReceived)-(b.likesGiven+b.likesReceived)})
+
+
+	report.relationships.likesComparison = likesComparison;
+	report.relationships.likesComparisonArr = likesComparisonArr
+
+return report;
+}
+
+
+report = compareLikes();
+
+
 
 
 

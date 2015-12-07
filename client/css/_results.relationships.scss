@@ -67,6 +67,19 @@ div.relationships{
 	}// end of unfollow/follow effect
 
 
+	// bar chart section, displaying likes comparison
+	div.bar-chart{
+		div.bar{
+			height: 3px;
+			background: lightblue;
+			border-radius: 1px;
+			min-width: 2px;
+			&.likes-given{
+				background: green;
+			}
+		}
+
+	}
 
 
 
