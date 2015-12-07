@@ -72,7 +72,7 @@ div.relationships{
 	//  Likes Comparison Section
 	///////////////////////////////////////////////////
 
-
+	// bigger height than before, since 
 	div.user{
 		height: 200px;
 	}
@@ -138,8 +138,8 @@ div.relationships{
 			padding: 0 50px;
 			margin-bottom: 30px;
 		}
-		em{
-			font-weight: bold;
+		strong{
+			font-style: italic;
 		}
 		i.close{
 			// position close icon always in top right corner

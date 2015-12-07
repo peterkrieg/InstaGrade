@@ -373,6 +373,20 @@ function getGrade(){
 	report.grade.adjustedAverageNumLikes = adjustedAverageNumLikes;
 
 
+	// turn all tags into an array
+	var allTags = report.analytics.allTags;
+	var allTagsArr = [];
+	for(var prop in allTags){
+		allTagsArr.push({
+			hashtag: prop,
+			count: allTags[prop]
+		});
+	}
+	// sorted from highest number first, to lowest number last in array
+	allTagsArr.sort(function(a,b){return b.count - a.count;});
+	report.analytics.allTagsArr = allTagsArr;
+
+
 
 
 

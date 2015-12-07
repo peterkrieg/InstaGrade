@@ -27,6 +27,8 @@
     "bourbon": "~4.2.6",
     "bootstrap-sass": "~3.3.5",
     "font-awesome": "fontawesome#~4.4.0",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "wow": "wowjs#~1.1.2",
+    "highcharts": "highcharts.com#~4.1.10"
   }
 }

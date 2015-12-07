@@ -22,6 +22,9 @@ gulp.task('javascript', function() {
 
 		// wow js
 		'./client/bower_components/wow/dist/wow.js',
+		// highcharts JS
+		'./client/bower_components/highcharts/lib/highcharts.js',
+
 
 
 
