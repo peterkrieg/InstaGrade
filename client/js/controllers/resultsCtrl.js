@@ -165,7 +165,60 @@ function finishReportView(report){
 	// $scope.showExample = true;
 
 
+
+
 // analytics part
+
+// getting current tags for chart
+var tagsArr = $scope.report.analytics.allTagsArr;
+
+var tagsGroupsNames = [];
+var tagsGroupsCounts = [];
+
+var index = -1;
+for(var i=0; i<tagsArr.length; i++){
+	// if there are still tags
+	if(tagsArr[i]){
+		var hashtag = tagsArr[i].hashtag;
+		var count = tagsArr[i].count;
+		if(i%12===0){
+			index++;
+			tagsGroupsNames.push([hashtag]);
+			tagsGroupsCounts.push([count]);
+		}
+		else{
+			tagsGroupsNames[index].push(hashtag);
+			tagsGroupsCounts[index].push(count);
+		}
+	}
+	// if there are no more tags, just exit the for loop
+	else{
+		break;
+	}
+}
+
+
+$scope.noMoreLeft = true;
+$scope.noMoreRight = false;
+$scope.index = 0;
+
+
+
+
+var currentTags = tagsGroupsNames[0];
+var currentTagsCounts = tagsGroupsCounts[0];
+
+
+
+
+
+$scope.report.analytics.currentTags = currentTags;
+$scope.report.analytics.currentTagsCounts = currentTagsCounts;
+
+$scope.report.analytics.tagsGroupsNames = tagsGroupsNames;
+$scope.report.analytics.tagsGroupsCounts = tagsGroupsCounts;
+
+
 
 
 
@@ -247,6 +300,35 @@ $scope.closeExample = function(){
 }
 
 
+
+
+//__________Analytics part, cycling through hashtags________________
+
+$scope.cycleThroughTags = function(direction){
+	var tagsGroupsCounts = $scope.report.analytics.tagsGroupsCounts;
+	var tagsGroupsNames = $scope.report.analytics.tagsGroupsNames;
+
+
+	if(direction==='right'){
+		console.log('right');
+		if(tagsGroupsCounts[$scope.index+1]){
+			$scope.index++;
+			$scope.report.analytics.currentTags = tagsGroupsNames[$scope.index];
+			$scope.report.analytics.currentTagsCounts = tagsGroupsCounts[$scope.index];
+			$scope.noMoreLeft = false;
+
+			if(!tagsGroupsCounts[$scope.index+1]){
+				$scope.noMoreRight = true;
+			}
+			// $scope.$apply();
+
+		}
+
+	}
+	else if(direction==='left'){
+		alert('left!!');
+	}
+}
 
 
 

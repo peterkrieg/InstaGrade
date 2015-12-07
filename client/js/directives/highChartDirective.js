@@ -7,26 +7,50 @@ angular.module('myApp')
 			$(function(){
 				$(elem).highcharts({
 					chart: {
-						type: 'column'
+						type: 'column',
+						style: {
+							fontFamily: "'Playfair Display', serif",
+							color: 'red'
+						}
+					},
+					credits: {
+						enabled: false
 					},
 					title: {
-						text: 'HAshtag analysis'
+						text: null,
 					},
 					subtitle: {
-						text: 'subtitle here'
+						text: null
 					},
+
+					//____________ x-axis____________
 					xAxis: {
-						categories: [
-						'something1',
-						'something2',
-						'something3'
-						],
-						crosshair: true
+						categories: scope.report.analytics.currentTags,
+						crosshair: true,
+						labels: {
+							style: {
+								fontSize: '15px'
+							}
+						}
 					},
+
+					// ___________y-axis____________
 					yAxis: {
+						// style: {
+						// 	fontSize: '20px'
+						// },
+						labels: {
+							style: {
+								fontSize: '15px'
+							}
+						},
 						min: 0,
 						title: {
-							text: 'Count'
+							text: 'Count',
+							style: {
+								fontSize: '30px',
+								// color: 'green'
+							}
 						}
 					},
 
@@ -39,7 +63,7 @@ angular.module('myApp')
 
 					series: [{
 						name: 'Number of hashtag uses',
-						data: [4,5,10]
+						data: scope.report.analytics.currentTagsCounts
 					}]
 
 

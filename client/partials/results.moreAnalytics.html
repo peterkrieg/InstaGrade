@@ -11,15 +11,18 @@
 	<div class="analytics-container" ng-if="!loadingEverythingElse">
 
 
-	<h4>Tag Analysis</h4>
+		<h4>Tag Analysis</h4>
 		<p>Analyze hashtag usage, show most used hashtags, and success of photos vs hashtag number</p>
 
-		<div hashtag-bar-chart class="hashtag-bar-chart">
-			
+		<div class="chart-container">
+			<div hashtag-bar-chart class="hashtag-bar-chart">
 
 
 
 
+			</div>
+			<i ng-hide="noMoreLeft" ng-click="cycleThroughTags('left');" class="cycle-left fa fa-chevron-left"></i>
+			<i ng-hide="noMoreRight" ng-click="cycleThroughTags('right');"  class="cycle-right fa fa-chevron-right"></i>
 		</div>
 
 
@@ -35,7 +38,7 @@
 		<p>Here's a scatter plot of number of hashtags vs photo interactions (number comments/likes).  Does the data mean anything? Maybe.  Maybe not!</p> 
 
 
-	<h4>Time Analysis</h4>
+		<h4>Time Analysis</h4>
 		
 
 

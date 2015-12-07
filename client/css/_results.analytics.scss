@@ -1,11 +1,42 @@
 div.analytics{
 
-div.hashtag-bar-chart{
-	width: 95%;
-	margin: 50px auto;
-	min-height: 400px;
-	background: #eee;
-}
+	div.hashtag-bar-chart{
+		width: 95%;
+		margin: 50px auto;
+		min-height: 400px;
+		background: #eee;
+
+	}
+
+	div.chart-container{
+		position: relative;
+		i.fa{
+			position: absolute;
+			bottom: 0px;
+			color: black;
+			&:hover{
+				cursor: pointer;
+			}
+			&.cycle-left{
+				left: 60px;
+			}
+			&.cycle-right{
+				right: 60px;
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
