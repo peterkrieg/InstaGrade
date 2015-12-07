@@ -8,6 +8,9 @@ div.relationships{
 		font-size: .5em;
 		list-style-type: none;
 	}
+	li.name{
+		height: 35px;
+	}
 	div.img-container{
 		margin-bottom: 30px;
 		// background: green;
@@ -68,12 +71,30 @@ div.relationships{
 
 
 	// bar chart section, displaying likes comparison
+
+	div.user{
+		height: 200px;
+	}
+
+
+
+
+
+
+
 	div.bar-chart{
+		// border-left: 2px solid black;
 		div.bar{
-			height: 3px;
+			height: 10px;
 			background: lightblue;
-			border-radius: 1px;
+			@include border-right-radius(3px);
 			min-width: 2px;
+			&:first-of-type{
+				margin-top: 10px;
+			}
+			&:nth-of-type(2){
+				margin-top: 2px;
+			}
 			&.likes-given{
 				background: green;
 			}
