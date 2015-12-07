@@ -20,6 +20,11 @@ gulp.task('javascript', function() {
 		'./client/bower_components/jquery/dist/jquery.js',
 		'./client/bower_components/lodash/lodash.js',
 
+		// wow js
+		'./client/bower_components/wow/dist/wow.js',
+
+
+
 
 
 		// google maps

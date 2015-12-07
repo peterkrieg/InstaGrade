@@ -13,6 +13,36 @@ angular.module('myApp')
 });
 
 
+//_________________________Wow JS______________
+
+// just to init WOWJS
+angular.module('myApp')
+.directive('wow', function(){
+	return {
+		link: function(scope, elem, attrs){
+			$(function(){
+				new WOW().init();   
+			});
+		}
+	}
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//_________________________Clicking Comment Plus__________________________
 
 	angular.module('myApp')

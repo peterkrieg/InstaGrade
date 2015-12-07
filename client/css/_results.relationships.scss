@@ -107,15 +107,8 @@ div.relationships{
 
 		div.bar-chart{
 			// animation effect of sliding bars
-			// max-width: 30%;
-			@include animation(barGrowth 2s ease);
-
+			@include animation(barGrowth 1.3s ease);
 		}
-
-
-
-
-
 
 
 	}
