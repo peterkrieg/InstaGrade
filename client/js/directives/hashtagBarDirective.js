@@ -58,7 +58,7 @@ angular.module('myApp')
 						title: {
 							text: 'Count',
 							style: {
-								fontSize: '30px',
+								fontSize: '15px',
 								// color: 'green'
 							}
 						}

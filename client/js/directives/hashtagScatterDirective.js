@@ -27,7 +27,7 @@ angular.module('myApp')
 					xAxis: {
 						title: {
 							enabled: true,
-							text: 'Number of Hashtags Used'
+							text: 'Number of Hashtags vs. Number of Interactions'
 						},
 						startOnTick: true,
 						endOnTick: true,
@@ -42,9 +42,9 @@ angular.module('myApp')
 								fontSize: '15px'
 							}
 						},
-						min: 0,
+						// min: 0,
 						title: {
-							text: 'Number of Interactions (Likes and Comments)',
+							text: 'Number of Interactions ',
 							style: {
 								fontSize: '15px',
 								// color: 'green'

@@ -1,6 +1,6 @@
 angular.module('myApp')
 .service('analyzeService', analyzeFunc);
-function analyzeFunc(){
+function analyzeFunc($filter){
 // like instaservice, everything is inside this function
 
 this.analyzeData = function(report, deferred){
@@ -19,8 +19,19 @@ function sumUpMedia(){
 	var allTags = {};
 	var allLocations = [];
 	var hashtagScatter = [];
-	// var pics = [];
-	// var vids = [];
+
+	var allTimes = [];
+	var daysOfWeekArr = [];
+	var daysOfWeek = {
+		Monday: 0,
+		Tuesday: 0,
+		Wednesday: 0,
+		Thursday: 0,
+		Friday: 0,
+		Saturday: 0,
+		Sunday: 0
+	};
+
 
 
 	// big for loop that goes through everything
@@ -80,6 +91,20 @@ function sumUpMedia(){
 			hashtagScatter.push(scatterPoint);
 		}
 
+		// analyzing times, for time of day/ day of week analysis
+
+		var time = currentMedia.created_time*1000;
+		allTimes.push(time);
+		// Angular creates day based on user's browsers timezone (since no 3rd argument passed in),
+		// this means that photos posted in different timezones,
+		// than current browser timezone will be off
+		// no way around this that I can think of
+
+		var day = $filter('date')(time, 'EEEE');
+
+		// increment count of day, ie increase Sunday++
+		daysOfWeek[day]++;
+
 
 
 
@@ -104,6 +129,17 @@ function sumUpMedia(){
 
 	// hashtag scatter plot
 	report.analytics.hashtagScatter = hashtagScatter;
+
+
+	// times analysis
+	report.analytics.allTimes = allTimes;
+	report.analytics.daysOfWeek = daysOfWeek;
+	for(var prop in daysOfWeek){
+		daysOfWeekArr.push(daysOfWeek[prop]);
+	}
+	report.analytics.daysOfWeekArr = daysOfWeekArr;
+
+
 
 	// puts locations on analytics part of report
 	// locations are sorted chronologically, earliest is first

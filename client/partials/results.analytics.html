@@ -1,5 +1,5 @@
 <div class="analytics fade-in-up">
-	<h2>Analytics</h2>
+	<!-- <h2>Analytics</h2> -->
 
 	<div class="loading" ng-show="loadingEverythingElse">
 		<h1>Loading...</h1>
@@ -11,8 +11,9 @@
 	<div class="analytics-container" ng-if="!loadingEverythingElse">
 
 
-		<h4>Tag Analysis</h4>
-		<p>Analyze hashtag usage, show most used hashtags, and success of photos vs hashtag number</p>
+		<h4>Hashtag vs. Number of Times Used</h4>
+		<h6>How many times do you use <em>#blessed</em> ??</h6>
+		<!-- <h6>Analyze hashtag usage, show most used hashtags, and success of photos vs hashtag number</h6> -->
 
 		<div class="chart-container">
 			<div hashtag-bar-chart class="chart hashtag-bar-chart">
@@ -22,25 +23,22 @@
 		</div>
 
 
+		<h4>Number of Hashtags vs. Number of Interactions</h4>
+		<h6>Each point represents a photo.  Interactions are the sum of comments and likes.</h6>
+		<h6>Does this data mean anything? Maybe.  But probably not!</h6>
 		<div hashtag-scatter class="chart hashtag-scatter">
+			
+		</div>
+
+		<h4>Media by Day of Week</h4>
+		<h6>Number of media created for each day of the week.</h6>
+
+		<div time-bar class="chart time-bar">
 			
 		</div>
 
 
 
-
-
-
-
-
-
-
-
-		<p>Here's a scatter plot of number of hashtags vs photo interactions (number comments/likes).  Does the data mean anything? Maybe.  Maybe not!</p> 
-
-
-		<h4>Time Analysis</h4>
-		
 
 
 
