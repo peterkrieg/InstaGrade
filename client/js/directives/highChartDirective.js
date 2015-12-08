@@ -5,7 +5,7 @@ angular.module('myApp')
 			console.log(scope.report.analytics);
 
 			$(function(){
-				var chart = {
+				var chartOptions = {
 					chart: {
 						type: 'column',
 						style: {
@@ -69,52 +69,48 @@ angular.module('myApp')
 
 
 
-				};//end of chart definition
+				};//end of chart options definition
 
-				$(elem).highcharts(chart);
+				// uses chartOptions to make chart, to be able
+				// to destroy it, because of error with update
+				//
+				$(elem).highcharts(chartOptions);
 
-				chart = $(elem).highcharts();
-				// console.log('new chart is', chart);
+				var chart = $(elem).highcharts();
 
-				// end of highcharts setup
+				var tagsGroupsNames = scope.report.analytics.tagsGroupsNames;
+				var tagsGroupsCounts = scope.report.analytics.tagsGroupsCounts;
+
+				var $leftButton = $(elem).parent().find('i.cycle-left');
+				var $rightButton = $(elem).parent().find('i.cycle-right');
 
 				///////////////////////////////////////////////////
 				//  Events of clicking left or right button, 
 				//  Cycling through hashtags
 				///////////////////////////////////////////////////
 
-
-				console.log(scope.report.analytics.tagsGroupsCounts);
-
-				var tagsGroupsNames = scope.report.analytics.tagsGroupsNames;
-				var tagsGroupsCounts = scope.report.analytics.tagsGroupsCounts;
-				console.log(tagsGroupsCounts);
-
-				var $leftButton = $(elem).parent().find('i.cycle-left');
-				var $rightButton = $(elem).parent().find('i.cycle-right');
-
-				// console.log($leftButton);
-				// console.log($rightButton);
-
+				// right button click
 				$rightButton.on('click', function(e){
-					console.log('clicked right');
-					console.log(tagsGroupsCounts);
-					console.log(scope.report.analytics.tagsGroupsCounts);
 					e.preventDefault();
 
-
+					// increases index, to move to next list of data
 					scope.index++;
-					scope.report.analytics.currentTags = tagsGroupsNames[scope.index];
-					scope.report.analytics.currentTagsCounts = tagsGroupsCounts[scope.index];
 
-					console.log(tagsGroupsCounts);
-					console.log(scope.report.analytics.tagsGroupsCounts);
+					var currentTags = tagsGroupsNames[scope.index];
+					var currentCounts = tagsGroupsCounts[scope.index];
 
+					// updating on scope, maybe not necessary
+					scope.report.analytics.currentTags = currentTags;
+					scope.report.analytics.currentTagsCounts = currentCounts;
 					
 					// // update data of chart
-					chart.xAxis[0].setCategories(scope.report.analytics.currentTags);
-					chart.series[0].setData(scope.report.analytics.currentTagsCounts);
+					chart.destroy();
+					chartOptions.xAxis.categories = currentTags;
+					chartOptions.series[0].data = currentCounts;
+					chart = new Highcharts.Chart(chartOptions);
 
+					// if you move right, then you know for sure there
+					// at least must be one data set to left
 					scope.noMoreLeft = false;
 					scope.$apply();
 
@@ -126,20 +122,23 @@ angular.module('myApp')
 				})// end of right button function
 
 				$leftButton.on('click', function(e){
-					console.log('index before is', scope.index);
 					e.preventDefault();
-					scope.index--;
-					console.log('index after is ', scope.index);
-					console.log(tagsGroupsCounts);
-					scope.report.analytics.currentTags = tagsGroupsNames[scope.index];
-					scope.report.analytics.currentTagsCounts = tagsGroupsCounts[scope.index];
-					console.log(scope.report.analytics.currentTagsCounts);
 
-					console.log(scope.report.analytics.currentTagsCounts);
-					
-					// update data of chart
-					chart.xAxis[0].setCategories(scope.report.analytics.currentTags);
-					chart.series[0].setData(scope.report.analytics.currentTagsCounts);
+					scope.index--;
+
+					var currentTags = tagsGroupsNames[scope.index];
+					var currentCounts = tagsGroupsCounts[scope.index];
+
+					// updating on scope, maybe not necessary
+					scope.report.analytics.currentTags = currentTags;
+					scope.report.analytics.currentTagsCounts = currentCounts;
+
+					// // update data of chart
+					chart.destroy();
+					chartOptions.xAxis.categories = currentTags;
+					chartOptions.series[0].data = currentCounts;
+					chart = new Highcharts.Chart(chartOptions);
+
 
 					scope.noMoreRight = false;
 					scope.$apply();

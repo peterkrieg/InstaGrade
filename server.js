@@ -124,7 +124,7 @@ app.get('/api/auth/instagram',
 
 
 app.get('/api/auth/instagram/callback', 
-	passport.authenticate('instagram', { failureRedirect: '/' }),
+	passport.authenticate('instagram', { failureRedirect: '/', scope: ['relationships'] }),
 	function(req, res, next) {
 		console.log('getting to next step');
 		console.log(req.session.passport.user.token);
