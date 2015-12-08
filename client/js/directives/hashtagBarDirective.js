@@ -20,8 +20,7 @@ angular.module('myApp')
 					chart: {
 						type: 'column',
 						style: {
-							fontFamily: "'Playfair Display', serif",
-							color: 'red'
+							fontFamily: "'Playfair Display', serif"
 						}
 					},
 					credits: {
