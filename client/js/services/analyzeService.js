@@ -18,6 +18,7 @@ function sumUpMedia(){
 	var numVids = 0;
 	var allTags = {};
 	var allLocations = [];
+	var hashtagScatter = [];
 	// var pics = [];
 	// var vids = [];
 
@@ -69,6 +70,21 @@ function sumUpMedia(){
 				}
 			}
 		}
+
+		// hashtag analysis for scatter plot
+		if(currentMedia.tags.length>0){
+			var scatterPoint = [];
+			scatterPoint.push(currentMedia.tags.length);
+			scatterPoint.push(currentMedia.comments.count+currentMedia.likes.count);
+			scatterPoint.tagNames = currentMedia.tags;
+			hashtagScatter.push(scatterPoint);
+		}
+
+
+
+
+
+
 	}// end of for loop for all media
 
 
@@ -85,6 +101,9 @@ function sumUpMedia(){
 
 	// puts tags on analyze part of report
 	report.analytics.allTags = allTags;
+
+	// hashtag scatter plot
+	report.analytics.hashtagScatter = hashtagScatter;
 
 	// puts locations on analytics part of report
 	// locations are sorted chronologically, earliest is first

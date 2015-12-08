@@ -2,9 +2,20 @@ angular.module('myApp')
 .directive('hashtagBarChart', function(){
 	return {
 		link: function(scope, elem, attrs){
-			console.log(scope.report.analytics);
+			// console.log(scope.report.analytics);
 
 			$(function(){
+
+				// making sure that the currentTags and counts are right
+				var tagsGroupsNames = scope.report.analytics.tagsGroupsNames;
+				var tagsGroupsCounts = scope.report.analytics.tagsGroupsCounts;
+
+				scope.report.analytics.currentTags = tagsGroupsNames[0];
+				scope.report.analytics.currentTagsCounts = tagsGroupsCounts[0];
+
+
+
+
 				var chartOptions = {
 					chart: {
 						type: 'column',
@@ -78,12 +89,15 @@ angular.module('myApp')
 
 				var chart = $(elem).highcharts();
 
-				var tagsGroupsNames = scope.report.analytics.tagsGroupsNames;
-				var tagsGroupsCounts = scope.report.analytics.tagsGroupsCounts;
+				// console.log(scope.report.analytics.currentTagsCounts);
+				// console.log(scope.report.analytics.currentTags);
+
+				
 
 				var $leftButton = $(elem).parent().find('i.cycle-left');
 				var $rightButton = $(elem).parent().find('i.cycle-right');
 
+				// console.log('index is ', scope.index);
 				///////////////////////////////////////////////////
 				//  Events of clicking left or right button, 
 				//  Cycling through hashtags
@@ -91,6 +105,7 @@ angular.module('myApp')
 
 				// right button click
 				$rightButton.on('click', function(e){
+					// console.log(scope.index);
 					e.preventDefault();
 
 					// increases index, to move to next list of data
@@ -149,33 +164,6 @@ angular.module('myApp')
 					}
 
 				})// end of left button function
-
-
-
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
