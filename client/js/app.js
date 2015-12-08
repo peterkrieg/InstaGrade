@@ -45,9 +45,9 @@ angular.module('myApp', ['ui.router'])
 		url: '/grade',
 		templateUrl: 'partials/results.grade.html'
 	})
-	.state('results.moreAnalytics', {
+	.state('results.analytics', {
 		url: '/moreAnalytics',
-		templateUrl: 'partials/results.moreAnalytics.html'
+		templateUrl: 'partials/results.analytics.html'
 		// controller: 'resultsCtrl'
 	})
 	.state('results.map', {
