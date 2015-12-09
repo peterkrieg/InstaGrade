@@ -5,31 +5,59 @@ div.results{
 		text-align: center;
 		font-family: $header-font;
 	}
-	img.userProfile{
-		width: 100px;
-		border-radius: 5px;
-		margin-bottom: 20px;
 
-	}
 }
 
 
 
-div.resultsHeader{
+div.results-nav{
 	font-size: 2rem;
 	@include blueGradient();
 	height: 60px;
-	padding-top: 10px;
+	// padding-top: 10px;
 	border-bottom: 2px solid black;
 	margin-bottom: 30px;
 	a{
 		font-family: $header-font;
 		color: white;
-		font-size: 1em;
+		font-size: .8em;
 		letter-spacing: 5px;
 		float: left;
 		margin-left: 10px;
-		margin-top: 8px;
+		margin-top: 9px;
+	}
+	div.user-profile{
+		padding-right: 35px;
+		height: 54px;
+		margin-top: 3px;
+		// background: red;
+		float: right;
+		margin-right: 50px;
+		&:hover{
+			cursor: pointer;
+		}
+	}
+	img.user-profile{
+		display: inline-block;
+		width: 54px;
+		border-radius: 5px;
+		// float: right;
+	}
+	li{
+		display: inline-block;
+		font-size: .5em;
+		color: white;
+		// background: blue;
+		position: relative;
+		bottom: 15px;
+		position: relative;
+		i.fa{
+			position: absolute;
+			right: -22px;
+			top: -6px;
+			font-size: 1.6em;
+
+		}
 	}
 }
 

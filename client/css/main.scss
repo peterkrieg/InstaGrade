@@ -56,6 +56,10 @@ a:hover{
 	text-decoration: none;
 }
 
+li{
+	list-style-type: none;
+}
+
 // clearfix class, to fix collapsing parent element on floats
 
 .clearfix:before,

@@ -1,17 +1,16 @@
 <div class="results">
 	
-	<div class="resultsHeader">
+	<div class="results-nav">
 		<a ui-sref="home">MediaScore</a>
-	</div>
 
-	<!-- <div class="loading" ng-show="loading">
-		<h1>Loading...</h1>
-		<img src="img/insta-logo.png" alt="">
-	</div> -->
+		<div class="user-profile">
+			<img class="user-profile" ng-src="{{user.userPic}}" ng-if="!loadingUser" alt="">
+			<li>{{user.name}} <i class="fa fa-caret-down"></i></li>
+		</div>
 
+	</div><!-- results header -->
 
-
-	<!-- <img class="userProfile" ng-src="{{userPic}}" ng-show="!loading" alt=""> -->
+	
 
 	<h2 >Hello, {{user.name}}.  Please Select a Tab Below to See Your Results.</h2>
 
@@ -41,7 +40,7 @@
 
 </div>
 
-	
+
 
 
 

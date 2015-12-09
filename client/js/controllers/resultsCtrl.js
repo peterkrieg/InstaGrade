@@ -1,6 +1,7 @@
 angular.module('myApp')
 .controller('resultsCtrl', function($scope, prepareReport, instaService, followService, $sce, $filter){
 
+	$scope.loadingUser = true;
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
 	
@@ -23,6 +24,7 @@ prepareReport.getToken()
 
 	// binding to scope, the entire edited user
 	$scope.user = userEdited;
+	$scope.loadingUser = false;
 
 
 	
