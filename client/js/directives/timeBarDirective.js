@@ -1,5 +1,5 @@
 angular.module('myApp')
-.directive('timeBar', function(){
+.directive('timeBar', function($interval){
 	return{
 		link: function(scope, elem, attrs){
 			$(function(){
@@ -70,9 +70,17 @@ angular.module('myApp')
 
 				};//end of chart options definition
 
-				$(elem).highcharts(chartOptions);
+				// animating chart by using an interval
+				// works with WOWjs, checking to see if chart-container (parent())
+				// if visible when user scrolls to it
+				// once visible, draw chart, and cancel interval
+				var animateChart = $interval(function(){
+					if($(elem).parent().css('visibility')==='visible'){
+						$(elem).highcharts(chartOptions);
+						$interval.cancel(animateChart);
+					}
+				}, 200);
 
-				var chart = $(elem).highcharts();
 
 
 

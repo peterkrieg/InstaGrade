@@ -1,5 +1,5 @@
 angular.module('myApp')
-.directive('hashtagScatter', function(){
+.directive('hashtagScatter', function($interval){
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
@@ -89,10 +89,16 @@ angular.module('myApp')
 
 				};//end of chart options definition
 
-				$(elem).highcharts(chartOptions);
-
-				var chart = $(elem).highcharts();
-				
+				// animating chart by using an interval
+				// works with WOWjs, checking to see if chart-container (parent())
+				// if visible when user scrolls to it
+				// once visible, draw chart, and cancel interval
+				var animateChart = $interval(function(){
+					if($(elem).parent().css('visibility')==='visible'){
+						$(elem).highcharts(chartOptions);
+						$interval.cancel(animateChart);
+					}
+				}, 200);
 
 
 
