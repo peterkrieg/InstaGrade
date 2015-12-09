@@ -1,0 +1,63 @@
+div.grade{
+	div.grade-item{
+		min-height: 150px;
+		background: #eee;
+		// any div inside has border radius
+	}
+	div.grade-bar{
+		max-width: 800px;
+		margin: 20px auto;
+		height: 44px;
+		background: white;
+		border: 2px solid black;
+		border-radius: 5px;
+	}
+	div.grade-score{
+		@include animation(barGrowth 3s ease);
+		height: 40px;
+		width: 75%;
+		&.good{
+			background: green;
+		}
+		&.bad{
+			background: red;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}// end of grade div, nothing below this

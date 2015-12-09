@@ -9,6 +9,7 @@
 
 	<div class="grade-container" ng-show="!loadingEverythingElse">
 
+
 		<p>You have a total of {{report.grade.numLikesReceived | number}} likes received!</p>
 		<p>You have a total of {{report.grade.numLikesGiven | number}} likes given!</p>
 		<p>Your ratio of likes received to likes given is {{report.grade.likesRatio | number:2}}!</p>
@@ -18,12 +19,56 @@
 		<p>However, your <em>adjusted likes average</em> is {{report.grade.adjustedAverageNumLikes | number: 2}}</p>
 
 
-
+		<p>Your user ratio is {{report.grade.userRatio | number: 2}}</p>
 
 		<br>
-
-
 		<p>{{likesRatioMessage}}</p>
+
+
+		<div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good grade-score">
+				</div>
+			</div>
+		</div>
+		<div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good wow grade-score">
+				</div>
+			</div>
+		</div>
+		<div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good wow grade-score">
+				</div>
+			</div>
+		</div><div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good wow grade-score">
+				</div>
+			</div>
+		</div><div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good wow grade-score">
+				</div>
+			</div>
+		</div><div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good wow grade-score">
+				</div>
+			</div>
+		</div><div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good wow grade-score">
+				</div>
+			</div>
+		</div><div class="wow fade-in-up grade-item">
+			<div class="grade-bar">
+				<div class="good wow grade-score">
+				</div>
+			</div>
+		</div>
+
 		
 
 
