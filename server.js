@@ -22,15 +22,8 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var Secret = require('./server/config/Secret');
 
 
-//_______________Determining which Ip address_________________
-if(process.env.NODE_ENV==='production'){
-	var ipAddress = '104.131.46.29';
-}
-else if(process.env.NODE_ENV==='development'){
-	var ipAddress = '127.0.0.1';
-}
-
-var mongoUri = 'mongodb://'+ipAddress+'/mediaScore';
+// URI is always 127.0.0.1, for both server and local computer
+var mongoUri = 'mongodb://127.0.0.1/mediaScore';
 
 
 
