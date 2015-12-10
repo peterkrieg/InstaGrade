@@ -39,4 +39,5 @@ function ctrlFunc($scope, instaService, $state, prepareReport){
 
 
 
+
 }

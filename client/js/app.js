@@ -66,6 +66,10 @@ angular.module('myApp', ['ui.router'])
 
 	$urlRouterProvider.otherwise('/');
 
+	// remove the annoying hashtag thing!!
+
+	// $locationProvider.html5Mode(true);
+
 
 
 

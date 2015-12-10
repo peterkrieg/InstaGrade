@@ -26,6 +26,13 @@ var app = express();
 
 app.use(cors());
 
+
+// app.use('/js', express.static(__dirname + '/client/js'));
+// app.use('/css', express.static(__dirname + '/client/css'));
+// app.use('/img', express.static(__dirname + '/client/img'));
+// app.use('/partials', express.static(__dirname + '/client/partials'));
+
+
 //_____________Passport middleware________________
 
 app.use(session({secret: 'blahblah'}));
@@ -45,10 +52,10 @@ passport.deserializeUser(function(user, done){
 	done(null, user);
 });
 
-console.log('\t\t\t\t\t\t\t\t');
-console.log('HERE');
-console.log('\t\t\t\t\t\t\t\t');
-console.log(process.env.BLAH_VAR);
+// console.log('\t\t\t\t\t\t\t\t');
+// console.log('HERE');
+// console.log('\t\t\t\t\t\t\t\t');
+// console.log(process.env.BLAH_VAR);
 
 
 
@@ -205,7 +212,9 @@ db.once('open', function(){
 
 
 
-
+// app.all('/*', function(req, res, next) {
+// 	res.sendFile('index.html', {root: __dirname + '/client'});
+// });
 
 
 
