@@ -45,6 +45,12 @@ passport.deserializeUser(function(user, done){
 	done(null, user);
 });
 
+console.log('\t\t\t\t\t\t\t\t');
+console.log('HERE');
+console.log('\t\t\t\t\t\t\t\t');
+console.log(process.env.BLAH_VAR);
+
+
 
 
 
@@ -205,7 +211,7 @@ db.once('open', function(){
 
 
 //_____________Connecting to Port_________________
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 app.listen(port, function(){
 	console.log('listening to port ', port);
