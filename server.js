@@ -94,14 +94,18 @@ passport.use(new InstagramStrategy({
 //________________Endpoints____________________
 
 app.get('/api/auth/instagram',
-
 	function(req, res, next){
 		console.log('geetting here');
 		next();
 	},
-
-
 	passport.authenticate('instagram'));
+
+// logout 
+app.get('/api/auth/instagram/logout', 
+	function(req, res, next){
+		req.logout();
+		res.redirect('/');
+	})
 
 
 
