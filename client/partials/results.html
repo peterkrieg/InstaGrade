@@ -1,11 +1,24 @@
 <div class="results">
 	
 	<div class="results-nav">
-		<a ui-sref="home">MediaScore</a>
+		<a class="logo" ui-sref="home">MediaScore</a>
 
-		<div class="user-profile">
+		<div user-menu class="user-profile">
 			<img class="user-profile" ng-src="{{user.userPic}}" ng-if="!loadingUser" alt="">
 			<li>{{user.name}} <i class="fa fa-caret-down"></i></li>
+			<div  class="user-menu">
+				<a class="menu-item-wrapper" href="http://google.com">
+					<div class="menu-item">
+						<li>Account</li>
+					</div>
+				</a>
+				<a class="menu-item-wrapper" href="http://google.com">
+					<div class="menu-item">
+						<li>Logout</li>
+					</div>
+				</a>
+				
+			</div>
 		</div>
 
 	</div><!-- results header -->

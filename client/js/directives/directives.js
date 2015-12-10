@@ -25,6 +25,33 @@ angular.module('myApp')
 			});
 		}
 	}
+});
+
+// user menu of results tab
+angular.module('myApp')
+.directive('userMenu', function(){
+	return {
+		link: function(scope, elem, attrs){
+			$(function(){
+				var $userMenu = $(elem).find('.user-menu');
+
+				// hides usermenu at first, to be sure
+				$(elem).removeClass('show-menu');
+				$userMenu.hide();
+
+				// when clicked, toggle userMenu, and toggle class
+				// font awesome caret icon
+				$(elem).click(function(){
+					$userMenu.toggle();
+					$(elem).toggleClass('show-menu');
+				})
+				
+
+
+
+			});
+		}
+	}
 })
 
 
