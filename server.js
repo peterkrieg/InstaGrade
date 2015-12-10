@@ -15,11 +15,23 @@ var request = require('request');
 // var usersCtrl = require('./server/controllers/usersCtrl');
 // var cartCtrl = require('./server/controllers/cartCtrl');
 
+// setting status of node environment
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+
 var Secret = require('./server/config/Secret');
 
 
+//_______________Determining which Ip address_________________
+if(process.env.NODE_ENV==='production'){
+	var ipAddress = '104.131.46.29';
+}
+else if(process.env.NODE_ENV==='development'){
+	var ipAddress = '127.0.0.1';
+}
 
-var mongoUri = 'mongodb://127.0.0.1/mediaScore';
+var mongoUri = 'mongodb://'+ipAddress+'/mediaScore';
+
 
 
 var app = express();
@@ -48,22 +60,6 @@ passport.deserializeUser(function(user, done){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname+'/client'));
@@ -75,15 +71,9 @@ app.use(express.static(__dirname+'/client'));
 //__________________Authentication__________________
 
 passport.use(new InstagramStrategy({
-		// development
-		clientID: Secret.development.id,
-		clientSecret: Secret.development.secret,
-
-    // production
-    // clientID: Secret.production.id,
-    // clientSecret: Secret.production.secret,
-
-    callbackURL: "http://localhost:3000/api/auth/instagram/callback"
+		clientID: Secret[process.env.NODE_ENV].id,
+		clientSecret: Secret[process.env.NODE_ENV].secret,
+    callbackURL: Secret[process.env.NODE_ENV].callbackURL,
   },
   function(accessToken, refreshToken, profile, done) {
 
@@ -205,7 +195,7 @@ db.once('open', function(){
 
 
 //_____________Connecting to Port_________________
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 app.listen(port, function(){
 	console.log('listening to port ', port);
