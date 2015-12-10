@@ -42,7 +42,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(user, done){
-	console.log(user);
+	console.log('seralize user');
+	// console.log(user);
 	done(null, user);
 });
 
@@ -71,34 +72,79 @@ passport.use(new InstagramStrategy({
   function(accessToken, refreshToken, profile, done) {
 
   	console.log('accessToken is', accessToken);
-  	console.log('profile is ', profile);
+  	// console.log('profile is ', profile);
+
+  	console.log(profile);
+
+  	var instagramId = profile.id;
+
+  	// User.findOne({instagramId: instagramId})
+
+
+  	var instaInfo = JSON.parse(profile._raw).data;
+  	console.log('insta info is', instaInfo);
+
+
+  	// var instaInfo = JSprofile._raw;
+  	// console.log('insta info is...\n\n\n', instaInfo, '\n\n\n');
+
+
+
+
+
+
+
+
+
+
+
 
   	var user = {
-  		profile: profile,
+  		name: instaInfo.full_name,
+  		username: instaInfo.username,
+  		instagramId: instaInfo.id,
+  		bio: instaInfo.bio,
+  		website: instaInfo.website,
+  		profilePicture: instaInfo.profile_picture,
+  		numMedia: instaInfo.counts.media,
+  		numFollowers: instaInfo.counts.followed_by,
+  		numFollows: instaInfo.counts.follows,
   		token: accessToken,
   		refreshToken: refreshToken
   	};
 
+
+
+
+
+
+  	// console.log('user is, \n\n\n', user, '\n\n\n' );
+
+
   	return done(null, user);
 
-  },
-
-  function(accessToken, refreshToken, profile, done) {
-  	User.findOrCreate({ instagramId: profile.id }, function (err, user) {
-  		return done(err, user);
-  	});
-
   }
+
+  // watch out for comma, need as another function below here
+  // ,
+  // function(accessToken, refreshToken, profile, done) {
+  // 	console.log('find or create??!!');
+  // 	User.findOrCreate({ instagramId: profile.id }, function (err, user) {
+  // 		return done(err, user);
+  // 	});
+
+  // }
 ));
 
 //________________Endpoints____________________
 
 app.get('/api/auth/instagram',
 	function(req, res, next){
-		console.log('geetting here');
+		console.log('get request login button');
 		next();
 	},
 	passport.authenticate('instagram'));
+
 
 // logout 
 app.get('/api/auth/instagram/logout', 
@@ -115,6 +161,8 @@ app.get('/api/auth/instagram/callback',
 	function(req, res, next) {
 		console.log('getting to next step');
 		console.log(req.session.passport.user.token);
+		console.log()
+
 
 
 
@@ -122,6 +170,13 @@ app.get('/api/auth/instagram/callback',
     // Successful authentication, redirect home.
     res.redirect('/#/results/media');
   });
+
+
+
+
+
+
+
 
 app.get('/api/token', function(req, res, next){
 	res.send(req.session.passport.user);

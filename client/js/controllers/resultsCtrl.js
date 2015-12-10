@@ -10,20 +10,21 @@ angular.module('myApp')
 
 prepareReport.getToken()
 .then(function(response){
+	// console.log(response);
+	var user = response.data;
 	var token = response.data.token;
 	$scope.token = token;
-	var user = response.data.profile._json.data;
+	// var user = response.data.profile._json.data;
 	// console.log(user);
 
-	var userEdited = prepareReport.startReport(user);
 	// console.log('edited user is', userEdited);
 
-	var numMedia = userEdited.numMedia;
-	var numFollows = userEdited.numFollows;
-	var numFollowers = userEdited.numFollowers;
+	var numMedia = user.numMedia;
+	var numFollows = user.numFollows;
+	var numFollowers = user.numFollowers;
 
 	// binding to scope, the entire edited user
-	$scope.user = userEdited;
+	$scope.user = user;
 	$scope.loadingUser = false;
 
 
@@ -39,6 +40,7 @@ prepareReport.getToken()
 		medium: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This shouldn\'t take too long',
 		slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+' users.  We\'re taking care of this as fast as we can, but this might take a minute or two'
 	};
+
 
 	if(numMedia<100){
 		$scope.loadingMediaMessage = mediaMessages.fast;
@@ -61,7 +63,7 @@ prepareReport.getToken()
 	//______________End of loading messages______________
 
 
-	getMedia(token, userEdited);
+	getMedia(token, user);
 
 })
 
