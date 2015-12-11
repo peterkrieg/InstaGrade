@@ -26,7 +26,7 @@ module.exports = {
 				// report isn't already created, so need to do tons of insta
 				// api calls, etc
 				else{
-					console.log('error, user is falsy, it is: ', user);
+					console.log('no report exists yet, but here is user: ', user);
 
 					res.send(req.session.passport.user);
 

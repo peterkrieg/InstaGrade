@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var ReportSchema = Schema({
 	media: [{
-		caption: {type: String},
+		// caption: {type: String},
 		comments: {
 			count: {type: Number},
 			data: [{
@@ -62,5 +62,6 @@ var ReportSchema = Schema({
 
 
 	});  // end of report schema
+
 
 module.exports = mongoose.model('Report', ReportSchema);
