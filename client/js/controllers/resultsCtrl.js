@@ -22,6 +22,7 @@ reportService.getToken()
 	if(response.data.analytics){
 		console.log('user already exists!!!');
 		var report = response.data;
+		$scope.report = report;
 		var user = response.data.user;
 		user.newUser = false;
 		loadingMessages(null, user);
@@ -96,7 +97,18 @@ reportService.getToken()
 		else{
 			console.log('user is not new');
 			console.log(report);
-			// fixUrls(report.media);
+
+			// need to do things that would be done in getMedia
+			// since getMedia isn't fired, if user not new
+			fixUrls(report.media);
+			$scope.media = report.media
+			.sort(function(a,b){return ((b.comments.count*2+b.likes.count)-(a.comments.count*2+a.likes.count));});
+			$scope.loadingMedia = false;
+
+
+
+
+
 			finishReportView(report);
 		}
 	}
@@ -145,6 +157,7 @@ function getOtherData(token, report){
 	instaService.getOtherData(token, report)
 	.then(function(report){
 		console.log('FINAL REPORT RECEIVED IS \n\n', report);
+		$scope.report = report;
 
 		// add user to backend, before report being added
 
@@ -184,11 +197,24 @@ $scope.noMore = {
 	likesComparisonArr: false
 };
 
+
+
 $scope.uniqueFollows = [];
 $scope.uniqueFollowers = [];
 $scope.userLikersArr = [];
 $scope.yourLikesUsersArr = [];
 $scope.likesComparisonArr = [];
+
+
+
+
+
+
+
+
+
+
+
 
 
 $scope.loadMore = function(category){
@@ -200,8 +226,9 @@ $scope.loadMore = function(category){
 	// var count = calledTimes[category];
 	calledTimes[category]++
 	var count = calledTimes[category];
+	// var clone = $scope.report.relationships[category].slice(0);
 	for(var i=0; i<12*count; i++){
-		var itemToAdd = $scope.report.relationships[category].pop();
+		var itemToAdd = $scope.clone[category].pop();
 		if(itemToAdd){
 			$scope[category].push(itemToAdd);
 		}
@@ -214,13 +241,32 @@ $scope.loadMore = function(category){
 
 
 
+
+
+
+
+
+
+
+
+
 function finishReportView(report){
 	// console.log(report);
-	$scope.report = report;
+	// $scope.report = report;
 
-	// relationships part__
+	$scope.clone = {
+		uniqueFollows: $scope.report.relationships.uniqueFollows.slice(0),
+		uniqueFollowers: $scope.report.relationships.uniqueFollowers.slice(0),
+		likesComparisonArr: $scope.report.relationships.likesComparisonArr.slice(0)
+	};
 
-	// $scope.showExample = true;
+	
+
+
+
+
+
+
 
 
 
@@ -316,14 +362,16 @@ else if(selfLikesRatio<.5){
 	// loads initial for 4 categories
 	$scope.loadMore("uniqueFollows");
 	$scope.loadMore("uniqueFollowers");
-	$scope.loadMore("userLikersArr");
-	$scope.loadMore("yourLikesUsersArr");
+	// $scope.loadMore("userLikersArr");
+	// $scope.loadMore("yourLikesUsersArr");
 	$scope.loadMore("likesComparisonArr");
 
 	$scope.loadingEverythingElse = false;
 
 
 } // end of finishReportView Function
+// now everything below this is run only on user interaction
+
 
 
 // Now views have finished loading, everything else
