@@ -12,7 +12,7 @@ var request = require('request');
 
 //____________________My dependencies__________________________
 // var productsCtrl = require('./server/controllers/productsCtrl');
-// var usersCtrl = require('./server/controllers/usersCtrl');
+var usersCtrl = require('./server/controllers/usersCtrl');
 // var cartCtrl = require('./server/controllers/cartCtrl');
 
 // setting status of node environment
@@ -42,6 +42,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(user, done){
+	///////////////////////////////////////////////////
+	//  STEP 4 of passport flow:
+	//  Once credentials are received, they are serialized
+	//  So next request won't contain credentials, but
+	//  The unique cookie that identifies the session
+	///////////////////////////////////////////////////
 	console.log('seralize user');
 	// console.log(user);
 	done(null, user);
@@ -65,30 +71,34 @@ app.use(express.static(__dirname+'/client'));
 //__________________Authentication__________________
 
 passport.use(new InstagramStrategy({
-		clientID: Secret[process.env.NODE_ENV].id,
-		clientSecret: Secret[process.env.NODE_ENV].secret,
-    callbackURL: Secret[process.env.NODE_ENV].callbackURL,
-  },
-  function(accessToken, refreshToken, profile, done) {
+	clientID: Secret[process.env.NODE_ENV].id,
+	clientSecret: Secret[process.env.NODE_ENV].secret,
+	callbackURL: Secret[process.env.NODE_ENV].callbackURL,
+},
+function(accessToken, refreshToken, profile, done) {
+  	///////////////////////////////////////////////////
+  	//  STEP 3 of authentication, after successful authentication
+  	//  Of instagram.  Insta returns info of token, basic profile
+  	//  Done is callback to continue passport flow
+  	///////////////////////////////////////////////////
+
+  	// console.log(req);
 
   	console.log('accessToken is', accessToken);
-  	// console.log('profile is ', profile);
-
-  	console.log(profile);
-
   	var instagramId = profile.id;
-
-  	// User.findOne({instagramId: instagramId})
 
 
   	var instaInfo = JSON.parse(profile._raw).data;
-  	console.log('insta info is', instaInfo);
+  	// console.log('insta info is', instaInfo);
 
 
   	// var instaInfo = JSprofile._raw;
   	// console.log('insta info is...\n\n\n', instaInfo, '\n\n\n');
 
 
+  	// check if user exists, and do stuff with that
+
+  	// usersCtrl.checkUser(instagramId);
 
 
 
@@ -134,9 +144,16 @@ passport.use(new InstagramStrategy({
   // 	});
 
   // }
-));
+  ));
+
+
 
 //________________Endpoints____________________
+
+///////////////////////////////////////////////////
+//  STEP 1 Instagram AUTH-- login button is clicked
+//  A href to this endpoint, very first step
+///////////////////////////////////////////////////
 
 app.get('/api/auth/instagram',
 	function(req, res, next){
@@ -145,34 +162,52 @@ app.get('/api/auth/instagram',
 	},
 	passport.authenticate('instagram'));
 
+///////////////////////////////////////////////////
+//  STEP 2: passport.authenticate('instagram')
+//  Directs to instagram login site on their page
+//  Once user submits their username/password, instagram
+//  redirects them to /api/auth/instagram/callback, 
+//  The registered callback URI for the site
+///////////////////////////////////////////////////
 
-// logout 
-app.get('/api/auth/instagram/logout', 
+app.get('/api/auth/instagram/callback',
 	function(req, res, next){
-		req.logout();
-		res.redirect('/');
-	})
-
-
-
-
-app.get('/api/auth/instagram/callback', 
+		console.log('right after getting back from instagram');
+		next();
+	},
 	passport.authenticate('instagram', { failureRedirect: '/', scope: ['relationships'] }),
+	
+
+
+
+
+	///////////////////////////////////////////////////
+	//  STEP 5 of passport flow:
+	//  Once user is serialized, done callback initiated
+	//  Returning it to here, req is still passed on
+	//  With user stored in req.session.passport.user
+	///////////////////////////////////////////////////
+
 	function(req, res, next) {
 		console.log('getting to next step');
 		console.log(req.session.passport.user.token);
-		console.log()
-
-
-
+		console.log(req.session.passport.user);
 
 
     // Successful authentication, redirect home.
+    // last step, then controller fires of that page
     res.redirect('/#/results/media');
   });
 
 
 
+
+//____________________Logout______________________
+app.get('/api/auth/instagram/logout', 
+	function(req, res, next){
+		req.logout();
+		res.redirect('/');
+	})
 
 
 
@@ -198,6 +233,8 @@ app.post('/api/insta/relationships', function(req, res, next){
 
 
 })
+
+app.post('/api/users', usersCtrl.addUser);
 
 
 

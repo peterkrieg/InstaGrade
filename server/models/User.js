@@ -8,10 +8,10 @@ var UserSchema = Schema({
 	bio: {type: String},
 	website: {type: String},
 	profilePicture: {type: String},
-	numMedia: {type: Number, required: true},
-	numFollowers: {type: Number, required: true},
-	numFollows: {type: Number, required: true},
-	dateJoined: {type: Date, required: true, default: new Date()},
+	// numMedia: {type: Number, required: true},
+	// numFollowers: {type: Number, required: true},
+	// numFollows: {type: Number, required: true},
+	// dateJoined: {type: Date, required: true, default: new Date()},
 	reports: [{type: Schema.Types.ObjectId, ref: 'Report'}],
 });
 
