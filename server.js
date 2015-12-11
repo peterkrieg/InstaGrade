@@ -213,9 +213,7 @@ app.get('/api/auth/instagram/logout',
 
 
 
-app.get('/api/token', function(req, res, next){
-	res.send(req.session.passport.user);
-})
+app.get('/api/token', usersCtrl.checkUser);
 
 
 app.post('/api/insta/relationships', function(req, res, next){

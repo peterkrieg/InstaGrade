@@ -38,6 +38,22 @@ var ReportSchema = Schema({
 		selfLikesRatio: {type: Number},
 		userRatio: {type: Number}
 	},
+	analytics: {
+		numPics: {type: Number}
+	},
+	map: {
+		allLocations: [{
+			date: {type: Number},
+			instagramId: {type: Number},
+			latitude: {type: Number},
+			longitude: {type: Number},
+			name: {type: String}
+		}]
+	},
+	user: {
+		instagramId: {type: Number},
+		name: {type: String}
+	}
 
 
 
@@ -45,4 +61,6 @@ var ReportSchema = Schema({
 
 
 
-	})
+	});  // end of report schema
+
+module.exports = mongoose.model('Report', ReportSchema);
