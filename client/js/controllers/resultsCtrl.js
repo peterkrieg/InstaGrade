@@ -1,5 +1,5 @@
 angular.module('myApp')
-.controller('resultsCtrl', function($scope, prepareReport, instaService, followService, $sce, $filter){
+.controller('resultsCtrl', function($scope, reportService, instaService, followService, $sce, $filter){
 
 	$scope.loadingUser = true;
 	$scope.loadingMedia = true;
@@ -12,7 +12,7 @@ angular.module('myApp')
 
 
 
-prepareReport.getToken()
+reportService.getToken()
 .then(function(response){
 	// console.log(response);
 	var user = response.data;
@@ -106,6 +106,13 @@ function getOtherData(token, report){
 	instaService.getOtherData(token, report)
 	.then(function(report){
 		console.log('FINAL REPORT RECEIVED IS \n\n', report);
+
+		// now submit report to backend, and store on given user
+
+		reportService.addReport(report);
+
+
+
 
 		// report now received, can set up view now
 		finishReportView(report);

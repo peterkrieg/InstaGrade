@@ -1,5 +1,5 @@
 angular.module('myApp')
-.service('prepareReport', function($http){
+.service('reportService', function($http){
 
 	this.getToken = function(){
 		return $http.get('/api/token')
@@ -7,6 +7,12 @@ angular.module('myApp')
 			return response;
 		})
 	};
+
+	this.addReport = function(report){
+		console.log('add report!');
+		$http.post('/api/reports', report);
+		return;
+	}
 
 
 

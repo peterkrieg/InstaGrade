@@ -67,6 +67,7 @@ var maxApiCall = 5;
 this.getOtherData = function(token, report){
 	var deferred = $q.defer();
 	getLikesReceived(token, report, deferred);
+	// returns big report object of everything
 	return deferred.promise;
 }
 

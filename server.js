@@ -11,9 +11,9 @@ var request = require('request');
 
 
 //____________________My dependencies__________________________
-// var productsCtrl = require('./server/controllers/productsCtrl');
 var usersCtrl = require('./server/controllers/usersCtrl');
-// var cartCtrl = require('./server/controllers/cartCtrl');
+var reportsCtrl = require('./server/controllers/reportsCtrl');
+
 
 // setting status of node environment
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -59,8 +59,10 @@ passport.deserializeUser(function(user, done){
 
 
 
+// make node be able to handle big file sizes
+app.use(bodyParser.json({limit: '50mb'}));
+// app.use(express.urlencoded({limit: '50mb'}));
 
-app.use(bodyParser.json());
 
 app.use(express.static(__dirname+'/client'));
 
@@ -232,7 +234,12 @@ app.post('/api/insta/relationships', function(req, res, next){
 
 })
 
+// adding user to database
 app.post('/api/users', usersCtrl.addUser);
+
+// adding report to database
+app.post('/api/reports', reportsCtrl.addReport);
+
 
 
 

@@ -1,7 +1,7 @@
 angular.module('myApp')
 .controller('homeCtrl', ctrlFunc);
 
-function ctrlFunc($scope, instaService, $state, prepareReport){
+function ctrlFunc($scope, instaService, $state, reportService){
 	// console.log('home controller fired');
 
 	$scope.fireDemo = function(){
