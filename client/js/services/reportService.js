@@ -4,6 +4,7 @@ angular.module('myApp')
 	this.getToken = function(){
 		return $http.get('/api/token')
 		.then(function(response){
+			console.log(response);
 			return response;
 		})
 	};

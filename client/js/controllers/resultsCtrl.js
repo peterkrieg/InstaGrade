@@ -1,6 +1,7 @@
 angular.module('myApp')
-.controller('resultsCtrl', function($scope, reportService, instaService, followService, $sce, $filter){
+.controller('resultsCtrl', function($scope, reportService, userService, instaService, followService, $sce, $filter){
 
+	console.log('results controller loaded!');
 	$scope.loadingUser = true;
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
@@ -14,62 +15,100 @@ angular.module('myApp')
 
 reportService.getToken()
 .then(function(response){
-	// console.log(response);
-	var user = response.data;
-	var token = response.data.token;
-	$scope.token = token;
-	// var user = response.data.profile._json.data;
-	// console.log(user);
+	console.log('results controller getting response!');
+	console.log(response.data);
 
-	// console.log('edited user is', userEdited);
-
-	var numMedia = user.numMedia;
-	var numFollows = user.numFollows;
-	var numFollowers = user.numFollowers;
-
-	// binding to scope, the entire edited user
-	$scope.user = user;
-	$scope.loadingUser = false;
-
-
-	
-	//______________Media Messages for loading_______________
-	var mediaMessages = {
-		fast: 'You have '+numMedia+' pieces of media.  This should only take a few moments',
-		medium: 'You have '+numMedia+' pieces of media.  This shouldn\'t take too long',
-		slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
-	};
-	var otherLoadingMessages = {
-		fast: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This should only take a few moments',
-		medium: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This shouldn\'t take too long',
-		slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+' users.  We\'re taking care of this as fast as we can, but this might take a minute or two'
-	};
-
-
-	if(numMedia<100){
-		$scope.loadingMediaMessage = mediaMessages.fast;
+	// if response is report, then user already has done report
+	if(response.data.analytics){
+		console.log('user already exists!!!');
+		var report = response.data;
+		var user = response.data.user;
+		user.newUser = false;
+		loadingMessages(null, user);
 	}
-	else if(numMedia>100 && numMedia<300){
-		$scope.loadingMediaMessage = mediaMessages.medium;
+	// else if response is a user, 
+	else if(response.data.numMedia){
+		console.log('new user, need to do lots of api calls!');
+		var user = response.data;
+		var token = response.data.token;
+		user.newUser = true;
+		loadingMessages(token, user);
 	}
-	else if(numMedia>300){
-		$scope.loadingMediaMessage = mediaMessages.slow;
-	}
-	if(numFollowers <=200 && numFollows<=200){
-		$scope.otherLoadingMessage = otherLoadingMessages.fast;
-	}
-	else if(numFollowers>=1000 || numFollows>= 1000){
-		$scope.otherLoadingMessage = otherLoadingMessages.slow;
-	}
-	else if(numFollowers<1000 || numFollows<1000){
-		$scope.otherLoadingMessage = otherLoadingMessages.medium;
-	}
-	//______________End of loading messages______________
+
+	function loadingMessages(token, user){
+		var token = token;
+		var user = user;
+		$scope.token = token;
+
+		var numMedia = user.numMedia;
+		var numFollows = user.numFollows;
+		var numFollowers = user.numFollowers;
+
+		// binding to scope, the entire edited user
+		$scope.user = user;
+		$scope.loadingUser = false;
+
+		//______________Media Messages for loading_______________
+		var mediaMessages = {
+			fast: 'You have '+numMedia+' pieces of media.  This should only take a few moments',
+			medium: 'You have '+numMedia+' pieces of media.  This shouldn\'t take too long',
+			slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
+		};
+		var otherLoadingMessages = {
+			fast: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This should only take a few moments',
+			medium: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This shouldn\'t take too long',
+			slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+' users.  We\'re taking care of this as fast as we can, but this might take a minute or two'
+		};
 
 
-	getMedia(token, user);
+		if(numMedia<100){
+			$scope.loadingMediaMessage = mediaMessages.fast;
+		}
+		else if(numMedia>100 && numMedia<300){
+			$scope.loadingMediaMessage = mediaMessages.medium;
+		}
+		else if(numMedia>300){
+			$scope.loadingMediaMessage = mediaMessages.slow;
+		}
+		if(numFollowers <=200 && numFollows<=200){
+			$scope.otherLoadingMessage = otherLoadingMessages.fast;
+		}
+		else if(numFollowers>=1000 || numFollows>= 1000){
+			$scope.otherLoadingMessage = otherLoadingMessages.slow;
+		}
+		else if(numFollowers<1000 || numFollows<1000){
+			$scope.otherLoadingMessage = otherLoadingMessages.medium;
+		}
+		//______________End of loading messages______________
 
-})  // end of prepare report
+		finishLoading(token, user);
+	} // end of loading Messages function
+
+	// once intermediary stuff of loading messages done,
+	// if user is new, need to do all of api calls, 
+	// (get media), otherwise skip all that and just prepare report
+	// that was given from backend
+	function finishLoading(token, user){
+		if(user.newUser){
+			console.log('user is new')
+			getMedia(token, user);
+		}
+		else{
+			console.log('user is not new');
+			console.log(report);
+			// fixUrls(report.media);
+			finishReportView(report);
+		}
+	}
+
+
+
+
+
+
+
+
+})  // end of report service getting token/report
 
 
 
@@ -107,15 +146,19 @@ function getOtherData(token, report){
 	.then(function(report){
 		console.log('FINAL REPORT RECEIVED IS \n\n', report);
 
-		// now submit report to backend, and store on given user
+		// add user to backend, before report being added
 
-		reportService.addReport(report);
+		userService.addUser(report.user)
+		.then(function(response){
+			// want to do .then to make sure user is added,
+			// before report checks for user already existing
+			// now add report to backend
+			reportService.addReport(report);
 
+			// can set up view now
+			finishReportView(report);
+		})
 
-
-
-		// report now received, can set up view now
-		finishReportView(report);
 	})
 }
 

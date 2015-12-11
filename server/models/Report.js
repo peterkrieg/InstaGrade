@@ -20,10 +20,10 @@ var ReportSchema = Schema({
 		created_time: {type: Number},
 		filter: {type: String},
 
-			// skipped down to type..
-			type: {type: String},
-			user_has_liked: {type: Boolean}
-		}], // end of media
+		// skipped down to type..
+		type: {type: String},
+		user_has_liked: {type: Boolean}
+	}], // end of media
 	relationships: {
 		followers: Array,
 		follows: Array
@@ -50,18 +50,37 @@ var ReportSchema = Schema({
 			name: {type: String}
 		}]
 	},
+
+
+
 	user: {
-		instagramId: {type: Number},
-		name: {type: String}
+		
 	}
 
 
 
 
+	// {
+	// 	instagramId: {type: Number},
+	// 	name: {type: String},
+	// 	profilePicture: {type: String},
+	// 	bio: {type: String},
+	// 	website: {type: String},
+	// 	numMedia: {type: Number, required: true},
+	// 	numFollowers: {type: Number, required: true},
+	// 	numFollows: {type: Number, required: true},
+	// 	dateJoined: {type: Date, required: true, default: new Date()},
+
+
+	// }
 
 
 
-	});  // end of report schema
+
+
+
+
+});  // end of report schema
 
 
 module.exports = mongoose.model('Report', ReportSchema);
