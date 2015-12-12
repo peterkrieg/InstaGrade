@@ -66,6 +66,7 @@ angular.module('myApp')
 
 					plotOptions: {
 						column: {
+							color: '#458eff',
 							pointPadding: 0.2,
 							borderWidth: 0
 						}

@@ -55,7 +55,9 @@ angular.module('myApp')
 					// plotOptions
 					plotOptions: {
 						scatter: {
+							color: '#458eff',
 							marker: {
+								// color: '#458eff',
 								radius: 5,
 								states: {
 									hover: {
