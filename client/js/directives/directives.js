@@ -27,6 +27,7 @@ angular.module('myApp')
 	}
 });
 
+
 // user menu of results tab
 angular.module('myApp')
 .directive('userMenu', function(){
@@ -50,22 +51,32 @@ angular.module('myApp')
 
 				// clicking anywhere else can close window as well
 				$('html').click(function(e){
-					console.log('html clicked');
 					if($userProfile.hasClass('show-menu')) {
 						$userProfile.removeClass('show-menu');
 						$userMenu.toggle();
 					}
 				}) // end of html click event
 
-
-
-
-
-
 			}) // jquery ready
 		}
 	}
 });
+
+//_________________________Logout behavior__________________________
+
+angular.module('myApp')
+.directive('logout', function(){
+	return {
+		link: function(scope, elem, attrs){
+			$(elem).click(function(){
+				// console.log('logout!');
+				var s = document.createElement("script");
+				s.src = "https://instagram.com/accounts/logout";
+				$("head").append(s);
+			})
+		}
+	}
+})
 
 
 

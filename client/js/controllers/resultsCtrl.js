@@ -1,5 +1,5 @@
 angular.module('myApp')
-.controller('resultsCtrl', function($scope, reportService, userService, instaService, followService, $sce, $filter){
+.controller('resultsCtrl', function($scope, reportService, userService, instaService, followService, $sce, $filter, $http){
 
 	console.log('results controller loaded!');
 	$scope.loadingUser = true;
@@ -437,6 +437,12 @@ $scope.cycleThroughTags = function(direction){
 		alert('left!!');
 	}
 }
+
+
+
+
+
+
 
 
 

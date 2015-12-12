@@ -207,8 +207,17 @@ app.get('/api/auth/instagram/callback',
 //____________________Logout______________________
 app.get('/api/auth/instagram/logout', 
 	function(req, res, next){
+		// doesn't work, somehow need to direct page to 
+		// url below to logout on instagram officially,
+		// then logout with my backend
+
+		// request.get('https://instagram.com/accounts/logout');
+
+
 		req.logout();
+		
 		res.redirect('/');
+		// res.redirect('/');
 	})
 
 
