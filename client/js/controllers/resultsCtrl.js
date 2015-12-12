@@ -104,21 +104,9 @@ reportService.getToken()
 			$scope.media = report.media
 			.sort(function(a,b){return ((b.comments.count*2+b.likes.count)-(a.comments.count*2+a.likes.count));});
 			$scope.loadingMedia = false;
-
-
-
-
-
 			finishReportView(report);
 		}
 	}
-
-
-
-
-
-
-
 
 })  // end of report service getting token/report
 
@@ -179,10 +167,7 @@ function getOtherData(token, report){
 
 
 //___________________________________________________
-
-
-
-// variable definitions for functions
+// variable definitions for functions, global variables
 var calledTimes = {
 	uniqueFollows: 0,
 	uniqueFollowers: 0,
@@ -199,26 +184,18 @@ $scope.noMore = {
 	likesComparisonArr: false
 };
 
-
-
 $scope.uniqueFollows = [];
 $scope.uniqueFollowers = [];
 $scope.userLikersArr = [];
 $scope.yourLikesUsersArr = [];
 $scope.likesComparisonArr = [];
+//__________________End variables___________________
 
 
 
-
-
-
-
-
-
-
-
-
-
+//__________________Load More Function___________________
+// have to declare loadMore function here becuase
+// called later down
 $scope.loadMore = function(category){
 	// console.log('scope inside of load more is \n\n', $scope);
 	// console.log('category is \t\t', category);
@@ -240,18 +217,13 @@ $scope.loadMore = function(category){
 		}
 	}
 }  // end of load more function
+//___________________________________________________
 
 
 
 
 
-
-
-
-
-
-
-
+//____________Huge finishReportView Function____________
 function finishReportView(report){
 	// console.log(report);
 	// $scope.report = report;
@@ -262,18 +234,9 @@ function finishReportView(report){
 		likesComparisonArr: $scope.report.relationships.likesComparisonArr.slice(0)
 	};
 
-	
 
 
-
-
-
-
-
-
-
-
-// analytics part
+//__________________Analytics part_____________________
 
 // getting current tags for chart
 var tagsArr = $scope.report.analytics.allTagsArr;
@@ -315,26 +278,17 @@ var currentTags = tagsGroupsNames[0];
 var currentTagsCounts = tagsGroupsCounts[0];
 
 
-
-
-
 $scope.report.analytics.currentTags = currentTags;
 $scope.report.analytics.currentTagsCounts = currentTagsCounts;
 
 $scope.report.analytics.tagsGroupsNames = tagsGroupsNames;
 $scope.report.analytics.tagsGroupsCounts = tagsGroupsCounts;
 
+//____________________End analytics____________________
 
 
 
-
-
-
-
-
-
-
-//___ Grade Part ___
+//_____________________Grade Part____________________
 var selfLikesPercentage = $filter('number')(report.grade.selfLikesRatio*100, 1);
 
 
@@ -353,43 +307,36 @@ else if(selfLikesRatio<.5){
 
 
 
-
-
-
-
-
-
-
-
 	// loads initial for 4 categories
 	$scope.loadMore("uniqueFollows");
 	$scope.loadMore("uniqueFollowers");
-	// $scope.loadMore("userLikersArr");
-	// $scope.loadMore("yourLikesUsersArr");
 	$scope.loadMore("likesComparisonArr");
 
+	// finally, everything else is revealed
 	$scope.loadingEverythingElse = false;
 
 
-} // end of finishReportView Function
-// now everything below this is run only on user interaction
+} // end of finishReport view
+
+
+///////////////////////////////////////////////////
+//  end of finishReportView Function
+//  now everything below this is run only on user
+//  interaction, event driven
+///////////////////////////////////////////////////
 
 
 
-// Now views have finished loading, everything else
-// is event-driven
 
+// unfollowing and following not working
+// until instagram approves my app
+// need to submit better application
 $scope.unfollowUser = function(id){
 	// console.log('follow user fired!, id is ', id);
 	followService.unfollowUser(id, $scope.token)
 		// .then(function(response){
 		// 	console.log(response.data);
 		// });
-
-
-
-
-
 }
 
 $scope.followUser = function(id){
@@ -401,59 +348,10 @@ $scope.followUser = function(id){
 }
 
 
+// close example on likes comparison part
 $scope.closeExample = function(){
 	$('div.example').slideToggle(400);
-
-
 }
-
-
-
-
-//__________Analytics part, cycling through hashtags________________
-
-$scope.cycleThroughTags = function(direction){
-	var tagsGroupsCounts = $scope.report.analytics.tagsGroupsCounts;
-	var tagsGroupsNames = $scope.report.analytics.tagsGroupsNames;
-
-
-	if(direction==='right'){
-		console.log('right');
-		if(tagsGroupsCounts[$scope.index+1]){
-			$scope.index++;
-			$scope.report.analytics.currentTags = tagsGroupsNames[$scope.index];
-			$scope.report.analytics.currentTagsCounts = tagsGroupsCounts[$scope.index];
-			$scope.noMoreLeft = false;
-
-			if(!tagsGroupsCounts[$scope.index+1]){
-				$scope.noMoreRight = true;
-			}
-			// $scope.$apply();
-
-		}
-
-	}
-	else if(direction==='left'){
-		alert('left!!');
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
