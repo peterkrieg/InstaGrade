@@ -33,26 +33,53 @@ angular.module('myApp')
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
-				var $userMenu = $(elem).find('.user-menu');
+				var $userProfile = $(elem);
+				var $userMenu = $userProfile.find('.user-menu');
 
 				// hides usermenu at first, to be sure
-				$(elem).removeClass('show-menu');
+				$userProfile.removeClass('show-menu');
 				$userMenu.hide();
 
 				// when clicked, toggle userMenu, and toggle class
 				// font awesome caret icon
-				$(elem).click(function(){
+				$userProfile.click(function(e){
+					e.stopPropagation();
 					$userMenu.toggle();
-					$(elem).toggleClass('show-menu');
-				})
-				
+					$userProfile.toggleClass('show-menu');
+				});
+
+				// clicking anywhere else can close window as well
+				$('html').click(function(e){
+					console.log('html clicked');
+					if($userProfile.hasClass('show-menu')) {
+						$userProfile.removeClass('show-menu');
+						$userMenu.toggle();
+					}
+				}) // end of html click event
 
 
 
-			});
+
+
+
+			}) // jquery ready
 		}
 	}
-})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -174,6 +201,6 @@ angular.module('myApp')
 
 					}
 				})
-			}
+}
 }
 })

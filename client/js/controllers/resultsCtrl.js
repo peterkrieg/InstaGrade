@@ -166,6 +166,8 @@ function getOtherData(token, report){
 			// want to do .then to make sure user is added,
 			// before report checks for user already existing
 			// now add report to backend
+			console.log('about to add report!!!');
+			console.log('this is step that is not working');
 			reportService.addReport(report);
 
 			// can set up view now
