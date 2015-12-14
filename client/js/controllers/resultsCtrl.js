@@ -5,10 +5,10 @@ angular.module('myApp')
 	$scope.loadingUser = true;
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
-	
-// delete the stuff after || when done with dev
-// var token = tokenService.getToken() || '1359984932.c4fe6f4.32721a77599f4b11b20c1f2ffcbedab2';
 
+
+
+	
 
 
 
@@ -225,6 +225,11 @@ $scope.loadMore = function(category){
 
 //____________Huge finishReportView Function____________
 function finishReportView(report){
+
+
+
+
+
 	// console.log(report);
 	// $scope.report = report;
 

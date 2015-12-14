@@ -12,6 +12,35 @@ angular.module('myApp')
 	};
 });
 
+///////////////////////////////////////////////////
+//  Set up tabs, so that media tab isn't always active
+//  Needs to account for people refreshing page
+///////////////////////////////////////////////////
+
+angular.module('myApp')
+.directive('setUpTabs', function(){
+	return {
+		link: function(scope, elem, attrs){
+			$(function(){
+				var url = window.location.href;
+				var tabs = ["media", "relationships", "grade", "analytics", "map"];
+
+				// $tabElems is array of raw HTML, need to make jquery
+				// wrapper object later to use addClass method
+				var $tabElems = $(elem).find('li');
+				// looping through tabs, checking which one active
+				for(var i=0; i<tabs.length; i++){
+					var tab = tabs[i];
+					if(url.indexOf(tab)>-1){
+						$($tabElems[i]).addClass('active');
+					}
+				}
+			});
+
+		}
+	}
+})
+
 
 //_________________________Wow JS______________
 

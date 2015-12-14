@@ -27,9 +27,9 @@
 
 	<h2 >Hello, {{user.name}}.  Please Select a Tab Below to See Your Results.</h2>
 
-	<div class="container results" ng-show="!loading">
+	<div set-up-tabs class="container results" ng-show="!loading">
 		<ul class="nav nav-tabs">
-			<li tab-behavior role="presentation" class="active"><a ui-sref="results.media">Media</a></li>
+			<li tab-behavior role="presentation"><a ui-sref="results.media">Media</a></li>
 			<li tab-behavior role="presentation"><a ui-sref="results.relationships">Relationships</a></li>
 			<li tab-behavior role="presentation"><a ui-sref="results.grade">Grade</a></li>
 			<li tab-behavior role="presentation"><a ui-sref="results.analytics">Analytics</a></li>
