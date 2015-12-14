@@ -41,29 +41,6 @@ angular.module('myApp')
 	}
 })
 
-// //___________Vertically Centering Media Comments_____________
-
-// angular.module('myApp')
-// .directive('verticalCenter', function(){
-// 	return {
-// 		link: function(scope, elem, attrs){
-// 			$(function(){
-				
-				
-// 				var $comment = $(elem);
-// 				var $commentText = $(elem).find('li');
-// 				console.log($comment.height());
-// 				console.log($commentText.height())
-// 				// center comment text with margins, with inline styling
-// 				var bottomHeight = ($comment.height() - $commentText.height())/2;
-
-
-// 				$commentText.css('bottom', bottomHeight);
-// 			});
-
-// 		}
-// 	}
-// })
 
 
 //_________________________Wow JS______________
@@ -147,6 +124,11 @@ angular.module('myApp')
 				$input.blur(function(){
 					$searchWrapper.css('width', '270px')
 				})
+				// $input.blur(function(){
+				// 	$searchWrapper.animate({
+				// 		width: '270px'
+				// 	}, 150);
+				// })
 				
 
 
