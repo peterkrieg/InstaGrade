@@ -43,8 +43,6 @@
 
 
 				<div class="img-container">
-
-
 					<img class="media" ng-if="media.type==='image'"ng-src="{{media.images.standard_resolution.url}}" alt="">
 
 					<video class="media" ng-if="media.type==='video'"controls poster="{{media.images.standard_resolution.url}}">
@@ -60,19 +58,20 @@
 
 					<ul class="comments hidden">
 
-						<div class="comment" ng-repeat="comment in media.comments.data">
+						<div class="comment" ng-repeat="comment in media.comments.data" >
 
 							<div class="comment-bio ">
 								<img class="comment-pic" ng-src="{{comment.from.profile_picture}}">
+								<br>
 								<span class="comment-name">{{comment.from.full_name || comment.from.username}}</span>
 								</div
 								><div class="comment-text">
 								<li>"{{comment.text}}"</li>
 							</div>
 						</div>
-					</ul>
+					</ul><!-- comments -->
 
-				</div>
+				</div><!-- img-container -->
 			</div>
 
 
