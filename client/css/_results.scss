@@ -110,16 +110,7 @@ div.results-nav{
 			// margin-top: 10px;
 			top: -5px;
 		}
-
-
-
 	}
-
-
-
-
-
-
 }
 
 
@@ -135,6 +126,49 @@ div.user-profile.show-menu{
 	}
 
 }
+
+
+// search bar, repeated in media, and relationships sections
+
+div.search-wrapper{
+	position: relative;
+	margin-right: 40px;
+	width: 270px;
+	padding-left: 30px;
+	padding-right: 5px;
+	border-radius: 17px;
+	height: 34px;
+	border: 2px solid #ddd; 
+	float: right;
+	input{
+		// display: table;
+		padding-left: 2px;
+		position: relative;
+		bottom: 6px;
+		border-radius: 3px;
+		font-size: .5em;
+		width: 95%;
+		border: none;
+		background: #fafafa;
+		&:focus{
+			outline: none;
+			border: none;
+		}
+	}
+	// search fontawesome icon
+	i.fa-search{
+		color: #ddd;
+		font-size: .65em;
+		position: absolute;
+		left: 7px;
+		top: 6px;
+	}
+
+
+
+
+}
+
 
 
 

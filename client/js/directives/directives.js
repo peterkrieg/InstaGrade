@@ -76,6 +76,31 @@ angular.module('myApp')
 			})
 		}
 	}
+});
+
+angular.module('myApp')
+.directive('searchbarExpand', function(){
+	return {
+		link: function(scope, elem, attrs){
+			$(function(){
+				var $searchWrapper = $(elem);
+				var $input = $searchWrapper.find('input.search-bar');
+
+				$input.focus(function(){
+					$searchWrapper.animate({
+						width: "330px"
+					}, 200);
+				});
+				$input.blur(function(){
+					$searchWrapper.css('width', '270px')
+				})
+				
+
+
+
+			});
+		}
+	}
 })
 
 
