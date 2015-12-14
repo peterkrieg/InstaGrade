@@ -21,14 +21,21 @@
 			<div class="grade-visible">
 				<p>You have a total of {{report.grade.numLikesReceived | number}} likes received!</p>
 				<div class="grade-bar">
-					<div class="good grade-score">
+					<div class="good grade-score" style="width: 75%;">
 					</div>
 				</div>
 				<p>Your score is 75%!</p>
 				
 			</div>
 			<div class="grade-explanation">
-				<p><em>This part means that your grade is this, etc etc Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, sapiente nulla illum ut ipsum non dolorem, nisi dicta inventore rerum beatae quia maxime aut possimus nam suscipit velit officiis doloremque.</em></p>
+
+
+
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<p><em>This grade component is very simple.  You have a total of {{report.grade.numLikesReceived | number}} likes received on all of your media.  Your score was calculated based on your performance compared to other users.</em></p>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -45,7 +52,34 @@
 				
 			</div>
 			<div class="grade-explanation">
-				<p><em>This part means that your grade is this, etc etc Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, sapiente nulla illum ut ipsum non dolorem, nisi dicta inventore rerum beatae quia maxime aut possimus nam suscipit velit officiis doloremque.</em></p>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="row">
+							<div class="col-md-8" >
+								<p><em>A higher ratio means that you receive more likes than you give, and therefore must be more popular, right?  A higher ratio is better for your score.</em></p> 
+							</div>
+							<div class="col-md-4">
+								<div class="equation">
+									<div class="fraction">
+										<div class="numerator">
+											{{report.grade.numLikesReceived | number}} Likes Received
+										</div>
+										<div class="denominator">
+											{{report.grade.numLikesGiven | number}} Likes Given
+										</div>
+									</div>
+									<div class="result">
+										<li>= {{report.grade.likesRatio | number:2}}</li>
+										
+
+
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
