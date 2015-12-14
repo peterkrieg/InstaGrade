@@ -69,24 +69,30 @@ div.grade{
 		p{
 			text-align: left;
 			font-size: .5em;
+			line-height: 1.5em;
 		}
 	}
 
 
 	// equation CSS, everything to make equation
-	// was going to use mathJAX
+	// was going to use mathJAX, but hard to make work
+	// with angular, and don't need much of LaTeX, just
+	// fractions, which I could do with pure CSS I decided
 
 	div.equation{
-		background: gold;
+		// background: gold;
+		@include tabletOrLess {
+			padding-top: 13px;
+		}
 	}
 
 	div.fraction{
 		font-size: .5em;
-		background: green;
+		// background: green;
 		display: inline-block;
 	}
 	div.numerator{
-		background: orange;
+		// background: orange;
 		padding-bottom: 5px;
 		border-bottom: 2px solid black;
 	}
@@ -99,7 +105,7 @@ div.grade{
 		// padding-bottom: 10px;
 		font-size: .6em;
 		display: inline-block;
-		background: lightblue;
+		// background: lightblue;
 		position: relative;
 		bottom: 11px;
 	}
