@@ -59,7 +59,7 @@
 		<!--___Likes Comparison____-->
 
 		<h4>Comparison of Likes</h4>
-		<p>Shows likes given vs. likes received, for users you've interacted with.</p>
+		<h6>Shows likes given vs. received, for all users involved</h6>
 
 		<!-- example section-->
 		<div class="example wow fade-in-up" >
@@ -82,12 +82,12 @@
 
 				</div>
 				<div class="col-md-8">
-					<p class="example">Here is a fake sample user as an example.  Each user has a mini bar-chart to represent the comparison of likes given vs. likes received.  The blue bar shows the number of likes you've received from the user, and the yellow bar shows the number of likes you've given to the user. <strong>Please hover or click on any bar chart to see the specific numbers.</strong>    </p>
+					<p class="example">Here is a fake sample user as an example.  Each user has a mini bar-chart showing the likes comparison.  The blue bar shows the number of likes you've received from the user, and the yellow bar shows the number of likes you've given to the user.   <strong>Please hover or click on any bar chart to see the specific numbers.</strong>    </p>
 
-					<p class="conclusion">In this example, Judith has liked your media 25 times, and you have liked her media 16 times</p>
-
-
+					<p class="conclusion">In this example, Judith has liked your media 25 times, and you have liked her media 16 times.</p>
+					<p class="conclusion">Basically, more blue is better for you!</p>
 				</div>
+				
 
 			</div>
 			<i class="close fa fa-times" ng-click="closeExample()"></i>
@@ -99,30 +99,40 @@
 
 	<div class="likers-container content-container wow fade-in-up">
 		<div class="row">
-			<div class="user fade-in-up col-md-3 col-sm-4 col-xs-6" ng-repeat="user in likesComparisonArr">
-				<li class="name">{{user.name}}</li>
-<!-- 						<li>Num likes Received: {{user.likesReceived}}</li>
-						<li>Num likes Given: {{user.likesGiven}}</li>
-					-->						<img class="user" ng-src="{{user.pic}}" alt="">
-
-					<div class="bar-chart-container">
-						<div class="wow bar-chart" bar-chart
-						data-html="true" data-toggle="popover" data-placement="bottom" data-title="{{user.name}}" data-content="Likes Received: {{user.likesReceived}}<br>
-						Likes Given: {{user.likesGiven}}"
-
-						>
-						<div class="bar likes-received" ></div>
-						<div class="bar likes-given" ></div>
-					</div>
-				</div>
-
-
+			<h6>Filter by User Name</h6>
+			<div class="search-wrapper" searchbar-expand>
+				<i class="fa fa-search"></i>
+				<input class="search-bar" type="text" placeholder='ie, "Jane Doe" ' ng-model="myFilter.name">
 			</div>
+
+
+
 		</div>
 
-		<a class="show-more" ng-show="!noMore.likesComparisonArr" ng-click="loadMore('likesComparisonArr')"><i class="fa fa-chevron-down"></i> Click to See More <i class="fa fa-chevron-down"></i></a>
-		<p class="warning fade-in-up" ng-show="noMore.likesComparisonArr">No More liked users to show</p>
+
+		<div class="row">
+			<div class="user fade-in-up col-md-3 col-sm-4 col-xs-6" ng-repeat="user in likesComparisonArr | filter: myFilter">
+				<li class="name">{{user.name}}</li>
+				<img class="user" ng-src="{{user.pic}}" alt="">
+
+				<div class="bar-chart-container">
+					<div class="wow bar-chart" bar-chart
+					data-html="true" data-toggle="popover" data-placement="bottom" data-title="{{user.name}}" data-content="Likes Received: {{user.likesReceived}}<br>
+					Likes Given: {{user.likesGiven}}"
+
+					>
+					<div class="bar likes-received" ></div>
+					<div class="bar likes-given" ></div>
+				</div>
+			</div>
+
+
+		</div>
 	</div>
+
+	<a class="show-more" ng-show="!noMore.likesComparisonArr" ng-click="loadMore('likesComparisonArr')"><i class="fa fa-chevron-down"></i> Click to See More <i class="fa fa-chevron-down"></i></a>
+	<p class="warning fade-in-up" ng-show="noMore.likesComparisonArr">No More liked users to show</p>
+</div>
 
 
 
