@@ -59,6 +59,20 @@ addUser: function(req, res, next){
 
 },
 
+getUser: function(req, res, next){
+	// same instagram that is attached to cookies
+	var instagramId = req.session.passport.user.instagramId;
+	User.findOne({instagramId: instagramId})
+	.exec(function(err, user){
+		// if instagramId 
+		if(err) return res.redirect('/');
+		else{
+			return res.send(user);
+		}
+	})
+
+}
+
 
 
 

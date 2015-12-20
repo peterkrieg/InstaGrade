@@ -250,6 +250,11 @@ app.post('/api/users', usersCtrl.addUser);
 app.post('/api/reports', reportsCtrl.addReport);
 
 
+//_________________________Getting User Profile page__________________________
+
+app.get('/api/users/account', usersCtrl.getUser);
+
+
 
 
 

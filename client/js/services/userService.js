@@ -9,7 +9,17 @@ function userFunc($http, $q){
 			return response;
 		})
 
-	}
+	};
+
+	this.getAccount = function(instagramId){
+		return $http.get('/api/users/account')
+		.then(function(response){
+			console.log('response from http get of user account is', response);
+			return response.data;
+		})
+
+
+	};
 
 
 

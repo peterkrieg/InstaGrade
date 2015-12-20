@@ -23,16 +23,16 @@ angular.module('myApp', ['ui.router'])
 	// 	// templateUrl: 'partials/token.html',
 	// 	controller: 'tokenCtrl'
 	// })
-	.state('results', {
-		url: '/results',
-		templateUrl: 'partials/results.html',
-		controller: 'resultsCtrl'
-	})
+.state('results', {
+	url: '/results',
+	templateUrl: 'partials/results.html',
+	controller: 'resultsCtrl'
+})
 
 
 
 
-	//____________All other states descendant of results page__________________
+	//____________All these states descendant of results page__________________
 	.state('results.media', {
 		url: '/media',
 		templateUrl: 'partials/results.media.html',
@@ -53,6 +53,19 @@ angular.module('myApp', ['ui.router'])
 	.state('results.map', {
 		url: '/map',
 		templateUrl: 'partials/results.map.html'
+	})
+
+	//_________________________End of results page__________________________
+
+	.state('account', {
+		url: '/user/account',
+		templateUrl: 'partials/userProfile.html',
+		controller: 'profileCtrl',
+		resolve: {
+			user: function(userService){
+				return userService.getAccount();
+			}
+		}
 	})
 
 
