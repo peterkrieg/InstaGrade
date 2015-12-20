@@ -22,12 +22,13 @@ angular.module('myApp')
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
-				var url = window.location.href;
+				var url = window.location.href.split('/results')[1];
 				var tabs = ["media", "relationships", "grade", "analytics", "map"];
 
 				// $tabElems is array of raw HTML, need to make jquery
 				// wrapper object later to use addClass method
 				var $tabElems = $(elem).find('li');
+				$tabElems.removeClass('active');
 				// looping through tabs, checking which one active
 				for(var i=0; i<tabs.length; i++){
 					var tab = tabs[i];

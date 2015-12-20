@@ -6,7 +6,7 @@ angular.module('myApp')
 			denominator: '@',
 			result: '@'
 		},
-		templateUrl: 'js/directives/equationDirective.html'
+		templateUrl: 'partials/equationDirective.html'
 
 
 
