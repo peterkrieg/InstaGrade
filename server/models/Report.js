@@ -3,6 +3,15 @@ var Schema = mongoose.Schema;
 var Mixed = Schema.Types.Mixed;
 
 var ReportSchema = Schema({
+	// basic Info for date of report
+	basicInfo: {
+		date: {type: Date, required: true, default: new Date()}
+
+	},
+
+
+
+
 	media: [{
 		attribution: Mixed,
 		caption: Mixed,
@@ -55,8 +64,6 @@ var ReportSchema = Schema({
 		allTagsArr: Mixed,
 		allTimes: Mixed,
 		averageNumLikes: {type: Number},
-		currentTags: Mixed,
-		currentTagsCounts: Mixed,
 		daysOfWeek: Mixed,
 		daysOfWeekArr: Mixed,
 		hashtagScatter: Mixed,
@@ -65,8 +72,6 @@ var ReportSchema = Schema({
 		numPics: {type: Number},
 		numVids: {type: Number},
 		numSelfLikes: {type: Number},
-		tagsGroupsCounts: Mixed,
-		tagsGroupsNames: Mixed
 	}, // end of analytics.
 
 	map: {

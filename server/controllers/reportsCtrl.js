@@ -4,11 +4,17 @@ var User = require('../models/User');
 module.exports = {
 
 	addReport: function(req, res, next){
-		console.log('\n\nhere is add Report controller!\n\n');
-		var report = req.body;
+		// set one date for whole report, (gets added to report, and 
+		// user's reports array)
+		var dateOfReport = new Date();
 
-		console.log(report.user.instagramId);
-		// res.send('hello');
+		// console.log('\n\nhere is add Report controller!\n\n');
+		var report = req.body;
+		report.basicInfo = {
+			date: dateOfReport
+		};
+
+		// console.log(report.user.instagramId);
 
 
 		new Report(report).save(function(err, report){
@@ -32,7 +38,12 @@ module.exports = {
 
 					console.log('user is \n\n', user, '\n\n');
 
-					user.reports.push(report.id);
+					var reportWrapper = {
+						date: dateOfReport,
+						report: report.id
+					};
+
+					user.reports.push(reportWrapper);
 					user.save(function(err, response){
 						console.log('user after is\n\n', user, '\n\n');
 						return res.send(report);
