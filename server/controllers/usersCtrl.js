@@ -29,7 +29,6 @@ module.exports = {
 				// if there is already user created, and a report exists
 				if(user){
 					if(user.reports.length>0){
-
 						// at this point, reports is still array of objects, with report
 						// not populated yet.  
 

@@ -1,10 +1,45 @@
 <div main-navbar></div>
 
-<div>Hello World!!</div>
+<div class="user-profile">
+	<h1>Profile</h1>
 
-<div>
-	<h1>This is user</h1>
-	<p>{{user.name}}</p>
-	<p>{{user.username}}</p>
-	<p>{{user}}</p>
+	<div class="button" ui-sref="new-report">Click to get new report!!</div>
+
+	<h3>List of Your Reports</h3>
+	<ul class="report-list">
+		<li class="report" ng-repeat="report in user.reports">
+			<p>{{report.date}}</p>
+
+			
+
+
+		</li>
+			
+		
+
+
+
+
+	</ul>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
