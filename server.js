@@ -258,6 +258,10 @@ app.get('/api/users/account', usersCtrl.getUser);
 
 app.get('/api/reports/latestDate', reportsCtrl.getLatestReportDate);
 
+//________________Controlling user ready for new report____________
+
+app.put('/api/users/readyForReport', usersCtrl.toggleReadyForReport);
+
 
 
 

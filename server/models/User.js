@@ -12,6 +12,7 @@ var UserSchema = Schema({
 	numFollowers: {type: Number, required: true},
 	numFollows: {type: Number, required: true},
 	dateJoined: {type: Date, required: true, default: new Date()},
+	readyForReport: {type: Boolean, required: true, default: true},
 	reports: [{
 		date: {type: Date, required: true, default: new Date()},
 		report: {type: Schema.Types.ObjectId, ref: 'Report'}   

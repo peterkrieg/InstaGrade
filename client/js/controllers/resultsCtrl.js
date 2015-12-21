@@ -18,7 +18,8 @@ reportService.getToken()
 	console.log('results controller getting response!');
 	console.log(response.data);
 
-	// if response is report, then user already has done report
+	// if response is report, then user already has done report,
+	// and not time to do new report (user.readyForReport is false)
 	if(response.data.analytics){
 		console.log('user already exists!!!');
 		var report = response.data;
@@ -27,7 +28,8 @@ reportService.getToken()
 		user.newUser = false;
 		loadingMessages(null, user);
 	}
-	// else if response is a user, 
+	// else if response is a user, means that user doesn't have report yet,
+	// or valid for new report (new report button clicked, and has been 24 hrs)
 	else if(response.data.numMedia){
 		console.log('new user, need to do lots of api calls!');
 		var user = response.data;
@@ -157,6 +159,9 @@ function getOtherData(token, report){
 			console.log('about to add report!!!');
 			console.log('this is step that is not working');
 			reportService.addReport(report);
+
+			// Need to make user not ready for another report now, since report added
+			userService.toggleReadyForReport(false);
 
 			// can set up view now
 			finishReportView(report);

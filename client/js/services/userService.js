@@ -21,7 +21,14 @@ function userFunc($http, $q){
 
 	};
 
-
+	this.toggleReadyForReport = function(status){
+		console.log('toggle report ready in service');
+		// status can be true, or false (if ready for report or not)
+		return $http.put('/api/users/readyForReport', {status: status})
+		.then(function(response){
+			return response;
+		})
+	}
 
 
 
