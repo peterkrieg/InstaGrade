@@ -7,12 +7,20 @@ module.exports = {
 		// console.log('insta ID is', req.session.passport.user.instagramId);
 		console.log('\n\nhere is check user controller!\n\n');
 
+		console.log(req.session.passport.user);
 		User.findOne({instagramId: req.session.passport.user.instagramId})
 
 		// want to fill reports array with contents
-		.populate('reports')
+		// because actual report is nested, need to have bit harder populate
+		//  http://stackoverflow.com/questions/19222520/populate-nested-array-in-mongoose
+		.populate({path: 'reports'})
 
 		.exec(function(err, user){
+			// populate options, to find report
+			var options = {
+				path: 'reports.report',
+				model: 'Report'
+			};
 			if(err){
 				console.log('error!');
 				console.log(err);
@@ -21,8 +29,19 @@ module.exports = {
 				// if there is already user created, and a report exists
 				if(user){
 					if(user.reports.length>0){
-						var report = user.reports[user.reports.length-1];
-						res.send(report);
+
+						// at this point, reports is still array of objects, with report
+						// not populated yet.  
+
+						User.populate(user, options, function(err, reportRaw){
+							// I think that "reportRaw" is report that still hasn't been
+							// populated, doesn't make sense to me though
+							console.log('report Raw.. \n\n'+reportRaw+'\n\n');
+							console.log('\n\n user already exists \n\n')
+							// return last report (last element in array)
+							var report = user.reports[user.reports.length-1].report;
+							res.send(report);
+						})
 					}
 					// user exists, but for some reason no reports do
 					else{
