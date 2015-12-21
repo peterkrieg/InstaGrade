@@ -21,6 +21,7 @@ module.exports = {
 				// if there is already user created, and a report exists
 				if(user){
 					if(user.reports.length>0){
+						console.log('user exists');
 						var report = user.reports[user.reports.length-1];
 						res.send(report);
 					}

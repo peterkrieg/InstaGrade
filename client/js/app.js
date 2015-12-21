@@ -68,6 +68,15 @@ angular.module('myApp', ['ui.router'])
 		}
 	})
 
+	// new report, forcing report to load
+	// .state('new-report', {
+	// 	url: '/results/report',
+	// 	controller: 'resultsCtrl'
+	// 	resolve: {
+	// 		forceReport: true
+	// 	}
+	// })
+
 
 
 
