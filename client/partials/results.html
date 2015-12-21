@@ -1,27 +1,6 @@
 <div class="results">
 	
-	<div class="results-nav">
-		<a class="logo" ui-sref="home">MediaScore</a>
-
-		<div user-menu class="user-profile">
-			<img class="user-profile" ng-src="{{user.profilePicture}}" ng-if="!loadingUser" alt="">
-			<li>{{user.name}} <i class="fa fa-caret-down"></i></li>
-			<div  class="user-menu">
-				<a class="menu-item-wrapper" ui-sref="account">
-					<div class="menu-item">
-						<li>Account</li>
-					</div>
-				</a>
-				<a class="menu-item-wrapper" href="/api/auth/instagram/logout">
-					<div class="menu-item">
-						<li>Logout</li>
-					</div>
-				</a>
-				
-			</div>
-		</div>
-
-	</div><!-- results header -->
+	<div main-navbar></div>
 
 	
 

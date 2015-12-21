@@ -93,6 +93,19 @@ angular.module('myApp')
 	}
 });
 
+//_________________________Navbar, just HTML Directive__________________________
+
+angular.module('myApp')
+.directive('mainNavbar', function(){
+	return {
+		templateUrl: 'partials/mainNavbar.html'
+	};
+})
+
+
+
+
+
 //_________________________Logout behavior__________________________
 
 angular.module('myApp')
