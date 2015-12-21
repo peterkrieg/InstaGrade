@@ -18,12 +18,17 @@ angular.module('myApp')
 ///////////////////////////////////////////////////
 
 angular.module('myApp')
-.directive('setUpTabs', function(){
+.directive('setUpTabs', function($location){
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
-				var url = window.location.href.split('/results')[1];
+				// need to use $location.path() instead of
+				// window.location.href, which doesn't update quickly enough
+
+				// var url = window.location.href.split('/results')[1];
 				var tabs = ["media", "relationships", "grade", "analytics", "map"];
+
+				var url = $location.path();
 
 				// $tabElems is array of raw HTML, need to make jquery
 				// wrapper object later to use addClass method

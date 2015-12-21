@@ -254,6 +254,10 @@ app.post('/api/reports', reportsCtrl.addReport);
 
 app.get('/api/users/account', usersCtrl.getUser);
 
+//_________________________Getting latest report date__________________________
+
+app.get('/api/reports/latestDate', reportsCtrl.getLatestReportDate);
+
 
 
 

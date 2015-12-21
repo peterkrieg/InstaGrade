@@ -49,36 +49,30 @@ module.exports = {
 						return res.send(report);
 					})
 
-
-
-
-
-
-
-					// not sure why I have to do this, but when reports is
-					// empty for first time, says it is undefined, and not
-					// just empty array..
-					// if(user.reports){
-					// 	user.reports.push(report.id);
-					// }
-					// else{
-					// 	user.reports = [];
-					// 	user.reports.push(report.id);
-					// 	user.save(function(err, response){
-					// 	// now return report, once everything done
-					// 	return res.send(report);
-					// })
-
-					// }
-
-
-
 				})
 			}
-
 		}) // end of adding report
 
 
+
+
+
+	}, // end of add report big function
+
+	getLatestReportDate: function(req, res, next){
+		var instagramId = req.session.passport.user.instagramId;
+
+		User.findOne({instagramId: instagramId})
+		.exec(function(err, user){
+			if(err) return res.status(500).send(err);
+
+			// if success
+			var reports = user.reports;
+			var latestReportDate = reports[reports.length-1].date;
+			res.send(latestReportDate);
+
+
+		})
 
 
 
