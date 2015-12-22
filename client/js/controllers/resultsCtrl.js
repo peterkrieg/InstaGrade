@@ -14,15 +14,18 @@ angular.module('myApp')
 
 
 
-reportService.getToken()
-.then(function(response){
-	console.log('results controller getting response!');
-	console.log(response.data);
+	reportService.getToken()
+	.then(function(response){
+		console.log('results controller getting response!');
+		console.log(response.data);
 
 	// if response is report, then user already has done report,
 	// and not time to do new report (user.readyForReport is false)
+	// or specific report clicked, delivered back here
 	if(response.data.analytics){
 		console.log('user already exists!!!');
+		// make sure no specific report
+		userService.toggleSpecificReport(null);
 		var report = response.data;
 		$scope.report = report;
 		var user = response.data.user;
