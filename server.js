@@ -262,6 +262,10 @@ app.get('/api/reports/latestDate', reportsCtrl.getLatestReportDate);
 
 app.put('/api/users/readyForReport', usersCtrl.toggleReadyForReport);
 
+//__________If user has specific report for results ctrl to load__________
+
+app.put('/api/users/specificReport', usersCtrl.toggleSpecificReport);
+
 
 
 

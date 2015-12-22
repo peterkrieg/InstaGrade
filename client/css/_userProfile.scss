@@ -20,7 +20,12 @@ div.user-profile{
 				color: white;
 			}
 		}
+	} // end of button
 
+	tr.report-row{
+		&:hover{
+			background: #eee;
+		}
 	}
 
 

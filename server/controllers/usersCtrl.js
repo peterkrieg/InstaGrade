@@ -1,4 +1,5 @@
 var User = require('../models/User');
+var Report = require('../models/Report');
 
 
 module.exports = {
@@ -37,32 +38,29 @@ module.exports = {
 						}
 						// if not ready for report, or just logging in, without clicking
 						// new report button, then return report
+						// or if specific report clicked
 						else{
 							// at this point, reports is still array of objects, with report
 							// not populated yet. 
 
-							 
+							// if specific report of ID is not null, it is object ID
+							// referencing a report, and that report should then be loaded
+							if(user.specificReport){
+								var reportId = user.specificReport
+							}
+							else{
+								var reportId = user.reports[user.reports.length-1].report;
+							}
 
+							// now, reportId is either a specific report that user
+							// wants to see, or the latest report (last in array)
+							// now need to findById in report model
 
-
-
-
-
-
-
-
-
-
-							User.populate(user, options, function(err, reportRaw){
-								// I think that "reportRaw" is report that still hasn't been
-								// populated, doesn't make sense to me though
-								console.log('report Raw.. \n\n'+reportRaw+'\n\n');
-								console.log('\n\n user already exists \n\n')
-								// return last report (last element in array)
-								var report = user.reports[user.reports.length-1].report;
+							Report.findById(reportId, function(err, report){
 								res.send(report);
 							})
-						}
+
+						}// end of big else statement
 					}
 					// user exists, but for some reason no reports do
 					else{
@@ -132,8 +130,21 @@ toggleReadyForReport: function(req, res, next){
 	});
 },
 
+toggleSpecificReport: function(req, res, next){
+	// status either null, or report ID, to retrieve
+	var status = req.body.status;
+	var instagramId = req.session.passport.user.instagramId;
+	User.findOne({instagramId: instagramId})
+	.exec(function(err, user){
+		if(err) return res.redirect('/');
 
+		user.specificReport = status;
+		user.save(function(err, response){
+			return res.send(response);
+		});
+	});
 
+},
 
 
 

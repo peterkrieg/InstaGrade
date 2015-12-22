@@ -20,8 +20,6 @@ function profileFunc($scope, user, reportService, userService, $state){
 
 			if(currentTime-timeLastReport<hours24){
 				console.log('hasnt been day yet!!');
-
-
 			}
 			else{
 				userService.toggleReadyForReport(true)
@@ -29,18 +27,20 @@ function profileFunc($scope, user, reportService, userService, $state){
 					$state.go('results.media');
 				})
 			}
-
-			
-
-
-
 		});
+	}; // end of new Report function
+
+	$scope.loadSpecificReport = function(reportId){
+		console.log('load specific report fired!!');
+		console.log(reportId);
+		userService.toggleSpecificReport(reportId)
+		.then(function(response){
+			$state.go('results.media');
+		})
 
 
 
-
-
-	}
+	}; // end of load specific report function
 
 
 

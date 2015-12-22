@@ -163,6 +163,7 @@ function getOtherData(token, report){
 
 			// Need to make user not ready for another report now, since report added
 			userService.toggleReadyForReport(false);
+			userService.toggleSpecificReport(null);
 
 			// can set up view now
 			finishReportView(report);

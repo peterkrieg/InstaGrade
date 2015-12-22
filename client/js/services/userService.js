@@ -17,9 +17,8 @@ function userFunc($http, $q){
 			console.log('response from http get of user account is', response);
 			return response.data;
 		})
-
-
 	};
+
 
 	this.toggleReadyForReport = function(status){
 		console.log('toggle report ready in service');
@@ -28,6 +27,19 @@ function userFunc($http, $q){
 		.then(function(response){
 			return response;
 		})
+	};
+
+
+	this.toggleSpecificReport = function(status){
+		// status can be null, or a specific ID 
+		// (if null, resultsCtrl just loads latest report, last in array)
+		return $http.put('/api/users/specificReport', {status: status})
+		.then(function(response){
+			return response;
+		})
+
+
+
 	}
 
 
