@@ -5,7 +5,8 @@
 			<img class="user-profile" ng-src="{{user.profilePicture}}" ng-if="!loadingUser" alt="">
 			<li>{{user.name}} <i class="fa fa-caret-down"></i></li>
 			<div  class="user-menu">
-				<a class="menu-item-wrapper" ui-sref="account">
+				<!-- acccount page goes to reports, within account -->
+				<a class="menu-item-wrapper" ui-sref="account.reports">
 					<div class="menu-item">
 						<li>Account</li>
 						<i class="fa fa-user"></i>

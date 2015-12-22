@@ -1,5 +1,5 @@
 angular.module('myApp')
-.controller('profileCtrl', profileFunc);
+.controller('accountCtrl', profileFunc);
 
 function profileFunc($scope, user, reportService, userService, $state){
 	console.log(user);

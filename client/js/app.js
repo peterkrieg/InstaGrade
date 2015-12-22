@@ -57,15 +57,22 @@ angular.module('myApp', ['ui.router'])
 
 	//_________________________End of results page__________________________
 
+	//_____________Account page-- states under, just like results page________________
+
 	.state('account', {
-		url: '/user/account',
-		templateUrl: 'partials/userProfile.html',
-		controller: 'profileCtrl',
+		url: '/account',
+		templateUrl: 'partials/account.html',
+		controller: 'accountCtrl',
 		resolve: {
 			user: function(userService){
 				return userService.getAccount();
 			}
 		}
+	})
+
+	.state('account.reports', {
+		url: '/reports',
+		templateUrl: '/partials/account.reports.html'
 	})
 
 	// new report, forcing report to load

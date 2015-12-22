@@ -2,14 +2,14 @@
 	
 	<div main-navbar></div>
 
-	
-
 	<h2 >Hello, {{user.name}}.  Please Select a Tab Below to See Your Results.</h2>
 
 
 	<h6 class="report-time" ng-if="report.basicInfo.date">Report generated at {{report.basicInfo.date | date: 'h:mm a'}} on {{report.basicInfo.date | date: 'MMM d &#8217yy'}}</h6>
 
-	<div set-up-tabs class="container results" ng-show="!loading">
+	<div set-up-tabs class="container results" ng-show="!loading"
+			  tabs = '["media", "relationships", "grade", "analytics", "map"]'
+	>
 		<ul class="nav nav-tabs">
 			<li tab-behavior role="presentation"><a ui-sref="results.media">Media</a></li>
 			<li tab-behavior role="presentation"><a ui-sref="results.relationships">Relationships</a></li>
@@ -21,7 +21,7 @@
 
 
 
-	<div class="container results-content" ui-view ng-show="!loading"></div>
+	<div class="container results-content" ui-view ></div>
 
 
 
@@ -29,28 +29,7 @@
 
 
 
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div> <!-- results div -->
 
 
 

@@ -20,15 +20,28 @@ angular.module('myApp')
 angular.module('myApp')
 .directive('setUpTabs', function($location){
 	return {
+		scope: {
+			tabs: '@'
+		},
 		link: function(scope, elem, attrs){
 			$(function(){
 				// need to use $location.path() instead of
 				// window.location.href, which doesn't update quickly enough
 
 				// var url = window.location.href.split('/results')[1];
-				var tabs = ["media", "relationships", "grade", "analytics", "map"];
+
+				// tabs is passed into directive's scope as a string, so need
+				// to use JSON.parse to make raw JS
+				console.log(scope.tabs);
+				console.log(typeof scope.tabs)
+
+				// var tabs = scope.tabs;
+				var tabs = JSON.parse(scope.tabs);
+				console.log(typeof tabs);
+				console.log(Array.isArray(tabs));
 
 				var url = $location.path();
+				console.log(url);
 
 				// $tabElems is array of raw HTML, need to make jquery
 				// wrapper object later to use addClass method
