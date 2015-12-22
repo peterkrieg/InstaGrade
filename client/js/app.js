@@ -23,41 +23,41 @@ angular.module('myApp', ['ui.router'])
 	// 	// templateUrl: 'partials/token.html',
 	// 	controller: 'tokenCtrl'
 	// })
-.state('results', {
-	url: '/results',
-	templateUrl: 'partials/results.html',
-	controller: 'resultsCtrl'
+.state('report', {
+	url: '/report',
+	templateUrl: 'partials/report.html',
+	controller: 'reportCtrl'
 })
 
 
 
 
-	//____________All these states descendant of results page__________________
-	.state('results.media', {
+	//____________All these states descendant of report page__________________
+	.state('report.media', {
 		url: '/media',
-		templateUrl: 'partials/results.media.html',
+		templateUrl: 'partials/report.media.html',
 	})
-	.state('results.relationships', {
+	.state('report.relationships', {
 		url: '/relationships',
-		templateUrl: 'partials/results.relationships.html'
+		templateUrl: 'partials/report.relationships.html'
 	})
-	.state('results.grade', {
+	.state('report.grade', {
 		url: '/grade',
-		templateUrl: 'partials/results.grade.html'
+		templateUrl: 'partials/report.grade.html'
 	})
-	.state('results.analytics', {
+	.state('report.analytics', {
 		url: '/analytics',
-		templateUrl: 'partials/results.analytics.html'
-		// controller: 'resultsCtrl'
+		templateUrl: 'partials/report.analytics.html'
+		// controller: 'reportCtrl'
 	})
-	.state('results.map', {
+	.state('report.map', {
 		url: '/map',
-		templateUrl: 'partials/results.map.html'
+		templateUrl: 'partials/report.map.html'
 	})
 
-	//_________________________End of results page__________________________
+	//_________________________End of report page__________________________
 
-	//_____________Account page-- states under, just like results page________________
+	//_____________Account page-- states under, just like report page________________
 
 	.state('account', {
 		url: '/account',
@@ -75,14 +75,6 @@ angular.module('myApp', ['ui.router'])
 		templateUrl: '/partials/account.reports.html'
 	})
 
-	// new report, forcing report to load
-	// .state('new-report', {
-	// 	url: '/results/report',
-	// 	controller: 'resultsCtrl'
-	// 	resolve: {
-	// 		forceReport: true
-	// 	}
-	// })
 
 
 

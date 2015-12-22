@@ -24,7 +24,7 @@ function profileFunc($scope, user, reportService, userService, $state){
 			else{
 				userService.toggleReadyForReport(true)
 				.then(function(response){
-					$state.go('results.media');
+					$state.go('report.media');
 				})
 			}
 		});
@@ -35,7 +35,7 @@ function profileFunc($scope, user, reportService, userService, $state){
 		console.log(reportId);
 		userService.toggleSpecificReport(reportId)
 		.then(function(response){
-			$state.go('results.media');
+			$state.go('report.media');
 		})
 
 

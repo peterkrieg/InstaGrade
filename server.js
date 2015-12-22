@@ -198,7 +198,7 @@ app.get('/api/auth/instagram/callback',
 
     // Successful authentication, redirect home.
     // last step, then controller fires of that page
-    res.redirect('/#/results/media');
+    res.redirect('/#/report/media');
   });
 
 
