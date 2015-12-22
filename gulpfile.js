@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var sass = require('gulp-sass');
 
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -8,13 +9,14 @@ var ngAnnotate = require('gulp-ng-annotate');
 
 //___________________Watcher________________________
 
-var watcher = gulp.watch(['./client/js/**/*.js'], ['default']);
+var watcher = gulp.watch(['./client/js/**/*.js', './client/css/**/*.scss'], ['default']);
 
 watcher.on('change', function(event){
 	console.log('File ' + event.path + ' was ' + event.type + ' at ' + new Date() + ' , running tasks...');
 })
 
 
+// JS task, for all JS, compile into one big all.js file
 gulp.task('javascript', function() {
 	gulp.src([
 		'./client/bower_components/jquery/dist/jquery.js',
@@ -27,23 +29,11 @@ gulp.task('javascript', function() {
 
 
 
-
-
-
 		// google maps
 
 		// './client/bower_components/googleMaps.js',
 
 		// 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB9odQywTVtdKtoHNJceQD1nVTzhTB5E0U&callback=initMap',
-
-
-
-
-		
-
-
-
-
 
 
 
@@ -67,11 +57,6 @@ gulp.task('javascript', function() {
 		'./client/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js',
 
 
-
-
-
-
-
 		// './bower_components/bootstrap-sass/assets/javascripts/bootstrap/*js',
 
 
@@ -79,10 +64,6 @@ gulp.task('javascript', function() {
 		'./client/bower_components/angular/angular.js',
 		// './bower_components/ngSmoothScroll/lib/angular-smooth-scroll.js',
 		'./client/bower_components/angular-ui-router/release/angular-ui-router.js',
-
-
-
-
 
 
 
@@ -95,8 +76,6 @@ gulp.task('javascript', function() {
 		// './bower_components/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js',
 		// './bower_components/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js',
 		// './js/other/*.js',
-
-
 
 
 
@@ -113,6 +92,67 @@ gulp.task('javascript', function() {
 	.pipe(concat('all.js'))
 	// .pipe(uglify())
 	.pipe(gulp.dest('./client/js/scripts'))
+}); // end of javascript gulp task
+
+
+
+//__________________Sass task, for minifying all CSS___________________
+
+gulp.task('sass', function () {
+  return gulp.src([
+  	'./client/css/main.scss',
+  	
+  	// './client/css/report/_report.scss',
+  	// './client/css/report/sections/*.scss',
+  	// './client/css/account/_account.scss',
+  	// './client/css/account/sections/*.scss',
+
+  	// // load all components
+  	// './client/css/components/*.scss'
+
+
+
+
+
+  	])
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('main.css'))
+
+    .pipe(gulp.dest('./client/css'));
 });
 
-gulp.task('default', ['javascript']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gulp.task('default', ['javascript', 'sass']);

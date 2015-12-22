@@ -1,6 +1,6 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "../bower_components/bourbon/app/assets/stylesheets/bourbon";
-@import "../bower_components/reset-css/reset";
+@import "../bower_components/reset-css/_reset.scss";
 // @import "../bower_components/font-awesome/css/font-awesome.css";
 
 // google fonts
@@ -90,16 +90,20 @@ li{
 // home page
 @import "home";
 
-// all rest are components of results
-@import "results";
-@import "results.contents";
-@import "results.media";
-@import "results.relationships";
-@import "results.grade";
-@import "results.analytics";
-@import "results.map";
-@import "userProfile";
+// components, reusable pieces, like mixins
 @import "components/navbar";
+
+// sections of report
+@import "report/report";
+@import "report/sections/report.media";
+@import "report/sections/report.relationships";
+@import "report/sections/report.grade";
+@import "report/sections/report.analytics";
+@import "report/sections/report.map";
+
+// sections of account
+@import "account/account";
+// @import "account/sections/something";
 
 
 
