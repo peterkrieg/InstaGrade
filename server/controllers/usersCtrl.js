@@ -133,13 +133,16 @@ toggleReadyForReport: function(req, res, next){
 toggleSpecificReport: function(req, res, next){
 	// status either null, or report ID, to retrieve
 	var status = req.body.status;
+	// console.log('\n\n togglespecific report, status is'+status+'\n\n');
 	var instagramId = req.session.passport.user.instagramId;
 	User.findOne({instagramId: instagramId})
 	.exec(function(err, user){
 		if(err) return res.redirect('/');
 
+		// delete user.specificReport;
 		user.specificReport = status;
 		user.save(function(err, response){
+			if(err) console.log(err);
 			return res.send(response);
 		});
 	});
