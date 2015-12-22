@@ -1,26 +1,60 @@
 div.user-profile{
+	div.reports-list-header{
+		position: relative;
+		display: inline-block;
+	}
+	// center everything on page by default
+	text-align: center;
 	div.button{
+		top: -5px;
+		right: -200px;
+		position: absolute;
+		float: right;
 		border: 2px solid $instaBlue;
 		border-radius: 10px;
 		display: inline-block;
 		@include transition(.4s ease);
 
 		a{
+			position: relative;
 			@include transition(.4s ease);
 			display: block;
 			padding: 8px 20px;
+			padding-right: 40px;
 			color: black;
 			font-family: $header-font;
 			font-size: 1.2em;
+			// span is just the plus
+			span{
+				color: black;
+				font-size: 2em;
+				position: absolute;
+				right: 20px;
+				bottom: 0px;
+				@include transition(.4s ease);
+			}
 		}
 		&:hover{
 			background: $instaBlue;
 			border-color: black;
 			a{
 				color: white;
+				span{
+					color: white;
+				}
 			}
 		}
 	} // end of button
+
+	// table part, displaying reports
+	table.table{
+		text-align: left;
+		thead{
+			text-align: center;
+		}
+	}
+
+
 
 	tr.report-row{
 		&:hover{

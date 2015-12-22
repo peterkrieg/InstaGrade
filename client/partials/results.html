@@ -6,6 +6,9 @@
 
 	<h2 >Hello, {{user.name}}.  Please Select a Tab Below to See Your Results.</h2>
 
+
+	<h6 class="report-time" ng-if="report.basicInfo.date">Report generated at {{report.basicInfo.date | date: 'h:mm a'}} on {{report.basicInfo.date | date: 'MMM d &#8217yy'}}</h6>
+
 	<div set-up-tabs class="container results" ng-show="!loading">
 		<ul class="nav nav-tabs">
 			<li tab-behavior role="presentation"><a ui-sref="results.media">Media</a></li>
