@@ -1,0 +1,49 @@
+div.user-profile{
+	div.button{
+		border: 2px solid $instaBlue;
+		border-radius: 10px;
+		display: inline-block;
+		@include transition(.4s ease);
+
+		a{
+			@include transition(.4s ease);
+			display: block;
+			padding: 8px 20px;
+			color: black;
+			font-family: $header-font;
+			font-size: 1.2em;
+		}
+		&:hover{
+			background: $instaBlue;
+			border-color: black;
+			a{
+				color: white;
+			}
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+} // end of user-profile div

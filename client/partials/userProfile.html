@@ -3,24 +3,46 @@
 <div class="user-profile">
 	<h1>Profile</h1>
 
-	<div class="button" ng-click="newReport()">Click to get new report!!</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h3>List of Your Reports</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tr ng-repeat="report in user.reports">
+					<td>{{$index+1}}</td>
+					<td>{{report.date | date: 'MMM d yyyy, h:m a'}}</td>
+				</tr>
+			</table>
 
-	<h3>List of Your Reports</h3>
-	<ul class="report-list">
-		<li class="report" ng-repeat="report in user.reports">
-			<p>{{report.date}}</p>
-
-			
+		</div>
 
 
-		</li>
-			
-		
+
+	</div>
 
 
 
 
-	</ul>
+
+
+
+	<div class="button" ng-click="newReport()">
+		<a>Click to get new report!!</a>
+	</div>
+
+
+	
+
+	
+
+
+
+
 	
 
 

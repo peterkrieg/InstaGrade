@@ -39,7 +39,19 @@ module.exports = {
 						// new report button, then return report
 						else{
 							// at this point, reports is still array of objects, with report
-							// not populated yet.  
+							// not populated yet. 
+
+							 
+
+
+
+
+
+
+
+
+
+
 
 							User.populate(user, options, function(err, reportRaw){
 								// I think that "reportRaw" is report that still hasn't been
@@ -67,12 +79,6 @@ module.exports = {
 				}
 			}
 		})
-
-
-
-
-
-
 }, // end of check user
 
 
@@ -91,8 +97,8 @@ addUser: function(req, res, next){
 		}
 		else{ // user already exists, so don't do anytying basically
 			return res.send("user already exists, don't need to create new one!");
-		}
-	})
+	}
+})
 
 },
 

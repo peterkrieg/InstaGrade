@@ -2,6 +2,7 @@ angular.module('myApp')
 .controller('resultsCtrl', function($scope, reportService, userService, instaService, followService, $sce, $filter, $http){
 
 	console.log('results controller loaded!');
+	// 3 different states, to have loading status
 	$scope.loadingUser = true;
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
