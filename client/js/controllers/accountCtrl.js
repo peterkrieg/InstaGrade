@@ -1,9 +1,22 @@
 angular.module('myApp')
 .controller('accountCtrl', profileFunc);
 
-function profileFunc($scope, user, reportService, userService, $state){
+function profileFunc($scope, user, reportService, userService, $state, $interval){
 	console.log(user);
 	$scope.user = user;
+	$scope.errorNotDay = false;
+
+	// little utility function used for turning on/off error message
+	$scope.toggleError = function(value){
+		$scope.errorNotDay = value;
+		// if closing error box, need to make sure to cancel
+		// $interal, otherwise will be skipping down 2, 3, 4, .. n sec at time, 
+		// depending on n times user clicked new report button 
+		// (cumulative intervals adding up, strange bug)
+		if(value===false){
+			$interval.cancel($scope.timer);
+		}
+	};
 
 	$scope.newReport = function(){
 		console.log('\n\n new report!! \n\n');
@@ -11,15 +24,32 @@ function profileFunc($scope, user, reportService, userService, $state){
 		var currentTime = new Date().getTime(); // # milliseconds since 1970
 		reportService.getLatestReportDate()
 		.then(function(timeLastReport){
-			console.log(currentTime);
-			console.log(timeLastReport);
+			// console.log(currentTime);
+			// console.log(timeLastReport);
 
-			// var hours24 = 1000*60*60*24 // number of milliseconds in a day
-			var hours24=1000*60 // a minute, just for testing purposes
+			var hours24 = 1000*60*60*24 // number of milliseconds in a day
+			// var hours24=1000*60 // a minute, just for testing purposes
 			// if it hasn't been a day since last report, can't fire
 
 			if(currentTime-timeLastReport<hours24){
 				console.log('hasnt been day yet!!');
+				// time left is for displaying countdown until report can be shown
+				var timeLeft = hours24- (currentTime-timeLastReport); 
+				$scope.timeLeft = timeLeft;
+				
+				// coutndown timer, to show time left to user until report
+
+				$scope.timer = $interval(function(){
+					$scope.timeLeft-=1000;
+					// rare case that user looks at countdown as it gets down to a few seconds
+					// if so, need to close error box 
+					if($scope.timeLeft<=0){
+						$scope.errorNotDay = false;
+					}
+				}, 1000);
+
+				$scope.toggleError(true);
+
 			}
 			else{
 				userService.toggleReadyForReport(true)
@@ -41,6 +71,8 @@ function profileFunc($scope, user, reportService, userService, $state){
 
 
 	}; // end of load specific report function
+
+	
 
 
 

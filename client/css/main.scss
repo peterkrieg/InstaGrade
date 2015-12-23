@@ -103,7 +103,11 @@ li{
 
 // sections of account
 @import "account/account";
-// @import "account/sections/something";
+@import "account/sections/account.reports";
+@import "account/sections/account.stats";
+@import "account/sections/account.settings";
+@import "account/sections/account.relationships";
+
 
 
 
