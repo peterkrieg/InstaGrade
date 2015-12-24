@@ -1,7 +1,7 @@
 angular.module('myApp')
 .controller('accountCtrl', profileFunc);
 
-function profileFunc($scope, user, reportService, userService, $state, $interval){
+function profileFunc($scope, user, reportService, userService, $state, $interval, $filter){
 	console.log(user);
 	$scope.user = user;
 	$scope.errorNotDay = false;
@@ -34,9 +34,10 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 			if(currentTime-timeLastReport<hours24){
 				console.log('hasnt been day yet!!');
 				// time left is for displaying countdown until report can be shown
-				var timeLeft = hours24- (currentTime-timeLastReport); 
+				var timeLeft = hours24- (currentTime-timeLastReport);
+				// console.log(timeLeft) ;
 				$scope.timeLeft = timeLeft;
-				
+
 				// coutndown timer, to show time left to user until report
 
 				$scope.timer = $interval(function(){

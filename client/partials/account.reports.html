@@ -19,7 +19,8 @@
 			<div ng-if="errorNotDay" class="slide-down error-not-day alert alert-danger alert-dismissible" role="alert">
 				<button type="button" class="close"  ng-click="toggleError(false)"><span aria-hidden="true">&times;</span></button>
 				<p>Sorry, you are limited to one report per 24 hours.  We appreciate how eager you are though!</p>
-				<p>Time left to wait:  <strong>{{timeLeft | date: 'h:mm :ss'}}</strong></p>
+				<!-- time left error message is custom filter: see in filters folder-->
+				<p>Time left to wait:  <strong>{{timeLeft | duration}}</strong></p>
 			</div>
 
 

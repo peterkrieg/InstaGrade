@@ -22,6 +22,10 @@ gulp.task('javascript', function() {
 		'./client/bower_components/jquery/dist/jquery.js',
 		'./client/bower_components/lodash/lodash.js',
 
+		// moment JS, used for time manipulations (35kb compressed.. seems worth it though)
+		// './client/bower_components/moment/moment.js',
+
+
 		// wow js
 		'./client/bower_components/wow/dist/wow.js',
 		// highcharts JS
@@ -83,7 +87,8 @@ gulp.task('javascript', function() {
 		'./client/js/app.js',
 		'./client/js/directives/*.js',
 		'./client/js/services/*.js',
-		'./client/js/controllers/*.js'
+		'./client/js/controllers/*.js',
+		'./client/js/filters/*.js'
 
 
 		])

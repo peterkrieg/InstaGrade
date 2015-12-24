@@ -29,6 +29,7 @@
     "font-awesome": "fontawesome#~4.4.0",
     "lodash": "~3.10.1",
     "wow": "wowjs#~1.1.2",
-    "highcharts": "highcharts.com#~4.1.10"
+    "highcharts": "highcharts.com#~4.1.10",
+    "moment": "~2.10.6"
   }
 }
