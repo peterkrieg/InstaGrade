@@ -6,6 +6,10 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 	$scope.user = user;
 	$scope.errorNotDay = false;
 
+	// loading state variables
+	$scope.loadingStats = true;
+
+
 	// little utility function used for turning on/off error message
 	$scope.toggleError = function(value){
 		$scope.errorNotDay = value;
@@ -27,8 +31,8 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 			// console.log(currentTime);
 			// console.log(timeLastReport);
 
-			var hours24 = 1000*60*60*24 // number of milliseconds in a day
-			// var hours24=1000*60 // a minute, just for testing purposes
+			// var hours24 = 1000*60*60*24 // number of milliseconds in a day
+			var hours24=1000*60 // a minute, just for testing purposes
 			// if it hasn't been a day since last report, can't fire
 
 			if(currentTime-timeLastReport<hours24){
@@ -68,10 +72,16 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 		.then(function(response){
 			$state.go('report.media');
 		})
-
-
-
 	}; // end of load specific report function
+
+
+	reportService.getStats()
+	.then(function(stats){
+		console.log(stats);
+
+	})
+
+
 
 	
 

@@ -75,6 +75,11 @@ angular.module('myApp', ['ui.router'])
 		templateUrl: '/partials/account.reports.html'
 	})
 
+	.state('account.stats', {
+		url: '/stats',
+		templateUrl: '/partials/account.stats.html'
+	})
+
 
 
 

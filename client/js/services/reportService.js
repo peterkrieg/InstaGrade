@@ -27,6 +27,16 @@ angular.module('myApp')
 
 			return numberMs;
 		})
+	};
+
+	this.getStats = function(){
+		return $http.get('/api/reports/stats')
+		.then(function(response){
+			// console.log(response);
+			return response.data;
+
+
+		})
 	}
 
 

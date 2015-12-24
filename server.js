@@ -266,6 +266,10 @@ app.put('/api/users/readyForReport', usersCtrl.toggleReadyForReport);
 
 app.put('/api/users/specificReport', usersCtrl.toggleSpecificReport);
 
+// getting stats of all reports, for highcharts on user accounts stats section
+
+app.get('/api/reports/stats', reportsCtrl.getStats);
+
 
 
 
