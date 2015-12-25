@@ -78,6 +78,21 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 	reportService.getStats()
 	.then(function(stats){
 		console.log(stats);
+		console.log(Date.parse(stats[4][0]));
+		console.log(typeof stats[0][0]);
+
+		// setting up stats
+
+		$scope.category = "numFollowers";
+
+		$scope.currentData = stats.map(function(item, index, array){
+			return [ Date.parse(item[0]), 
+
+				item[1][$scope.category]];
+		});
+		console.log($scope.currentData);
+
+
 
 	})
 

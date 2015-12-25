@@ -108,6 +108,9 @@ getStats: function(req, res, next){
 				var report = reportWrapper.report
 				// put date in 
 				stats.push([reportWrapper.date]);
+				// console.log(typeof reportWrapper.date);
+				console.log(reportWrapper.date);
+				console.log(typeof reportWrapper.date);
 
 				var statsObj = {
 					numFollowers: report.user.numFollowers,
