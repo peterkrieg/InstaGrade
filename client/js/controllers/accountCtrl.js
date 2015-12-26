@@ -75,30 +75,71 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 	}; // end of load specific report function
 
 
-	reportService.getStats()
-	.then(function(stats){
-		console.log(stats);
-		console.log(Date.parse(stats[4][0]));
-		console.log(typeof stats[0][0]);
+// loading stats page
+reportService.getStats()
+.then(function(stats){
+	$scope.stats = stats;
+	console.log(stats);
+	console.log(Date.parse(stats[4][0]));
+	console.log(typeof stats[0][0]);
 
-		// setting up stats
+	console.log('\n\n\ncontroller scope is: \n',$scope,'\n\n');
 
-		$scope.category = "numFollowers";
+	// $scope.selectedItem = "numFollows";
 
-		$scope.currentData = stats.map(function(item, index, array){
-			return [ Date.parse(item[0]), 
+	// $scope.$watch('selectedItem', function(){
+	// 	console.log('controller fired!');
+	// })
 
-				item[1][$scope.category]];
-		});
-		console.log($scope.currentData);
-
-
-
-	})
+	// $scope.updateChart = function(param){
+	// 	console.log($scope.selectedItem);
+	// 	console.log(param);
+	// }
 
 
 
-	
+
+
+	// setting up stats
+
+	// $scope.category = "numLikesReceived";
+
+	// $scope.currentData = stats.map(function(item, index, array){
+	// 	return [ Date.parse(item[0]), 
+
+	// 	item[1][$scope.category]];
+	// });
+	// console.log($scope.currentData);
+
+	// labels for the dropdown menu, used by ng-options
+	// the ref is the data for each one, to then get data, same key names 
+	// as the stats object received by controller
+	// $scope.labels = [
+	// {title: 'Number of Followers', ref: 'numFollowers'},
+	// {title: 'Number of Follows', ref: 'numFollows'},
+	// {title: 'Number of Media', ref: 'numMedia'},
+	// {title: 'Number of Likes Given', ref: 'numLikesGiven'},
+	// {title: 'Number of Likes Received', ref: 'numLikesReceived'},
+	// // {title: 'Number of Pictures', ref: 'numPics'},
+	// // {title: 'Number of Videos', ref: 'numVids'},
+	// {title: 'User Ratio', ref: 'userRatio'},
+	// {title: 'Adjusted Average Number of Likes', ref: 'adjustedAverageNumLikes'},
+	// ];
+
+	// create chart to start
+
+	// $scope.updateChart();
+
+
+
+
+
+
+}) // end of getting stats
+
+
+
+
 
 
 

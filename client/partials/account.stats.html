@@ -1,5 +1,24 @@
 <div class="stats">
 
+<h1 class="chart-title">Main title, changes for each chart</h1>
+<h2 class="chart-subtitle">Subtitle goes here!!</h2>
+
+<!-- I use ng options to make lots of options to select from
+viewable title, and reference points to stats object key names
+ng-change is callback function, fired to update graphs on page-->
+<select ng-if="labels" name="test" ng-model="selectedItem"
+
+ng-options="label.ref as label.title for label in labels"
+ng-change="updateChart(selectedItem)"
+
+
+></select>
+
+<p ng-if="labels">hello world {{labels[0]}}</p>
+
+
+
+
 	<div class="wow chart-container">
 		<div stats-graph id="stats-graph"></div>
 	</div>
