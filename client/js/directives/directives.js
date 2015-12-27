@@ -123,6 +123,15 @@ angular.module('myApp')
 	return {
 		templateUrl: 'partials/mainNavbar.html'
 	};
+});
+
+//_________________________Footer, just HTML Directive__________________________
+
+angular.module('myApp')
+.directive('myFooter', function(){
+	return {
+		templateUrl: 'partials/mainFooter.html'
+	};
 })
 
 

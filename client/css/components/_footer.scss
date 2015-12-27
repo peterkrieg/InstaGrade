@@ -1,0 +1,75 @@
+footer.my-footer{
+	font-size: 1rem;
+	padding-bottom: 10px;
+	// background: #1e1e1e;
+	@include grayGradient();
+	// height: 100px;
+	width: 100%;
+	// position: relative;
+	// font-family: $header-font;
+	// font-size: 20px;
+
+	div.footer-content{
+		padding-top: 15px;
+	}
+
+
+
+	div.footer-group{
+		margin: auto;
+		// background: red;
+		width: 60px;
+		// display: inline-block;
+	}
+
+	li{
+		font-size: 1.1em;
+		@include transition(.4s ease);
+		font-family: $header-font;
+		&:not(:last-of-type){
+			margin-bottom: 10px;
+		}
+		cursor: pointer;
+		color: #bbb;
+		&:hover{
+			color: white;
+		}
+	}
+
+	div.copyright-wrapper{
+		text-align: center;
+	}
+
+	p.copyright{
+		font-size: 1em;
+		font-family: $header-font;
+		// padding: 20px 0;
+		color: #bbb;
+		display: inline-block;
+		margin: 20px auto 10px;
+		position: relative;
+		// wanted to make copyright icon bigger
+		span{
+			font-size: 2em;
+			position: absolute;
+			left: -26px;
+			bottom: -10px;
+
+		}
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+} // end of footer

@@ -11,6 +11,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2680ff', end
 
 }
 
+// footer gradient
+@mixin grayGradient(){
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e1e1e+0,262626+64,333333+100 */
+background: #1e1e1e; /* Old browsers */
+background: -moz-linear-gradient(left,  #1e1e1e 0%, #262626 64%, #333333 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  #1e1e1e 0%,#262626 64%,#333333 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  #1e1e1e 0%,#262626 64%,#333333 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1e1e', endColorstr='#333333',GradientType=1 ); /* IE6-9 */
+}
+
+
+
+
 @mixin fadeInUp($duration){
 	@include animation(fadeInUp $duration ease);
 }
