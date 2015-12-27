@@ -1,11 +1,6 @@
 angular.module('myApp')
 .directive('statsGraph', function($interval){
 	return{
-		// scope: {
-		// 	selectblah: '='
-		// },
-
-
 		link: function(scope, elem, attrs){
 			$(function(){
 
@@ -21,59 +16,67 @@ angular.module('myApp')
 					}
 				});
 
-				scope.category= 'numLikesReceived';
-
 
 				// chart categories, attached to scope, so accessible in multiple places
-				// each category is type of stat, and each category has different 
+				// each category is type of stat, and each category has different
+				// numberFormat is how many decimal places (.0f is 0, .2f is 2, etc)
+
+
 				scope.categories = {
 					numFollowers: {
 						title: 'Number of Followers',
 						yAxis: 'Number of Followers',
-						tooltip: 'Followers'
+						tooltip: 'Followers',
+						numberFormat: '.0f'
 					},
 					numFollows: {
 						title: 'Number of Follows',
 						yAxis: 'Number of Follows',
-						tooltip: 'Follows'
+						tooltip: 'Follows',
+						numberFormat: '.0f'
 					},
-					numFollows: {
+					numMedia: {
 						title: 'Number of Media',
 						yAxis: 'Number of Media',
-						tooltip: 'Media'
+						tooltip: 'Media',
+						numberFormat: '.0f'
 					},
 					numLikesGiven: {
 						title: 'Number of Likes Given',
 						yAxis: 'Number of Likes',
-						tooltip: '# Likes Given'
+						tooltip: '# Likes Given',
+						numberFormat: '.0f'
 					},
 					numLikesReceived: {
 						title: 'Number of Likes Received',
 						yAxis: 'Number of Likes',
-						tooltip: '# Likes Received'
+						tooltip: '# Likes Received',
+						numberFormat: '.0f'
 					},
 					userRatio: {
 						title: 'User Ratio',
 						yAxis: 'User Ratio',
-						tooltip: 'User Ratio'
+						tooltip: 'User Ratio', 
+						numberFormat: '.2f'
 					},
 					adjustedAverageNumLikes: {
 						title: 'Adjusted Average Number of Likes',
 						yAxis: 'Adjusted Average # of Likes',
-						tooltip: 'AAL'
+						tooltip: 'AAL',
+						numberFormat: '.2f'
 					}
-
-
 				};
 
 
 
-
+				// function to create chart options
 				function createChartOptions(){
+					// variables for different titles/labels, based on which category of stats
+					var yAxis = scope.categories[scope.category].yAxis;
+					var numberFormat = scope.categories[scope.category].numberFormat;
+					var tooltip = scope.categories[scope.category].tooltip;
+
 					var chartOptions = {
-					// global: {
-					// 	useUTC: false
-					// },
 					chart: {
 						zoomType: 'x',
 						style: {
@@ -84,39 +87,48 @@ angular.module('myApp')
 						enabled: false
 					},
 					title: {
-						text: 'something for title!!'
+						// empty string, means no chart title
+						text: ''
 					},
 					subtitle: {
 						text: document.ontouchstart === undefined ?
-						'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+						'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in',
+						style: {
+							fontSize: '12px',
+							fontStyle: 'italic',
+						}
 					},
 					xAxis: {
 						type: 'datetime',
-						dateTimeLabelFormats: { 
-							month: '%e. %b',
-							year: '%b',
-							labels: {
-								style: {
-									fontSize: '15px'
-								}
+						labels: {
+							style: {
+								fontSize: '12px'
 							}
+						},
+
+						dateTimeLabelFormats: { 
+							month: '%b-- %e',
+							year: '%b',
 						}
 					},
 					yAxis: {
 						title: {
-							text: scope.categories[scope.category].yAxis
+							text: scope.categories[scope.category].yAxis,
+							style: {
+								fontSize: '15px'
+							}
 						},
 						labels: {
 							style: {
-								fontSize: '15px'
+								fontSize: '13px'
 							},
-							format: '{value:,.2f}'
+							format: '{value:,'+numberFormat+'}'
 						}
 					},
 					tooltip: {
 						// headerFormat: '<b>{series.name}</b><br>',
 						headerFormat: '<b>{point.x:%b %e,  %Y}</b><br>',
-						pointFormat: scope.categories[scope.category].tooltip+': {point.y:,.0f}',
+						pointFormat: scope.categories[scope.category].tooltip+': {point.y:,'+numberFormat+'}',
 					},
 					legend: {
 						enabled: false
@@ -164,13 +176,9 @@ angular.module('myApp')
 
 
 
-
-
-
-
-
-
-				// create chart at first
+				///////////////////////////////////////////////////
+				//  Labels for select drop down menu
+				///////////////////////////////////////////////////
 
 				scope.labels = [
 				{title: 'Number of Followers', ref: 'numFollowers'},
@@ -184,58 +192,28 @@ angular.module('myApp')
 				{title: 'Adjusted Average Number of Likes', ref: 'adjustedAverageNumLikes'},
 				];
 
+				// stats are stored in parent scope, accessible here though
+				// (the controller scope)
 				var stats = scope.stats;
-
-
 
 				scope.updateChart = function(category){
 					console.log(category);
-					console.log('inside directive!');
 					scope.category = category;
-
+					// updates current data array, only thing that highcharts uses
+					// portion copied from larger stats array
 					scope.currentData = stats.map(function(item, index, array){
 						return [ Date.parse(item[0]), 
 						item[1][scope.category]];
 					});
-
+					// creating new highchart
+					// function invocation, so that data can be changed correctly
 					$(elem).highcharts(createChartOptions());
-
-
-
-
-
-
-
-
-
 
 				}
 
+				// initial default state of graph is number 
+				scope.updateChart('numLikesGiven');
 
-
-
-
-
-				// function fired anytime graph needs to be updated
-				// scope.updateChart = function(param){
-				// 	console.log(scope.selectblah);
-				// 	console.log(scope.$parent.selectedItem);
-				// 	console.log('\n\ndirective scope is: \n',scope,'\n\n');
-				// 	console.log('param is', param);
-				// 	console.log('\n category is', scope.selectedItem+'\n\n');
-				// 	console.log(scope.currentData);
-				// 	var stats = scope.stats;
-				// 	scope.currentData = stats.map(function(item, index, array){
-				// 		return [ Date.parse(item[0]), 
-				// 		item[1][scope.category]];
-				// 	});
-				// 	console.log(scope.currentData);
-
-				// 	// draw chart
-				// 	$(elem).highcharts(createChartOptions());
-				// };
-
-				// scope.updateChart();
 
 
 

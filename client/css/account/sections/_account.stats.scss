@@ -1,4 +1,32 @@
+//entire wrapper, whole page
+div.stats{
+	text-align: center;
+
+	select{
+		margin: auto;
+		margin-top: 5px;
+		width: 250px;
+		&:focus{
+			border-color: $instaBlue;
+		}
+
+	}
+
+
+}
+
+
+
+
+
+
+
+
 div#stats-graph{
 	min-height: 500px;
-	background: #eee;
 }
+
+div.chart-container{
+	margin-top: 20px;
+}
+
