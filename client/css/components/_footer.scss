@@ -1,9 +1,11 @@
 footer.my-footer{
+	position: absolute;
+	bottom: 0px;
 	font-size: 1rem;
 	padding-bottom: 10px;
 	// background: #1e1e1e;
 	@include grayGradient();
-	// height: 100px;
+	height: $footerHeight;
 	width: 100%;
 	// position: relative;
 	// font-family: $header-font;
@@ -33,6 +35,11 @@ footer.my-footer{
 		color: #bbb;
 		&:hover{
 			color: white;
+		}
+
+		// all links in list elements
+		a{
+			color: inherit;
 		}
 	}
 

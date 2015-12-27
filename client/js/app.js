@@ -89,6 +89,15 @@ angular.module('myApp', ['ui.router'])
 	})
 
 
+	//_________________________Other pages__________________________
+
+	.state('privacy', {
+		url: '/privacy',
+		templateUrl: 'partials/privacy.html',
+		controller: 'basicCtrl'
+	})
+
+
 
 
 

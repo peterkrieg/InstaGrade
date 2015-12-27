@@ -1,7 +1,7 @@
 <div class="main-nav">
 		<a class="logo" ui-sref="home">MediaScore</a>
 
-		<div user-menu class="user-profile">
+		<div ng-show="user" user-menu class="user-profile">
 			<img class="user-profile" ng-src="{{user.profilePicture}}" ng-if="!loadingUser" alt="">
 			<li>{{user.name}} <i class="fa fa-caret-down"></i></li>
 			<div  class="user-menu">
@@ -22,4 +22,4 @@
 			</div>
 		</div>
 
-	</div><!-- results header -->
+	</div><!-- main nav header -->

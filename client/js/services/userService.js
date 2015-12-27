@@ -40,7 +40,14 @@ function userFunc($http, $q){
 		.then(function(response){
 			return response;
 		})
+	};
 
+	this.checkIfLoggedIn = function(){
+		return $http.get('/api/users/checkIfLoggedIn')
+		.then(function(response){
+			var user = response.data
+			return user;
+		})
 
 
 	}

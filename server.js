@@ -250,6 +250,13 @@ app.post('/api/users', usersCtrl.addUser);
 app.post('/api/reports', reportsCtrl.addReport);
 
 
+// check if user is logged in, for basic controllers (privacy, FAQ, etc, )
+// only need to know if should display user profile pic in navbar, or not
+
+app.get('/api/users/checkIfLoggedIn', usersCtrl.checkIfLoggedIn);
+
+
+
 //_________________________Getting User Profile page__________________________
 
 app.get('/api/users/account', usersCtrl.getUser);

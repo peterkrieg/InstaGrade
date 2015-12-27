@@ -18,6 +18,9 @@ $instaDarkBlue: #125688;
 $pink: #FC6079;
 $weakGray: #b0b0b0;
 
+// easier to define footer height in one place things depend on it (sticky footer)
+$footerHeight: 150px;
+
 
 
 
@@ -53,7 +56,7 @@ p, div, button, a, ul, li{
 	font-family: $text-font;
 }
 
-a:hover{
+a:hover, a:focus, a:active{
 	text-decoration: none;
 }
 
@@ -90,6 +93,21 @@ li{
 	font-style: italic;
 	font-family: $header-font;
 }
+
+
+// sticky footer, making sure it stays at bottom of page
+div.everything-wrapper{
+	min-height: 100%;
+	position: relative;
+	padding-bottom: $footerHeight;
+}
+
+
+
+
+
+
+
 
 //_________________________Partials of Different Pages__________________________
 

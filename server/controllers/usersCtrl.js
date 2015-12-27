@@ -1,5 +1,6 @@
 var User = require('../models/User');
 var Report = require('../models/Report');
+var _ = require('lodash');
 
 
 module.exports = {
@@ -148,6 +149,49 @@ toggleSpecificReport: function(req, res, next){
 	});
 
 },
+
+checkIfLoggedIn: function(req, res, next){
+	// I use a series of nested if statements, to make sure everything exists,
+	// otherwise server error.  not sure if better way to do this..
+	// if(req.session){
+	// 	if(req.session.passport){
+	// 		if(req.session.passport.user){
+	// 			if(req.session.passport.user.instagramId){
+	// 				var instagramId = req.session.passport.user.instagramId;
+	// 				User.findOne({instagramId: instagramId})
+	// 				.exec(function(err, user){
+	// 					if(err) console.log(err);
+	// 					res.send(user);
+	// 				});
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	// actually I can use lodash, seems a lot better
+
+	var instagramId = _.get(req, "session.passport.user.instagramId"); 
+	// lodash does work for me, returns undefined if doesn't exist, doesn't have error
+	console.log(instagramId);
+	if(instagramId){
+		User.findOne({instagramId: instagramId})
+		.exec(function(err, user){
+			if(err) console.log(err);
+			res.send(user);
+		});
+	}
+	// else, if user not logged in (not attached to req.session)
+	else{
+		res.send(null);
+	}
+
+
+} // end of check logged in function
+
+
+
+
+
 
 
 
