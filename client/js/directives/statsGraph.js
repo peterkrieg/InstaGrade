@@ -194,14 +194,13 @@ angular.module('myApp')
 
 				// stats are stored in parent scope, accessible here though
 				// (the controller scope)
-				var stats = scope.stats;
 
 				scope.updateChart = function(category){
 					console.log(category);
 					scope.category = category;
 					// updates current data array, only thing that highcharts uses
 					// portion copied from larger stats array
-					scope.currentData = stats.map(function(item, index, array){
+					scope.currentData = scope.stats.map(function(item, index, array){
 						return [ Date.parse(item[0]), 
 						item[1][scope.category]];
 					});
@@ -212,7 +211,19 @@ angular.module('myApp')
 				}
 
 				// initial default state of graph is number 
-				scope.updateChart('numLikesGiven');
+				// need to make sure stats are defined on scope first
+				// (when page reloaded, takes time for controller to produce stats, like 500ms)
+				// but directive doesn't have any .thens, needs stats immediately
+
+				var createFirstStatsChart = $interval(function(){
+					if(scope.stats){
+						scope.updateChart('numLikesGiven');
+						$interval.cancel(createFirstStatsChart);
+					}
+				}, 50)
+
+
+
 
 
 
