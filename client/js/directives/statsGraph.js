@@ -81,7 +81,8 @@ angular.module('myApp')
 						zoomType: 'x',
 						style: {
 							fontFamily: "'Playfair Display', serif"
-						}
+						},
+						backgroundColor: '#fafafa'
 					},
 					credits: {
 						enabled: false
@@ -96,6 +97,7 @@ angular.module('myApp')
 						style: {
 							fontSize: '12px',
 							fontStyle: 'italic',
+							color: '#b0b0b0'
 						}
 					},
 					xAxis: {
@@ -214,6 +216,7 @@ angular.module('myApp')
 				// need to make sure stats are defined on scope first
 				// (when page reloaded, takes time for controller to produce stats, like 500ms)
 				// but directive doesn't have any .thens, needs stats immediately
+				// checks every 50ms to see if scope.stats is ready, if it is, loads graph, cancels interval
 
 				var createFirstStatsChart = $interval(function(){
 					if(scope.stats){

@@ -11,7 +11,8 @@ angular.module('myApp')
 						zoomType: 'xy',
 						style: {
 							fontFamily: "'Playfair Display', serif"
-						}
+						},
+						backgroundColor: '#fafafa'
 					},
 					credits: {
 						enabled: false

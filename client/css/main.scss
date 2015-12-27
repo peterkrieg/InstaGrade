@@ -16,6 +16,7 @@ $text-font: 'Playfair Display', serif;
 $instaBlue: #458eff;
 $instaDarkBlue: #125688;
 $pink: #FC6079;
+$weakGray: #b0b0b0;
 
 
 
@@ -80,10 +81,15 @@ li{
 
 // Anything that involves ng-click, or ui-sref, make cursor
 
-[ng-click]:hover, [ui-sref]{
+[ng-click]:hover, [ui-sref]:hover{
 	cursor: pointer;
 }
 
+.weak-gray{
+	color: #b0b0b0;
+	font-style: italic;
+	font-family: $header-font;
+}
 
 //_________________________Partials of Different Pages__________________________
 

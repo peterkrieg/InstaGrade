@@ -12,7 +12,8 @@ angular.module('myApp')
 						type: 'column',
 						style: {
 							fontFamily: "'Playfair Display', serif"
-						}
+						},
+						backgroundColor: '#fafafa'
 					},
 					credits: {
 						enabled: false
