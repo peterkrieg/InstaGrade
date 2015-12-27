@@ -25,35 +25,45 @@ angular.module('myApp')
 		},
 		link: function(scope, elem, attrs){
 			$(function(){
+				scope.setUpTabs = function(){
+					// need to use $location.path() instead of
+					// window.location.href, which doesn't update quickly enough
+					// var url = window.location.href.split('/results')[1];
 
-				// need to use $location.path() instead of
-				// window.location.href, which doesn't update quickly enough
+					// tabs is passed into directive's scope as a string, so need
+					// to use JSON.parse to make raw JS
+					var tabs = JSON.parse(scope.tabs);
 
-				// var url = window.location.href.split('/results')[1];
+					var url = $location.path();
+					// console.log(url);
 
-				// tabs is passed into directive's scope as a string, so need
-				// to use JSON.parse to make raw JS
-				var tabs = JSON.parse(scope.tabs);
-
-				var url = $location.path();
-				// console.log(url);
-
-				// $tabElems is array of raw HTML, need to make jquery
-				// wrapper object later to use addClass method
-				var $tabElems = $(elem).find('li');
-				$tabElems.removeClass('active');
-				// looping through tabs, checking which one active
-				for(var i=0; i<tabs.length; i++){
-					var tab = tabs[i];
-					if(url.indexOf(tab)>-1){
-						$($tabElems[i]).addClass('active');
+					// $tabElems is array of raw HTML, need to make jquery
+					// wrapper object later to use addClass method
+					var $tabElems = $(elem).find('li');
+					$tabElems.removeClass('active');
+					// looping through tabs, checking which one active
+					for(var i=0; i<tabs.length; i++){
+						var tab = tabs[i];
+						if(url.indexOf(tab)>-1){
+							$($tabElems[i]).addClass('active');
+						}
 					}
-				}
-			});
+				}; // set up tabs function
 
-		}
-	}
-})
+				// initially set up tabs
+				// scope.setUpTabs();
+				scope.$on('$stateChangeSuccess', function(){
+					console.log($location.path());
+					console.log('state has changed!!!');
+					scope.setUpTabs();
+				})
+
+
+
+			}); // jquery ready
+		}// link
+	}; // return
+}); // whole directive
 
 
 
@@ -156,11 +166,11 @@ angular.module('myApp')
 				// 		width: '270px'
 				// 	}, 150);
 				// })
-				
 
 
 
-			});
+
+		});
 		}
 	}
 })
