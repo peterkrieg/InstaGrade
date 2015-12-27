@@ -25,6 +25,7 @@ angular.module('myApp')
 		},
 		link: function(scope, elem, attrs){
 			$(function(){
+
 				// need to use $location.path() instead of
 				// window.location.href, which doesn't update quickly enough
 

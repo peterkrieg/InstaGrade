@@ -79,6 +79,14 @@ angular.module('myApp', ['ui.router'])
 		url: '/stats',
 		templateUrl: '/partials/account.stats.html'
 	})
+	.state('account.settings', {
+		url: '/settings',
+		templateUrl: '/partials/account.settings.html'
+	})
+	.state('account.relationships', {
+		url: '/relationships',
+		templateUrl: '/partials/account.relationships.html'
+	})
 
 
 
