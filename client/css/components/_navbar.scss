@@ -6,6 +6,7 @@ $navbarHeight: 50px;
 
 
 div.main-nav{
+	@include transition(.6s ease);
 	// navbar spacer, to fix issue of position fixed removing from document flow
 	&+div.navbar-spacer{
 		opacity: 0;
@@ -15,9 +16,18 @@ div.main-nav{
 		padding-top: $navbarHeight+20;
 	}
 
+	// if navbar up, don't show (don't show when scrolling down)
+	&.nav-up{
+		opacity: 0;
+		@include transition(.3s ease);
+		top: -$navbarHeight;
+	}
+
 
 	font-size: 2rem;
 	position: fixed;
+	top: 0px;
+	opacity: 1;
 	width: 100%;
 	z-index: 100000;
 	@include blueGradient();
