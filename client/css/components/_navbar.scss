@@ -1,10 +1,27 @@
 ///////////////////////////////////////////////////
 //  Blue navbar, top of page
 ///////////////////////////////////////////////////
+
+$navbarHeight: 50px;
+
+
 div.main-nav{
+	// navbar spacer, to fix issue of position fixed removing from document flow
+	&+div.navbar-spacer{
+		opacity: 0;
+		font-size: 1px;
+		position: static;
+		// show rest of content 20 px below navbar
+		padding-top: $navbarHeight+20;
+	}
+
+
 	font-size: 2rem;
+	position: fixed;
+	width: 100%;
+	z-index: 100000;
 	@include blueGradient();
-	height: 50px;
+	height: $navbarHeight;
 	// padding-top: 10px;
 	border-bottom: 2px solid black;
 	margin-bottom: 30px;
