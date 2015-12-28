@@ -1,0 +1,33 @@
+div.privacy{
+	text-align: center;
+	font-size: 1rem;
+	h1{
+		font-size: 3em;
+	}
+
+	ol.privacy-list{
+		font-size: .95em;
+		text-align: left;
+		margin-top: 20px;
+		li{
+			line-height: 1.6em;
+			padding-left: 40px;
+			position: relative;
+			// text-indent: 25px;
+			span{
+				position: absolute;
+				font-size: 1.6em;
+				left: 0px;
+				top: -3px;
+				color: $weakGray;
+				// margin-right: 25px;
+			}
+			&:not(:last-of-type){
+				margin-bottom: 15px;
+			}
+		}
+	}
+
+
+
+}

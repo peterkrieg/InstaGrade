@@ -19,7 +19,7 @@ $pink: #FC6079;
 $weakGray: #b0b0b0;
 
 // easier to define footer height in one place things depend on it (sticky footer)
-$footerHeight: 150px;
+$footerHeight: 120px;
 
 
 
@@ -56,8 +56,13 @@ p, div, button, a, ul, li{
 	font-family: $text-font;
 }
 
+a{
+	color: inherit;
+}
+
 a:hover, a:focus, a:active{
 	text-decoration: none;
+	color: inherit;
 }
 
 li{
@@ -117,6 +122,9 @@ div.everything-wrapper{
 // components, reusable pieces, like mixins
 @import "components/navbar";
 @import "components/footer";
+
+// Simple pages, all under "basic controller"
+@import "basic/privacy";
 
 
 // sections of report

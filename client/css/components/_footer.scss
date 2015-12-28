@@ -29,7 +29,7 @@ footer.my-footer{
 		@include transition(.4s ease);
 		font-family: $header-font;
 		&:not(:last-of-type){
-			margin-bottom: 10px;
+			margin-bottom: 5px;
 		}
 		cursor: pointer;
 		color: #bbb;
@@ -39,6 +39,7 @@ footer.my-footer{
 
 		// all links in list elements
 		a{
+			font-family: $header-font;
 			color: inherit;
 		}
 	}
@@ -47,13 +48,15 @@ footer.my-footer{
 		text-align: center;
 	}
 
-	p.copyright{
+	p{
 		font-size: 1em;
 		font-family: $header-font;
-		// padding: 20px 0;
 		color: #bbb;
+	}
+
+	p.copyright{
 		display: inline-block;
-		margin: 20px auto 10px;
+		margin: 5px auto 5px;
 		position: relative;
 		// wanted to make copyright icon bigger
 		span{
@@ -61,10 +64,18 @@ footer.my-footer{
 			position: absolute;
 			left: -26px;
 			bottom: -10px;
-
 		}
+	}
 
-
+	p.created-by{
+		a{
+			text-decoration: underline;
+			font-family: $header-font;
+			@include transition(.9s ease);
+			&:hover{
+				color: $pink;
+			}
+		}
 	}
 
 

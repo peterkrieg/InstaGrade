@@ -125,19 +125,21 @@ angular.module('myApp', ['ui.router'])
 ///////////////////////////////////////////////////
 //  Need to turn on once deployed--related to google analytics
 ///////////////////////////////////////////////////
-.run(function($rootScope, $location, $window){
-	$rootScope
-	.$on('$stateChangeSuccess',
-		function(event){
-			if (!$window.ga){
-				// alert('no ga!!');
-				return;
-			}
-			
-			$window.ga('send', 'pageview', { page: $location.path() });
-		});
 
-})
+
+// .run(function($rootScope, $location, $window){
+// 	$rootScope
+// 	.$on('$stateChangeSuccess',
+// 		function(event){
+// 			if (!$window.ga){
+// 				// alert('no ga!!');
+// 				return;
+// 			}
+			
+// 			$window.ga('send', 'pageview', { page: $location.path() });
+// 		});
+
+// });
 
 
 
