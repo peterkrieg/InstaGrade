@@ -287,7 +287,7 @@ app.get('/api/reports/stats', reportsCtrl.getStats);
 
 app.get('/api/reports/gradeData', reportsCtrl.getGradeData);
 
-app.put('api/reports/updateScores', reportsCtrl.updateScores);
+app.put('/api/reports/updateScores', reportsCtrl.updateScores);
 
 
 
