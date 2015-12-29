@@ -22,10 +22,10 @@
 			<div class="grade-visible">
 				<p>You have a total of {{report.grade.numLikesReceived | number}} likes received!</p>
 				<div class="grade-bar">
-					<div class="good grade-score" style="width: 75%; background: #16A085">
+					<div class="good grade-score" style="width: {{scores.numLikesReceived}}%; background: #16A085">
 					</div>
 				</div>
-				<p>Your score is 75%!</p>
+				<p>Your score is {{scores.numLikesReceived}}%!</p>
 				
 			</div>
 			<div class="grade-explanation">

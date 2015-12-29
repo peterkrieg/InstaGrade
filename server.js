@@ -280,6 +280,12 @@ app.get('/api/reports/stats', reportsCtrl.getStats);
 
 
 
+// just to see data, nothing permanent
+
+app.get('/api/reports/gradeData', reportsCtrl.getGradeData);
+
+
+
 
 
 

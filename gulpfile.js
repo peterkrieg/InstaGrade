@@ -120,7 +120,7 @@ gulp.task('sass', function () {
 
 
   	])
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({style: 'compressed'}).on('error', sass.logError))
     .pipe(concat('main.css'))
 
     .pipe(gulp.dest('./client/css'));

@@ -317,7 +317,7 @@ function compareLikes(){
 	report.relationships.likesComparison = likesComparison;
 	report.relationships.likesComparisonArr = likesComparisonArr
 
-return report;
+	return report;
 }
 
 
@@ -443,6 +443,133 @@ function getGrade(){
 
 
 
+	///////////////////////////////////////////////////
+	//  Getting scores, now that raw grades calculated
+	///////////////////////////////////////////////////
+
+	// get scores, to be put into grade as object 
+	// (scores from 0 to 100, for each category, and overall score)
+
+	var scores = {};
+
+	// #1:  number of likes received score
+	if(numLikesReceived<=625){
+		scores.numLikesReceived = 2*Math.pow(numLikesReceived, .5);
+	}
+	// (625, 50)
+	if(numLikesReceived>625 && numLikesReceived<=2500){
+		scores.numLikesReceived = 20+1.2*Math.pow(numLikesReceived, .5);
+	}
+	// (2500,80)
+	if(numLikesReceived>2500 && numLikesReceived<=9000){
+		scores.numLikesReceived = 57.15 + 1*Math.pow(numLikesReceived, .4);
+	}
+	// (9000, ~95.3177891)
+	// linear finish, until I think of better way to generate score
+	if(numLikesReceived>9000 && numLikesReceived <=50000){
+		scores.numLikesReceived = 95.317777+(numLikesReceived-9000)*.0001;
+	}
+	// if more than 50,000 likes, score is just 100..
+	if(numLikesReceived>50000){
+		scores.numLikesReceived = 100;
+	}
+
+
+	//#2: likes ratio score
+	if(likesRatio<=.5){
+		scores.likesRatio = 100*(Math.pow(likesRatio, .7));
+	} // (.5, ~61.55722067)
+	if(likesRatio>.5 && likesRatio <=3){
+		scores.likesRatio = 21+50*(Math.pow(likesRatio, .3));
+	} // (3, 90.5194585)
+	if(likesRatio>3 && likesRatio<=18){
+		scores.likesRatio = 90.5194585+.6*(likesRatio-3);
+	}// (18, ~99.5);
+	if(likesRatio>18){
+		scores.likesRatio = 100;
+	}
+
+	// #3 average number of likes score
+	if(averageNumLikes<=9){
+		scores.averageNumLikes = 20*(Math.pow(averageNumLikes, .5));
+	}
+	// (9, 60)
+	if(averageNumLikes>9 && averageNumLikes<=30){
+		scores.averageNumLikes = 16.85+20*Math.pow(averageNumLikes, .35);
+	}// (30, 82.62918116)
+	if(averageNumLikes>30&&averageNumLikes<=80){
+		scores.averageNumLikes = 35.85+20*Math.pow(averageNumLikes, .25);
+	}// (80, 95.66395124)
+	if(averageNumLikes>80 &&averageNumLikes<=270){
+		scores.averageNumLikes = 95.66395124+(averageNumLikes-80)*.02;
+	}
+	if(averageNumLikes>270){
+		scores.averageNumLikes = 100;
+	}
+
+	// #4 adjusted average number likes, not possible to be more than 100, since per 100 followers
+	if(adjustedAverageNumLikes <=4){
+		scores.adjustedAverageNumLikes = 30*Math.pow(adjustedAverageNumLikes, .5);
+	} // 4, 60
+
+
+	
+	if(adjustedAverageNumLikes>4 && adjustedAverageNumLikes <=15){
+		scores.adjustedAverageNumLikes = 14.6+30*Math.pow(adjustedAverageNumLikes, .3);
+	} // (15, 82.20030143)
+	if(adjustedAverageNumLikes>15 && adjustedAverageNumLikes <=100){
+		scores.adjustedAverageNumLikes = 37.2+30*Math.pow(adjustedAverageNumLikes, .15);
+	}// (60, 97.05786945)
+	if(adjustedAverageNumLikes>100 && adjustedAverageNumLikes<=360){
+		scores.adjustedAverageNumLikes = 97.05786945+(adjustedAverageNumLikes-100)*.01;
+	}
+	if(adjustedAverageNumLikes>360){
+		scores.adjustedAverageNumLikes = 100;
+	}
+
+	// #5 user ratio 
+	if(userRatio<=.4){
+		scores.userRatio = 90*Math.pow(userRatio, .5);
+	} // (.4, 56.92099788)
+	if(userRatio>.4 && userRatio <=1.8){
+		scores.userRatio = 75*Math.pow(userRatio, .3);
+	} // (1.8, 89.462908875)
+	if(userRatio>1.8 && userRatio<=7){
+		scores.userRatio = 89.462908875 +(userRatio-1.8)*2;
+	}
+	if(userRatio>7){
+		scores.userRatio = 100;
+	}
+
+	// #6  self likes ratio
+	if(selfLikesRatio < 1){
+		scores.selfLikesRatio = 50 -400*Math.pow(selfLikesRatio-.5, 3);
+	}
+	if(selfLikesRatio>=1){
+		scores.selfLikesRatio = 0;
+	}
+
+	// calculating overall score, weighted average
+	// of other scores
+
+	// weights are shown as number multiplied below, adjusted average most important
+
+
+
+	scores.overallScore = 
+	( scores.likesReceived*10 + 
+		scores.likesRatio*15 + 
+		scores.averageNumLikes*15 + 
+		scores.adjustedAverageNumLikes*40 + 
+		scores.userRatio*25 + 
+		scores.selfLikesRatio*10)/115;
+
+	console.log('overall score is: \n\n', scores.overallScore);
+
+	// attach scores to report
+	report.grade.scores = scores;
+
+	//_________________Done with scores__________________________
 
 
 

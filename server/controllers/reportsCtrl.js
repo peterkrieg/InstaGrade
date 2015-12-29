@@ -148,6 +148,52 @@ getStats: function(req, res, next){
 	}, // end of get stats function
 
 
+	getGradeData: function(req, res, next){
+		Report.find({})
+		.exec(function(err, reports){
+			if(err) res.send(err);
+
+			else{
+				// console.log(reports);
+				console.log('get grade data');
+				var grades = {};
+
+				for(var i=0; i<reports.length; i++){
+					var reportGrade = reports[i].grade;
+
+					for(var prop in reportGrade){
+						if(!grades[prop]){
+							grades[prop]=[];
+						}
+						grades[prop].push(reportGrade[prop]);
+					}
+				}
+
+				// sort the grades object arrays
+
+				for(var prop in grades){
+					var arr = grades[prop];
+					arr.sort(function(a,b){return a-b});
+
+
+				}
+
+
+
+
+
+				res.send({grades: grades});
+				// res.send(reports.length);
+			}
+
+
+
+		})
+
+
+	}, // end of get grade data
+
+
 
 
 

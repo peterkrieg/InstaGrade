@@ -8,12 +8,6 @@ angular.module('myApp')
 	$scope.loadingEverythingElse = true;
 
 
-
-	
-
-
-
-
 	reportService.getToken()
 	.then(function(response){
 		console.log('results controller getting response!');
@@ -319,6 +313,10 @@ else if(selfLikesRatio<.5){
 	$scope.likesRatioMessage = "Okay, you've liked "
 	+report.grade.numSelfLikes+" ("+selfLikesPercentage+"%) of your media.  Not too high, but try to be a little ";
 }
+
+$scope.scores = report.grade.scores;
+console.log('scores is \n\n')
+console.log($scope.scores);
 
 
 
