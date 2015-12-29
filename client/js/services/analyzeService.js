@@ -314,6 +314,36 @@ function compareLikes(){
 	likesComparisonArr.sort(function(a,b){return (a.likesGiven+a.likesReceived)-(b.likesGiven+b.likesReceived)})
 
 
+
+	// find out who is "best friend" (person who has liked your stuff the most)
+	// isn't necessarily the first person in array, since sorted by total number of
+	// likes received and given
+
+	// mostLikesReceived is person who has liked your stuff the most, and vice versa
+	var mostLikesReceived = likesComparisonArr[0];
+	var mostLikesGiven = likesComparisonArr[0];
+
+	for(var i=0; i<likesComparisonArr.length; i++){
+		var friend = likesComparisonArr[i];
+		if(friend.likesReceived>=mostLikesReceived.likesReceived){
+			mostLikesReceived = friend;
+		}
+		if(friend.likesGiven>=mostLikesGiven.likesGiven){
+			mostLikesGiven = friend;
+		}
+	} // for loop
+
+	mostLikesReceived.mostLikesReceived = true;
+	mostLikesGiven.mostLikesGiven = true;
+
+
+
+
+
+
+
+
+
 	report.relationships.likesComparison = likesComparison;
 	report.relationships.likesComparisonArr = likesComparisonArr
 
