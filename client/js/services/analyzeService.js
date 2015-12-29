@@ -508,24 +508,31 @@ function getGrade(){
 	}
 
 	// #4 adjusted average number likes, not possible to be more than 100, since per 100 followers
-	if(adjustedAverageNumLikes <=4){
+	if(adjustedAverageNumLikes <=8){
 		scores.adjustedAverageNumLikes = 30*Math.pow(adjustedAverageNumLikes, .5);
-	} // 4, 60
-
-
-	
-	if(adjustedAverageNumLikes>4 && adjustedAverageNumLikes <=15){
-		scores.adjustedAverageNumLikes = 14.6+30*Math.pow(adjustedAverageNumLikes, .3);
-	} // (15, 82.20030143)
-	if(adjustedAverageNumLikes>15 && adjustedAverageNumLikes <=100){
-		scores.adjustedAverageNumLikes = 37.2+30*Math.pow(adjustedAverageNumLikes, .15);
-	}// (60, 97.05786945)
-	if(adjustedAverageNumLikes>100 && adjustedAverageNumLikes<=360){
-		scores.adjustedAverageNumLikes = 97.05786945+(adjustedAverageNumLikes-100)*.01;
-	}
-	if(adjustedAverageNumLikes>360){
+	} // 8, 84.85281375
+	if(adjustedAverageNumLikes>8 && adjustedAverageNumLikes<=15){
+		scores.adjustedAverageNumLikes = 28.86+30*Math.pow(adjustedAverageNumLikes, .3);
+	}// (15, 96.46030143)
+	if(adjustedAverageNumLikes>15 && adjustedAverageNumLikes<=24){
+		scores.adjustedAverageNumLikes = 51.45+30*Math.pow(adjustedAverageNumLikes, .15);
+	} // (24, 99.77289459)
+	if(adjustedAverageNumLikes>24){
 		scores.adjustedAverageNumLikes = 100;
 	}
+
+	// if(adjustedAverageNumLikes>4 && adjustedAverageNumLikes <=15){
+	// 	scores.adjustedAverageNumLikes = 14.6+30*Math.pow(adjustedAverageNumLikes, .3);
+	// } // (15, 82.20030143)
+	// if(adjustedAverageNumLikes>15 && adjustedAverageNumLikes <=100){
+	// 	scores.adjustedAverageNumLikes = 37.2+30*Math.pow(adjustedAverageNumLikes, .15);
+	// }// (60, 97.05786945)
+	// if(adjustedAverageNumLikes>100 && adjustedAverageNumLikes<=360){
+	// 	scores.adjustedAverageNumLikes = 97.05786945+(adjustedAverageNumLikes-100)*.01;
+	// }
+	// if(adjustedAverageNumLikes>360){
+	// 	scores.adjustedAverageNumLikes = 100;
+	// }
 
 	// #5 user ratio 
 	if(userRatio<=.4){
@@ -557,7 +564,7 @@ function getGrade(){
 
 
 	scores.overallScore = 
-	( scores.likesReceived*10 + 
+	( scores.numLikesReceived*10 + 
 		scores.likesRatio*15 + 
 		scores.averageNumLikes*15 + 
 		scores.adjustedAverageNumLikes*40 + 

@@ -280,9 +280,14 @@ app.get('/api/reports/stats', reportsCtrl.getStats);
 
 
 
-// just to see data, nothing permanent
+///////////////////////////////////////////////////
+//  Some maintenance functions, just to do work on certain parts of data
+//  Not to be ever used by users
+///////////////////////////////////////////////////
 
 app.get('/api/reports/gradeData', reportsCtrl.getGradeData);
+
+app.put('api/reports/updateScores', reportsCtrl.updateScores);
 
 
 

@@ -39,12 +39,6 @@ div.grade{
 			height: 38px;
 		}
 		@include border-left-radius(5px);
-		&.good{
-			background: green;
-		}
-		&.bad{
-			background: red;
-		}
 	}
 
 	// plus icon to show explanation

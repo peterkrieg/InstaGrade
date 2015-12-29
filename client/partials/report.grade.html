@@ -16,22 +16,18 @@
 		<br>
 
 
-
+		<!--_________Num Likes Received__________-->
 		<div grade-directive class="wow grade-item">
 			<span class="plus show-explanation">+</span>
 			<div class="grade-visible">
 				<p>You have a total of {{report.grade.numLikesReceived | number}} likes received!</p>
-				<div class="grade-bar">
-					<div class="good grade-score" style="width: {{scores.numLikesReceived}}%; background: #16A085">
+				<div  class="grade-bar">
+					<div score-bar  data-category="numLikesReceived"  class="grade-score"  >
 					</div>
 				</div>
-				<p>Your score is {{scores.numLikesReceived}}%!</p>
-				
+				<p>Your score is {{scores.numLikesReceived | number:0}}%!</p>
 			</div>
 			<div class="grade-explanation">
-
-
-
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
 						<p><em>This grade component is very simple.  You have a total of {{report.grade.numLikesReceived | number}} likes received on all of your media.  Your score was calculated based on your performance compared to other users.</em></p>
@@ -40,16 +36,17 @@
 			</div>
 		</div>
 
+		<!--________Likes Ratio__________-->
 		<div grade-directive class="wow grade-item">
 			<span class="plus show-explanation">+</span>
 			<div class="grade-visible">
 				<p>You have a total of {{report.grade.numLikesGiven | number}} likes given!</p>
 				<p>Your ratio of likes received to likes given is {{report.grade.likesRatio | number:2}}!</p>
 				<div class="grade-bar">
-					<div class="good grade-score wow" style="width: 55%; background: #F9BF3B;">
+					<div score-bar  data-category="likesRatio" class="grade-score wow" >
 					</div>
 				</div>
-				<p>Your score is 55%!</p>
+				<p>Your score is {{scores.likesRatio | number:0}}!</p>
 				
 			</div>
 			<div class="grade-explanation">
@@ -72,15 +69,16 @@
 			</div>
 		</div>
 
+		<!--________Average Number Likes__________-->
 		<div grade-directive class="wow grade-item">
 			<span class="plus show-explanation">+</span>
 			<div class="grade-visible">
 				<p>Your Average number of likes per media is: {{report.grade.averageNumLikes | number: 2 }}</p>
 				<div class="grade-bar">
-					<div class="good grade-score wow" style="width: 35%; background: #F64747;">
+					<div score-bar  data-category="averageNumLikes" class="grade-score wow" >
 					</div>
 				</div>
-				<p>Your score is 35%!</p>
+				<p>Your score is {{scores.averageNumLikes | number:0}}%!</p>
 				
 			</div>
 			<div class="grade-explanation">
@@ -109,10 +107,10 @@
 			<div class="grade-visible">
 				<p>However, your <em>adjusted likes average</em> is {{report.grade.adjustedAverageNumLikes | number: 2}}</p>
 				<div class="grade-bar">
-					<div class="good grade-score wow" style="width: 95%; background: #2ECC71;">
+					<div score-bar  data-category="adjustedAverageNumLikes" class="grade-score wow" >
 					</div>
 				</div>
-				<p>Your score is 95%!</p>
+				<p>Your score is {{scores.adjustedAverageNumLikes | number:0}}%!</p>
 				
 			</div>
 			<div class="grade-explanation">
@@ -141,10 +139,10 @@
 			<div class="grade-visible">
 				<p>Your user ratio is {{report.grade.userRatio | number: 2}}</p>
 				<div class="grade-bar">
-					<div class="good grade-score wow" style="width: 65%; background: #4DAF7C;">
+					<div score-bar  data-category="userRatio"class="grade-score wow" >
 					</div>
 				</div>
-				<p>Your score is 65%!</p>
+				<p>Your score is {{scores.userRatio | number:0}}%!</p>
 				
 			</div>
 			<div class="grade-explanation">
@@ -173,10 +171,10 @@
 			<div class="grade-visible">
 				<p>{{likesRatioMessage}}</p>
 				<div class="grade-bar">
-					<div class="good grade-score wow" style="width: 85%; background: #00B16A;">
+					<div score-bar  data-category="selfLikesRatio" class="grade-score wow" >
 					</div>
 				</div>
-				<p>Your score is 85%!</p>
+				<p>Your score is {{scores.selfLikesRatio | number:0}}%!</p>
 				
 			</div>
 			<div class="grade-explanation">
@@ -204,10 +202,10 @@
 			<h3>Overall Score</h3>	
 
 			<div class="grade-bar final-grade">
-				<div class="good grade-score wow final-grade" style="width: 85%; background: #00B16A;">
+				<div score-bar  data-category="overallScore" class="grade-score wow final-grade" >
 				</div>
 			</div>
-			<p>Your score is 82%!</p>	
+			<p>Your score is {{scores.overallScore | number:0}}%!</p>	
 		</div>
 
 		
