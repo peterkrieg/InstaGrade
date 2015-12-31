@@ -34,6 +34,12 @@ div.relationships{
 		height: 170px;
 	}
 
+	// any name on screen, above picture
+	li.name{
+		font-size: .5em;
+		margin-bottom: 20px;
+	}
+
 
 
 	// effect for unfollowing/following someone, on hover
@@ -75,7 +81,47 @@ div.relationships{
 	// bigger height than before, since 
 	div.user{
 		height: 200px;
+		div.name-wrapper{
+			margin-bottom: 20px;
+		}
+
+
+
+
+		li.name{
+			margin-bottom: 0;
+			display: inline-block;
+			// background: lightblue;
+			position: relative;
+			i.fa-heart{
+				cursor: pointer;
+				padding: 5px;
+				// background: yellow;
+				opacity: 1;
+				@include transition(.5s ease);
+				position: absolute;
+				right: -30px;
+				top: -5px;
+				color: darkred;
+				&.invisible{
+					opacity: 0;
+				}
+			}
+		}
+	} // div.user
+
+
+	//_________________________Modal part, of likes comparison__________________________
+	div.modal{
+		img.user{
+			border-radius: 50%;
+			border: 2px solid #2e2e2e;
+		}
 	}
+
+
+
+
 
 	div.bar-chart-container{
 		margin: auto;
@@ -154,3 +200,21 @@ div.relationships{
 
 
 } // end of relationships 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

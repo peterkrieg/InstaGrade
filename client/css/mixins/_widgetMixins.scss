@@ -80,3 +80,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1e1e', end
 	@include animation(slideDown .7s ease);
 }
 
+
+@include keyframes(pulse) {
+	0% { @include transform(scale(1)); }
+	50% { @include transform(scale(1.2)); }
+	1000% { @include transform(scale(1)); }
+}
+
+.pulse{
+	@include animation(pulse 3s linear);
+	@include animation-iteration-count(infinite);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

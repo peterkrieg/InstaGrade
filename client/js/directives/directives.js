@@ -241,7 +241,40 @@ angular.module('myApp')
 })
 
 
+//_______________Heart behavior--best friend of likes comparison__________
+angular.module('myApp')
+.directive('heartBehavior', function($interval, $timeout){
+	return {
+		link: function(scope, elem, attrs){
+			$(function(){
+				var $heart = $(elem);
+				// console.log(elem.css('visibility'));
 
+
+				var checkHeart = $interval(function(){
+					if($heart.css('visibility')==='visible'){
+						$heart.addClass('pulse');
+						$timeout(function(){
+							$heart.removeClass('invisible');
+							$interval.cancel(checkHeart);
+						}, 1000); 
+
+					}
+
+				}, 200);
+
+				$heart.click(function(){
+					$('#myModal').modal('toggle');
+					$heart.removeClass('pulse');
+				});
+
+
+
+				   
+			}); // jquery ready
+		} // link
+	}; // return
+})
 
 
 

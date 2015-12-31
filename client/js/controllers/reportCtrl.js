@@ -234,14 +234,22 @@ function finishReportView(report){
 
 
 
-	// console.log(report);
-	// $scope.report = report;
+	//_________________________Relationships part__________________________
 
 	$scope.clone = {
 		uniqueFollows: $scope.report.relationships.uniqueFollows.slice(0),
 		uniqueFollowers: $scope.report.relationships.uniqueFollowers.slice(0),
 		likesComparisonArr: $scope.report.relationships.likesComparisonArr.slice(0)
 	};
+
+	var likesComparisonArr = $scope.report.relationships.likesComparisonArr;
+	for(var i=0; i<likesComparisonArr.length; i++){
+		var friend = likesComparisonArr[i];
+		if(friend.mostLikesReceived){
+			$scope.mostLikesReceived = friend;
+			break;
+		}
+	}
 
 
 
