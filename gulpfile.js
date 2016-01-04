@@ -96,7 +96,7 @@ gulp.task('javascript', function() {
 	.pipe(ngAnnotate())
 	.pipe(concat('all.js'))
 	// .pipe(uglify())
-	.pipe(gulp.dest('./client/js/scripts'))
+	.pipe(gulp.dest('./client/scripts'))
 }); // end of javascript gulp task
 
 
