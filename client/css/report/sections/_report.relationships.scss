@@ -149,8 +149,7 @@ div.relationships{
 				font-size: 2em;
 				font-family: 'Clicker Script', cursive;
 			}
-			h6{
-				// opacity: 0;
+			h6.match-subtitle{
 				position: relative;
 				@include animation-delay(1s);
 				@include fadeInSlide(.7s, -150px, ease, 0s);
@@ -211,19 +210,41 @@ div.relationships{
 			min-height: 200px;
 		}
 
+		p.explanation{
+			margin: auto;
+			width: 90%;
+			font-family: $header-font;
+			font-size: .6em;
+			margin-bottom: 20px;
+		}
+
 		div.button{
+			padding-left: 30px;
 			border: 1px solid black;
-			// padding: 10px;
-			width: 150px;
+			width: 120px;
 			height: 40px;
 			border-radius: 5px;
-			background: $instaBlue;
+			background: #3B5998;
 			color: white;
 			margin: auto;
 			margin-top: 30px;
 			a{
-				font-size: .5em;
+				display: inline-block;
+				height: 30px;
+				// background: gold;
+				border-left: 2px solid rgba(0,0,0,.7);
+				padding-left: 20px;
+				padding-top: 7px;
+				position: relative;
+				bottom: 5px;
+				font-size: .6em;
 				font-family: $header-font;
+				i{
+					font-size: 1.3em;
+					position: absolute;
+					left: -30px;
+					bottom: 2px;
+				}
 			}
 		}
 
