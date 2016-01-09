@@ -139,7 +139,7 @@ angular.module('myApp', ['ui.router'])
 // 			$window.ga('send', 'pageview', { page: $location.path() });
 // 		});
 
-// });
+// })
 
 
 

@@ -146,13 +146,14 @@
 <!-- Modal for best friend, when heart clicked -->
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal instagram-crush-modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content col-md-10">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">It's a Match!</h4>
-        <h6>Congrats, {{user.name}}.  Your Instagram crush is {{mostLikesReceived.name}}!</h6>
+        <h4 class="match-title" id="myModalLabel">It's a Match!</h4>
+        <h6>You and {{mostLikesReceived.name}} have liked each other. </h6>
+        <!-- <h6>Congrats, {{user.name}}.  Your Instagram crush is {{mostLikesReceived.name}}!</h6> -->
       </div>
       <div class="modal-body">
         <div class="row">

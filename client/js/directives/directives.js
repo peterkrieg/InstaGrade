@@ -247,7 +247,9 @@ angular.module('myApp')
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
+				var $modal = $('div.instagram-crush-modal');
 				var $heart = $(elem);
+				var $navbar = $('div.main-nav');
 				// console.log(elem.css('visibility'));
 
 
@@ -257,14 +259,25 @@ angular.module('myApp')
 						$timeout(function(){
 							$heart.removeClass('invisible');
 							$interval.cancel(checkHeart);
-						}, 1000); 
+						}, 200); 
 
 					}
 
 				}, 200);
 
 				$heart.click(function(){
-					$('#myModal').modal('toggle');
+					$modal.modal('toggle');
+					// make sure modal appears right, if navbar is down, need to push down on page
+					if($navbar.hasClass('nav-down')){
+						$modal.find('.modal-content').css('top', '50px');
+						console.log('found');
+					}
+					else{
+						// otherwise, just cancel css, to make sure appears right with no navbar
+						$modal.find('.modal-content').css('top', '');
+					}
+
+
 					$heart.removeClass('pulse');
 				});
 

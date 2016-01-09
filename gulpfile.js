@@ -104,9 +104,9 @@ gulp.task('javascript', function() {
 //__________________Sass task, for minifying all CSS___________________
 
 gulp.task('sass', function () {
-  return gulp.src([
-  	'./client/css/main.scss',
-  	
+	return gulp.src([
+		'./client/css/main.scss',
+
   	// './client/css/report/_report.scss',
   	// './client/css/report/sections/*.scss',
   	// './client/css/account/_account.scss',
@@ -120,17 +120,15 @@ gulp.task('sass', function () {
 
 
   	])
-    .pipe(sass({style: 'compressed'}).on('error', sass.logError))
-    .pipe(concat('main.css'))
+		// .pipe(sass({style: 'compressed'})
+		.pipe(sass()
 
-    .pipe(gulp.dest('./client/css'));
-});
+		.on('error', sass.logError))
+		
+		.pipe(concat('main.css'))
 
-
-
-
-
-
+		.pipe(gulp.dest('./client/css'));
+	});
 
 
 
@@ -160,4 +158,10 @@ gulp.task('sass', function () {
 
 
 
-gulp.task('default', ['javascript', 'sass']);
+
+
+
+
+
+
+	gulp.task('default', ['javascript', 'sass']);

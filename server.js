@@ -224,6 +224,8 @@ app.get('/api/auth/instagram/logout',
 
 
 
+
+
 app.get('/api/token', usersCtrl.checkUser);
 
 

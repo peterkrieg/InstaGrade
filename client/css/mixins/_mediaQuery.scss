@@ -13,6 +13,12 @@ $phoneOrLess: "(max-width: 767px)";
 $tabletOrLess: "(max-width: 991px)";
 $desktopOrLess: "(max-width: 1199px)";
 
+$phoneOrMore: "(min-width: 461px)";
+$tabletOrMore: "(min-width: 768px)";
+$desktopOrMore: "(min-width: 992px)";
+
+
+
 
 
 @mixin smallphone {
@@ -63,3 +69,42 @@ $desktopOrLess: "(max-width: 1199px)";
 		@content; 
 	}
 }
+
+
+
+//____________________"Something or more" media queries_____________________
+
+
+@mixin phoneOrMore {
+	@media #{$phoneOrMore} {
+		@content; 
+	}
+}
+
+@mixin tabletOrMore {
+	@media #{$tabletOrMore} {
+		@content; 
+	}
+}
+
+@mixin desktopOrMore {
+	@media #{$desktopOrMore} {
+		@content; 
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

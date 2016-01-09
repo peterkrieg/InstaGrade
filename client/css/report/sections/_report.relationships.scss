@@ -1,3 +1,6 @@
+//load script font, just for this page
+@import url(https://fonts.googleapis.com/css?family=Clicker+Script);
+
 div.relationships{
 	padding-bottom: 100px;
 	img{
@@ -112,11 +115,38 @@ div.relationships{
 
 
 	//_________________________Modal part, of likes comparison__________________________
-	div.modal{
+	div.instagram-crush-modal{
+		background: rgba(0,0,0,.5);
+		.modal-dialog{
+			@include desktopOrMore {
+				width: 800px;
+			}
+		}
+
+		div.modal-content{
+			/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+			@include desktopOrMore {
+				width: 800px;
+			}
+		}
+
+		div.modal-header{
+			background-image: url("http://www.transparenttextures.com/patterns/green-gobbler.png");
+
+			h4.match-title{
+				font-size: 2em;
+				font-family: 'Clicker Script', cursive;
+			}
+		}
+
+
+
+
 		img.user{
 			border-radius: 50%;
 			border: 2px solid #2e2e2e;
 		}
+
 	}
 
 
