@@ -334,6 +334,7 @@ function compareLikes(){
 	} // for loop
 
 	mostLikesReceived.mostLikesReceived = true;
+	mostLikesReceived.numMedia = report.user.numMedia;
 	mostLikesGiven.mostLikesGiven = true;
 
 

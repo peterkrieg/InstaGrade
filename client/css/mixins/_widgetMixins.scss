@@ -93,6 +93,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e1e1e', end
 }
 
 
+@include keyframes(fadeIn) {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+// negative distance has element slide down, positive means element slides up
+@mixin fadeInSlide($duration, $distance, $timingFunction, $delay){
+	@include keyframes(fadeInSlide) {
+		0% {
+			opacity: 0;
+			top: $distance;
+		}
+		100%{
+			opacity: 1;
+			top: 0;
+		}
+	}
+	@include animation(fadeInSlide $duration $timingFunction $delay);
+
+}
+
+
 
 
 

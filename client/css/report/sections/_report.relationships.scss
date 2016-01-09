@@ -1,6 +1,7 @@
 //load script font, just for this page
 @import url(https://fonts.googleapis.com/css?family=Clicker+Script);
 
+
 div.relationships{
 	padding-bottom: 100px;
 	img{
@@ -81,6 +82,7 @@ div.relationships{
 	//  Likes Comparison Section
 	///////////////////////////////////////////////////
 
+
 	// bigger height than before, since 
 	div.user{
 		height: 200px;
@@ -124,6 +126,14 @@ div.relationships{
 		}
 
 		div.modal-content{
+
+			// for anything I want to hide, before animation starts, and use jquery to remove class later
+			.hidden{
+				opacity: 0;
+			}
+
+
+
 			/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 			@include desktopOrMore {
 				width: 800px;
@@ -134,20 +144,99 @@ div.relationships{
 			background-image: url("http://www.transparenttextures.com/patterns/green-gobbler.png");
 
 			h4.match-title{
+				position: relative;
+				@include fadeInSlide(.7s, -50px, ease, 0s);
 				font-size: 2em;
 				font-family: 'Clicker Script', cursive;
+			}
+			h6{
+				// opacity: 0;
+				position: relative;
+				@include animation-delay(1s);
+				@include fadeInSlide(.7s, -150px, ease, 0s);
+			}
+		}
+
+		img.user{
+			position: relative;
+			border-radius: 50%;
+			border: 2px solid #2e2e2e;
+		}
+
+		///////////////////////////////////////////////////
+		//  Animation like Tinder--rolling in images
+		///////////////////////////////////////////////////
+
+		// cubic bezier curve, global variable so sass can read it anywhere
+		$cubicBezierRoll: cubic-bezier(.3,1.5,.5,1) !global;
+
+		img.left{
+			margin-right: 10px;
+			// margin-left: 500px;
+			@include keyframes(rollLeft) {
+				0% {
+					opacity: 0;
+					left: 500px;
+					@include transform(rotate(-90deg));
+				}
+				100% {
+					opacity: 1;
+					left: 0px;
+					@include transform(rotate(0deg));
+				}
+			}
+			@include animation(rollLeft .8s $cubicBezierRoll 0s);
+			// @include animation-delay(.5s);
+		}
+		img.right{
+			@include keyframes(rollRight) {
+				0% {
+					opacity: 0;
+					right: 500px;
+					@include transform(rotate(90deg));
+				}
+				100% {
+					opacity: 1;
+					right: 0px;
+					@include transform(rotate(0deg));
+				}
+			}
+			@include animation(rollRight .8s $cubicBezierRoll 0s);
+		}
+		///////////////////////////////////////////////////
+		//  End animations
+		///////////////////////////////////////////////////
+
+		div.modal-body{
+			min-height: 200px;
+		}
+
+		div.button{
+			border: 1px solid black;
+			// padding: 10px;
+			width: 150px;
+			height: 40px;
+			border-radius: 5px;
+			background: $instaBlue;
+			color: white;
+			margin: auto;
+			margin-top: 30px;
+			a{
+				font-size: .5em;
+				font-family: $header-font;
 			}
 		}
 
 
 
 
-		img.user{
-			border-radius: 50%;
-			border: 2px solid #2e2e2e;
-		}
 
-	}
+
+
+
+	} //_______ instagram-crush-modal_________
+
+	
 
 
 

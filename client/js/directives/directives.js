@@ -248,6 +248,10 @@ angular.module('myApp')
 		link: function(scope, elem, attrs){
 			$(function(){
 				var $modal = $('div.instagram-crush-modal');
+				var $modalContent = $modal.find('.modal-content');
+				var $matchTitle = $modalContent.find('h4.match-title');
+				var $matchSubTitle = $modalContent.find('h6.match-subtitle');
+				var $userImg = $modalContent.find('img.user');
 				var $heart = $(elem);
 				var $navbar = $('div.main-nav');
 				// console.log(elem.css('visibility'));
@@ -276,9 +280,32 @@ angular.module('myApp')
 						// otherwise, just cancel css, to make sure appears right with no navbar
 						$modal.find('.modal-content').css('top', '');
 					}
-
-
 					$heart.removeClass('pulse');
+
+					// now need to have delays right for css animations
+					$userImg.addClass('hidden');
+					$matchSubTitle.addClass('hidden');
+
+					$timeout(function(){
+						$matchSubTitle.removeClass('hidden');
+					}, 200);
+
+					$timeout(function(){
+						$userImg.removeClass('hidden');
+					}, 100);
+
+					console.log(scope.mostLikesReceived);
+					console.log(scope.$parent.$parent.$parent);
+					scope.rootUser = scope.$parent.$parent.$parent;
+					
+
+
+
+
+
+
+
+
 				});
 
 
