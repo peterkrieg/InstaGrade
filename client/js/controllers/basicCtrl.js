@@ -2,6 +2,8 @@ angular.module('myApp')
 .controller('basicCtrl', basicCtrlFunc);
 
 function basicCtrlFunc($scope, userService){
+	// scroll top of page, so more visible
+	window.scroll(0,0)
 
 	userService.checkIfLoggedIn()
 	.then(function(user){

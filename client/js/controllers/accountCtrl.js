@@ -2,6 +2,9 @@ angular.module('myApp')
 .controller('accountCtrl', profileFunc);
 
 function profileFunc($scope, user, reportService, userService, $state, $interval, $filter){
+	// scroll to top of page, make sure things visible
+	window.scroll(0,0);
+
 	console.log(user);
 	$scope.user = user;
 	$scope.errorNotDay = false;
