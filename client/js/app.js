@@ -8,28 +8,15 @@ angular.module('myApp', ['ui.router'])
 		controller: 'homeCtrl'
 	})
 
-	.state('login', {
-		url: '/login/instagram',
-		// templateUrl: 'partials/login.html',
-		controller: 'loginCtrl'
+
+
+
+
+	.state('report', {
+		url: '/report',
+		templateUrl: 'partials/report.html',
+		controller: 'reportCtrl'
 	})
-
-
-
-
-
-	// .state('token', {
-	// 	url: '/access_token=:token',
-	// 	// templateUrl: 'partials/token.html',
-	// 	controller: 'tokenCtrl'
-	// })
-.state('report', {
-	url: '/report',
-	templateUrl: 'partials/report.html',
-	controller: 'reportCtrl'
-})
-
-
 
 
 	//____________All these states descendant of report page__________________
@@ -54,6 +41,50 @@ angular.module('myApp', ['ui.router'])
 		url: '/map',
 		templateUrl: 'partials/report.map.html'
 	})
+
+	///////////////////////////////////////////////////
+	//  Special views just for demo, to make sure to separate actions
+	//  That can be done, (need to load dummy JSON data)
+	///////////////////////////////////////////////////
+
+	.state('demoReport', {
+		url: '/demo/report',
+		templateUrl: 'partials/report.html',
+		controller: 'demoReportCtrl'
+	})
+	.state('demoReport.media', {
+		url: '/media',
+		templateUrl: 'partials/report.media.html',
+	})
+	.state('demoReport.relationships', {
+		url: '/relationships',
+		templateUrl: 'partials/report.relationships.html'
+	})
+	.state('demoReport.grade', {
+		url: '/grade',
+		templateUrl: 'partials/report.grade.html'
+	})
+	.state('demoReport.analytics', {
+		url: '/analytics',
+		templateUrl: 'partials/report.analytics.html'
+		// controller: 'reportCtrl'
+	})
+	.state('demoReport.map', {
+		url: '/map',
+		templateUrl: 'partials/report.map.html'
+	})
+
+
+
+
+
+
+
+
+
+
+
+
 
 	//_________________________End of report page__________________________
 
@@ -135,7 +166,7 @@ angular.module('myApp', ['ui.router'])
 // 				// alert('no ga!!');
 // 				return;
 // 			}
-			
+
 // 			$window.ga('send', 'pageview', { page: $location.path() });
 // 		});
 

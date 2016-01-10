@@ -105,6 +105,9 @@ getStats: function(req, res, next){
 			// going through every report, to create stats array
 			for(var i=0; i<reports.length; i++){
 				var reportWrapper = reports[i];
+				if(i===1){
+					console.log('\n\n\n', reportWrapper._id, '\n\n\n');
+				}
 				var report = reportWrapper.report
 				// put date in 
 				stats.push([reportWrapper.date]);
@@ -113,6 +116,7 @@ getStats: function(req, res, next){
 				console.log(typeof reportWrapper.date);
 
 				var statsObj = {
+					id: reportWrapper.report._id,
 					numFollowers: report.user.numFollowers,
 					numFollows: report.user.numFollows,
 					numMedia: report.user.numMedia,

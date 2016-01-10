@@ -7,7 +7,7 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-md-12 ">
 			<div class="reports-list-header">
 				<h3 class="report-explanation weak-gray">Please Click on a Report to View</h3>
 				<div class="button" ng-click="newReport()">
@@ -24,17 +24,28 @@
 			</div>
 
 
-			<table class="table">
+			<table class="table" ng-hide="loadingStats">
 				<thead>
 					<tr>
 						<th>#</th>
 						<th>Date</th>
+						<th class="media">Media</th>
+						<th class="followers">Followers</th>
+						<th class="follows">Follows</th>
+						<th class="likes-given">Likes Given</th>
+						<th class="likes-received">Likes Received</th>
 					</tr>
 				</thead>
 				<!-- report.report is the value of the object ID referencing the report -->
-				<tr class="report-row" ng-repeat="report in user.reports" ng-click="loadSpecificReport(report.report)">
+				<tr class="report-row" ng-repeat="report in stats" ng-click="loadSpecificReport(report[1].id)">
 					<td>{{$index+1}}</td>
-					<td>{{report.date | date: 'MMM d &#8217yy, h:mm a'}}</td>
+					<td>{{report[0] | date: 'MMM d &#8217yy, h:mm a'}}</td>
+					<td class="media">{{report[1].numMedia}}</td>
+					<td class="followers">{{report[1].numFollowers}}</td>
+					<td class="follows">{{report[1].numFollows}}</td>
+					<td class="likes-given">{{report[1].numLikesGiven}}</td>
+					<td class="likes-received">{{report[1].numLikesReceived}}</td>
+
 				</tr>
 			</table>
 		</div>

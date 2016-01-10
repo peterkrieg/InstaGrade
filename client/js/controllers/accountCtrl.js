@@ -13,6 +13,7 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 	$scope.loadingStats = true;
 
 
+
 	// little utility function used for turning on/off error message
 	$scope.toggleError = function(value){
 		$scope.errorNotDay = value;
@@ -81,7 +82,13 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 // loading stats page, most of logic is in stats graph directive
 reportService.getStats()
 .then(function(stats){
+	// reverse stats, to show newest dates at top
+	stats.reverse();
+
 	$scope.stats = stats;
+	console.log($scope.stats);
+
+	$scope.loadingStats = false;
 
 	// first selected item is number likes given, by default
 	$scope.selectedItem = "numLikesGiven";

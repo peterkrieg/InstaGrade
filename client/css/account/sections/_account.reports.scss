@@ -73,19 +73,38 @@ div.user-profile{
 
 	// table part, displaying reports
 	table.table{
-		text-align: left;
+		margin-top: 30px;
 		thead{
 			text-align: center;
 		}
-	}
-
-
-
-	tr.report-row{
-		&:hover{
-			background: #eee;
+		td, th{
+			text-align: center;
 		}
-	}
+		tr.report-row{
+			&:hover{
+				background: #eee;
+			}
+		}
+		// hide certain columns when mobile display
+		@include tabletOrLess {
+			tr {
+				.likes-given, .likes-received {
+					display: none;
+				}
+			}
+		}
+
+		@include phoneOrLess {
+			tr {
+				.followers, .follows{
+					display: none;
+				}
+			}
+		}
+	} // end of table
+
+
+
 
 
 
