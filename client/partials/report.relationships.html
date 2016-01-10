@@ -20,7 +20,9 @@
 					<div class="img-container">
 						<li class="name">{{follow.full_name || follow.username}}</li>
 						
-						<div class="actual-image" ng-click="unfollowUser(follow.id)"><img ng-src="{{follow.profile_picture}}" alt=""><i class="fa fa-user-times unfollow"></i></div>
+						<!-- If I want to include unfollow/follow functionality, would do
+						ng-click="unfollowUser(follow.id)" -->
+						<div class="actual-image" ><a href="https://instagram.com/_u/{{follow.username}}" target="_blank"><img ng-src="{{follow.profile_picture}}" alt=""></a><i class="fa fa-user-times unfollow"></i></div>
 						
 					</div>
 				</div>
@@ -42,7 +44,7 @@
 				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follower in uniqueFollowers">
 					<div class="img-container">
 						<li class="name">{{follower.full_name || follower.username}}</li>
-						<div class="actual-image" ng-click="followUser(follower.id)"><img ng-src="{{follower.profile_picture}}" alt=""><i class="fa fa-user-plus follow"></i></div>
+						<div class="actual-image" ><a href="https://instagram.com/_u/{{follower.username}}" target="_blank"><img ng-src="{{follower.profile_picture}}" alt=""></a><i class="fa fa-user-plus follow"></i></div>
 					</div>
 				</div>
 			</div>
@@ -119,7 +121,7 @@
 						</i>
 					</li>
 				</div>
-				<img class="user" ng-src="{{user.pic}}" alt="">
+				<a href="https://instagram.com/_u/{{user.username}}" target="_blank"><img class="user" ng-src="{{user.pic}}" alt=""></a>
 
 				<div class="bar-chart-container">
 					<div class="wow bar-chart" bar-chart

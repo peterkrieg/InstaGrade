@@ -68,12 +68,16 @@ div.relationships{
 		// when hovering on picture, have icon slide in
 		&:hover{
 			cursor: pointer;
-			i.fa{
-				bottom: 12px;
-				@include transition(.5s ease);
-				opacity: 1;
+			// commented out 1/10/15, because gave up on instagram permissions
+			// need permissions to unfollow/follow people directly with one click
+			// so changed to just linking to persons instagram account, so you could still
+			/// sort of easily do it
+			// i.fa{
+			// 	bottom: 12px;
+			// 	@include transition(.5s ease);
+			// 	opacity: 1;
 
-			}
+			// }
 		}
 	}// end of unfollow/follow effect
 

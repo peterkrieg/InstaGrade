@@ -162,6 +162,7 @@ function analyzeLikers(){
 		for(var y=0; y<likers.length; y++){
 			var currLike = likers[y];
 			var name = currLike.full_name || currLike.username;
+			var username = currLike.username;
 			var pic = currLike.profile_picture;
 			var id = currLike.id;
 			if(userLikers.hasOwnProperty(id)){
@@ -170,6 +171,7 @@ function analyzeLikers(){
 			else{
 				userLikers[id]= {count: 1};
 				userLikers[id].name = name;
+				userLikers[id].username = username;
 				userLikers[id].pic = pic;
 			}
 		}
@@ -182,12 +184,14 @@ function analyzeLikers(){
 			var id = prop;
 			var currObj = userLikers[id];
 			var count = currObj.count;
+			var username = currObj.username;
 			var name = currObj.name;
 			var pic = currObj.pic;
 
 			var user = {
 				id: id,
 				name: name,
+				username: username,
 				count: count,
 				pic: pic
 			};
@@ -230,10 +234,12 @@ function analyzeYourLikes(){
 		}
 		else{
 			var name = user.full_name || user.username;
+			var username = user.username;
 			var pic = user.profile_picture; 
 			yourLikesUsers[id] = {
 				count: 1,
 				name: name,
+				username: username,
 				pic: pic
 			};
 		}
