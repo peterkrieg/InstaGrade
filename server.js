@@ -282,6 +282,28 @@ app.get('/api/reports/stats', reportsCtrl.getStats);
 
 
 
+
+
+///////////////////////////////////////////////////
+//  Demo functions, 
+///////////////////////////////////////////////////
+app.get('/api/reports/demoReport', reportsCtrl.getReportById);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///////////////////////////////////////////////////
 //  Some maintenance functions, just to do work on certain parts of data
 //  Not to be ever used by users

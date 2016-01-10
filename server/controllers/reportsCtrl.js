@@ -352,6 +352,22 @@ getStats: function(req, res, next){
 
 
 
+	///////////////////////////////////////////////////
+	//  Function used by demo
+	///////////////////////////////////////////////////
+
+	getReportById: function(req, res, next){
+		Report.findById(req.query.id)
+		.exec(function(err, report){
+			res.send(report);
+
+		}); // exec
+
+	},
+
+
+
+
 
 
 
