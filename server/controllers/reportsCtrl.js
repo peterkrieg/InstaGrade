@@ -171,7 +171,7 @@ getStats: function(req, res, next){
 					var arr = grades[prop];
 					arr.sort(function(a,b){return a-b});
 				}
-				res.send({grades});
+				res.send({grades: grades});
 				// res.send(reports.length);
 			}
 		})
