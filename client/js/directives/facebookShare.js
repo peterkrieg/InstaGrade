@@ -37,15 +37,20 @@ angular.module('myApp')
 				//  share 
 				///////////////////////////////////////////////////
 				elem.click(function(){
-					console.log('facebook share clicked');
+					// console.log('facebook share clicked');
+
+					// console.log(Math.round(100*Number(scope.mostLikesReceived.likesReceived)/Number(scope.user.numMedia)).toString());
+
+
+
 
 					FB.ui({
 						method: 'feed',
 						href: 'http://mediascore.rocks',
 						link: 'http://mediascore.rocks', 
 						picture: 'http://cdn01.wallpapersonweb.com/media/tn5/1/3/22466.jpg',
-						name: "The name who will be displayed on the post",
-						description: "The description who will be displayed"
+						name: scope.mostLikesReceived.name+" is my Instagram Crush!  Who is Yours??",
+						description: scope.mostLikesReceived.name+" has liked "+scope.mostLikesReceived.likesReceived+" of my "+scope.user.numMedia+" pieces of media! ("+Math.round(100*Number(scope.mostLikesReceived.likesReceived)/Number(scope.user.numMedia)).toString()+"%).",
 					}, function(response){
 						console.log(response);
 					}

@@ -157,7 +157,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-        <p class="explanation">{{mostLikesReceived.name}} is your Instagram crush, liking {{mostLikesReceived.likesReceived}} out of your {{mostLikesReceived.numMedia}} pieces of media. ({{100*mostLikesReceived.likesReceived/user.numMedia | number: 0 }}%)</p>
+        <p class="explanation">{{mostLikesReceived.name}} is your Instagram crush, liking {{mostLikesReceived.likesReceived}} out of your {{user.numMedia}} pieces of media. ({{100*mostLikesReceived.likesReceived/user.numMedia | number: 0 }}%)</p>
         	<div class="col-md-12">
         		<div class="pictures">
         			<img class="user left" ng-src="{{user.profilePicture}}" alt="">
