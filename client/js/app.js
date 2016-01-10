@@ -42,6 +42,8 @@ angular.module('myApp', ['ui.router'])
 		templateUrl: 'partials/report.map.html'
 	})
 
+
+
 	///////////////////////////////////////////////////
 	//  Special views just for demo, to make sure to separate actions
 	//  That can be done, (need to load dummy JSON data)
@@ -49,7 +51,7 @@ angular.module('myApp', ['ui.router'])
 
 	.state('demoReport', {
 		url: '/demo/report',
-		templateUrl: 'partials/report.html',
+		templateUrl: 'demo/demoReport.html',
 		controller: 'demoReportCtrl'
 	})
 	.state('demoReport.media', {

@@ -1,0 +1,36 @@
+<div class="results">
+	
+	<div main-navbar></div>
+
+	<h2 >Hello, {{user.name}}.  Please Select a Tab Below to See Your Results.</h2>
+
+
+	<h6 class="report-time" ng-if="report.basicInfo.date">Report generated at {{report.basicInfo.date | date: 'h:mm a'}} on {{report.basicInfo.date | date: 'MMM d &#8217yy'}}</h6>
+
+	<div set-up-tabs class="container results" ng-show="!loading"
+			  tabs = '["media", "relationships", "grade", "analytics", "map"]'
+	>
+		<ul class="nav nav-tabs">
+			<li tab-behavior role="presentation"><a ui-sref="demoReport.media">Media</a></li>
+			<li tab-behavior role="presentation"><a ui-sref="demoReport.relationships">Relationships</a></li>
+			<li tab-behavior role="presentation"><a ui-sref="demoReport.grade">Grade</a></li>
+			<li tab-behavior role="presentation"><a ui-sref="demoReport.analytics">Analytics</a></li>
+			<li tab-behavior role="presentation"><a ui-sref="demoReport.map">Map</a></li>
+		</ul>
+	</div>
+
+
+
+	<div class="container results-content" ui-view ></div>
+
+
+
+
+
+
+
+</div> <!-- results div -->
+
+
+
+
