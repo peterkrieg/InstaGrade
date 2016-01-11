@@ -1,7 +1,7 @@
 angular.module('myApp')
-.controller('demoAccountCtrl', profileFunc);
+.controller('demoAccountCtrl', profileFuncDemo);
 
-function profileFunc($scope, demoService, reportService, userService, $state, $interval, $filter){
+function profileFuncDemo($scope, demoService, reportService, userService, $state, $interval, $filter){
 	// scroll to top of page, make sure things visible
 	window.scroll(0,0);
 
