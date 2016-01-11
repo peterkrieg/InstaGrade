@@ -148,6 +148,8 @@ getStats: function(req, res, next){
 ///////////////////////////////////////////////////
 
 getStatsDemo: function(req, res, next){
+	console.log('get stats demo');
+	res.send(ReportsDummyData)
 
 
 

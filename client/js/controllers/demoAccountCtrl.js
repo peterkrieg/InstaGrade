@@ -1,7 +1,7 @@
 angular.module('myApp')
 .controller('demoAccountCtrl', profileFunc);
 
-function profileFunc($scope, reportService, userService, $state, $interval, $filter){
+function profileFunc($scope, demoService, reportService, userService, $state, $interval, $filter){
 	// scroll to top of page, make sure things visible
 	window.scroll(0,0);
 
@@ -11,6 +11,13 @@ function profileFunc($scope, reportService, userService, $state, $interval, $fil
 
 	// loading state variables
 	$scope.loadingStats = true;
+
+	$scope.user = {
+		name: 'Demo User',
+		profilePicture: '../demo/profilesmall.jpg'
+	};
+
+	$scope.loadingUser = false;
 
 
 
@@ -72,31 +79,33 @@ function profileFunc($scope, reportService, userService, $state, $interval, $fil
 	$scope.loadSpecificReport = function(reportId){
 		console.log('load specific report fired!!');
 		console.log(reportId);
-		userService.toggleSpecificReport(reportId)
-		.then(function(response){
-			$state.go('report.media');
-		})
+		$state.go('demoReport.media', {reportId: reportId});
+
+
+
+
 	}; // end of load specific report function
 
 
 // loading stats page, most of logic is in stats graph directive
 
 
-// demoService.getStatsDemo()
-// .then(function(stats){
-// 	// reverse stats, to show newest dates at top
-// 	stats.reverse();
+demoService.getStatsDemo()
+.then(function(stats){
+	// console.log(stats);
 
-// 	$scope.stats = stats;
-// 	console.log($scope.stats);
+	// reverse stats, to show newest dates at top
+	stats.reverse();
 
-// 	$scope.loadingStats = false;
+	$scope.stats = stats;
 
-// 	// first selected item is number likes given, by default
-// 	$scope.selectedItem = "numLikesGiven";
+	$scope.loadingStats = false;
+
+	// first selected item is number likes given, by default
+	$scope.selectedItem = "numLikesGiven";
 
 
-// }) // end of getting stats
+}) // end of getting stats
 
 
 

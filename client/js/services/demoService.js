@@ -15,12 +15,20 @@ function demoServiceFunc($http){
 	};
 
 	this.getStatsDemo = function(){
+		console.log('get stats demo service');
 		return $http.get('/api/demo/stats')
 		.then(function(response){
 			return response.data;
 		})
 
 
+	}
+
+	this.getSpecificReport = function(id){
+		return $http.get('/api/reports/demoReport?id='+id)
+		.then(function(response){
+			return response.data;
+		})
 	}
 
 

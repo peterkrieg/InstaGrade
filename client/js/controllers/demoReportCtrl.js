@@ -1,42 +1,61 @@
 angular.module('myApp')
 .controller('demoReportCtrl', demoReportCtrlFunc);
 
-function demoReportCtrlFunc($scope, demoService, reportService, userService, instaService, followService, $sce, $filter, $http) {
-
-	console.log('demo report ctrl func');
-
-	// setting up demo user scope
-
-	$scope.user = {
-		name: 'Demo User',
-		profilePicture: '../demo/profilesmall.jpg'
-	};
-
-	$scope.loadingUser = false;
+function demoReportCtrlFunc($scope, demoService, reportService, userService, instaService, followService, $sce, $filter, $http, $stateParams) {
+//
 
 
+console.log('demo report ctrl func');
+
+// setting up demo user scope
+
+$scope.user = {
+	name: 'Demo User',
+	profilePicture: '../demo/profilesmall.jpg'
+};
 
 
+$scope.loadingUser = false;
 
+console.log($stateParams);
 
-
+// if there is a report Id sent to controller, means that need to load specific report
+if($stateParams.reportId){
+	demoService.getSpecificReport($stateParams.reportId)
+	.then(function(report){
+		$scope.report=report;
+		setUpView(report);;
+	})
+}
+// if no report Id, get the last demo report (which I will manually change, to make more recent over time)
+else{
 	demoService.getLastDemoReport()
 	.then(function(report){
-		console.log(report);
-
+		// console.log(report);
 		$scope.report = report;
-		$scope.media = report.media;
-
-		fixUrls($scope.media);
-		finishReportView(report);
-
-
-
-
-
-
-
+		setUpView(report);
 	}); 
+}
+
+
+function setUpView(report){
+	$scope.media = report.media;
+	$scope.user.numMedia = report.media.length;
+	fixUrls($scope.media);
+	finishReportView(report);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// fixing video URLs, weird angular thing..
 	function fixUrls(media){
