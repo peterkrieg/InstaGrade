@@ -9,7 +9,10 @@ function demoReportCtrlFunc($scope, demoService, reportService, userService, ins
 
 	$scope.user = {
 		name: 'Demo User',
-	}
+		profilePicture: '../demo/profilesmall.jpg'
+	};
+
+	$scope.loadingUser = false;
 
 
 
