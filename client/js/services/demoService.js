@@ -12,6 +12,15 @@ function demoServiceFunc($http){
 		.then(function(response){
 			return response.data;
 		})
+	};
+
+	this.getStatsDemo = function(){
+		return $http.get('/api/demo/stats')
+		.then(function(response){
+			return response.data;
+		})
+
+
 	}
 
 

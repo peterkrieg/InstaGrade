@@ -88,7 +88,8 @@ gulp.task('javascript', function() {
 		'./client/js/directives/*.js',
 		'./client/js/services/*.js',
 		'./client/js/controllers/*.js',
-		'./client/js/filters/*.js'
+		'./client/js/filters/*.js',
+		'./client/demo/**/*.js',
 
 
 		])
@@ -124,7 +125,7 @@ gulp.task('sass', function () {
 		.pipe(sass()
 
 		.on('error', sass.logError))
-		
+
 		.pipe(concat('main.css'))
 
 		.pipe(gulp.dest('./client/css'));

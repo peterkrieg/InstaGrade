@@ -116,6 +116,8 @@ angular.module('myApp')
 	}
 });
 
+
+
 //________Navbar, HTML and behavior to show when scrolling up only_____________
 
 angular.module('myApp')
@@ -150,8 +152,6 @@ angular.module('myApp')
 					// have delta so that doesn't activate from tiny scroll up or down
 					if (Math.abs(lastScrollTop - st) <= delta)
 						return;
-
-
 					// If current position > last position AND scrolled past navbar...
 					if (st > lastScrollTop && st > navbarHeight){
 					  // Scroll Down
@@ -168,18 +168,77 @@ angular.module('myApp')
 				lastScrollTop = st;
 
 			}// end of hasScrolled function
-
-
-
-
-
-
-
-
 			}); // jquery ready
 		} // link
 	};
 });
+//____________________End navbar_____________________
+
+///////////////////////////////////////////////////
+//  Navbar directive for demo--same except for template URL..
+///////////////////////////////////////////////////
+angular.module('myApp')
+.directive('mainNavbarDemo', function($interval){
+	return {
+		templateUrl: 'partials/mainNavbarDemo.html',
+		link: function(scope, elem, attrs){
+			$(function(){
+				var $navbar = $(elem).find('div.main-nav')
+				// function to slide navbar up when scrolling up, and hide when scrolling down
+				var didScroll;
+				var lastScrollTop = 0;
+				var delta = 5;
+				var navbarHeight = $navbar.outerHeight();
+
+				// on scroll, let the interval function know the user has scrolled
+				$(window).scroll(function(event){
+					didScroll = true;
+				});
+
+				// checks every 150ms to see if has scrolled
+				$interval(function(){
+					if(didScroll) {
+						hasScrolled();
+						didScroll = false;
+					}
+				}, 150);
+
+				function hasScrolled(){
+					var st = $(this).scrollTop();
+
+					// have delta so that doesn't activate from tiny scroll up or down
+					if (Math.abs(lastScrollTop - st) <= delta)
+						return;
+					// If current position > last position AND scrolled past navbar...
+					if (st > lastScrollTop && st > navbarHeight){
+					  // Scroll Down
+					  $navbar.removeClass('nav-down').addClass('nav-up');
+					} 
+					else {
+				  // Scroll Up
+				  // If did not scroll past the document (possible on mac)...
+				  if(st + $(window).height() < $(document).height()) { 
+				  	$navbar.removeClass('nav-up').addClass('nav-down');
+				  }
+				}
+
+				lastScrollTop = st;
+
+			}// end of hasScrolled function
+			}); // jquery ready
+		} // link
+	};
+});
+///////////////////////////////////////////////////
+//  End demo navbar
+///////////////////////////////////////////////////
+
+
+
+
+
+
+
 
 //_________________________Footer, just HTML Directive__________________________
 

@@ -289,6 +289,8 @@ app.get('/api/reports/stats', reportsCtrl.getStats);
 ///////////////////////////////////////////////////
 app.get('/api/reports/demoReport', reportsCtrl.getReportById);
 
+app.get('/api/demo/stats', reportsCtrl.getStatsDemo);
+
 
 
 

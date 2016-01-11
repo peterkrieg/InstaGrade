@@ -122,6 +122,50 @@ angular.module('myApp', ['ui.router'])
 	})
 
 
+///////////////////////////////////////////////////
+//  Same, but for demo..
+///////////////////////////////////////////////////
+
+.state('demoAccount', {
+		url: '/demo/account',
+		templateUrl: 'partials/demoAccount.html',
+		controller: 'demoAccountCtrl',
+	})
+
+	.state('demoAccount.reports', {
+		url: '/reports',
+		templateUrl: '/partials/account.reports.html'
+	})
+
+	.state('demoAccount.stats', {
+		url: '/stats',
+		templateUrl: '/partials/account.stats.html'
+	})
+	.state('demoAccount.settings', {
+		url: '/settings',
+		templateUrl: '/partials/account.settings.html'
+	})
+	.state('demoAccount.relationships', {
+		url: '/relationships',
+		templateUrl: '/partials/account.relationships.html'
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//_________________________Other pages__________________________
 
 	.state('privacy', {

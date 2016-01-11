@@ -1,0 +1,29 @@
+<div class="navbar-wrapper">
+	<div class="main-nav">
+		<a class="logo" ui-sref="home">MediaScore</a>
+
+		<div ng-show="user" user-menu class="user-profile">
+			<img class="user-profile" ng-src="demo/profilesmall.jpg" ng-if="!loadingUser" alt="">
+			<li>{{user.name}} <i class="fa fa-caret-down"></i></li>
+			<div  class="user-menu">
+				<!-- acccount page goes to reports, within account -->
+				<a class="menu-item-wrapper" ui-sref="demoAccount.reports">
+					<div class="menu-item">
+						<li>Account</li>
+						<i class="fa fa-user"></i>
+					</div>
+				</a>
+				<a class="menu-item-wrapper" href="/api/auth/instagram/logout">
+					<div class="menu-item">
+						<li>Logout </li>
+						<i class="fa fa-sign-out"></i>
+					</div>
+				</a>
+				
+			</div>
+		</div>
+
+	</div><!-- main nav header -->
+	<!-- just so navbar can push stuff below it-->
+	<div class="navbar-spacer">.</div>
+</div>

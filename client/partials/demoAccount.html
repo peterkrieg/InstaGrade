@@ -1,0 +1,33 @@
+<div class="account">
+	<div main-navbar-demo></div>
+
+
+
+
+	<div set-up-tabs class="container results" ng-show="!loading"
+	tabs='["reports", "stats", "settings", "relationships"]'
+	>
+
+	<ul class="nav nav-tabs">
+		<li tab-behavior role="presentation"><a ui-sref="demoAccount.reports">Reports</a></li>
+		<li tab-behavior role="presentation"><a ui-sref="demoAccount.stats">Stats</a></li>
+		<li tab-behavior role="presentation"><a ui-sref="demoAccount.settings">Settings</a></li>
+		<li tab-behavior role="presentation"><a ui-sref="demoAccount.relationships">Relationships</a></li>
+	</ul>
+</div>
+
+
+
+<div class="container results-content" ui-view ></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
