@@ -26,21 +26,37 @@ angular.module('myApp')
 ///////////////////////////////////////////////////
 
 angular.module('myApp')
-.directive('scoreBar', function(){
+.directive('scoreBar', function($interval){
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
-				// category is attached to data-category of HTML
-				// but angular just shows it without data, I guess making it easier
-				var category = attrs.category;
+				// need to check if stuff attached to scope yet, wait using interval
+				var checkScope = $interval(function(){
+					if(scope.scores){
+						// console.log('ready!');
+						initialize();
+						$interval.cancel(checkScope);
+					}
+					else{
+						// console.log('not ready yet');
+					}
+				}, 50);
 
-				// first get width of bar from scope scores, then change it
-				var width = scope.scores[category];
-				elem.css('width', width+'%');
+				function initialize(){
+					// category is attached to data-category of HTML
+					// but angular just shows it without data, I guess making it easier
+					var category = attrs.category;
 
-				// now color bar based on score
-				var color = gradeColor(width);
-				elem.css('background', color);
+					// first get width of bar from scope scores, then change it
+					var width = scope.scores[category];
+					elem.css('width', width+'%');
+
+					// now color bar based on score
+					var color = gradeColor(width);
+					elem.css('background', color);
+			}
+
+
 			}); // jquery ready
 		} // link
 	};
