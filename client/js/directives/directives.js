@@ -302,7 +302,7 @@ angular.module('myApp')
 
 //_______________Heart behavior--best friend of likes comparison__________
 angular.module('myApp')
-.directive('heartBehavior', function($interval, $timeout){
+.directive('heartBehavior', function($interval, $timeout, $location, $state){
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
@@ -316,16 +316,24 @@ angular.module('myApp')
 				// console.log(elem.css('visibility'));
 
 
+
+				// way to check if heart is viewable, to popup the instagram crush modal
 				var checkHeart = $interval(function(){
-					if($heart.css('visibility')==='visible'){
+					if($heart.css('visibility')==='visible' && $state.current.name==='report.relationships' && isElementInViewport($heart)){
 						$heart.removeClass('invisible');
-						// openInstagramCrushModal();
+						openInstagramCrushModal();
 						$heart.addClass('pulse');
 						$interval.cancel(checkHeart);
-
 					}
-
+					else{
+						// cancel interval, if leave tab, but interval was running before
+						if($state.current.name!=='report.relationships'){
+							$interval.cancel(checkHeart);
+						}
+						// console.log(isElementInViewport($heart));
+					}
 				}, 200);
+				//____________________End interval checking heart_____________________
 
 				// function to open instagram crush modal and make navbar appear right
 				function openInstagramCrushModal(){
@@ -370,6 +378,28 @@ angular.module('myApp')
 
 
 			}); // jquery ready
+
+
+			//____________________Check if in viewport_____________________
+			function isElementInViewport (el) {
+
+		    //special bonus for those using jQuery
+		    if (typeof jQuery === "function" && el instanceof jQuery) {
+		    	el = el[0];
+		    }
+
+		    var rect = el.getBoundingClientRect();
+
+		    return (
+		    	rect.top >= 0 &&
+		    	rect.left >= 0 &&
+		    	rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */
+		    	rect.right <= (window.innerWidth || document.documentElement.clientWidth) /*or $(window).width() */
+		    	);
+		  }
+
+
+
 		} // link
 	}; // return
 })

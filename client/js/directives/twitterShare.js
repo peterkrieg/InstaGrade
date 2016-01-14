@@ -1,5 +1,5 @@
 angular.module('myApp')
-.directive('twitterShare', function(){
+.directive('twitterShare', function($interval){
 	return {
 		link: function(elem, scope, attrs){
 			$(function(){
@@ -46,7 +46,17 @@ angular.module('myApp')
         tweetdiv  =  document.getElementById('twtbox');
         tweetdiv.appendChild(link);
 
-        twttr.widgets.load(); //very important
+        var checkIfLoaded = $interval(function(){
+        	if(twttr){
+        		if(twttr.widgets){
+        			$interval.cancel(checkIfLoaded);
+        			twttr.widgets.load();  //very important
+        		}
+        		else{console.log('widgets not loaded');}
+        	}
+        	else{console.log('twttrnot loaded')}
+        }, 200);
+
     }
 
 
