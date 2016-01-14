@@ -53,8 +53,8 @@ angular.module('myApp')
 				// initially set up tabs
 				// scope.setUpTabs();
 				scope.$on('$stateChangeSuccess', function(){
-					console.log($location.path());
-					console.log('state has changed!!!');
+					// console.log($location.path());
+					// console.log('state has changed!!!');
 					scope.setUpTabs();
 				})
 
@@ -318,27 +318,33 @@ angular.module('myApp')
 
 				var checkHeart = $interval(function(){
 					if($heart.css('visibility')==='visible'){
+						$heart.removeClass('invisible');
+						// openInstagramCrushModal();
 						$heart.addClass('pulse');
-						$timeout(function(){
-							$heart.removeClass('invisible');
-							$interval.cancel(checkHeart);
-						}, 200); 
+						$interval.cancel(checkHeart);
 
 					}
 
 				}, 200);
 
-				$heart.click(function(){
+				// function to open instagram crush modal and make navbar appear right
+				function openInstagramCrushModal(){
 					$modal.modal('toggle');
 					// make sure modal appears right, if navbar is down, need to push down on page
 					if($navbar.hasClass('nav-down')){
 						$modal.find('.modal-content').css('top', '50px');
-						console.log('found');
 					}
 					else{
 						// otherwise, just cancel css, to make sure appears right with no navbar
 						$modal.find('.modal-content').css('top', '');
 					}
+				} // open instagram crush modal
+
+
+
+				$heart.click(function(){
+					openInstagramCrushModal();
+					
 					$heart.removeClass('pulse');
 
 					// now need to have delays right for css animations
@@ -356,20 +362,13 @@ angular.module('myApp')
 					console.log(scope.mostLikesReceived);
 					console.log(scope.$parent.$parent.$parent);
 					scope.rootUser = scope.$parent.$parent.$parent;
-					
-
-
-
-
-
-
 
 
 				});
 
 
 
-				   
+
 			}); // jquery ready
 		} // link
 	}; // return
