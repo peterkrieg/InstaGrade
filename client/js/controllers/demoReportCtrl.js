@@ -154,6 +154,7 @@ function finishReportView(report){
 		var friend = likesComparisonArr[i];
 		if(friend.mostLikesReceived){
 			$scope.mostLikesReceived = friend;
+			console.log($scope.mostLikesReceived);
 			break;
 		}
 	}
