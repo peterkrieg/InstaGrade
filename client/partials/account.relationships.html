@@ -8,6 +8,25 @@
 <!--_______________People who have unfollowed you__________-->
 <h4>People Who Have Unfollowed You</h4>
 
+<!-- <p class="weak-gray">Get revenge against them now! Click on a person to unfollow</p> -->
+		<div class="unique-follows-container content-container">
+			<div class="row">
+				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="unfollow in unfollows">
+					<div class="img-container">
+						<li class="name">{{unfollow.user.full_name || unfollow.user.username}}</li>
+						
+						<!-- If I want to include unfollow/follow functionality, would do
+						ng-click="unfollowUser(follow.id)" -->
+						<a href="https://instagram.com/_u/{{unfollow.user.username}}" target="_blank"><div class="actual-image" ><img ng-src="{{unfollow.user.profile_picture}}" alt=""><i class="fa fa-user-times unfollow"></i></div></a>
+
+						<li>{{unfollow.date1 | date: short}}</li>
+						<li>{{unfollow.date2 | date: short}} </li>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 
 
