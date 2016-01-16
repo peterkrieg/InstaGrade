@@ -1,6 +1,72 @@
 <div class="relationships-account fade-in-up">
 
 <h1>Manage Your Instagram Relationships!</h1>
+
+
+
+
+<!--_______________People who have unfollowed you__________-->
+<h4>People Who Have Unfollowed You</h4>
+
+
+
+
+
+
+
+<!--___________________________________________________-->
+
+
+<hr>
+
+
+
+<!--_____________Unique Follows_______________-->
+		<h4>People you follow, but don't follow you back!</h4>
+		<h5 >...How Dare They!!</h5>
+		<p class="weak-gray">Get revenge against them now! Click on a person to unfollow</p>
+		<div class="unique-follows-container content-container">
+			<div class="row">
+				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follow in uniqueFollows">
+					<div class="img-container">
+						<li class="name">{{follow.full_name || follow.username}}</li>
+						
+						<!-- If I want to include unfollow/follow functionality, would do
+						ng-click="unfollowUser(follow.id)" -->
+						<a href="https://instagram.com/_u/{{follow.username}}" target="_blank"><div class="actual-image" ><img ng-src="{{follow.profile_picture}}" alt=""><i class="fa fa-user-times unfollow"></i></div></a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<a class="show-more" ng-show="!noMore.uniqueFollows" ng-click="loadMore('uniqueFollows')"><i class="fa fa-chevron-down"></i> See More <i class="fa fa-chevron-down"></i></a>
+		<p class="warning fade-in-up" ng-show="noMore.uniqueFollows">No More Unique Follows</p>
+
+		<hr>
+		<!--_____________Unique Followers____________-->
+
+		<h4>People that follow you, but you don't follow them back</h4>
+		<h5 >...Whatever, they probably aren't worth it?</h5>
+		<p class="weak-gray">But if you change your mind, click on a person to follow them :-)</p>
+
+		<div class="unique-follows-container content-container wow fade-in-up">
+			<div class="row">
+				<div class="uniqueFollow fade-in-up col-lg-2 col-md-3 col-sm-4 col-xs-6" ng-repeat="follower in uniqueFollowers">
+					<div class="img-container">
+						<li class="name">{{follower.full_name || follower.username}}</li>
+						<a href="https://instagram.com/_u/{{follower.username}}" target="_blank"><div class="actual-image" ><img ng-src="{{follower.profile_picture}}" alt=""><i class="fa fa-user-plus follow"></i></div></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<a class="show-more" ng-show="!noMore.uniqueFollowers" ng-click="loadMore('uniqueFollowers')"><i class="fa fa-chevron-down"></i> See More <i class="fa fa-chevron-down"></i></a>
+		<p class="warning fade-in-up" ng-show="noMore.uniqueFollowers">No More Unique Followers</p>
+
+
+		<hr>
+
 	
 
 

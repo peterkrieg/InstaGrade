@@ -1,7 +1,111 @@
 // since there are 2 div.relationships, this avoids big potential confusion..
 div.account div.relationships-account{
 	text-align: center;
+
+	font-size: 1.5rem;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	///////////////////////////////////////////////////
+	//  Stuff copied from report.relationships
+	///////////////////////////////////////////////////
+	img{
+		width: 80px;
+		border-radius: 5px;
+	}
 	
+	div.img-container{
+		margin-bottom: 30px;
+		// background: green;
+	}
+
+	div.content-container{
+		margin-top: 50px;
+	}
+
+	h5{
+		margin-bottom: 30px;
+	}
+
+	hr{
+		margin: 80px 0;
+		color: #ddd;
+	}
+
+	.warning{
+		color: #D91E18;
+	}
+
+
+	// fixed height, so float doesn't break
+	// big problem that miles figured out
+	div.uniqueFollow, div.liker{
+		height: 170px;
+	}
+
+	// any name on screen, above picture
+	li.name{
+		font-size: .5em;
+		margin-bottom: 20px;
+	}
+
+
+
+	// effect for unfollowing/following someone, on hover
+	div.actual-image{
+		display: inline-block;
+		position: relative;
+		i.fa{
+			opacity: 0;
+			@include transition(.2s ease);
+			font-size: 60px;
+			position: absolute;
+			bottom: 50px;
+			left: 6px;
+			&.unfollow{
+				color: darkred;
+			}
+			&.follow{
+				color: green;
+			}
+		}// end of icon
+	}
+	a.show-more{
+		font-size: .7em;
+		color: $instaBlue;
+		@include transition(.4s ease);
+		&:hover{
+			color: darken($instaBlue, 10%);
+			text-decoration: none;
+		}
+	}
+	///////////////////////////////////////////////////
+	//  End stuff copied
+	///////////////////////////////////////////////////
 
 
 

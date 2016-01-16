@@ -107,13 +107,15 @@ reportService.getStats()
 function getRelationships(){
 	console.log(user);
 	reportService.getRelationships(user._id)
-	.then(function(relationshipsStats){
-		console.log(relationshipsStats);
+	.then(function(relationshipsData){
+		console.log(relationshipsData);
 
 		// calculate unfollowers (people who have unfollowed you, and when)
 		// dates would be approximate (just between date of 2 reports, all info you have)
 
 		var unfollows = [];
+		var relationshipsStats = relationshipsData.relationshipsStats;
+		$scope.report = relationshipsData.lastReport;
 
 		loop1:
 		for(var i=0; i<relationshipsStats.length; i++){
@@ -174,13 +176,7 @@ function getRelationships(){
 			console.log(unfollows);
 			$scope.unfollows = unfollows;
 
-
-
-
-
-
-
-
+			setUpView();
 
 		})
 
@@ -189,6 +185,71 @@ function getRelationships(){
 } // get relationships function
 
 
+
+function setUpView(){
+
+///////////////////////////////////////////////////
+//  stuff copied from report Ctrl
+///////////////////////////////////////////////////
+//___________________________________________________
+// variable definitions for functions, global variables
+var calledTimes = {
+	uniqueFollows: 0,
+	uniqueFollowers: 0,
+};
+
+$scope.noMore = {
+	uniqueFollows: false,
+	uniqueFollowers: false,
+};
+
+$scope.uniqueFollows = [];
+$scope.uniqueFollowers = [];
+//__________________End variables___________________
+
+
+
+//__________________Load More Function___________________
+// have to declare loadMore function here becuase
+// called later down
+$scope.loadMore = function(category){
+	calledTimes[category]++
+	var count = calledTimes[category];
+
+	for(var i=0; i<12*count; i++){
+		var itemToAdd = $scope.clone[category].pop();
+		if(itemToAdd){
+			$scope[category].push(itemToAdd);
+		}
+		else{
+			$scope.noMore[category] = true;
+			return;
+		}
+	}
+}  // end of load more function
+//___________________________________________________
+///////////////////////////////////////////////////
+//  end copied stuff
+///////////////////////////////////////////////////
+
+$scope.clone = {
+		uniqueFollows: $scope.report.relationships.uniqueFollows.slice(0),
+		uniqueFollowers: $scope.report.relationships.uniqueFollowers.slice(0),
+	};
+
+	$scope.loadMore("uniqueFollows");
+	$scope.loadMore("uniqueFollowers");
+
+
+
+
+
+
+
+
+
+
+}
 
 
 

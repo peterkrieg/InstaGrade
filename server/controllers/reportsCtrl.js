@@ -156,6 +156,10 @@ getRelationships: function(req, res, next){
 	.populate('reports.report')
 	.exec(function(err, user){
 		var reports = user.reports;
+		var lastReport = reports[reports.length-1].report;
+		// var dateLastReport = reports[reports.length-1].date;
+		// var uniqueFollows = reports[reports.length-1].report.relationships.uniqueFollows;
+		// var uniqueFollowers = reports[reports.length-1].report.relationships.uniqueFollowers;
 
 		var relationshipsStats = reports.map(function(report){
 			var relObj = {};
@@ -166,13 +170,22 @@ getRelationships: function(req, res, next){
 		});
 
 
+		var relationshipsData = {
+			// dateLastReport: dateLastReport,
+			// uniqueFollows: uniqueFollows,
+			// uniqueFollowers: uniqueFollowers,
+			lastReport: lastReport,
+			relationshipsStats: relationshipsStats
+		};
 
 
 
 
 
 
-		res.send(relationshipsStats);
+
+
+		res.send(relationshipsData);
 	})
 
 
