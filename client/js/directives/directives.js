@@ -353,7 +353,7 @@ angular.module('myApp')
 				$heart.click(function(){
 					openInstagramCrushModal();
 					
-					$heart.removeClass('pulse');
+					// $heart.removeClass('pulse');
 
 					// now need to have delays right for css animations
 					$userImg.addClass('hidden');
