@@ -279,6 +279,10 @@ app.put('/api/users/specificReport', usersCtrl.toggleSpecificReport);
 
 app.get('/api/reports/stats', reportsCtrl.getStats);
 
+//____________________Getting relationships for account page_____________________
+
+app.get('/api/getRelationships', reportsCtrl.getRelationships);
+
 
 
 

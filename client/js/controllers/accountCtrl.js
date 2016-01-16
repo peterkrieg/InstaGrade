@@ -35,8 +35,8 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 			// console.log(currentTime);
 			// console.log(timeLastReport);
 
-			// var hours24 = 1000*60*60*24 // number of milliseconds in a day
-			var hours24=1000*60 // a minute, just for testing purposes
+			var hours24 = 1000*60*60*24 // number of milliseconds in a day
+			// var hours24=1000*60 // a minute, just for testing purposes
 			// if it hasn't been a day since last report, can't fire
 
 			if(currentTime-timeLastReport<hours24){
@@ -82,19 +82,122 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 // loading stats page, most of logic is in stats graph directive
 reportService.getStats()
 .then(function(stats){
-	// reverse stats, to show newest dates at top
-	stats.reverse();
-
 	$scope.stats = stats;
+	// reverse stats, to show newest dates at top
+	// stats.reverse();
+	$scope.statsReversed = stats.slice(0);
+	$scope.statsReversed.reverse();
+
 	console.log($scope.stats);
+	console.log($scope.statsReversed);
 
 	$scope.loadingStats = false;
 
 	// first selected item is number likes given, by default
 	$scope.selectedItem = "numLikesGiven";
 
+	// once done with stats, get relationships
+	getRelationships();
+
 
 }) // end of getting stats
+
+
+
+function getRelationships(){
+	console.log(user);
+	reportService.getRelationships(user._id)
+	.then(function(relationshipsStats){
+		console.log(relationshipsStats);
+
+		// calculate unfollowers (people who have unfollowed you, and when)
+		// dates would be approximate (just between date of 2 reports, all info you have)
+
+		var unfollows = [];
+
+		loop1:
+		for(var i=0; i<relationshipsStats.length; i++){
+			var followers = relationshipsStats[i].followers;
+			loop2:
+			for(var j=0; j<followers.length; j++){
+				var follower = followers[j];
+				loop3:
+				for(var k=i+1; k<relationshipsStats.length; k++){
+					var followersToCompare = relationshipsStats[k].followers;
+					loop4:
+					for(var l=0; l<followersToCompare.length; l++){
+						var followerToCompare = followersToCompare[l];
+				 		// if followers Ids are same, then they havent unfollowed in that report
+				 		if(follower.id===followerToCompare.id){
+				 			// break the current loop (the 4th nested for loop..)
+				 			break;
+				 		}
+
+				 		// if reaches end of loop, and still no ids are same, then person unfollowed user..
+				 		if(l===followersToCompare.length-1){
+				 			var unfollowObj = {
+				 				date1: relationshipsStats[k-1].date,
+				 				date2: relationshipsStats[k].date,
+				 				user: follower
+				 			};
+
+				 			// unfollows.push(unfollowObj);
+
+			 				// if unfollows empty, push it for sure
+				 			if(unfollows.length===0){
+				 				unfollows.push(unfollowObj);
+				 				break loop3;
+				 			}
+
+				 			// // check if unfollow is already there or not
+				 			for(var x=0; x<unfollows.length; x++){
+				 				var unfollow = unfollows[x];
+				 				if(follower.id===unfollow.user.id){
+				 					break loop3;
+				 				}
+				 				if(x===unfollows.length-1){
+				 					unfollows.push(unfollowObj);
+				 					break loop3;
+				 				}
+				 			}
+
+
+				 			break loop3;
+				 		}
+				 	}
+
+				 }
+
+				}
+			}
+
+			console.log(unfollows);
+			$scope.unfollows = unfollows;
+
+
+
+
+
+
+
+
+
+		})
+
+
+
+} // get relationships function
+
+
+
+
+
+
+
+
+
+
+
 
 
 

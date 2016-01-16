@@ -34,8 +34,13 @@ angular.module('myApp')
 		.then(function(response){
 			// console.log(response);
 			return response.data;
+		})
+	};
 
-
+	this.getRelationships = function(userId){
+		return $http.get('/api/getRelationships?userId='+userId)
+		.then(function(response){
+			return response.data;
 		})
 	}
 

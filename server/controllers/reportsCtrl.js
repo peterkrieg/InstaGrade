@@ -113,8 +113,8 @@ getStats: function(req, res, next){
 				// put date in 
 				stats.push([reportWrapper.date]);
 				// console.log(typeof reportWrapper.date);
-				console.log(reportWrapper.date);
-				console.log(typeof reportWrapper.date);
+				// console.log(reportWrapper.date);
+				// console.log(typeof reportWrapper.date);
 
 				var statsObj = {
 					id: reportWrapper.report._id,
@@ -141,6 +141,66 @@ getStats: function(req, res, next){
 });
 
 	}, // end of get stats function
+
+
+
+///////////////////////////////////////////////////
+//  Get relationships account function
+///////////////////////////////////////////////////
+
+getRelationships: function(req, res, next){
+	var userId = req.query.userId;
+	console.log(userId);
+
+	User.findById(userId)
+	.populate('reports.report')
+	.exec(function(err, user){
+		var reports = user.reports;
+
+		var relationshipsStats = reports.map(function(report){
+			var relObj = {};
+			relObj.date = report.date;
+			relObj.followers = report.report.relationships.followers;
+			relObj.follows = report.report.relationships.follows;
+			return relObj;
+		});
+
+
+
+
+
+
+
+
+		res.send(relationshipsStats);
+	})
+
+
+
+	// res.send({hello: 'hello'});
+},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////
+//  End of get relationships
+///////////////////////////////////////////////////
+
+
 
 
 ///////////////////////////////////////////////////

@@ -37,7 +37,7 @@
 					</tr>
 				</thead>
 				<!-- report.report is the value of the object ID referencing the report -->
-				<tr class="report-row" ng-repeat="report in stats" ng-click="loadSpecificReport(report[1].id)">
+				<tr class="report-row" ng-repeat="report in statsReversed" ng-click="loadSpecificReport(report[1].id)">
 					<td>{{$index+1}}</td>
 					<td>{{report[0] | date: 'MMM d &#8217yy, h:mm a'}}</td>
 					<td class="media">{{report[1].numMedia}}</td>
