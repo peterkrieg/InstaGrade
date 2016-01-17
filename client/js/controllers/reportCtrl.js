@@ -2,10 +2,13 @@ angular.module('myApp')
 .controller('reportCtrl', function($scope, reportService, userService, instaService, followService, $sce, $filter, $http){
 
 	console.log('results controller loaded!');
+		window.scroll(0,0)
+
 	// 3 different states, to have loading status
 	$scope.loadingUser = true;
 	$scope.loadingMedia = true;
 	$scope.loadingEverythingElse = true;
+
 
 
 	reportService.getToken()

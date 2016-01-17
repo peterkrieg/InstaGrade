@@ -8,7 +8,7 @@ function basicCtrlFunc($scope, userService){
 	userService.checkIfLoggedIn()
 	.then(function(user){
 		console.log(user);
-		if(user){
+		if(user.name){
 			$scope.user = user;
 		}
 	})

@@ -2,7 +2,9 @@ angular.module('myApp')
 .controller('demoReportCtrl', demoReportCtrlFunc);
 
 function demoReportCtrlFunc($scope, demoService, reportService, userService, instaService, followService, $sce, $filter, $http, $stateParams) {
-//
+//make page scroll to top, weird thing with loading when page scrolled down
+	window.scroll(0,0)
+
 
 
 console.log('demo report ctrl func');
