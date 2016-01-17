@@ -138,14 +138,13 @@ div.relationships{
 
 
 
-			/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 			@include desktopOrMore {
 				width: 800px;
 			}
 		}
 
 		div.modal-header{
-			background-image: url("http://www.transparenttextures.com/patterns/green-gobbler.png");
+			background-image: url("../img/green-gobbler.png");
 
 			h4.match-title{
 				position: relative;
@@ -210,8 +209,19 @@ div.relationships{
 		//  End animations
 		///////////////////////////////////////////////////
 
+
+
+
 		div.modal-body{
 			min-height: 200px;
+		}
+
+		button.close{
+			font-size: 35px;
+			padding-top: 5px;
+			top: -5px;
+			position: relative;
+			left: 15px;
 		}
 
 		p.explanation{
@@ -222,7 +232,8 @@ div.relationships{
 			margin-bottom: 20px;
 		}
 
-		div.button{
+		div.share-facebook{
+			display: inline-block;
 			cursor: pointer;
 			padding-left: 30px;
 			border: 1px solid black;
@@ -249,6 +260,20 @@ div.relationships{
 					position: absolute;
 					left: -30px;
 					bottom: 2px;
+				}
+			}
+		} // end share facebook button
+
+		// twitter button
+		div#twtbox{
+			margin-left: 10px;
+			position: relative;
+			top: 5px;
+			display: inline-block;
+			font-family: $header-font;
+			div.btn-o{
+				a.btn{
+					font-family: $header-font;
 				}
 			}
 		}

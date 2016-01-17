@@ -3,6 +3,11 @@ angular.module('myApp')
 	return{
 		link: function(scope, elem, attrs){
 			$(function(){
+				console.log('facebook share scope is', scope);
+
+				setTimeout(function(){
+					console.log('fb share scope later is', scope)
+				}, 5000)
 
 				///////////////////////////////////////////////////
 				//  Facebook SDK stuff I need
