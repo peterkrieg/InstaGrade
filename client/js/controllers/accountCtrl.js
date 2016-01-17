@@ -88,9 +88,6 @@ reportService.getStats()
 	$scope.statsReversed = stats.slice(0);
 	$scope.statsReversed.reverse();
 
-	console.log($scope.stats);
-	console.log($scope.statsReversed);
-
 	$scope.loadingStats = false;
 
 	// first selected item is number likes given, by default

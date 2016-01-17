@@ -34,55 +34,11 @@ function profileFuncDemo($scope, demoService, reportService, userService, $state
 	};
 
 	$scope.newReport = function(){
-		console.log('\n\n new report!! \n\n');
-		// first have to check that new report is 24 hours after time of now, to avoid problems
-		var currentTime = new Date().getTime(); // # milliseconds since 1970
-		reportService.getLatestReportDate()
-		.then(function(timeLastReport){
-			// console.log(currentTime);
-			// console.log(timeLastReport);
-
-			// var hours24 = 1000*60*60*24 // number of milliseconds in a day
-			var hours24=1000*60 // a minute, just for testing purposes
-			// if it hasn't been a day since last report, can't fire
-
-			if(currentTime-timeLastReport<hours24){
-				console.log('hasnt been day yet!!');
-				// time left is for displaying countdown until report can be shown
-				var timeLeft = hours24- (currentTime-timeLastReport);
-				// console.log(timeLeft) ;
-				$scope.timeLeft = timeLeft;
-
-				// coutndown timer, to show time left to user until report
-
-				$scope.timer = $interval(function(){
-					$scope.timeLeft-=1000;
-					// rare case that user looks at countdown as it gets down to a few seconds
-					// if so, need to close error box 
-					if($scope.timeLeft<=0){
-						$scope.errorNotDay = false;
-					}
-				}, 1000);
-
-				$scope.toggleError(true);
-
-			}
-			else{
-				userService.toggleReadyForReport(true)
-				.then(function(response){
-					$state.go('report.media');
-				})
-			}
-		});
+		alert("Sorry, You Can't do That In Demo Mode!");
 	}; // end of new Report function
 
 	$scope.loadSpecificReport = function(reportId){
-		console.log('load specific report fired!!');
-		console.log(reportId);
 		$state.go('demoReport.media', {reportId: reportId});
-
-
-
 
 	}; // end of load specific report function
 
@@ -90,22 +46,147 @@ function profileFuncDemo($scope, demoService, reportService, userService, $state
 // loading stats page, most of logic is in stats graph directive
 
 
+// loading stats page, most of logic is in stats graph directive
 demoService.getStatsDemo()
 .then(function(stats){
-	// console.log(stats);
-
-	// reverse stats, to show newest dates at top
-	stats.reverse();
-
 	$scope.stats = stats;
+	// reverse stats, to show newest dates at top
+	// stats.reverse();
+	$scope.statsReversed = stats.slice(0);
+	$scope.statsReversed.reverse();
 
 	$scope.loadingStats = false;
 
 	// first selected item is number likes given, by default
 	$scope.selectedItem = "numLikesGiven";
 
+	// once done with stats, get relationships
+	getRelationships();
+
 
 }) // end of getting stats
+
+
+
+
+
+function getRelationships(){
+	// just filling with dummy data, for showing
+	$scope.unfollows = [{
+		date1: "2015-12-29T18:05:04.352Z",
+		date2: "2015-12-30T23:05:55.168Z",
+		user: {
+			full_name: "Alexandra Smith",
+			id: 12345678,
+			profile_picture: "http://api.randomuser.me/portraits/med/women/39.jpg",
+			username: 'demoaccount'
+		}
+	},
+	{
+		date1: "2015-12-24T15:05:03.345Z",
+		date2: "2015-12-27T18:05:03.345Z",
+		user: {
+			full_name: "Jack Unfollower!",
+			id: 12345,
+			profile_picture: "http://api.randomuser.me/portraits/med/men/20.jpg",
+			username: 'demo account'
+		}
+	},
+	{
+		date1: "2016-01-15T08:27:50.635Z",
+		date2: "2016-01-17T10:30:50.635Z",
+		user: {
+			full_name: "Samantha Something",
+			id: 22,
+			profile_picture: "http://api.randomuser.me/portraits/med/women/50.jpg",
+			username: 'demo account'
+		}
+	}
+
+	];
+
+	demoService.getLastDemoReport()
+	.then(function(report){
+		$scope.report = report;
+		setUpView();
+	})
+
+
+
+
+
+} // get relationships function
+
+
+
+
+
+function setUpView(){
+
+///////////////////////////////////////////////////
+//  stuff copied from report Ctrl
+///////////////////////////////////////////////////
+//___________________________________________________
+// variable definitions for functions, global variables
+var calledTimes = {
+	uniqueFollows: 0,
+	uniqueFollowers: 0,
+};
+
+$scope.noMore = {
+	uniqueFollows: false,
+	uniqueFollowers: false,
+};
+
+$scope.uniqueFollows = [];
+$scope.uniqueFollowers = [];
+//__________________End variables___________________
+
+
+
+//__________________Load More Function___________________
+// have to declare loadMore function here becuase
+// called later down
+$scope.loadMore = function(category){
+	calledTimes[category]++
+	var count = calledTimes[category];
+
+	for(var i=0; i<12*count; i++){
+		var itemToAdd = $scope.clone[category].pop();
+		if(itemToAdd){
+			$scope[category].push(itemToAdd);
+		}
+		else{
+			$scope.noMore[category] = true;
+			return;
+		}
+	}
+}  // end of load more function
+//___________________________________________________
+///////////////////////////////////////////////////
+//  end copied stuff
+///////////////////////////////////////////////////
+
+$scope.clone = {
+	uniqueFollows: $scope.report.relationships.uniqueFollows.slice(0),
+	uniqueFollowers: $scope.report.relationships.uniqueFollowers.slice(0),
+};
+
+$scope.loadMore("uniqueFollows");
+$scope.loadMore("uniqueFollowers");
+
+
+}
+
+
+
+
+$scope.deleteUser = function(){
+	alert("Sorry, You Can't do That in Demo Mode!");
+}
+
+
+
 
 
 

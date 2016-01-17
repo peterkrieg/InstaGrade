@@ -19,51 +19,6 @@ var reports =
     }
   ],
   [
-    "2015-12-24T05:20:44.240Z",
-    {
-      "id": "567b80ac2705250bc18c0fd5",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 68,
-      "numLikesGiven": 836,
-      "numLikesReceived": 1391,
-      "numPics": 65,
-      "numVids": 3,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.301592460188495
-    }
-  ],
-  [
-    "2015-12-24T06:27:32.285Z",
-    {
-      "id": "567b9054d9e1d3bfc4b7cb66",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 68,
-      "numLikesGiven": 839,
-      "numLikesReceived": 1391,
-      "numPics": 65,
-      "numVids": 3,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.301592460188495
-    }
-  ],
-  [
-    "2015-12-24T07:12:51.620Z",
-    {
-      "id": "567b9af3a251caacc730c597",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 68,
-      "numLikesGiven": 839,
-      "numLikesReceived": 1391,
-      "numPics": 65,
-      "numVids": 3,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.301592460188495
-    }
-  ],
-  [
     "2015-12-25T03:16:10.672Z",
     {
       "id": "567cb4fa8b64cd9dd0ade97b",
@@ -76,51 +31,6 @@ var reports =
       "numVids": 4,
       "userRatio": 1.117283950617284,
       "adjustedAverageNumLikes": 11.321963327728401
-    }
-  ],
-  [
-    "2015-12-25T06:29:18.879Z",
-    {
-      "id": "567ce23e05ac697dde74069e",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 69,
-      "numLikesGiven": 842,
-      "numLikesReceived": 1417,
-      "numPics": 65,
-      "numVids": 4,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.345984466330371
-    }
-  ],
-  [
-    "2015-12-25T06:33:07.822Z",
-    {
-      "id": "567ce32305ac697dde740732",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 69,
-      "numLikesGiven": 842,
-      "numLikesReceived": 1417,
-      "numPics": 65,
-      "numVids": 4,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.345984466330371
-    }
-  ],
-  [
-    "2015-12-25T16:30:02.992Z",
-    {
-      "id": "567d6f0a05ac697dde7407c6",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 69,
-      "numLikesGiven": 842,
-      "numLikesReceived": 1419,
-      "numPics": 65,
-      "numVids": 4,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.361998558731683
     }
   ],
   [
@@ -146,21 +56,6 @@ var reports =
       "numFollows": 162,
       "numMedia": 69,
       "numLikesGiven": 849,
-      "numLikesReceived": 1419,
-      "numPics": 65,
-      "numVids": 4,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.361998558731683
-    }
-  ],
-  [
-    "2015-12-26T21:51:39.167Z",
-    {
-      "id": "567f0beb6815db47fefd173f",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 69,
-      "numLikesGiven": 850,
       "numLikesReceived": 1419,
       "numPics": 65,
       "numVids": 4,
@@ -196,36 +91,6 @@ var reports =
       "numVids": 4,
       "userRatio": 1.117283950617284,
       "adjustedAverageNumLikes": 11.349644830307815
-    }
-  ],
-  [
-    "2015-12-29T18:05:04.352Z",
-    {
-      "id": "5682cb506e664d674831d971",
-      "numFollowers": 181,
-      "numFollows": 162,
-      "numMedia": 70,
-      "numLikesGiven": 861,
-      "numLikesReceived": 1438,
-      "numPics": 66,
-      "numVids": 4,
-      "userRatio": 1.117283950617284,
-      "adjustedAverageNumLikes": 11.349644830307815
-    }
-  ],
-  [
-    "2015-12-29T23:05:55.168Z",
-    {
-      "id": "568311d30830d496576bc3d7",
-      "numFollowers": 180,
-      "numFollows": 162,
-      "numMedia": 70,
-      "numLikesGiven": 863,
-      "numLikesReceived": 1438,
-      "numPics": 66,
-      "numVids": 4,
-      "userRatio": 1.1111111111111112,
-      "adjustedAverageNumLikes": 11.412698412698413
     }
   ],
   [
