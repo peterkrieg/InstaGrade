@@ -240,7 +240,7 @@ angular.module('myApp')
 
 
 
-//_________________________Footer, just HTML Directive__________________________
+//____________Footer, just HTML Directive, with all links__________________________
 
 angular.module('myApp')
 .directive('myFooter', function(){
@@ -249,7 +249,28 @@ angular.module('myApp')
 	};
 })
 
+// footer if demo user view
 
+angular.module('myApp')
+.directive('myFooterDemo', function(){
+	return {
+		templateUrl: 'partials/mainFooterDemo.html'
+	};
+})
+
+
+
+
+
+
+//______Need different footer if user not logged in (display only some links) _____________________
+
+angular.module('myApp')
+.directive('myFooterLess', function(){
+	return {
+		templateUrl: 'partials/mainFooterLess.html'
+	};
+})
 
 
 
