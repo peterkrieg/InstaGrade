@@ -2,24 +2,21 @@
 div.account div.relationships-account{
 	text-align: center;
 
+
 	font-size: 1.5rem;
+	@include tablet {
+		font-size: 1.3rem;
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	h4{
+		font-size: 1.2em;
+	}
+	h6{
+		font-size: .8em;
+	}
+	p{
+		font-size: .75em;
+	}
 
 
 
@@ -69,7 +66,7 @@ div.account div.relationships-account{
 
 	// any name on screen, above picture
 	li.name{
-		font-size: .5em;
+		font-size: .65em;
 		margin-bottom: 20px;
 	}
 
@@ -108,7 +105,19 @@ div.account div.relationships-account{
 	///////////////////////////////////////////////////
 
 
-
+	div.unfollow-date{
+		li{
+			width: 250px;
+			text-align: left;
+			display: inline-block;
+			font-size: .6em;
+			position: relative;
+			span{
+				position: absolute;
+				right: 0;
+			}
+		}
+	}
 
 
 
