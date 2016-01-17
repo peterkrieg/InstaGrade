@@ -50,6 +50,10 @@ function userFunc($http, $q){
 		})
 
 
+	};
+
+	this.deleteUser = function(userId){
+		$http.post('/api/users/deleteUser?userId='+userId);
 	}
 
 

@@ -283,6 +283,8 @@ app.get('/api/reports/stats', reportsCtrl.getStats);
 
 app.get('/api/getRelationships', reportsCtrl.getRelationships);
 
+app.post('/api/users/deleteUser', usersCtrl.deleteUser);
+
 
 
 

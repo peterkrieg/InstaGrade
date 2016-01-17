@@ -1,12 +1,69 @@
 div.settings{
 	text-align: center;
+	font-size: 1.5rem;
 
 	h1.top-header{
 		margin-bottom: 20px;
 	}
 
 	h2.intro{
+		font-size: .9em;
 		text-decoration: none;
+	}
+
+
+	button.delete-account{
+		font-family: $header-font;
+		padding: 5px 15px;
+		border-radius: 5px;
+		font-size: .8em;
+		border: 2px solid $instaBlue;
+		background: #fafafa;
+		@include transition(.4s ease);
+		&:hover{
+			background: $instaBlue;
+			border-color: black;
+			color: white;
+		}
+		i.fa{
+			margin-left: 10px;
+		}
+	}
+
+
+	///////////////////////////////////////////////////
+	//  Delete Account Modal
+	///////////////////////////////////////////////////
+	div.modal{
+		button.close{
+			font-size: 30px;
+		}
+
+		p.goodbye-message{
+			line-height: 1.5em;
+			text-align: left;
+		}
+
+		button.delete-account-final{
+			font-size: .7em;
+			font-family: $header-font;
+			padding: 5px 15px;
+			border-radius: 5px;
+			background: #D91E18;
+			border: 1px solid black;
+			color: white;
+			@include transition(.4s ease);
+			&:hover{
+				background: darken(#D91E18, 10%);
+			}
+
+		}
+
+
+
+
+
+
 	}
 
 

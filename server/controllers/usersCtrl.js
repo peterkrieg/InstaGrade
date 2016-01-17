@@ -101,6 +101,18 @@ addUser: function(req, res, next){
 
 },
 
+deleteUser: function(req, res){
+	var userId = req.query.userId;
+
+	// just to avoid any problems with accidentally deleteing account when developing
+	if(process.env.NODE_ENV ==='production'){
+		User.findById(userId).remove().exec();
+	}
+
+	// User.findById(userId).remove().exec();
+
+},
+
 
 getUser: function(req, res, next){
 	// same instagram that is attached to cookies

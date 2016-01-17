@@ -35,8 +35,8 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 			// console.log(currentTime);
 			// console.log(timeLastReport);
 
-			var hours24 = 1000*60*60*24 // number of milliseconds in a day
-			// var hours24=1000*60 // a minute, just for testing purposes
+			// var hours24 = 1000*60*60*24 // number of milliseconds in a day
+			var hours24=1000*60 // a minute, just for testing purposes
 			// if it hasn't been a day since last report, can't fire
 
 			if(currentTime-timeLastReport<hours24){
@@ -146,10 +146,10 @@ function getRelationships(){
 				 			// unfollows.push(unfollowObj);
 
 			 				// if unfollows empty, push it for sure
-				 			if(unfollows.length===0){
-				 				unfollows.push(unfollowObj);
-				 				break loop3;
-				 			}
+			 				if(unfollows.length===0){
+			 					unfollows.push(unfollowObj);
+			 					break loop3;
+			 				}
 
 				 			// // check if unfollow is already there or not
 				 			for(var x=0; x<unfollows.length; x++){
@@ -233,26 +233,27 @@ $scope.loadMore = function(category){
 ///////////////////////////////////////////////////
 
 $scope.clone = {
-		uniqueFollows: $scope.report.relationships.uniqueFollows.slice(0),
-		uniqueFollowers: $scope.report.relationships.uniqueFollowers.slice(0),
-	};
+	uniqueFollows: $scope.report.relationships.uniqueFollows.slice(0),
+	uniqueFollowers: $scope.report.relationships.uniqueFollowers.slice(0),
+};
 
-	$scope.loadMore("uniqueFollows");
-	$scope.loadMore("uniqueFollowers");
-
-
-
-
-
-
-
-
+$scope.loadMore("uniqueFollows");
+$scope.loadMore("uniqueFollowers");
 
 
 }
 
+///////////////////////////////////////////////////
+//  User interaction events
+///////////////////////////////////////////////////
 
 
+$scope.deleteUser = function(){
+	// console.log(user._id);
+	userService.deleteUser(user._id);
+	// redirect page to home, tried with state.go but doesn't close bootstrap modal
+	window.location.assign('http://mediascore.rocks');
+}
 
 
 

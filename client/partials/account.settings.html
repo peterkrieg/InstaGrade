@@ -1,10 +1,33 @@
 <div class="settings fade-in-up">
 	<h1 class="top-header">Settings</h1>
 
-	<h2 class="intro">There's not much to do here yet.  But maybe later there will be more actions!</h2>
+	<h2 class="intro">There's not much to do here yet, except to delete your account.  But maybe later there will be more actions!</h2>
+
+	<button class="delete-account" open-delete-account-modal>Delete Account<i class="fa fa-trash"></i></button>
 	
 
 
+
+
+
+
+	<!-- Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Are You <em>Sure</em> You Want To Delete Your Account?</h4>
+      </div>
+      <div class="modal-body">
+        <p class="goodbye-message">We'd hate to see you go!  Deleting your account will remove all of your data from the site permanently.  But if you're sure and you hate this site, then proceed to click the red button below..</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="delete-account-final" ng-click="deleteUser()">Yes, Delete Account</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 

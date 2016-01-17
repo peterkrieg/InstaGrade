@@ -405,6 +405,32 @@ angular.module('myApp')
 })
 
 
+angular.module('myApp')
+.directive('openDeleteAccountModal', function(){
+	return {
+		link: function(scope, elem, attrs){
+			elem.click(function(){
+				console.log('blah');
+
+				var $navbar = $('div.main-nav');
+				console.log($navbar)
+				var $modal = $('#deleteAccountModal');
+
+				$modal.modal('toggle');
+				// make sure modal appears right, if navbar is down, need to push down on page
+				if($navbar.hasClass('nav-down')){
+					console.log('down!!');
+					$modal.find('.modal-content').css('top', '50px');
+				}
+				else{
+					// otherwise, just cancel css, to make sure appears right with no navbar
+					$modal.find('.modal-content').css('top', '');
+				}
+			})
+		} // link
+	}; // return
+}); // directive
+
 
 
 
