@@ -10,6 +10,10 @@ function basicCtrlFunc($scope, userService){
 		console.log(user);
 		if(user.name){
 			$scope.user = user;
+			$scope.full = true;
+		}
+		else{
+			$scope.demo = true;
 		}
 	})
 

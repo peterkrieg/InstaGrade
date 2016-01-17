@@ -234,8 +234,41 @@ angular.module('myApp')
 ///////////////////////////////////////////////////
 
 
+///////////////////////////////////////////////////
+//  Footer directive, has attributes to say if it is 
+//  full footer, or demo, or less version
+///////////////////////////////////////////////////
+
+angular.module('myApp')
+.directive('myFooter', function(){
+	return {
+		templateUrl: 'partials/mainFooter.html',
+		link: function(scope, elem, attrs){
+			if(attrs.type==="full"){
+				scope.full = true;
+			}
+			else if(attrs.type==="demo"){
+				scope.demo = true;
+			}
+			else if(attrs.type==="less"){
+				scope.less = true;
+			}
+
+			// for basic ctrl, to check if demo, or full
+			else if(attrs.type==="check"){
+				if(scope.$parent.demo===true){
+					scope.demo = true;
+				}
+				else if(scope.$parent.full===true){
+					scope.full = true;
+				}
+			}
+			// end 
 
 
+		} // link
+	};
+})
 
 
 
