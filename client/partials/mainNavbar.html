@@ -4,7 +4,9 @@
 
 		<div ng-show="user" user-menu class="user-profile">
 			<img class="user-profile" ng-src="demo/profilesmall.jpg" ng-if="!loadingUser" alt="">
-			<li>{{user.name}} <i class="fa fa-caret-down"></i></li>
+			<li>{{user.name}} <i class="normal-caret fa fa-caret-down"></i></li>
+			<i class="phone-caret fa fa-caret-down"></i>
+
 			<div  class="user-menu">
 				<!-- acccount page goes to reports, within account -->
 				<a class="menu-item-wrapper" ui-sref="account.reports">

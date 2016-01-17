@@ -39,6 +39,14 @@ div.main-nav{
 		font-family: $header-font;
 		color: white;
 		font-size: .8em;
+		@include phoneOrLess {
+			font-size: .7em;
+			margin-top: 15px;
+		}
+		@include smallphone {
+			font-size: .6em;
+			margin-top: 17px;
+		}
 		letter-spacing: 5px;
 		float: left;
 		margin-left: 10px;
@@ -73,13 +81,27 @@ div.main-nav{
 		position: relative;
 		bottom: 14px;
 		position: relative;
-		i.fa{
+		@include phoneOrLess {
+			display: none;
+		}
+		i.normal-caret{
 			position: absolute;
 			right: -22px;
 			top: -6px;
 			font-size: 1.6em;
 			// @include transition(.3s ease);
 
+		}
+	}
+	i.phone-caret{
+		font-size: 1.1em;
+		color: white;
+		display: none;
+		@include phoneOrLess {
+			display: inline-block;
+			position: relative;
+			bottom: 7px;
+			right: -5px;
 		}
 	}
 
