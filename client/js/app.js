@@ -182,6 +182,12 @@ angular.module('myApp', ['ui.router'])
 		controller: 'basicCtrl'
 	})
 
+	.state('contact', {
+		url: '/contact',
+		templateUrl: 'partials/contact.html',
+		controller: 'basicCtrl'
+	})
+
 
 
 

@@ -1,0 +1,30 @@
+div.contact{
+	font-size: 1.5rem;
+	text-align: center;
+	h1{
+		text-decoration: underline;
+		font-size: 2em;
+		@include phoneOrLess {
+			font-size: 1.5em;
+		}
+		// @include smallphone {
+		// 	font-size: 1.2em;
+		// }
+		margin-bottom: 20px;
+	}
+
+	p{
+		font-size: .7em;
+	}
+	a{
+		color: $instaBlue;
+		text-decoration: underline;
+	}
+
+
+
+
+
+
+
+}
