@@ -1,11 +1,20 @@
 div.faq{
-	font-size: 1.7rem;
+	font-size: 1.6rem;
+	@include tabletOrLess {
+		font-size: 1.45rem;
+	}
+	@include phoneOrLess {
+		font-size: 1.35rem;
+	}
 	text-align: center;
 	padding-bottom: 120px;
 
 	h1{
 		text-decoration: underline;
 		margin-bottom: 10px;
+		@include phoneOrLess {
+			font-size: 1.3em;
+		}
 	}
 
 
@@ -38,6 +47,10 @@ div.faq{
 	i.fa-caret-right{
 		color: $instaBlue;
 		font-size: 40px;
+		@include phoneOrLess {
+			font-size: 30px;
+			top: 15px;
+		}
 		left: 10px;
 		position: absolute;
 		top: 11px;

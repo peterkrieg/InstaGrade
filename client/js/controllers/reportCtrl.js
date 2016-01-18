@@ -59,9 +59,9 @@ angular.module('myApp')
 			slow: 'Wow!  You have '+numMedia+' pieces of media.  We\'re taking care of this as fast as we can, but this might take a minute or two'
 		};
 		var otherLoadingMessages = {
-			fast: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This should only take a few moments',
-			medium: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This shouldn\'t take too long',
-			slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+' users.  We\'re taking care of this as fast as we can, but this might take a minute or two'
+			fast: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This should only take 2-3 minutes',
+			medium: 'You have '+numFollowers+' followers and follow '+numFollows+' users.  This shouldn\'t take too long, please check back in 10 minutes or so.',
+			slow: 'Wow!  You have '+numFollowers+' followers and follow '+numFollows+' users.  We\'re taking care of this as fast as we can, but this might take 20 minutes or so.'
 		};
 
 

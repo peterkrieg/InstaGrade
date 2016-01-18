@@ -25,6 +25,8 @@ div.results{
 		margin-top: 5px;
 	}
 
+
+
 }
 
 
@@ -90,7 +92,7 @@ div.loading{
 	}
 	text-align: center;
 	img{
-		width: 200px;
+		width: 100px;
 		@include animation-name(instaSpinLoad);
 		@include animation-iteration-count(infinite);
 		@include animation-duration(2s);
