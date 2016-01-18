@@ -45,6 +45,12 @@ div.grade{
 	span.show-explanation{
 		font-weight: 100;
 		font-size: 50px;
+		@include phoneOrLess {
+			font-size: 40px;
+		}
+		@include smallphone {
+			font-size: 32px;
+		}
 		right: 10px;
 		top: 10px;
 		&:hover{

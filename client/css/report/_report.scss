@@ -115,6 +115,12 @@ div.container.results{
 				}
 				@include phoneOrLess {
 					font-size: .5em;
+					padding-right: 10px;
+					padding-left: 10px;
+				}
+				@include smallphone {
+					padding-right: 5px;
+					padding-left: 5px;
 				}
 			}
 			&.active{

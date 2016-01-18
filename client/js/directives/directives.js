@@ -522,11 +522,15 @@ angular.module('myApp')
 	.directive('commentExpand', function(){
 		return {
 			link: function(scope, elem, attrs){
-				elem.on('click', function(){
-						// console.log('clicked! ');
-						var $comments = elem.parents('ul.stats').siblings('ul.comments');
+				var $stats = $(elem);
+				var $comments = $stats.find('ul.comments');
+				var $plus = $stats.find('span.comments-plus');
+
+				$plus.on('click', function(){
+						console.log('clicked! ');
+
 						$comments.toggleClass('hidden');
-						elem.toggleClass('active');
+						$plus.toggleClass('active');
 
 					});
 

@@ -147,7 +147,8 @@ div.media{
 	}
 
 	ul.comments{
-		z-index: 100000;
+		max-width: 400px;
+		z-index: 1000;
 		position: absolute;
 		background: white;
 		left: 18%;
@@ -157,7 +158,7 @@ div.media{
 		// max-width: 200px;
 		text-align: left;
 		// background: steelblue;
-		font-size: .4em;
+		font-size: .6em;
 		&.hidden{
 			display: none;
 		}
@@ -181,15 +182,16 @@ div.media{
 			}
 		}
 		div.comment-text{
-			// need to display table-cell to set height to 100%
 			display: inline-block;
 			width: 65%;
 			// background: yellow;
 			position: relative;
 			// bottom: 30px;
 			li{
+				display: inline;
+				// background: red;
 				// centers comment text vertically
-				display: block;
+				// display: block;
 				// vertical-align: middle;
 				// position: absolute;
 				// top: 30%;

@@ -9,6 +9,9 @@
 		border: 1px solid black;
 		width: 120px;
 		height: 40px;
+		@include phoneOrLess {
+			height: 30px;
+		}
 		border-radius: 5px;
 		background: #3B5998;
 		color: white;
@@ -21,6 +24,12 @@
 			// background: gold;
 			border-left: 2px solid rgba(0,0,0,.7);
 			padding-left: 20px;
+			@include phoneOrLess {
+				padding-left: 10px;
+				height: 25px;
+				bottom: 0px;
+				font-size: .8em;
+			}
 			padding-top: 7px;
 			position: relative;
 			bottom: 5px;
@@ -28,9 +37,15 @@
 			font-family: $header-font;
 			i{
 				font-size: 1.3em;
+				@include tablet {
+					font-size: 1.5em;
+				}
 				position: absolute;
 				left: -30px;
 				bottom: 2px;
+				@include phoneOrLess {
+					bottom: 0px;
+				}
 			}
 		}
 		} // end share facebook button
