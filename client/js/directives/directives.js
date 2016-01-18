@@ -456,7 +456,43 @@ angular.module('myApp')
 
 
 
+angular.module('myApp')
+.directive('faqBehavior', function(){
+	return {
+		link: function(scope, elem, attrs){
+			console.log('blah123');
+			var $qBox = $(elem);
+			var $caret = $qBox.find('i.fa-caret-right');
+			var $aBox = $qBox.find('.answer-container');
 
+
+			$qBox.find('.answer-container').hide();
+
+
+
+				// clicking anywhere in question box opens the question, and shuts all other
+				// questions that may be open, like accordion affect
+				elem.click(function(){
+					// don't do anything if already open
+					if($(this).hasClass('reveal')){
+						return;
+					}
+
+					// first close other boxes that may be open
+					$('.question-box').removeClass('reveal')
+					$('.question-box .answer-container').slideUp();
+
+
+					$qBox.addClass('reveal');
+					$aBox.slideDown();
+
+					console.log('blah');
+				})
+				
+
+		}
+	}
+})
 
 
 

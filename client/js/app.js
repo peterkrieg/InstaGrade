@@ -176,6 +176,12 @@ angular.module('myApp', ['ui.router'])
 		controller: 'basicCtrl'
 	})
 
+	.state('faq', {
+		url: '/faq',
+		templateUrl: 'partials/faq.html',
+		controller: 'basicCtrl'
+	})
+
 
 
 
