@@ -6,6 +6,23 @@ div.account{
 
 	// default sizing, same as report.scss
 
+	h1{
+		font-size: 2.5em;
+		@include tabletOrLess {
+			font-size: 2em;
+		}
+		@include phoneOrLess {
+			font-size: 1.8em;
+		}
+		@include smallphone {
+			font-size: 1.7em;
+		}
+	}
+
+
+
+
+
 	h2{
 		text-decoration: underline;
 		font-family: $header-font;
@@ -15,16 +32,34 @@ div.account{
 	}
 	h3{
 		font-size: 1.2em;
+		@include tabletOrLess {
+			font-size: 1.1em;
+		}
+		@include phoneOrLess {
+			font-size: 1em;
+		}
 	}
 	h4{
 		margin: 10px 0;
 		font-size: 1em;
+		@include tabletOrLess {
+			font-size: .95em;
+		}
+		@include phoneOrLess {
+			font-size: .85em;
+		}
 	}
 	h5{
 		font-size: .9em;
+		@include phoneOrLess {
+			font-size: .8em;
+		}
 	}
 	h6{
 		font-size: .65em;
+		@include phoneOrLess {
+			font-size: .6em;
+		}
 	}
 	p{
 		font-size: .6em;

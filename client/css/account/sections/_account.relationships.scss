@@ -4,8 +4,11 @@ div.account div.relationships-account{
 
 
 	font-size: 1.5rem;
-	@include tablet {
+	@include tabletOrLess {
 		font-size: 1.3rem;
+	}
+	@include phoneOrLess {
+		font-size: 1.2rem;
 	}
 
 	h4{

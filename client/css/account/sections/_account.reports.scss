@@ -3,12 +3,21 @@ div.user-profile{
 		position: relative;
 		display: inline-block;
 	}
+	
+
+
+
 	// center everything on page by default
 	text-align: center;
 	div.button{
 		top: -5px;
 		right: -200px;
 		position: absolute;
+		@include phoneOrLess {
+			position: relative;
+			right: 35px;
+			top: 10px;
+		}
 		float: right;
 		border: 2px solid $instaBlue;
 		border-radius: 10px;
@@ -24,12 +33,21 @@ div.user-profile{
 			color: black;
 			font-family: $header-font;
 			font-size: 1.2em;
+			@include phoneOrLess {
+				padding: 8px 30px 8px 10px;
+				font-size: 1em;
+			}
+
 			// span is just the plus
 			span{
 				color: black;
 				font-size: 2em;
 				position: absolute;
 				right: 20px;
+				@include phoneOrLess {
+					right: 10px;
+					bottom: 2px;
+				}
 				bottom: 0px;
 				@include transition(.4s ease);
 			}

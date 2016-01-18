@@ -1,14 +1,24 @@
 div.settings{
 	text-align: center;
 	font-size: 1.5rem;
+	@include tabletOrLess {
+		font-size: 1.2rem;
+	}
 
 	h1.top-header{
+		font-size: 1.6em;
 		margin-bottom: 20px;
+		@include smallphone {
+			font-size: 1.4em;
+		}
 	}
 
 	h2.intro{
 		font-size: .9em;
 		text-decoration: none;
+		@include phoneOrLess {
+			font-size: .8em;
+		}
 	}
 
 
