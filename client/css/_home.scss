@@ -6,6 +6,9 @@ div.home-page{
 
 div.intro-container{
 	font-size: 2rem;
+	@include tabletOrLess {
+		font-size: 1.5rem;
+	}
 	color: #ded1c1;
 	color: white;
 	text-align: center;
@@ -18,13 +21,31 @@ div.intro-container{
 }
 
 div.intro-content{
-
 	position: relative;
 	top: 70px;
+	@include tabletOrLess {
+		top: 50px;
+	}
+	@include phoneOrLess {
+		top: 30px;
+	}
 	h1{
 		font-size: 2.25em;
+		@include phoneOrLess {
+			font-size: 1.8em;
+		}
+		@include smallphone {
+			font-size: 1.3em;
+		}
 	}
+	// h3 secondary header--"more feedback.."
 	h3{
+		@include phoneOrLess {
+			font-size: .8em;
+		}
+		@include smallphone {
+			font-size: .7em;
+		}
 		margin: 20px 0;
 		font-size: 1em;
 		font-style: italic; 
@@ -43,9 +64,18 @@ div.intro-content{
 		}
 		a{
 			padding: 12px 20px;
+			@include phoneOrLess {
+				padding: 8px 13px;
+			}
 			display: block;
 			color: white;
 			font-size: .7em;
+			@include phoneOrLess {
+				font-size: .6em;
+			}
+			@include smallphone {
+				font-size: .5em;
+			}
 			&:hover{
 				text-decoration: none;
 			}
@@ -53,10 +83,13 @@ div.intro-content{
 
 		&.demo{
 			padding: 0 0 0 15px;
+			@include smallphone {
+				padding: 0 0 0 5px;
+			}
 			a{
 				display: inline;
 				position: relative;
-				bottom: 6px;
+				bottom: 4px;
 			}
 			background: none;
 			margin: 15px 0;
@@ -72,6 +105,10 @@ div.intro-content{
 				text-align: left;
 				position: relative;
 				right: 8px;
+				bottom: -2px;
+				@include tabletOrLess {
+					bottom: 0px;
+				}
 				font-size: 1.3em;
 				color: white;
 				display: inline-block;
@@ -83,6 +120,15 @@ div.intro-content{
 	img.insta-logo{
 		margin: 20px 0;
 		max-width: 100px;
+		@include tabletOrLess {
+			max-width: 85px;
+		}
+		@include phoneOrLess {
+			max-width: 70px;
+		}
+		@include smallphone {
+			max-width: 50px;
+		}
 		@include transition(.5s ease);
 		&:hover{
 			@include transform(rotate(360deg));
@@ -92,10 +138,27 @@ div.intro-content{
 }
 
 div.instructions{
-	div.row{
+	font-size: .85rem;
+	@include tabletOrLess {
+		font-size: .8rem;
+	}
+	@include phoneOrLess {
+		font-size: .75rem;
+	}
+	@include smallphone {
+		font-size: .7rem;
+	}
+	// div.row{
+	// 	margin-bottom: 100px;
+	// }
+	div.col-sm-6{
 		margin-bottom: 100px;
+		@include tabletOrLess {
+			margin-bottom: 50px;
+		}
 	}
 	h2{
+		font-size: 2em;
 		margin: 15px 0 10px;
 	}
 	min-height: 600px;
@@ -119,31 +182,7 @@ div.instructions{
 
 
 
-}
-
-
-// footer{
-// 	@include blueGradient();
-// 	padding: 15px 0;
-// 	height: 80px;
-// 	font-size: 1.2em;
-// 	color: white;
-// 	text-align: center;
-// 	border-top: 2px solid black;
-// 	p.copyright{
-// 		margin-bottom: 5px;
-// 	}
-// }
-
-
-
-
-
-
-
-
-
-
+}  // instructions
 
 
 

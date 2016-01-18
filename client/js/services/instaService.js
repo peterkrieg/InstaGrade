@@ -64,8 +64,9 @@ this.getMedia = function(token, user){
 //  MAX API CALL (follows, likes, etc)-------------
 ///////////////////////////////////////////////////
 var maxApiCall = 1000;
-// make it less for likes given, not as important data..
-var maxApiCallLikesGiven = 900
+
+// In case I want to change max api call for likes given specifically
+var maxApiCallLikesGiven = 1400
 ///////////////////////////////////////////////////
 //  MAX API CALL (follows, likes, etc)-------------
 ///////////////////////////////////////////////////

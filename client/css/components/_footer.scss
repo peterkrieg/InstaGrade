@@ -57,6 +57,9 @@ footer.my-footer{
 	p.copyright{
 		display: inline-block;
 		margin: 5px auto 5px;
+		@include phoneOrLess {
+			margin-top: 15px;
+		}
 		position: relative;
 		// wanted to make copyright icon bigger
 		span{
@@ -68,6 +71,8 @@ footer.my-footer{
 	}
 
 	p.created-by{
+		position: relative;
+		right: 11px;
 		a{
 			text-decoration: underline;
 			font-family: $header-font;
