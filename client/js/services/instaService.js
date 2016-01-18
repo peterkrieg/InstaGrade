@@ -64,6 +64,8 @@ this.getMedia = function(token, user){
 //  MAX API CALL (follows, likes, etc)-------------
 ///////////////////////////////////////////////////
 var maxApiCall = 1000;
+// make it less for likes given, not as important data..
+var maxApiCallLikesGiven = 900
 ///////////////////////////////////////////////////
 //  MAX API CALL (follows, likes, etc)-------------
 ///////////////////////////////////////////////////
@@ -159,7 +161,7 @@ function getLikesGiven(token, report, deferred){
 				likesGiven.push(likesArr[i]);
 			}
 			var nextUrl = responseObj.pagination.next_url;
-			if(counter===maxApiCall || !nextUrl){
+			if(counter===maxApiCallLikesGiven || !nextUrl){
 				report.relationships.likesGiven = likesGiven;
 				// console.log('your likes given is...', likesGiven);
 				getFollows(token, report, deferred);

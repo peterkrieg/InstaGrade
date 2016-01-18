@@ -53,7 +53,7 @@ angular.module('myApp')
 						method: 'feed',
 						href: 'http://mediascore.rocks',
 						link: 'http://mediascore.rocks', 
-						picture: 'http://cdn01.wallpapersonweb.com/media/tn5/1/3/22466.jpg',
+						picture: 'http://mediascore.rocks/img/mediascore.png',
 						name: scope.mostLikesReceived.name+" is my Instagram Crush!  Who is Yours??",
 						description: scope.mostLikesReceived.name+" has liked "+scope.mostLikesReceived.likesReceived+" of my "+scope.user.numMedia+" pieces of media! ("+Math.round(100*Number(scope.mostLikesReceived.likesReceived)/Number(scope.user.numMedia)).toString()+"%).",
 					}, function(response){

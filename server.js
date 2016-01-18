@@ -60,7 +60,7 @@ passport.deserializeUser(function(user, done){
 
 
 // make node be able to handle big file sizes
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.json({limit: '100mb'}));
 // app.use(express.urlencoded({limit: '50mb'}));
 
 
