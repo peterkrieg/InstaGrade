@@ -4,9 +4,22 @@ div.results{
 	h2{
 		text-align: center;
 		font-family: $header-font;
+		font-size: 2em;
+		@include tabletOrLess {
+			font-size: 1.5em;
+		}
+		@include phoneOrLess {
+			font-size: 1.3em;
+		}
 	}
 	h6.report-time{
 		font-size: 1.2em;
+		@include tabletOrLess {
+			font-size: 1.1em;
+		}
+		@include phoneOrLess {
+			font-size: 1em;
+		}
 		font-style: italic;
 		color: #B0B0B0;
 		margin-top: 5px;
@@ -97,6 +110,12 @@ div.container.results{
 				font-family: $header-font;
 				color: $instaBlue;
 				font-size: .7em;
+				@include tabletOrLess {
+					font-size: .6em;
+				}
+				@include phoneOrLess {
+					font-size: .5em;
+				}
 			}
 			&.active{
 				a{
@@ -132,6 +151,15 @@ div.results-content{
 div.grade, div.relationships, div.analytics, div.media, div.map{
 	min-height: 600px;
 	font-size: 2rem;
+	@include tabletOrLess {
+		font-size: 1.8rem;
+	}
+	@include phoneOrLess {
+		font-size: 1.6em;
+	}
+	@include smallphone {
+		font-size: 1.5em;
+	}
 	text-align: center;
 	h2{
 		text-decoration: underline;
