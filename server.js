@@ -278,6 +278,8 @@ app.put('/api/users/specificReport', usersCtrl.toggleSpecificReport);
 // getting stats of all reports, for highcharts on user accounts stats section
 
 app.get('/api/reports/stats', reportsCtrl.getStats);
+app.get('/api/reports/statsBlah', reportsCtrl.getStatsBlah);
+
 
 //____________________Getting relationships for account page_____________________
 

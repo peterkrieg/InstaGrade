@@ -143,6 +143,80 @@ getStats: function(req, res, next){
 	}, // end of get stats function
 
 
+getStatsBlah: function(req, res, next){
+	var instagramId = 1359984932;
+
+	User.findOne({instagramId: instagramId})
+	.populate({path: 'reports'})
+
+
+
+	.exec(function(err, user){
+		if(err) return res.status(500).send(err);
+
+		var options = {
+			path: 'reports.report',
+			model: 'Report'
+		};
+
+		User.populate(user, options, function(err, user){
+			if(err) return res.status(500).send(err);
+			var reports = user.reports;
+			// console.log('reports is \n\n', reports);
+
+			// stats for now will be stored as big array of many arrays
+			// each smaller array represents date
+			// [
+			// 		[dateObject, {...}]
+			// ]
+			var stats = [];
+
+			// going through every report, to create stats array
+			for(var i=0; i<reports.length; i++){
+				var reportWrapper = reports[i];
+				if(i===1){
+					console.log('\n\n\n', reportWrapper._id, '\n\n\n');
+				}
+				var report = reportWrapper.report
+				// put date in 
+				stats.push([reportWrapper.date]);
+				// console.log(typeof reportWrapper.date);
+				// console.log(reportWrapper.date);
+				// console.log(typeof reportWrapper.date);
+
+				var statsObj = {
+					id: reportWrapper.report._id,
+					numFollowers: report.user.numFollowers,
+					numFollows: report.user.numFollows,
+					numMedia: report.user.numMedia,
+					numLikesGiven: report.analytics.numLikesGiven,
+					numLikesReceived: report.analytics.numLikesReceived,
+					numPics: report.analytics.numPics,
+					numVids: report.analytics.numVids,
+					userRatio: report.grade.userRatio,
+					adjustedAverageNumLikes: report.grade.adjustedAverageNumLikes,
+				};
+
+				stats[i].push(statsObj);
+
+			}
+
+
+
+			res.send(stats);
+		})
+
+});
+
+	}, // end of get stats BLAH function
+
+
+
+
+
+
+
+
 
 ///////////////////////////////////////////////////
 //  Get relationships account function

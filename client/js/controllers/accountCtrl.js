@@ -35,8 +35,8 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 			// console.log(currentTime);
 			// console.log(timeLastReport);
 
-			// var hours24 = 1000*60*60*24 // number of milliseconds in a day
-			var hours24=1000*60 // a minute, just for testing purposes
+			var hours24 = 1000*60*60*24 // number of milliseconds in a day
+			// var hours24=1000*60 // a minute, just for testing purposes
 			// if it hasn't been a day since last report, can't fire
 
 			if(currentTime-timeLastReport<hours24){
@@ -82,6 +82,8 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 // loading stats page, most of logic is in stats graph directive
 reportService.getStats()
 .then(function(stats){
+	console.log(stats);
+	console.log('blahblah \n\n\n\n')
 	$scope.stats = stats;
 	// reverse stats, to show newest dates at top
 	// stats.reverse();

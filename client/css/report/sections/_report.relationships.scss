@@ -297,6 +297,14 @@ div.relationships{
 			padding: 0 50px;
 			margin-bottom: 30px;
 		}
+		li{
+			// background: red;
+			display: block;
+		}
+		img{
+			display: block;
+			margin: 10px auto;
+		}
 		p.example{
 			font-size: .55em;
 			line-height: 1.2em;
@@ -313,6 +321,10 @@ div.relationships{
 			top: 10px;
 
 		}
+		// div.popover{
+			// background: red;
+			// display: inline-block;
+		// }
 	}
 
 

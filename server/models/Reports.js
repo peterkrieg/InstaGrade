@@ -182,6 +182,88 @@ var reports =
       "userRatio": 1.124223602484472,
       "adjustedAverageNumLikes": 11.397000789265983
     }
+  ],
+  [
+    "2016-01-11T07:43:14.039Z",
+    {
+      "id": "56935d12ac69a9f286ba251f",
+      "numFollowers": 182,
+      "numFollows": 161,
+      "numMedia": 70,
+      "numLikesGiven": 902,
+      "numLikesReceived": 1444,
+      "numPics": 66,
+      "numVids": 4,
+      "userRatio": 1.1304347826086956,
+      "adjustedAverageNumLikes": 11.334379905808477
+    }
+  ],
+  [
+    "2016-01-13T05:46:25.225Z",
+    {
+      "id": "5695e4b163e04e43202c6771",
+      "numFollowers": 183,
+      "numFollows": 162,
+      "numMedia": 70,
+      "numLikesGiven": 907,
+      "numLikesReceived": 1445,
+      "numPics": 66,
+      "numVids": 4,
+      "userRatio": 1.1296296296296295,
+      "adjustedAverageNumLikes": 11.280249804839968
+    }
+  ],
+
+  [
+    "2016-01-16T19:13:21.530Z",
+    {
+      "id": "569a965189358caf44dbbc66",
+      "numFollowers": 184,
+      "numFollows": 164,
+      "numMedia": 70,
+      "numLikesGiven": 914,
+      "numLikesReceived": 1445,
+      "numPics": 66,
+      "numVids": 4,
+      "userRatio": 1.1219512195121952,
+      "adjustedAverageNumLikes": 11.21894409937888
+    }
+  ],
+
+  [
+    "2016-01-17T03:27:49.635Z",
+    {
+      "id": "569b0a35d111e889548e5864",
+      "numFollowers": 185,
+      "numFollows": 162,
+      "numMedia": 70,
+      "numLikesGiven": 913,
+      "numLikesReceived": 1445,
+      "numPics": 66,
+      "numVids": 4,
+      "userRatio": 1.1419753086419753,
+      "adjustedAverageNumLikes": 11.158301158301157
+    }
+  ],
+
+
+
+
+
+  [
+    "2016-01-18T09:33:18.986Z",
+    {
+      "id": "569cb15ea61689409a091fd4",
+      "numFollowers": 184,
+      "numFollows": 162,
+      "numMedia": 70,
+      "numLikesGiven": 920,
+      "numLikesReceived": 1445,
+      "numPics": 66,
+      "numVids": 4,
+      "userRatio": 1.1358024691358024,
+      "adjustedAverageNumLikes": 11.21894409937888
+    }
   ]
 ];
 
