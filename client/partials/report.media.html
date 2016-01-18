@@ -53,13 +53,16 @@
 					<ul class="stats">
 						<li><b>Likes:</b> <i>{{media.likes.count}}</i></li>
 						<li><span comment-expand class="comments-plus" ng-show="media.comments.count" >+</span><b>Comments:</b> <i>{{media.comments.count}}</i></li>
+
+
+
+
+						
 					</ul>
 
 
 					<ul class="comments hidden">
-
 						<div class="comment" ng-repeat="comment in media.comments.data" >
-
 							<div class="comment-bio ">
 								<img class="comment-pic" ng-src="{{comment.from.profile_picture}}">
 								<br>
