@@ -58,161 +58,167 @@
 							</div>
 							<div class="col-md-5">
 								<equation 
-								 numerator="{{report.grade.numLikesReceived | number}} Likes Received"
-								 denominator="{{report.grade.numLikesGiven}} Likes Given"
-								 result="{{report.grade.likesRatio | number:2}}">
-								</equation>
-							</div>
+								numerator="{{report.grade.numLikesReceived | number}} Likes Received"
+								denominator="{{report.grade.numLikesGiven}} Likes Given"
+								result="{{report.grade.likesRatio | number:2}}">
+							</equation>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!--________Average Number Likes__________-->
-		<div grade-directive class="wow grade-item">
-			<span class="plus show-explanation">+</span>
-			<div class="grade-visible">
-				<p>Your Average number of likes per media is: {{report.grade.averageNumLikes | number: 2 }}</p>
-				<div class="grade-bar">
-					<div score-bar  data-category="averageNumLikes" class="grade-score wow" >
+	<!--________Average Number Likes__________-->
+	<div grade-directive class="wow grade-item">
+		<span class="plus show-explanation">+</span>
+		<div class="grade-visible">
+			<p>Your Average number of likes per media is: {{report.grade.averageNumLikes | number: 2 }}</p>
+			<div class="grade-bar">
+				<div score-bar  data-category="averageNumLikes" class="grade-score wow" >
+				</div>
+			</div>
+			<p>Your score is {{scores.averageNumLikes | number:0}}%!</p>
+
+		</div>
+		<div class="grade-explanation">
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<div class="row">
+						<div class="col-md-7" >
+							<p><em>The average number of likes per piece of media is an important statistic.  The performance is graded off of other users.</em></p> 
+						</div>
+						<div class="col-md-5">
+							<equation
+							numerator="{{report.grade.numLikesReceived | number}} Total Likes Received"
+							denominator="{{report.user.numMedia}} Number of Media"
+							result="{{report.grade.averageNumLikes | number:2}}">
+						</equation>
 					</div>
 				</div>
-				<p>Your score is {{scores.averageNumLikes | number:0}}%!</p>
-				
 			</div>
-			<div class="grade-explanation">
+		</div>
+	</div>
+</div>
+
+<!--________Adjusted Likes Average__________-->
+<div grade-directive class="wow grade-item">
+	<span class="plus show-explanation">+</span>
+	<div class="grade-visible">
+		<p>However, your <em>adjusted likes average</em> is {{report.grade.adjustedAverageNumLikes | number: 2}}</p>
+		<div class="grade-bar">
+			<div score-bar  data-category="adjustedAverageNumLikes" class="grade-score wow" >
+			</div>
+		</div>
+		<p>Your score is {{scores.adjustedAverageNumLikes | number:0}}%!</p>
+
+	</div>
+	<div class="grade-explanation">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="row">
-							<div class="col-md-7" >
-								<p><em>The average number of likes per piece of media is an important statistic.  The performance is graded off of other users.</em></p> 
-							</div>
-							<div class="col-md-5">
-								<equation
-								 numerator="{{report.grade.numLikesReceived | number}} Total Likes Received"
-								 denominator="{{report.user.numMedia}} Number of Media"
-								 result="{{report.grade.averageNumLikes | number:2}}">
-								</equation>
-							</div>
-						</div>
+					<div class="col-md-8" >
+						<p><em>More important than the average number of likes is the adjusted likes average (ALA), a key statistic that differentiates MediaScore.  This is the averange number of likes <strong>per 100 followers.</strong>  Someone might get tons of likes on their InstaGram, but they also might have lots of more followers than another person.  The ALA statistic normalizes these differences and allows one to compare their InstaGram performance to other users.      </em></p> 
 					</div>
+					<div class="col-md-4">
+						<equation style="position: relative; top: 30px;"
+						numerator="{{report.grade.averageNumLikes | number: 2}} Average Number of Likes"
+						denominator="{{report.user.numFollowers/100 | number: 2}}"
+						result="{{report.grade.adjustedAverageNumLikes | number:2}}">
+					</equation>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+</div>
 
-		<!--________Adjusted Likes Average__________-->
-		<div grade-directive class="wow grade-item">
-			<span class="plus show-explanation">+</span>
-			<div class="grade-visible">
-				<p>However, your <em>adjusted likes average</em> is {{report.grade.adjustedAverageNumLikes | number: 2}}</p>
-				<div class="grade-bar">
-					<div score-bar  data-category="adjustedAverageNumLikes" class="grade-score wow" >
-					</div>
-				</div>
-				<p>Your score is {{scores.adjustedAverageNumLikes | number:0}}%!</p>
-				
+<!--_____________User Ratio______________-->
+<div grade-directive class="wow grade-item">
+	<span class="plus show-explanation">+</span>
+	<div class="grade-visible">
+		<p>Your user ratio is {{report.grade.userRatio | number: 2}}</p>
+		<div class="grade-bar">
+			<div score-bar  data-category="userRatio"class="grade-score wow" >
 			</div>
-			<div class="grade-explanation">
+		</div>
+		<p>Your score is {{scores.userRatio | number:0}}%!</p>
+
+	</div>
+	<div class="grade-explanation">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="row">
-							<div class="col-md-8" >
-								<p><em>More important than the average number of likes is the adjusted likes average (ALA), a key statistic that differentiates MediaScore.  This is the averange number of likes <strong>per 100 followers.</strong>  Someone might get tons of likes on their InstaGram, but they also might have lots of more followers than another person.  The ALA statistic normalizes these differences and allows one to compare their InstaGram performance to other users.      </em></p> 
-							</div>
-							<div class="col-md-4">
-								<equation style="position: relative; top: 30px;"
-								 numerator="{{report.grade.averageNumLikes | number: 2}} Average Number of Likes"
-								 denominator="{{report.user.numFollowers/100 | number: 2}}"
-								 result="{{report.grade.adjustedAverageNumLikes | number:2}}">
-								</equation>
-							</div>
-						</div>
+					<div class="col-md-7" >
+						<p><em>The ratio of followers over follows is another critical element to your InstaGram score.  We all know those people who follow wayy more people than they have followers..  It is important to have more followers than people you follow!  This shows you are cool.  The higher the ratio the better.</em></p> 
 					</div>
+					<div class="col-md-5" >
+						<equation style="position: relative; top: 20px;"
+						numerator="{{report.user.numFollowers | number}} Followers"
+						denominator="{{report.user.numFollows}} Follows"
+						result="{{report.grade.userRatio | number:2}}">
+					</equation>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+</div>
 
-		<!--_____________User Ratio______________-->
-		<div grade-directive class="wow grade-item">
-			<span class="plus show-explanation">+</span>
-			<div class="grade-visible">
-				<p>Your user ratio is {{report.grade.userRatio | number: 2}}</p>
-				<div class="grade-bar">
-					<div score-bar  data-category="userRatio"class="grade-score wow" >
-					</div>
-				</div>
-				<p>Your score is {{scores.userRatio | number:0}}%!</p>
-				
+<!--_____________Self Likes Ratio______________-->
+<div grade-directive class="wow grade-item">
+	<span class="plus show-explanation">+</span>
+	<div class="grade-visible">
+		<p>{{likesRatioMessage}}</p>
+		<div class="grade-bar">
+			<div score-bar  data-category="selfLikesRatio" class="grade-score wow" >
 			</div>
-			<div class="grade-explanation">
+		</div>
+		<p>Your score is {{scores.selfLikesRatio | number:0}}%!</p>
+
+	</div>
+	<div class="grade-explanation">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
 				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="row">
-							<div class="col-md-7" >
-								<p><em>The ratio of followers over follows is another critical element to your InstaGram score.  We all know those people who follow wayy more people than they have followers..  It is important to have more followers than people you follow!  This shows you are cool.  The higher the ratio the better.</em></p> 
-							</div>
-							<div class="col-md-5" >
-								<equation style="position: relative; top: 20px;"
-								 numerator="{{report.user.numFollowers | number}} Followers"
-								 denominator="{{report.user.numFollows}} Follows"
-								 result="{{report.grade.userRatio | number:2}}">
-								</equation>
-							</div>
-						</div>
+					<div class="col-md-7" >
+						<p><em>We know you want more likes on your content, but liking your own stuff isn't the way to accomplish that.  The self likes ratio is the measure of a person's self-interest and narcissism.  The lower the ratio the better!  </em></p> 
 					</div>
+					<div class="col-md-5">
+						<equation
+						numerator="{{report.grade.numSelfLikes | number}} Own Likes"
+						denominator="{{report.user.numMedia}} Number of Media"
+						result="{{report.grade.selfLikesRatio | number:2}}">
+					</equation>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
+</div>
 
-		<!--_____________Self Likes Ratio______________-->
-		<div grade-directive class="wow grade-item">
-			<span class="plus show-explanation">+</span>
-			<div class="grade-visible">
-				<p>{{likesRatioMessage}}</p>
-				<div class="grade-bar">
-					<div score-bar  data-category="selfLikesRatio" class="grade-score wow" >
-					</div>
-				</div>
-				<p>Your score is {{scores.selfLikesRatio | number:0}}%!</p>
-				
-			</div>
-			<div class="grade-explanation">
-				<div class="row">
-					<div class="col-md-10 col-md-offset-1">
-						<div class="row">
-							<div class="col-md-7" >
-								<p><em>We know you want more likes on your content, but liking your own stuff isn't the way to accomplish that.  The self likes ratio is the measure of a person's self-interest and narcissism.  The lower the ratio the better!  </em></p> 
-							</div>
-							<div class="col-md-5">
-								<equation
-								 numerator="{{report.grade.numSelfLikes | number}} Own Likes"
-								 denominator="{{report.user.numMedia}} Number of Media"
-								 result="{{report.grade.selfLikesRatio | number:2}}">
-								</equation>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!--_____ Final Score _____-->
+<div class="final-score">	
+	<h3>Overall Score</h3>	
+
+	<div class="grade-bar final-grade">
+		<div score-bar  data-category="overallScore" class="grade-score wow final-grade" >
 		</div>
+	</div>
+	<p class="overall-score">Your score is {{scores.overallScore | number:0}}%!  <strong>({{scores.overallScoreLetter}})<strong></p>	
 
-		<!--_____ Final Score _____-->
-		<div class="final-score">	
-			<h3>Overall Score</h3>	
 
-			<div class="grade-bar final-grade">
-				<div score-bar  data-category="overallScore" class="grade-score wow final-grade" >
-				</div>
-			</div>
-			<p class="overall-score">Your score is {{scores.overallScore | number:0}}%!  <strong>({{scores.overallScoreLetter}})<strong></p>	
-		</div>
+	<div facebook-share type="grade" class="button share-facebook">
+		<a  class="facebook-share-link"><i class="fa fa-facebook"></i>Share</a>
+	</div>
 
-		
+	<div id="twtbox" twitter-share type="grade" class="twitter-share" mostLikesReceived="mostLikesReceived"></div>
 
 
 
 
+
+</div>
 
 
 
@@ -220,7 +226,13 @@
 
 
 
-	</div><!-- grade container-->
+
+
+
+
+
+
+</div><!-- grade container-->
 
 
 

@@ -34,6 +34,17 @@ angular.module('myApp')
 				//  End facebook SDK
 				///////////////////////////////////////////////////
 
+				if(attrs.type==="grade"){
+					var name = "My Instagram scored a "+scope.scores.overallScoreLetter+" on MediaScore.  What is your score??"; 
+					var description = '';
+					var picture = 'http://mediascore.rocks/img/mediascoreScore.png';
+				}
+				if(attrs.type==="crush"){
+					var name = scope.mostLikesReceived.name+" is my Instagram Crush!  Who is Yours??";
+					var description = scope.mostLikesReceived.name+" has liked "+scope.mostLikesReceived.likesReceived+" of my "+scope.user.numMedia+" pieces of media! ("+Math.round(100*Number(scope.mostLikesReceived.likesReceived)/Number(scope.user.numMedia)).toString()+"%).";
+					var picture = 'http://mediascore.rocks/img/mediascore.png'
+				}
+
 
 
 
@@ -53,9 +64,9 @@ angular.module('myApp')
 						method: 'feed',
 						href: 'http://mediascore.rocks',
 						link: 'http://mediascore.rocks', 
-						picture: 'http://mediascore.rocks/img/mediascore.png',
-						name: scope.mostLikesReceived.name+" is my Instagram Crush!  Who is Yours??",
-						description: scope.mostLikesReceived.name+" has liked "+scope.mostLikesReceived.likesReceived+" of my "+scope.user.numMedia+" pieces of media! ("+Math.round(100*Number(scope.mostLikesReceived.likesReceived)/Number(scope.user.numMedia)).toString()+"%).",
+						picture: picture,
+						name: name,
+						description: description,
 					}, function(response){
 						console.log(response);
 					}
