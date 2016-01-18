@@ -328,6 +328,7 @@ else if(selfLikesRatio<.5){
 $scope.scores = report.grade.scores;
 console.log('scores is \n\n')
 console.log($scope.scores);
+calculateLetterGrade($scope.scores.overallScore);
 
 
 
@@ -375,6 +376,40 @@ $scope.followUser = function(id){
 // close example on likes comparison part
 $scope.closeExample = function(){
 	$('div.example').slideToggle(400);
+}
+
+function calculateLetterGrade(numberGrade){
+	if(numberGrade<60){
+		return "F";
+	}
+	if(numberGrade>99){
+		return "A+";
+	}
+	var numbers = [6, 7, 8, 9];
+	var letters = ["D", "C", "B", "A"];
+
+	var firstNumber = Number(numberGrade.toString()[0]);
+
+	var index = numbers.indexOf(firstNumber);
+
+	var letter = letters[index];
+	var symbol;
+
+	// now find if grade has -, +, or nothing
+	if(numberGrade%10<10){
+		symbol = '+';
+	}
+	if(numberGrade%10<7){
+		symbol='';
+	}
+	if(numberGrade%10<3){
+		symbol='-';
+	}
+
+	// concatenate the "B" and "+", ie
+	var letterGrade = letter+symbol;
+	// console.log(letterGrade);
+	$scope.scores.overallScoreLetter = letterGrade;
 }
 
 
