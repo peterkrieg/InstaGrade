@@ -329,6 +329,8 @@ angular.module('myApp')
 	return {
 		link: function(scope, elem, attrs){
 			$(function(){
+				console.log(scope.$parent);
+				console.log(scope);
 				var $modal = $('div.instagram-crush-modal');
 				var $modalContent = $modal.find('.modal-content');
 				var $matchTitle = $modalContent.find('h4.match-title');
@@ -342,8 +344,9 @@ angular.module('myApp')
 
 				// way to check if heart is viewable, to popup the instagram crush modal
 				var checkHeart = $interval(function(){
-					if($heart.css('visibility')==='visible' && ($state.current.name==='report.relationships' || $state.current.name==='demoReport.relationships') && isElementInViewport($heart)){
+					if($heart.css('visibility')==='visible' && ($state.current.name==='report.relationships' || $state.current.name==='demoReport.relationships') && isElementInViewport($heart) &&!scope.$parent.$parent.hasPoppedUp){
 						$heart.removeClass('invisible');
+						scope.$parent.$parent.hasPoppedUp = true;
 						openInstagramCrushModal();
 						$heart.addClass('pulse');
 						$interval.cancel(checkHeart);
@@ -351,6 +354,10 @@ angular.module('myApp')
 					else{
 						// cancel interval, if leave tab, but interval was running before
 						if($state.current.name!=='report.relationships' && $state.current.name!=='demoReport.relationships'){
+							$interval.cancel(checkHeart);
+						}
+						if(scope.$parent.$parent.hasPoppedUp){
+							$heart.removeClass('invisible');
 							$interval.cancel(checkHeart);
 						}
 						// console.log(isElementInViewport($heart));
