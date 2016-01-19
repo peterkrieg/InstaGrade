@@ -171,12 +171,12 @@
         		
         	</div>
         	<div class="col-md-12">
-        		<div facebook-share type="crush" class="button share-facebook">
+        		<div facebook-share type="crush" class="button share-facebook" ng-if="!loadingEverythingElse">
         			<a  class="facebook-share-link"><i class="fa fa-facebook"></i>Share</a>
         		</div>
 
         		<!--_______________Twitter button_______________-->
-        		<div id="twtbox" twitter-share type="crush" class="twitter-share" mostLikesReceived="mostLikesReceived"></div>
+        		<div id="twtbox" twitter-share type="crush" class="twitter-share" mostLikesReceived="mostLikesReceived" ng-if="!loadingEverythingElse"></div>
 
         	</div>
         </div>

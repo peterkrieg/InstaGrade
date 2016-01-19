@@ -35,8 +35,8 @@ function profileFunc($scope, user, reportService, userService, $state, $interval
 			// console.log(currentTime);
 			// console.log(timeLastReport);
 
-			var hours24 = 1000*60*60*24 // number of milliseconds in a day
-			// var hours24=1000*60 // a minute, just for testing purposes
+			// var hours24 = 1000*60*60*24 // number of milliseconds in a day
+			var hours24=1000*60 // a minute, just for testing purposes
 			// if it hasn't been a day since last report, can't fire
 
 			if(currentTime-timeLastReport<hours24){

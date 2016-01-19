@@ -2,7 +2,7 @@ angular.module('myApp')
 .controller('reportCtrl', function($scope, reportService, userService, instaService, followService, $sce, $filter, $http){
 
 	console.log('results controller loaded!');
-		window.scroll(0,0)
+	window.scroll(0,0)
 
 	// 3 different states, to have loading status
 	$scope.loadingUser = true;
@@ -159,7 +159,68 @@ function getOtherData(token, report){
 			// now add report to backend
 			console.log('about to add report!!!');
 			console.log('this is step that is not working');
-			reportService.addReport(report);
+
+			// need to first strip report down to bare minimum necessary to send(schema)
+			// so that size isn't an issue with server (still could be though..)
+
+			// makes mediaToSend array  smaller, only bare minimum needed
+			var mediaToSend = report.media.map(function(media){
+				var mediaObj = {
+						attribution: media.attribution,
+						caption: media.caption,
+						comments: media.comments,
+						created_time: media.created_time,
+						filter: media.filter,
+						id: media.id,
+						images: media.images,
+						likes: {
+							count: media.likes.count
+						},
+						link: media.link,
+						location: media.location,
+						tags: media.tags,
+						type: media.type,
+						user_has_liked: media.user_has_liked,
+						users_in_photo: media.users_in_photo
+					};
+					if(media.type==="video"){
+						mediaObj.videos = media.videos;
+					}
+					return mediaObj;
+			})
+
+
+			var reportToSend = {
+				user: report.user,
+				grade: report.grade,
+				analytics: {
+					numLikesGiven: report.analytics.numLikesGiven,
+					numLikesReceived: report.analytics.numLikesReceived,
+					numPics: report.analytics.numPics,
+					numVids: report.analytics.numVids,
+					averageNumLikes: report.analytics.averageNumLikes,
+					numSelfLikes: report.analytics.numSelfLikes,
+					hashtagScatter: report.analytics.hashtagScatter,
+					allTimes: report.analytics.allTimes,
+					allTagsArr: report.analytics.allTagsArr,
+					daysOfWeek: report.analytics.daysOfWeek,
+					daysOfWeekArr: report.analytics.daysOfWeekArr
+				},
+				map: report.map,
+				media: mediaToSend,
+				relationships: {
+					followers: report.relationships.followers,
+					follows: report.relationships.follows,
+					likesComparisonArr: report.relationships.likesComparisonArr,
+					uniqueFollowers: report.relationships.uniqueFollowers,
+					uniqueFollows: report.relationships.uniqueFollows
+				}
+			};
+
+
+
+
+			reportService.addReport(reportToSend);
 
 			// Need to make user not ready for another report now, since report added
 			userService.toggleReadyForReport(false);
@@ -169,7 +230,7 @@ function getOtherData(token, report){
 			finishReportView(report);
 		})
 
-	})
+})
 }
 
 

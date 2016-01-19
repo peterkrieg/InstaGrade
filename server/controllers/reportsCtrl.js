@@ -79,21 +79,22 @@ getStats: function(req, res, next){
 	var instagramId = req.session.passport.user.instagramId;
 
 	User.findOne({instagramId: instagramId})
-	.populate({path: 'reports'})
-
-
-
+	// .populate({path: 'reports'})
+	.populate('reports.report')
+	
 	.exec(function(err, user){
 		if(err) return res.status(500).send(err);
 
-		var options = {
-			path: 'reports.report',
-			model: 'Report'
-		};
+		// var options = {
+		// 	path: 'reports.report',
+		// 	model: 'Report'
+		// };
 
-		User.populate(user, options, function(err, user){
-			if(err) return res.status(500).send(err);
+		// User.populate(user, options, function(err, user){
+		// 	if(err) return res.status(500).send(err);
 			var reports = user.reports;
+			console.log(reports.length)
+			console.log(reports[0]);
 			// console.log('reports is \n\n', reports);
 
 			// stats for now will be stored as big array of many arrays
@@ -138,7 +139,7 @@ getStats: function(req, res, next){
 			res.send(stats);
 		})
 
-});
+// });
 
 	}, // end of get stats function
 

@@ -210,11 +210,11 @@
 	<p class="overall-score">Your score is {{scores.overallScore | number:0}}%!  <strong>({{scores.overallScoreLetter}})<strong></p>	
 
 
-	<div facebook-share type="grade" class="button share-facebook">
+	<div ng-if="!loadingEverythingElse" facebook-share type="grade" class="button share-facebook">
 		<a  class="facebook-share-link"><i class="fa fa-facebook"></i>Share</a>
 	</div>
 
-	<div id="twtbox" twitter-share type="grade" class="twitter-share" mostLikesReceived="mostLikesReceived"></div>
+	<div ng-if="!loadingEverythingElse" id="twtbox" twitter-share type="grade" class="twitter-share" mostLikesReceived="mostLikesReceived"></div>
 
 
 
