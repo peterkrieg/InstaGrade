@@ -4,6 +4,22 @@ angular.module('myApp')
 function instaFunc($http, $q, analyzeService){
 // everything is inside instaFunc, so going to ignore indentation of wrapper function
 
+///////////////////////////////////////////////////
+//  MAX API CALL (follows, likes, etc)-------------
+///////////////////////////////////////////////////
+// default maxapi call
+var maxApiCall = 1000;  
+
+var maxApiCallFollows =500;
+var maxApiCallFollowers = 500;
+
+// user can have up to 1500 pictures, otherwise won't get shown
+var maxApiCallMedia = 1500;
+
+// In case I want to change max api call for likes given specifically
+var maxApiCallLikesGiven = 1400
+
+
 
 this.getMedia = function(token, user){
 	var deferred = $q.defer();
@@ -60,17 +76,6 @@ this.getMedia = function(token, user){
 
 //______________Next step, once media loaded_________________
 
-///////////////////////////////////////////////////
-//  MAX API CALL (follows, likes, etc)-------------
-///////////////////////////////////////////////////
-var maxApiCall = 1000;
-
-// In case I want to change max api call for likes given specifically
-var maxApiCallLikesGiven = 1400
-///////////////////////////////////////////////////
-//  MAX API CALL (follows, likes, etc)-------------
-///////////////////////////////////////////////////
-
 
 this.getOtherData = function(token, report){
 	var deferred = $q.defer();
@@ -82,7 +87,7 @@ this.getOtherData = function(token, report){
 
 
 //_______Getting Likes on Your Media__________________________
-// This only returns most recent 120 likes, 
+// This only returns most recent 120 likes on each media,
 // no way to get around this, unless I want to cache and 
 // check later, seems like too much work
 function getLikesReceived(token, report, deferred){
@@ -93,11 +98,11 @@ function getLikesReceived(token, report, deferred){
 
 	// max number of photos, either maxapi call, or less
 	var numPhotosMax;
-	if(media.length<=maxApiCall){
+	if(media.length<=maxApiCallMedia){
 		numPhotosMax = media.length;
 	}
 	else{
-		numPhotosMax = maxApiCall;
+		numPhotosMax = maxApiCallMedia;
 	}
 
 	for(var i=0; i<numPhotosMax; i++) {
@@ -182,6 +187,7 @@ function getFollows(token, report, deferred){
 	// instagram returns 50 follows at a time, so need recursion again..
 	var url = 'https://api.instagram.com/v1/users/self/follows?access_token='+token+'&callback=JSON_CALLBACK';
 	var follows = [];
+	var counter = 0;
 
 	eachRequest(url);
 
@@ -190,6 +196,7 @@ function getFollows(token, report, deferred){
 			method: 'JSONP',
 			url: url
 		}).then(function(response){
+			counter++;
 			var followsObj = response.data;
 			for(var i=0; i<followsObj.data.length; i++){
 				follows.push(followsObj.data[i]);
@@ -199,7 +206,7 @@ function getFollows(token, report, deferred){
 			if(nextUrl){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
-			else if(!nextUrl){
+			else if(!nextUrl || counter>=maxApiCallFollows){
 				// console.log('follows is... ', follows);
 				report.relationships.follows = follows;
 				getFollowers(token, report, deferred);
@@ -214,12 +221,14 @@ function getFollowers(token, report, deferred){
 	eachRequest(url);
 
 	var followers = [];
+	var counter = 0;
 
 	function eachRequest(url){
 		$http({
 			method: 'JSONP',
 			url: url
 		}).then(function(response){
+			counter++;
 			var followersObj = response.data;
 			for(var i=0; i<followersObj.data.length; i++){
 				followers.push(followersObj.data[i]);
@@ -229,7 +238,7 @@ function getFollowers(token, report, deferred){
 			if(nextUrl){
 				eachRequest(nextUrl+'&callback=JSON_CALLBACK');
 			}
-			else if(!nextUrl){
+			else if(!nextUrl || counter>=maxApiCallFollowers){
 				// console.log('followers is, ', followers)
 				report.relationships.followers = followers;
 				// don't need the token, anymore, since no more

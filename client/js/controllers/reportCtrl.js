@@ -166,27 +166,27 @@ function getOtherData(token, report){
 			// makes mediaToSend array  smaller, only bare minimum needed
 			var mediaToSend = report.media.map(function(media){
 				var mediaObj = {
-						attribution: media.attribution,
-						caption: media.caption,
-						comments: media.comments,
-						created_time: media.created_time,
-						filter: media.filter,
-						id: media.id,
-						images: media.images,
-						likes: {
-							count: media.likes.count
-						},
-						link: media.link,
-						location: media.location,
-						tags: media.tags,
-						type: media.type,
-						user_has_liked: media.user_has_liked,
-						users_in_photo: media.users_in_photo
-					};
-					if(media.type==="video"){
-						mediaObj.videos = media.videos;
-					}
-					return mediaObj;
+					attribution: media.attribution,
+					caption: media.caption,
+					comments: media.comments,
+					created_time: media.created_time,
+					filter: media.filter,
+					id: media.id,
+					images: media.images,
+					likes: {
+						count: media.likes.count
+					},
+					link: media.link,
+					location: media.location,
+					tags: media.tags,
+					type: media.type,
+					user_has_liked: media.user_has_liked,
+					users_in_photo: media.users_in_photo
+				};
+				if(media.type==="video"){
+					mediaObj.videos = media.videos;
+				}
+				return mediaObj;
 			})
 
 
@@ -389,7 +389,9 @@ else if(selfLikesRatio<.5){
 $scope.scores = report.grade.scores;
 console.log('scores is \n\n')
 console.log($scope.scores);
-calculateLetterGrade($scope.scores.overallScore);
+var letterGrade = calculateLetterGrade($scope.scores.overallScore);
+$scope.scores.overallScoreLetter = letterGrade;
+
 
 
 
@@ -440,6 +442,7 @@ $scope.closeExample = function(){
 }
 
 function calculateLetterGrade(numberGrade){
+	numberGrade = Math.round(numberGrade);
 	if(numberGrade<60){
 		return "F";
 	}
@@ -469,8 +472,8 @@ function calculateLetterGrade(numberGrade){
 
 	// concatenate the "B" and "+", ie
 	var letterGrade = letter+symbol;
+	return letterGrade;
 	// console.log(letterGrade);
-	$scope.scores.overallScoreLetter = letterGrade;
 }
 
 
