@@ -2,8 +2,27 @@
 div.stats{
 	text-align: center;
 
+	div.not-enough-reports {
+		h1{
+			margin-bottom: 20px;
+		}
+		i.fa-lock{
+			font-size: 200px;
+			@include tabletOrLess {
+				font-size: 130px;
+			}
+			@include phoneOrLess {
+				font-size: 70px;
+			}
+			margin-top: 80px;
+			@include tabletOrLess {
+				margin-top: 40px;
+			}
+		}
+	}
 
-	
+
+
 
 	select{
 		margin: auto;

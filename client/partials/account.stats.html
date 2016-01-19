@@ -1,12 +1,23 @@
 <div class="stats fade-in-up">
 
-	<h1 class="chart-title">{{categories[category].title}}</h1>
-	<!-- <h2 class="chart-subtitle">Subtitle goes here!!</h2> -->
+	<div class="not-enough-reports" ng-show="stats.length<3">
+		<h1>Generate At Least 3 Reports To Unlock the Stats Graph!</h1>
 
+		<h3>Otherwise there wouldn't be much interesting data to show, right?  You can generate a new report on the "reports" tab.</h3>		
 
-	<div class="wow chart-container">
-		<div stats-graph id="stats-graph"></div>
+		<i class="fa fa-lock"></i> 
 	</div>
+
+
+	<!-- only show chart and axes, title if at least 3 report-->
+	<div class="stats-container" ng-show="stats.length>=3">
+		<h1 class="chart-title">{{categories[category].title}}</h1>
+		<!-- <h2 class="chart-subtitle">Subtitle goes here!!</h2> -->
+
+
+		<div class="wow chart-container">
+			<div stats-graph id="stats-graph"></div>
+		</div>
 
 	<!-- I use ng options to make lots of options to select from
 	viewable title, and reference points to stats object key names
@@ -15,7 +26,8 @@
 	ng-options="label.ref as label.title for label in labels"
 	ng-change="updateChart(selectedItem)"
 	></select>
-
+	
+</div>
 
 
 

@@ -2,7 +2,7 @@
 	
 	<div main-navbar></div>
 
-	<h2 >Hello, {{user.name}}.  Please Select a Tab Below to See Your Results.</h2>
+	<h2 ng-show="user.name">Hello, {{user.name}}.  Please Select a Tab Below to See Your Results.</h2>
 
 
 	<h6 class="report-time" ng-if="report.basicInfo.date">Report generated at {{report.basicInfo.date | date: 'h:mm a'}} on {{report.basicInfo.date | date: 'MMM d &#8217yy'}}</h6>
