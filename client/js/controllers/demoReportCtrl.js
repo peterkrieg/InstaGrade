@@ -19,6 +19,8 @@ $scope.user = {
 
 $scope.loadingUser = false;
 $scope.loading = true;
+$scope.loadingMedia = true;
+$scope.loadingEverythingElse = true;
 
 console.log($stateParams);
 
@@ -236,6 +238,9 @@ else if(selfLikesRatio<.5){
 $scope.scores = report.grade.scores;
 console.log('scores is \n\n')
 console.log($scope.scores);
+var letterGrade = calculateLetterGrade($scope.scores.overallScore);
+$scope.scores.overallScoreLetter = letterGrade;
+
 
 
 
@@ -247,14 +252,47 @@ console.log($scope.scores);
 	// finally, everything else is revealed
 	$scope.loadingEverythingElse = false;
 	$scope.loading = false;
-
+	$scope.loadingMedia = false;
 
 } // end of finishReport view
 
 
 
 
+function calculateLetterGrade(numberGrade){
+	numberGrade = Math.round(numberGrade);
+	if(numberGrade<60){
+		return "F";
+	}
+	if(numberGrade>99){
+		return "A+";
+	}
+	var numbers = [6, 7, 8, 9];
+	var letters = ["D", "C", "B", "A"];
 
+	var firstNumber = Number(numberGrade.toString()[0]);
+
+	var index = numbers.indexOf(firstNumber);
+
+	var letter = letters[index];
+	var symbol;
+
+	// now find if grade has -, +, or nothing
+	if(numberGrade%10<10){
+		symbol = '+';
+	}
+	if(numberGrade%10<7){
+		symbol='';
+	}
+	if(numberGrade%10<3){
+		symbol='-';
+	}
+
+	// concatenate the "B" and "+", ie
+	var letterGrade = letter+symbol;
+	return letterGrade;
+	// console.log(letterGrade);
+}
 
 
 
