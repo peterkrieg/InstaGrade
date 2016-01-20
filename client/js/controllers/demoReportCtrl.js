@@ -18,6 +18,7 @@ $scope.user = {
 
 
 $scope.loadingUser = false;
+$scope.loading = true;
 
 console.log($stateParams);
 
@@ -245,6 +246,7 @@ console.log($scope.scores);
 
 	// finally, everything else is revealed
 	$scope.loadingEverythingElse = false;
+	$scope.loading = false;
 
 
 } // end of finishReport view
