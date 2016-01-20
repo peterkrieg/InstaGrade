@@ -1,14 +1,24 @@
 angular.module('myApp')
-.directive('facebookShare', function(){
+.directive('facebookShare', function($interval){
 	return{
 		link: function(scope, elem, attrs){
 			$(function(){
-				console.log('facebook share scope is', scope);
+				// console.log('facebook share scope is', scope);
 
-				setTimeout(function(){
-					console.log('fb share scope later is', scope)
-				}, 5000)
+				// setTimeout(function(){
+				// 	console.log('fb share scope later is', scope)
+				// }, 5000)
 
+				var checkScope = $interval(function(){
+					if(scope.mostLikesReceived && scope.scores){
+						$interval.cancel(checkScope);
+						runEverything();
+					}
+				}, 200);
+
+
+
+				function runEverything(){
 				///////////////////////////////////////////////////
 				//  Facebook SDK stuff I need
 				//  https://developers.facebook.com/docs/opengraph/getting-started#create-app
@@ -73,7 +83,7 @@ angular.module('myApp')
 					);
 				})
 
-
+			}
 
 
 

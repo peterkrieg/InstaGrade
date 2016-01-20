@@ -6,8 +6,15 @@ angular.module('myApp')
 			// console.log(scope.mostLikesReceived);
 			// console.log(scope.user);
 
+      var checkIfScopeLoaded = $interval(function(){
+        if(scope.scores && scope.mostLikesReceived){
+          $interval.cancel(checkIfScopeLoaded);
+          createButton();
+        }
+      }, 200);
 
-			createButton();
+
+
 
 			// ________________Twitter create button on page (append to DOM)____________
 			function createButton() {

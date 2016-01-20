@@ -1,22 +1,32 @@
 angular.module('myApp')
-.directive('googleMap', function($filter){
+.directive('googleMap', function($filter, $interval){
 	return {
 		link: function(scope, elem, attrs){
 
-			var locations = scope.report.map.allLocations;
-			var lastLocation = locations[locations.length-1];
-			var centerMap = {
-				lat: lastLocation.latitude,
-				lng: lastLocation.longitude
-			};
+			var checkScope = $interval(function(){
+				if(scope.report){
+					$interval.cancel(checkScope);
+					runEverything();
+				}
+			})
 
-			var map;
-			window.initMap = function() {
-				map = new google.maps.Map(document.getElementById('map'), {
-					center: centerMap,
-					zoom: 8
 
-				});
+
+			function runEverything(){
+				var locations = scope.report.map.allLocations;
+				var lastLocation = locations[locations.length-1];
+				var centerMap = {
+					lat: lastLocation.latitude,
+					lng: lastLocation.longitude
+				};
+
+				var map;
+				window.initMap = function() {
+					map = new google.maps.Map(document.getElementById('map'), {
+						center: centerMap,
+						zoom: 8
+
+					});
 
 
 
@@ -75,7 +85,7 @@ angular.module('myApp')
 
 
 
-
+		} // end of run everything
 
 
 
