@@ -323,6 +323,8 @@ app.get('/api/reports/gradeData', reportsCtrl.getGradeData);
 
 app.put('/api/reports/updateScores', reportsCtrl.updateScores);
 
+app.get('/api/reports/scoreData', reportsCtrl.getScoreData);
+
 
 
 
@@ -371,6 +373,7 @@ db.once('open', function(){
 
 
 //_____________Connecting to Port_________________
+// run "export PORT=3001" in server shell, so it works, with nginx conf.
 var port = process.env.PORT || 3000;
 
 app.listen(port, function(){

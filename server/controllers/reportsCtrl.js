@@ -297,6 +297,7 @@ getRelationships: function(req, res, next){
 
 getStatsDemo: function(req, res, next){
 	console.log('get stats demo');
+	console.log(ReportsDummyData.length);
 	res.send(ReportsDummyData)
 
 
@@ -312,6 +313,7 @@ getStatsDemo: function(req, res, next){
 
 
 getGradeData: function(req, res, next){
+	console.log('getting to first part');
 	Report.find({})
 	.exec(function(err, reports){
 		if(err) res.send(err);
@@ -320,6 +322,7 @@ getGradeData: function(req, res, next){
 			console.log('get grade data');
 			var grades = {};
 			for(var i=0; i<reports.length; i++){
+				console.log('report number #'+i);
 				var reportGrade = reports[i].grade;
 				for(var prop in reportGrade){
 					if(!grades[prop]){
@@ -339,6 +342,33 @@ getGradeData: function(req, res, next){
 		}
 	})
 }, // end of get grade data
+
+
+// getGradeData: function(req, res, next){
+// 	res.send('hello');
+// },
+
+getScoreData: function(req, res, next){
+	console.log('get score data');
+	Report.find({'grade.scores': 0 })
+	.exec(function(err, scores){
+		console.log(scores);
+		if(err) res.send(err);
+		else{
+			var scores = [];
+			for(var i=0; i<scores.length; i++){
+				scores.push(scores[i].overallScore);
+			}
+			res.send(scores);
+		}
+	})
+
+	// Report.find({_id: "567b9af3a251caacc730c597"})
+	// .exec(function(err, report){
+	// 	res.send(report);
+	// })
+
+},
 
 
 
