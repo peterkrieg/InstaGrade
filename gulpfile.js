@@ -6,6 +6,9 @@ var uglify = require('gulp-uglify');
 
 var ngAnnotate = require('gulp-ng-annotate');
 
+var sourcemaps = require('gulp-sourcemaps');
+
+
 
 //___________________Watcher________________________
 
@@ -93,10 +96,12 @@ gulp.task('javascript', function() {
 
 
 		])
+	// .pipe(sourcemaps.init())
 	// .src('./js/lib/angular/angular.js')
 	.pipe(ngAnnotate())
 	.pipe(concat('all.js'))
-	.pipe(uglify())
+	// .pipe(uglify())
+	// .pipe(sourcemaps.write())
 	.pipe(gulp.dest('./client/scripts'))
 }); // end of javascript gulp task
 
