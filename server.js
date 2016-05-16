@@ -375,6 +375,8 @@ db.once('open', function(){
 //_____________Connecting to Port_________________
 // run "export PORT=3001" in server shell, so it works, with nginx conf.
 // and export NODE_ENV="production"  (including the quotes)
+// run "forever start server.js"  to run permanently
+// currently have mongod running on process 7053, run "sudo kill 7053" to end
 var port = process.env.PORT || 3000;
 
 app.listen(port, function(){

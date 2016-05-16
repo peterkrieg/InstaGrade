@@ -100,7 +100,7 @@ gulp.task('javascript', function() {
 	// .src('./js/lib/angular/angular.js')
 	.pipe(ngAnnotate())
 	.pipe(concat('all.js'))
-	// .pipe(uglify())
+	.pipe(uglify())
 	// .pipe(sourcemaps.write())
 	.pipe(gulp.dest('./client/scripts'))
 }); // end of javascript gulp task

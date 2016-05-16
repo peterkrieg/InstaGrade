@@ -8,7 +8,7 @@ function demoServiceFunc($http){
 
 
 	this.getLastDemoReport = function(){
-		return $http.get('/api/reports/demoReport?id=56c2cdf50d77a089318953e7')
+		return $http.get('/api/reports/demoReport?id=57395f0134564b8a75190a99')
 		.then(function(response){
 			return response.data;
 		})
