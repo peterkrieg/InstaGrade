@@ -6,17 +6,23 @@
 	
 	<!-- I use CDN to avoid problems with hosting on server-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="http://mediascore.rocks/css/main.css">
+	<!-- <link rel="stylesheet" href="http://mediascore.rocks/css/main.css"> -->
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body wow>
 	<div class="everything-wrapper"><!-- to make sure footer sticks at bottom of page-->
 
-		<div class="main-content toplevel" ui-view> </div>
 
-
-		<!-- Footer displayed on every page -->
+	<div class="warning-nav alert alert-dismissible alert-danger" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<p>As of June 1st, 2016, this app no longer works.  <a href="http://developers.instagram.com/post/145262544121/instagram-platform-update-effective-june-1-2016">Instagram recently tightened their API restrictions,</a> shutting down the majority of 3rd party apps :(</p>
 	</div>
 
+	<div class="main-content toplevel" ui-view> </div>
+
+
+	<!-- Footer displayed on every page -->
+</div>
 
 
 
@@ -27,18 +33,19 @@
 
 
 
-	<!--__Just one JS script to load, thanks to gulp______-->
-	<script src="./scripts/all.js"></script>
+
+<!--__Just one JS script to load, thanks to gulp______-->
+<script src="./scripts/all.js"></script>
 
 
-	<!-- google analytics script -->
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<!-- google analytics script -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', 'UA-47952150-6', 'auto');
+	ga('create', 'UA-47952150-6', 'auto');
 
   // I commented out this, according to blog post I saw..
   // ga('send', 'pageview');
@@ -46,20 +53,20 @@
 
 
 <script>
-    window.twttr = (function(d, s, id) {
-        var t, js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        return window.twttr || (t = {
-            _e: [],
-            ready: function(f) {
-                t._e.push(f)
-            }
-        });
-    }(document, "script", "twitter-wjs"));
+	window.twttr = (function(d, s, id) {
+		var t, js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		return window.twttr || (t = {
+			_e: [],
+			ready: function(f) {
+				t._e.push(f)
+			}
+		});
+	}(document, "script", "twitter-wjs"));
 </script>
 
 

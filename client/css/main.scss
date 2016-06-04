@@ -14,6 +14,7 @@ $header-font: 'Josefin Sans', sans-serif;
 $text-font: 'Playfair Display', serif;
 
 $instaBlue: #458eff;
+
 $instaDarkBlue: #125688;
 $pink: #FC6079;
 $weakGray: #b0b0b0;
@@ -73,12 +74,12 @@ li{
 
 .clearfix:before,
 .clearfix:after {
-  content: "";
-  display: table;
+	content: "";
+	display: table;
 }
 
 .clearfix:after {
-  clear: both;
+	clear: both;
 }
 
 .clearfix {
@@ -109,6 +110,22 @@ div.everything-wrapper{
 
 
 
+div.warning-nav{
+	text-align: center;
+	margin-bottom: 0;
+	a{
+		text-decoration: underline;
+	}
+	p{
+		padding-right: 50px;
+	}
+	button{
+		opacity: 1;
+		@include tabletOrMore {
+			right: 10px !important;
+		}
+	}
+}
 
 
 
