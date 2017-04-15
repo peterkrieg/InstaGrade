@@ -139,6 +139,7 @@ toggleReadyForReport: function(req, res, next){
 		user.readyForReport = status;
 		user.save(function(err, response){
 			return res.send(response);
+			
 		});
 	});
 },

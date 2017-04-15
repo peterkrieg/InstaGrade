@@ -8,7 +8,8 @@ function demoServiceFunc($http){
 
 
 	this.getLastDemoReport = function(){
-		return $http.get('/api/reports/demoReport?id=57395f0134564b8a75190a99')
+		var reportId = '56d90e0de3589eba72597430';
+		return $http.get('/api/reports/demoReport?id='+reportId)
 		.then(function(response){
 			return response.data;
 		})
